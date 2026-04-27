@@ -1110,9 +1110,119 @@
             .foot-logo          { font-size: 26px; }
             .foot-copy          { font-size: 12px; padding: 0 20px; }
         }
+
+        /* ════════════════════════════════════════
+           SÍMBOLO CASA PANZA — sistema de marca
+        ════════════════════════════════════════ */
+        .cp-symbol svg { display: block; }
+        .cp-symbol--turquesa svg { fill: #2ABFBF; }
+        .cp-symbol--blanco svg   { fill: #FFFFFF; }
+        .cp-symbol--sm svg  { height: 18px; width: auto; }
+        .cp-symbol--md svg  { height: 32px; width: auto; }
+        .cp-symbol--lg svg  { height: 56px; width: auto; }
+        .cp-symbol--xl svg  { height: 64px; width: auto; }
+        .cp-symbol--animated {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .cp-symbol--animated.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Separadores de sección */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 0 auto 48px;
+            width: fit-content;
+        }
+        .divider-line {
+            width: 48px;
+            height: 1px;
+            background: #2ABFBF;
+            display: block;
+        }
+        .divider-symbol svg {
+            width: auto;
+            height: 18px;
+            fill: #2ABFBF;
+            display: block;
+        }
+
+        /* Watermark hero */
+        .hero-watermark {
+            position: absolute;
+            bottom: -40px;
+            right: -20px;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .hero-watermark svg {
+            width: 320px;
+            height: auto;
+            fill: #FFFFFF;
+            display: block;
+        }
+
+        /* Cards hover symbol */
+        .card-symbol {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .esp-card:hover .card-symbol { opacity: 1; }
+        .card-symbol svg {
+            width: auto;
+            height: 56px;
+            fill: rgba(255,255,255,0.90);
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+            display: block;
+        }
+
+        /* Footer símbolo */
+        .foot-symbol {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .foot-symbol svg {
+            height: 64px;
+            width: auto;
+            fill: rgba(255,255,255,0.15);
+            display: block;
+        }
+
+        /* Los Roques símbolo decorativo */
+        .roques-symbol {
+            margin: 16px 0;
+        }
+        .roques-symbol svg {
+            height: 32px;
+            width: auto;
+            fill: #2ABFBF;
+            display: block;
+        }
     </style>
 </head>
 <body>
+
+<!-- SVG symbol defs — reutilizable en toda la página -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="cp-a" viewBox="740 365 80 115">
+      <path d="M801.17,473.97h15.39l-38.27-102.96h-3.67l-41.25,102.96h15.53l7.49-21.42.5-1.42c.72.67,1.44,1.35,2.13,2.05,2.29,2.3,4.38,4.8,6.55,7.22,1.17-.11,2.34-.22,3.51-.33-1.57-1.48-3.15-2.96-4.72-4.44,1,.2,2.14.14,2.96.63,5.08,3.03,10.47,4.71,16.43,4.12,1.4-.14,2.78-.45,4.26-.44-2.91,3.08-6.23,5.38-10.68,5.15-3.58-.19-5.61-3.16-8.25-5.02-1.17.11-2.34.22-3.51.33,2.96,2.34,5.63,5.29,8.95,6.86,5.26,2.49,9.85-.25,14.03-3.47.62-.48,1.18-1.04,1.81-1.49.21-.15.57-.09,1.41-.2.23,2.22.46,4.42.69,6.61-.19.96-.38,1.92-.57,2.89,1.75.79,3.49,1.57,5.24,2.36.75,0,1.5.02,2.25.03-.72-1.03-1.34-2.15-2.18-3.07-1.87-2.07-2.33-4.37-1.52-6.99.11-.37.3-.78.23-1.13-.35-1.7-.28-3.23.09-4.64l5.17,15.82ZM787.84,453.96c-.8.53-1.51,1.23-2.37,1.62-.72.33-1.94.72-2.35.38-3.07-2.57-6.46-1.82-9.67-.85-2.14.65-3.47.04-4.81-1.35-.53-2.69-2.73-4.4-5.4-4.77-1.71-.24-3.43-.93-4.96-1.77,0,0,0,0,0,0l17.53-49.59,17.97,53.71c-2.04.76-4.13,1.44-5.93,2.62Z"/>
+    </symbol>
+  </defs>
+</svg>
 
 <!-- ══════════════════════════════════════════
      NAVBAR
@@ -1191,6 +1301,11 @@
         </svg>
     </a>
 
+    <!-- Watermark símbolo -->
+    <div class="hero-watermark" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg>
+    </div>
+
     <!-- WhatsApp button — bottom left -->
     <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
        class="hero-wa" target="_blank" rel="noopener noreferrer" data-wa-link>
@@ -1213,6 +1328,7 @@
 
             <div class="about-text fade-up">
                 <p class="s-label" data-es="Nuestra historia" data-en="Our story">Nuestra historia</p>
+                <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
                 <h2 class="s-title"
                     data-es="Un hogar a la<br><em style='color:var(--turquoise);font-style:italic;'>altura del paraíso</em>"
                     data-en="A home that<br><em style='color:var(--turquoise);font-style:italic;'>matches paradise</em>"
@@ -1265,6 +1381,7 @@
 
         <div class="esp-hd fade-up">
             <p class="s-label" data-es="Los espacios" data-en="The Spaces">Los espacios</p>
+            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
             <h2 class="s-title"
                 data-es="Cada rincón,<br>una experiencia"
                 data-en="Every corner,<br>an experience"
@@ -1278,6 +1395,7 @@
             <div class="esp-card fade-up">
                 <div class="esp-img">
                     <img src="img/OBW_6821.JPG" alt="Sala de estar de Casa Panza" loading="lazy">
+                    <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Sala de Estar" data-en="Living Room">Sala de Estar</span></div>
                 </div>
                 <div class="esp-body">
@@ -1290,6 +1408,7 @@
             <div class="esp-card fade-up" style="transition-delay:0.1s">
                 <div class="esp-img">
                     <img src="img/OBW_6634.JPG" alt="Comedor y cocina de Casa Panza" loading="lazy">
+                    <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Comedor &amp; Cocina" data-en="Dining &amp; Kitchen">Comedor &amp; Cocina</span></div>
                 </div>
                 <div class="esp-body">
@@ -1302,6 +1421,7 @@
             <div class="esp-card fade-up" style="transition-delay:0.2s">
                 <div class="esp-img">
                     <img src="img/OBW_6791.JPG" alt="Suite Principal de Casa Panza" loading="lazy">
+                    <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Suite Principal" data-en="Master Suite">Suite Principal</span></div>
                 </div>
                 <div class="esp-body">
@@ -1314,6 +1434,7 @@
             <div class="esp-card fade-up" style="transition-delay:0.1s">
                 <div class="esp-img">
                     <img src="img/OBW_6456.JPG" alt="Habitación Familiar de Casa Panza" loading="lazy">
+                    <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Habitación Familiar" data-en="Family Room">Habitación Familiar</span></div>
                 </div>
                 <div class="esp-body">
@@ -1326,6 +1447,7 @@
             <div class="esp-card fade-up" style="transition-delay:0.2s">
                 <div class="esp-img">
                     <img src="img/OBW_6626.JPG" alt="Cocina Equipada de Casa Panza" loading="lazy">
+                    <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Cocina Equipada" data-en="Fully Equipped Kitchen">Cocina Equipada</span></div>
                 </div>
                 <div class="esp-body">
@@ -1338,6 +1460,7 @@
             <div class="esp-card fade-up" style="transition-delay:0.3s">
                 <div class="esp-img">
                     <img src="img/OBW_6810.JPG" alt="Baños de Diseño de Casa Panza" loading="lazy">
+                    <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Baños de Diseño" data-en="Designer Bathrooms">Baños de Diseño</span></div>
                 </div>
                 <div class="esp-body">
@@ -1350,6 +1473,7 @@
             <div class="esp-card fade-up" style="transition-delay:0.1s">
                 <div class="esp-img">
                     <img src="img/OBW_6653.JPG" alt="Terraza Exterior de Casa Panza" loading="lazy">
+                    <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Terraza Exterior" data-en="Outdoor Terrace">Terraza Exterior</span></div>
                 </div>
                 <div class="esp-body">
@@ -1371,6 +1495,7 @@
 
         <div class="gal-hd fade-up">
             <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
+            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
             <h2 class="s-title" data-es="Así se ve Casa Panza" data-en="This is Casa Panza">Así se ve Casa Panza</h2>
             <p class="s-sub" data-es="El turquesa de Los Roques no se explica. Se vive." data-en="The turquoise of Los Roques cannot be explained. It must be lived.">El turquesa de Los Roques no se explica. Se vive.</p>
         </div>
@@ -1432,6 +1557,7 @@
     <div class="container">
         <div class="con-center fade-up">
             <p class="s-label" data-es="Reservas" data-en="Reservations">Reservas</p>
+            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
             <h2 class="s-title"
                 data-es="Reserva<br>tu estadía"
                 data-en="Book<br>your stay"
@@ -1495,6 +1621,7 @@
             <circle cx="18.06" cy="9.93"  r="0.55" fill="white"/>
             <circle cx="18.76" cy="11.13" r="0.55" fill="white"/>
         </svg>
+        <div class="roques-symbol cp-symbol--animated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
         <h2 class="roques-title">Los Roques</h2>
         <p class="roques-quote">
             El Caribe no se imagina.<br>Se vive.
@@ -1527,6 +1654,7 @@
 <footer id="footer">
     <div class="container">
         <div class="foot-in">
+            <div class="foot-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
             <div class="foot-logo">Casa Panza</div>
             <p class="foot-tag">Gran Roque · Los Roques · Venezuela</p>
             <div class="foot-div" aria-hidden="true"></div>
@@ -1581,7 +1709,7 @@
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.14, rootMargin: '0px 0px -48px 0px' });
 
-    document.querySelectorAll('.fade-up, .fade-in, .roques-eyebrow, .roques-title, .roques-quote').forEach(el => io.observe(el));
+    document.querySelectorAll('.fade-up, .fade-in, .roques-eyebrow, .roques-title, .roques-quote, .cp-symbol--animated').forEach(el => io.observe(el));
 
     /* ── LIGHTBOX ── */
     const LB_IMGS = [
