@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Casa Panza | Alquiler de Lujo en Los Roques, Venezuela</title>
+    <meta name="description" content="Casa Panza — tu refugio de lujo boutique en Gran Roque, Los Roques, Venezuela. Hasta 10 huéspedes, diseño minimalista costero, el Caribe más cristalino del mundo.">
+    <meta name="keywords" content="Los Roques, Venezuela, alquiler turístico, casa de lujo, Gran Roque, Caribe, boutique, vacaciones, airbnb los roques">
+    <meta name="author" content="Casa Panza">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Casa Panza | Alquiler de Lujo en Los Roques">
+    <meta property="og:description" content="Tu refugio en el Caribe más puro del mundo. Los Roques, Venezuela. Hasta 10 huéspedes.">
+    <meta property="og:image" content="img/IMG_0864.JPG">
+    <meta property="og:locale" content="es_VE">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Casa Panza | Los Roques, Venezuela">
+    <meta name="twitter:description" content="Tu refugio en el Caribe más puro del mundo.">
+    <meta name="twitter:image" content="img/IMG_0864.JPG">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* ════════════════════════════════════════
+           RESET & VARIABLES
+        ════════════════════════════════════════ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --white:        #FFFFFF;
+            --beige:        #F2EBE0;
+            --turquoise:    #2ABFBF;
+            --turquoise-dk: #1FA5A5;
+            --gold:         #C9A96E;
+            --black:        #1A1A1A;
+            --gray:         #6B6B6B;
+            --light:        #F8F7F5;
+            --whatsapp:     #25D366;
+
+            --font-d: 'Cormorant Garamond', serif;
+            --font-b: 'Jost', sans-serif;
+
+            --ease:   all 0.3s ease;
+            --sh:     0 8px 40px rgba(0,0,0,0.08);
+            --sh-h:   0 18px 60px rgba(0,0,0,0.14);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--font-b);
+            color: var(--black);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        img { display: block; max-width: 100%; height: auto; }
+        a   { text-decoration: none; color: inherit; }
+
+        /* ════════════════════════════════════════
+           SCROLL ANIMATIONS
+        ════════════════════════════════════════ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.75s ease;
+        }
+        .fade-in.visible { opacity: 1; }
+
+        /* ════════════════════════════════════════
+           NAVBAR
+        ════════════════════════════════════════ */
+        #navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            padding: 22px 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: padding 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        #navbar.scrolled {
+            background: rgba(255,255,255,0.97);
+            box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+            padding: 14px 56px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-d);
+            font-size: 21px;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--white);
+            opacity: 0;
+            pointer-events: none;
+            transition: color 0.4s ease, opacity 0.4s ease;
+        }
+        #navbar.scrolled .nav-logo { color: var(--black); opacity: 1; pointer-events: auto; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 38px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.88);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--turquoise);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        #navbar.scrolled .nav-links a { color: var(--black); }
+
+        .nav-cta {
+            display: inline-flex !important;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--turquoise);
+            color: var(--white) !important;
+            border-radius: 40px;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.08em !important;
+            transition: background 0.3s ease, transform 0.3s ease !important;
+        }
+        .nav-cta:hover { background: var(--turquoise-dk); transform: translateY(-1px); }
+        .nav-cta::after { display: none !important; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block; width: 24px; height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: var(--ease);
+        }
+        #navbar.scrolled .hamburger span { background: var(--black); }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            font-family: var(--font-d);
+            font-size: 34px;
+            font-weight: 300;
+            color: var(--black);
+            letter-spacing: 0.04em;
+            transition: color 0.3s ease;
+        }
+        .mobile-menu a:hover { color: var(--turquoise); }
+        .mobile-menu .m-cta {
+            margin-top: 12px;
+            padding: 14px 42px;
+            background: var(--turquoise);
+            color: var(--white) !important;
+            border-radius: 40px;
+            font-family: var(--font-b) !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+        }
+
+        /* ════════════════════════════════════════
+           HERO
+        ════════════════════════════════════════ */
+        #hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 580px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('img/OBW_6660.JPG') center center / cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent 65%,
+                rgba(0,0,0,0.40) 100%
+            );
+        }
+
+        /* SVG Logo — top left */
+        .hero-logo {
+            position: absolute;
+            top: 40px;
+            left: 48px;
+            width: 220px;
+            z-index: 2;
+            filter: brightness(0) invert(1);
+            opacity: 0;
+            animation: hLogoIn 0.8s ease 0.3s forwards;
+        }
+        .hero-logo svg {
+            width: 220px;
+            height: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+            opacity: 0.95;
+        }
+
+        /* WhatsApp button — absolute bottom left */
+        .hero-wa {
+            position: absolute;
+            bottom: 52px;
+            left: 48px;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 32px;
+            background: var(--white);
+            color: var(--black);
+            border-radius: 2px;
+            font-family: var(--font-b);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: background 0.3s ease, color 0.3s ease;
+            white-space: nowrap;
+            opacity: 0;
+            animation: hBtnIn 0.8s ease 0.6s forwards;
+        }
+        .hero-wa:hover { background: var(--turquoise); color: var(--white); }
+        .hero-wa:hover .wa-icon-phone { fill: var(--white); }
+        .hero-wa:hover .wa-icon-bg    { fill: var(--white); }
+
+        @keyframes hLogoIn {
+            from { opacity: 0; transform: translateX(-16px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes hBtnIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ════════════════════════════════════════
+           SHARED SECTION STYLES
+        ════════════════════════════════════════ */
+        section { padding: 108px 0; }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 56px;
+        }
+
+        .s-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--turquoise);
+            margin-bottom: 14px;
+        }
+
+        .s-title {
+            font-family: var(--font-d);
+            font-size: clamp(38px, 5vw, 58px);
+            font-weight: 400;
+            line-height: 1.08;
+            color: var(--black);
+            margin-bottom: 22px;
+        }
+
+        .s-sub {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--gray);
+            line-height: 1.85;
+            max-width: 580px;
+        }
+
+        .btn-tq {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 50px;
+            background: var(--turquoise);
+            color: var(--white);
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            border: none;
+            cursor: pointer;
+            transition: var(--ease);
+        }
+        .btn-tq:hover {
+            background: var(--turquoise-dk);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 44px rgba(42,191,191,0.38);
+        }
+
+        /* ════════════════════════════════════════
+           SOBRE CASA PANZA
+        ════════════════════════════════════════ */
+        #sobre { background: var(--white); overflow: hidden; }
+
+        .about-wrap {
+            display: grid;
+            grid-template-columns: 55% 45%;
+            align-items: center;
+            min-height: 620px;
+        }
+
+        .about-text { padding-right: 84px; }
+
+        .about-copy {
+            font-size: 17px;
+            font-weight: 300;
+            color: #444;
+            line-height: 1.95;
+            margin-bottom: 50px;
+        }
+        .about-copy em {
+            font-style: italic;
+            color: var(--turquoise);
+            font-weight: 400;
+        }
+
+        .amenities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .amen {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 16px 18px;
+            background: var(--beige);
+            border-radius: 12px;
+            transition: var(--ease);
+        }
+        .amen:hover { background: var(--turquoise); transform: translateY(-2px); }
+        .amen:hover .amen-icon,
+        .amen:hover .amen-text { color: var(--white); }
+        .amen-icon {
+            font-size: 20px;
+            color: var(--turquoise);
+            width: 26px;
+            text-align: center;
+            transition: color 0.3s;
+        }
+        .amen-text {
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .about-img {
+            position: relative;
+            height: 640px;
+            overflow: hidden;
+        }
+        .about-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .about-img:hover img { transform: scale(1.04); }
+        .about-accent {
+            position: absolute;
+            bottom: -24px; left: -24px;
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            background: var(--turquoise);
+            opacity: 0.12;
+            z-index: -1;
+        }
+
+        /* ════════════════════════════════════════
+           ESPACIOS
+        ════════════════════════════════════════ */
+        #espacios { background: var(--light); }
+
+        .esp-hd { text-align: center; margin-bottom: 68px; }
+        .esp-hd .s-sub { margin: 0 auto; }
+
+        .esp-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .esp-card {
+            background: var(--white);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--sh);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .esp-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--sh-h);
+        }
+
+        .esp-img {
+            position: relative;
+            height: 265px;
+            overflow: hidden;
+        }
+        .esp-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .esp-card:hover .esp-img img { transform: scale(1.07); }
+
+        .esp-ov {
+            position: absolute; inset: 0;
+            background: rgba(42,191,191,0.76);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .esp-card:hover .esp-ov { opacity: 1; }
+        .esp-ov span {
+            font-family: var(--font-d);
+            font-size: 30px;
+            font-weight: 400;
+            color: var(--white);
+            text-align: center;
+            letter-spacing: 0.03em;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            padding: 0 20px;
+        }
+
+        .esp-body { padding: 26px 28px 30px; }
+        .esp-name {
+            font-family: var(--font-d);
+            font-size: 23px;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 10px;
+        }
+        .esp-desc {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--gray);
+            line-height: 1.75;
+        }
+
+        /* ════════════════════════════════════════
+           GALERÍA
+        ════════════════════════════════════════ */
+        #galeria { background: var(--white); }
+
+        .gal-hd { text-align: center; margin-bottom: 60px; }
+        .gal-hd .s-sub { margin: 0 auto; }
+
+        .masonry {
+            columns: 3;
+            column-gap: 18px;
+        }
+
+        .m-item {
+            break-inside: avoid;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        .m-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.45s ease;
+        }
+        .m-item:hover img { transform: scale(1.05); }
+
+        .m-ov {
+            position: absolute; inset: 0;
+            background: rgba(42,191,191,0.22);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .m-ov i {
+            font-size: 30px;
+            color: var(--white);
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.35));
+        }
+        .m-item:hover .m-ov { opacity: 1; }
+
+        /* Lightbox */
+        #lb {
+            display: none;
+            position: fixed; inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.96);
+            align-items: center;
+            justify-content: center;
+        }
+        #lb.open { display: flex; }
+
+        #lb-img {
+            max-width: 90vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .lb-close {
+            position: fixed; top: 22px; right: 30px;
+            font-size: 30px; color: var(--white);
+            opacity: 0.7; cursor: pointer;
+            background: none; border: none;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 10001;
+        }
+        .lb-close:hover { opacity: 1; transform: rotate(90deg); }
+        .lb-prev, .lb-next {
+            position: fixed; top: 50%; transform: translateY(-50%);
+            font-size: 24px; color: var(--white);
+            opacity: 0.7; cursor: pointer;
+            background: rgba(255,255,255,0.1);
+            border: none; width: 52px; height: 52px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.3s, background 0.3s;
+            z-index: 10001;
+        }
+        .lb-prev { left: 22px; }
+        .lb-next { right: 22px; }
+        .lb-prev:hover, .lb-next:hover { opacity: 1; background: rgba(255,255,255,0.22); }
+
+        /* ════════════════════════════════════════
+           CONTACTO
+        ════════════════════════════════════════ */
+        #contacto {
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        #contacto::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 5px; height: 100%;
+            background: var(--turquoise);
+        }
+
+        .con-center {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .con-center .s-sub { margin: 0 auto 0; }
+
+        .con-wa {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 22px 56px;
+            background: var(--whatsapp);
+            color: var(--white);
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 36px 0 48px;
+            transition: var(--ease);
+        }
+        .con-wa:hover {
+            background: #1aad54;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 42px rgba(37,211,102,0.38);
+        }
+        .con-wa i { font-size: 22px; }
+
+        .con-details-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .con-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .con-icon {
+            width: 44px; height: 44px;
+            background: var(--beige);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .con-icon i { color: var(--turquoise); font-size: 15px; }
+        .con-txt strong { display: block; font-weight: 600; font-size: 14px; margin-bottom: 3px; }
+        .con-txt span   { font-size: 14px; color: var(--gray); }
+
+        /* ════════════════════════════════════════
+           FLOATING WHATSAPP
+        ════════════════════════════════════════ */
+        #float-wa {
+            position: fixed;
+            bottom: 32px; right: 32px;
+            z-index: 998;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: var(--whatsapp);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 24px rgba(37,211,102,0.52);
+            animation: waPulse 3s ease-in-out infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #float-wa:hover {
+            transform: scale(1.12);
+            box-shadow: 0 8px 34px rgba(37,211,102,0.72);
+            animation: none;
+        }
+        #float-wa i { font-size: 28px; color: var(--white); }
+
+        .wa-tip {
+            position: absolute;
+            right: 70px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 7px 14px;
+            border-radius: 8px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(8px);
+            transition: var(--ease);
+            pointer-events: none;
+        }
+        .wa-tip::after {
+            content: '';
+            position: absolute;
+            left: 100%; top: 50%;
+            transform: translateY(-50%);
+            border: 5px solid transparent;
+            border-left-color: var(--black);
+        }
+        #float-wa:hover .wa-tip { opacity: 1; transform: translateX(0); }
+
+        @keyframes waPulse {
+            0%,100% { box-shadow: 0 4px 24px rgba(37,211,102,0.52), 0 0 0 0 rgba(37,211,102,0.4); }
+            50%      { box-shadow: 0 4px 24px rgba(37,211,102,0.52), 0 0 0 16px rgba(37,211,102,0); }
+        }
+
+        /* ════════════════════════════════════════
+           FOOTER
+        ════════════════════════════════════════ */
+        #footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 72px 0 44px;
+        }
+        .foot-in { text-align: center; }
+        .foot-logo {
+            font-family: var(--font-d);
+            font-size: 34px;
+            font-weight: 400;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .foot-tag {
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 42px;
+        }
+        .foot-div {
+            width: 56px; height: 1px;
+            background: var(--turquoise);
+            opacity: 0.5;
+            margin: 0 auto 36px;
+        }
+        .foot-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            list-style: none;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+        .foot-links a {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            transition: color 0.3s;
+        }
+        .foot-links a:hover { color: var(--turquoise); }
+
+        .foot-social { margin-bottom: 36px; }
+        .foot-social a {
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.55);
+            font-size: 17px;
+            margin: 0 6px;
+            transition: var(--ease);
+        }
+        .foot-social a:hover {
+            background: var(--turquoise);
+            border-color: var(--turquoise);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        .foot-copy {
+            font-size: 12px;
+            color: rgba(255,255,255,0.28);
+            letter-spacing: 0.04em;
+        }
+
+        /* ════════════════════════════════════════
+           LOS ROQUES
+        ════════════════════════════════════════ */
+        #roques {
+            background: #0A1628;
+            padding: 100px 0 0;
+            overflow: hidden;
+        }
+
+        .roques-text {
+            text-align: center;
+            padding: 0 56px;
+            margin-bottom: 64px;
+        }
+
+        .roques-eyebrow {
+            font-family: var(--font-b);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--turquoise);
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+        .roques-eyebrow.visible { opacity: 1; transform: translateY(0); }
+
+        .roques-title {
+            font-family: var(--font-d);
+            font-style: italic;
+            font-size: clamp(56px, 8vw, 110px);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.85s ease 0.1s, transform 0.85s ease 0.1s;
+        }
+        .roques-title.visible { opacity: 1; transform: translateY(0); }
+
+        .roques-quote {
+            font-family: var(--font-d);
+            font-style: italic;
+            font-size: clamp(22px, 3vw, 34px);
+            color: rgba(255,255,255,0.60);
+            line-height: 1.4;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.75s ease 0.2s, transform 0.75s ease 0.2s;
+        }
+        .roques-quote.visible { opacity: 1; transform: translateY(0); }
+
+        .roques-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .roques-grid img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.75s ease;
+        }
+        .roques-grid img.visible { opacity: 1; }
+
+        .roques-caption {
+            text-align: center;
+            padding: 40px 56px;
+            font-family: var(--font-b);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+        }
+
+        /* ════════════════════════════════════════
+           LANGUAGE TOGGLE
+        ════════════════════════════════════════ */
+        .lang-li {
+            padding-left: 16px;
+            border-left: 1px solid rgba(255,255,255,0.2);
+            transition: border-color 0.4s ease;
+        }
+        #navbar.scrolled .lang-li { border-left-color: rgba(0,0,0,0.15); }
+
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+        }
+        .lang-toggle button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-b);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.88);
+            padding: 4px 6px;
+            opacity: 0.4;
+            transition: opacity 0.2s ease, color 0.4s ease;
+        }
+        .lang-toggle .lang-sep {
+            color: rgba(255,255,255,0.35);
+            font-size: 10px;
+            font-family: var(--font-b);
+            pointer-events: none;
+            transition: color 0.4s ease;
+            user-select: none;
+        }
+        .lang-toggle button.active { font-weight: 600; opacity: 1; }
+        .lang-toggle button:hover  { opacity: 1; }
+        #navbar.scrolled .lang-toggle button   { color: var(--black); }
+        #navbar.scrolled .lang-toggle .lang-sep { color: rgba(0,0,0,0.3); }
+
+        /* Mobile lang toggle */
+        .m-lang {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 16px;
+        }
+        .m-lang button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-b);
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--black);
+            padding: 8px 10px;
+            opacity: 0.4;
+            transition: opacity 0.2s ease;
+        }
+        .m-lang button.active { font-weight: 600; opacity: 1; }
+        .m-lang button:hover  { opacity: 1; }
+        .m-lang .lang-sep {
+            color: rgba(0,0,0,0.3);
+            font-size: 13px;
+            font-family: var(--font-b);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* ════════════════════════════════════════
+           RESPONSIVE
+        ════════════════════════════════════════ */
+
+        /* ── Tablet grande (≤ 1100px) ── */
+        @media (max-width: 1100px) {
+            .container          { padding: 0 36px; }
+            #navbar,
+            #navbar.scrolled    { padding-left: 36px; padding-right: 36px; }
+            .about-wrap         { grid-template-columns: 1fr; min-height: unset; }
+            .about-text         { padding-right: 0; order: 2; padding-top: 32px; }
+            .about-img          { height: 440px; order: 1; }
+            .esp-grid           { grid-template-columns: repeat(2, 1fr); }
+            .masonry            { columns: 2; }
+            .con-details-row    { grid-template-columns: 1fr; }
+            /* Los Roques — tablet grande */
+            .roques-grid img    { height: 300px; }
+        }
+
+        /* ── Tablet (≤ 768px) ── */
+        @media (max-width: 768px) {
+            /* Global */
+            section             { padding: 72px 0; }
+            .container          { padding: 0 20px; }
+
+            /* Navbar */
+            #navbar,
+            #navbar.scrolled    { padding: 0 20px; height: 60px; }
+            .nav-links          { display: none; }
+            .hamburger          { display: flex; min-width: 44px; min-height: 44px;
+                                  align-items: center; justify-content: flex-end; }
+
+            /* Hero */
+            .hero-logo          { width: 150px; top: 24px; left: 24px; }
+            .hero-logo svg      { width: 150px; }
+            .hero-wa            { bottom: 40px; left: 24px; }
+
+            /* About */
+            .about-wrap         { grid-template-columns: 1fr; min-height: unset; }
+            .about-text         { padding-right: 0; order: 2; padding-top: 32px; }
+            .about-img          { height: 280px; order: 1; }
+            .s-title            { font-size: 30px; }
+            .amenities          { grid-template-columns: 1fr 1fr; }
+
+            /* Spaces — 2 col en tablet */
+            .esp-grid           { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+            /* Gallery — 2 col en tablet */
+            .masonry            { columns: 2; column-gap: 10px; }
+            .m-item             { margin-bottom: 10px; }
+            .m-item img         { height: 200px; object-fit: cover; }
+
+            /* Contact */
+            .con-details-row    { grid-template-columns: 1fr; }
+            .con-wa             { padding: 20px 32px; font-size: 16px; min-height: 58px; }
+
+            /* Los Roques */
+            #roques             { padding-top: 72px; }
+            .roques-text        { padding: 0 20px; margin-bottom: 40px; }
+            .roques-grid        { grid-template-columns: 1fr; }
+            .roques-grid img    { height: 260px; border-radius: 2px; }
+            .roques-caption     { padding: 28px 20px; font-size: 11px; }
+
+            /* Float WA */
+            #float-wa           { width: 58px; height: 58px; bottom: 20px; right: 20px;
+                                  z-index: 9999; }
+            .wa-tip             { display: none; }
+
+            /* Footer */
+            #footer             { padding: 40px 0 32px; }
+            .foot-links         { flex-direction: column; align-items: center; gap: 12px; }
+            .foot-links a       { font-size: 14px; min-height: 44px; display: flex;
+                                  align-items: center; }
+        }
+
+        /* ── Móvil (≤ 480px) ── */
+        @media (max-width: 480px) {
+            /* Global */
+            section             { padding: 56px 0; }
+            .container          { padding: 0 20px; }
+
+            /* Navbar */
+            #navbar,
+            #navbar.scrolled    { padding: 0 16px; height: 60px; }
+
+            /* Hero */
+            .hero-logo          { width: 150px; top: 20px; left: 20px; }
+            .hero-logo svg      { width: 150px; }
+            .hero-wa            { bottom: 32px; left: 20px; font-size: 11px; padding: 13px 22px; }
+
+            /* About */
+            .about-img          { height: 260px; }
+            .about-text         { padding-top: 28px; }
+            .about-copy         { font-size: 15px; line-height: 1.85; }
+            .amenities          { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .amen               { padding: 14px 12px; }
+            .amen-text          { font-size: 13px; }
+
+            /* Spaces — 1 col en móvil */
+            .esp-grid           { grid-template-columns: 1fr; gap: 20px; }
+            .esp-img            { height: 240px; }
+            .esp-img img        { height: 240px; object-fit: cover; width: 100%; }
+            .esp-name           { font-size: 18px; }
+            .esp-desc           { font-size: 14px; line-height: 1.6; }
+            .esp-body           { padding: 20px; }
+
+            /* Gallery — 1 col en móvil */
+            .masonry            { columns: 1; column-gap: 0; }
+            .m-item             { margin-bottom: 8px; border-radius: 4px; }
+            .m-item img         { height: 220px; object-fit: cover; width: 100%; }
+
+            /* Lightbox */
+            #lb-img             { max-width: 95vw; }
+            .lb-close           { top: 16px; right: 16px;
+                                  width: 44px; height: 44px;
+                                  display: flex; align-items: center; justify-content: center; }
+            .lb-prev            { left: 8px; width: 44px; height: 44px; font-size: 18px; }
+            .lb-next            { right: 8px; width: 44px; height: 44px; font-size: 18px; }
+
+            /* Contact */
+            .con-center .s-title { font-size: 28px; }
+            .con-wa              { font-size: 15px; padding: 18px 24px; min-height: 54px; }
+
+            /* Los Roques */
+            .roques-title       { font-size: clamp(48px, 12vw, 72px); }
+
+            /* Float WA */
+            #float-wa           { width: 58px; height: 58px; bottom: 20px; right: 16px;
+                                  z-index: 9999; }
+            .wa-tip             { display: none; }
+
+            /* Footer */
+            .foot-logo          { font-size: 26px; }
+            .foot-copy          { font-size: 12px; padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════ -->
+<nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <a href="#hero" class="nav-logo">Casa Panza</a>
+
+    <ul class="nav-links">
+        <li><a href="#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
+        <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
+        <li><a href="#galeria"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
+        <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
+        <li>
+            <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
+               class="nav-cta" target="_blank" rel="noopener noreferrer" data-wa-link>
+                <i class="fab fa-whatsapp"></i>
+                <span data-es="Reservar" data-en="Book Now">Reservar</span>
+            </a>
+        </li>
+        <li class="lang-li">
+            <div class="lang-toggle" aria-label="Switch language">
+                <button data-lang="es" class="active" aria-label="Español">ES</button>
+                <span class="lang-sep" aria-hidden="true">|</span>
+                <button data-lang="en" aria-label="English">EN</button>
+            </div>
+        </li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú móvil">
+    <a href="#sobre"    class="m-link"><span data-es="La Casa"   data-en="The House">La Casa</span></a>
+    <a href="#espacios" class="m-link"><span data-es="Espacios"  data-en="Spaces">Espacios</span></a>
+    <a href="#galeria"  class="m-link"><span data-es="Galería"   data-en="Gallery">Galería</span></a>
+    <a href="#contacto" class="m-link"><span data-es="Contacto"  data-en="Contact">Contacto</span></a>
+    <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
+       class="m-link m-cta" target="_blank" rel="noopener noreferrer" data-wa-link>
+        <i class="fab fa-whatsapp"></i>
+        <span data-es="Reservar ahora" data-en="Book Now">Reservar ahora</span>
+    </a>
+    <div class="m-lang" aria-label="Switch language">
+        <button data-lang="es" class="active" aria-label="Español">ES</button>
+        <span class="lang-sep" aria-hidden="true">|</span>
+        <button data-lang="en" aria-label="English">EN</button>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section id="hero" aria-label="Portada">
+
+    <div class="hero-bg"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <!-- SVG Logo — top left -->
+    <a href="#hero" class="hero-logo" aria-label="Casa Panza">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 792" aria-hidden="true">
+          <g>
+            <path d="M286.2,318.43l-1.52,3.87c-1.45-1.06-3.73-1.59-6.84-1.59-2.91,0-5.25,1.25-7.01,3.76-1.76,2.51-2.64,5.74-2.64,9.69s.9,6.84,2.71,9.18c1.8,2.35,4.13,3.52,6.99,3.52,3.11,0,5.5-1.1,7.18-3.31l2.49,3.47c-2.63,2.61-6.01,3.92-10.15,3.92s-7.75-1.56-10.24-4.69-3.74-7.25-3.74-12.37,1.33-9.07,3.99-12.34c2.66-3.28,6.09-4.92,10.31-4.92,3.61,0,6.43.6,8.47,1.79Z"/>
+            <path d="M325.02,350.4l-2.29-7h-12.34l-2.45,7h-5.07l13.48-33.64h1.2l12.5,33.64h-5.03ZM316.73,325.46l-5.14,14.61h9.85l-4.71-14.61Z"/>
+            <path d="M345.45,348.88l1.65-4.17c.85.62,1.9,1.14,3.16,1.55,1.26.42,2.39.62,3.39.62,1.77,0,3.19-.48,4.26-1.45,1.07-.97,1.61-2.2,1.61-3.69,0-1.12-.3-2.16-.89-3.11-.6-.96-2.1-2-4.5-3.14l-2.67-1.25c-2.27-1.06-3.85-2.31-4.75-3.76-.9-1.45-1.35-3.19-1.35-5.23,0-2.48.88-4.53,2.63-6.16,1.75-1.63,4-2.45,6.75-2.45,3.67,0,6.22.6,7.66,1.79l-1.34,3.94c-.6-.44-1.53-.86-2.76-1.27-1.24-.41-2.39-.61-3.44-.61-1.54,0-2.75.44-3.64,1.31-.88.88-1.33,2-1.33,3.38,0,.85.16,1.62.48,2.31.32.69.76,1.28,1.33,1.74.57.47,1.73,1.13,3.48,1.97l2.72,1.29c2.27,1.07,3.85,2.35,4.77,3.84.91,1.49,1.37,3.38,1.37,5.67,0,2.49-1,4.61-3,6.34-2,1.74-4.68,2.6-8.03,2.6-2.94,0-5.46-.69-7.54-2.08Z"/>
+            <path d="M401.51,350.4l-2.29-7h-12.34l-2.45,7h-5.07l13.48-33.64h1.2l12.5,33.64h-5.03ZM393.22,325.46l-5.14,14.61h9.85l-4.71-14.61Z"/>
+          </g>
+          <g>
+            <path d="M282.44,371.7c-2.17,0-8.51.23-19,.69v101.58h13.87v-39.11c5.27.46,8.69.69,10.26.69,26.07,0,39.11-11.42,39.11-34.25,0-19.74-14.75-29.61-44.24-29.61ZM286.6,423.08c-.32,0-3.42-.23-9.29-.69v-37.51c3.19-.46,5.71-.69,7.56-.69,18.35,0,27.53,6.19,27.53,18.58,0,13.54-8.6,20.32-25.79,20.32Z"/>
+            <polygon points="398.98 371 357.72 473.97 373.26 473.97 380.74 452.54 400.16 397.63 418.53 452.54 425.53 473.97 440.93 473.97 402.65 371 398.98 371"/>
+            <polygon points="549.29 442.63 498.19 372.39 492.64 372.39 492.64 473.97 505.82 473.97 505.82 401.1 558.3 475.36 562.46 475.36 562.46 372.39 549.29 372.39 549.29 442.63"/>
+            <polygon points="683.59 375.86 683.59 372.39 621.53 372.39 621.53 384.87 664.52 384.87 620.84 470.5 620.84 473.97 685.11 473.97 685.11 461.49 639.77 461.49 683.59 375.86"/>
+            <path d="M801.17,473.97h15.39l-38.27-102.96h-3.67l-41.25,102.96h15.53l7.49-21.42.5-1.42c.72.67,1.44,1.35,2.13,2.05,2.29,2.3,4.38,4.8,6.55,7.22,1.17-.11,2.34-.22,3.51-.33-1.57-1.48-3.15-2.96-4.72-4.44,1,.2,2.14.14,2.96.63,5.08,3.03,10.47,4.71,16.43,4.12,1.4-.14,2.78-.45,4.26-.44-2.91,3.08-6.23,5.38-10.68,5.15-3.58-.19-5.61-3.16-8.25-5.02-1.17.11-2.34.22-3.51.33,2.96,2.34,5.63,5.29,8.95,6.86,5.26,2.49,9.85-.25,14.03-3.47.62-.48,1.18-1.04,1.81-1.49.21-.15.57-.09,1.41-.2.23,2.22.46,4.42.69,6.61-.19.96-.38,1.92-.57,2.89,1.75.79,3.49,1.57,5.24,2.36.75,0,1.5.02,2.25.03-.72-1.03-1.34-2.15-2.18-3.07-1.87-2.07-2.33-4.37-1.52-6.99.11-.37.3-.78.23-1.13-.35-1.7-.28-3.23.09-4.64l5.17,15.82ZM787.84,453.96c-.8.53-1.51,1.23-2.37,1.62-.72.33-1.94.72-2.35.38-3.07-2.57-6.46-1.82-9.67-.85-2.14.65-3.47.04-4.81-1.35-.53-2.69-2.73-4.4-5.4-4.77-1.71-.24-3.43-.93-4.96-1.77,0,0,0,0,0,0l17.53-49.59,17.97,53.71c-2.04.76-4.13,1.44-5.93,2.62Z"/>
+          </g>
+        </svg>
+    </a>
+
+    <!-- WhatsApp button — bottom left -->
+    <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
+       class="hero-wa" target="_blank" rel="noopener noreferrer" data-wa-link>
+        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="wa-icon-phone" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/>
+            <path class="wa-icon-bg" d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.526 5.858L0 24l6.335-1.652A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.011-1.374l-.36-.213-3.731.978.995-3.631-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill="#25D366"/>
+        </svg>
+        <span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span>
+    </a>
+
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SOBRE CASA PANZA
+══════════════════════════════════════════ -->
+<section id="sobre">
+    <div class="container">
+        <div class="about-wrap">
+
+            <div class="about-text fade-up">
+                <p class="s-label" data-es="Nuestra historia" data-en="Our story">Nuestra historia</p>
+                <h2 class="s-title"
+                    data-es="Un hogar a la<br><em style='color:var(--turquoise);font-style:italic;'>altura del paraíso</em>"
+                    data-en="A home that<br><em style='color:var(--turquoise);font-style:italic;'>matches paradise</em>"
+                    data-html="true">Un hogar a la<br><em style="color:var(--turquoise);font-style:italic;">altura del paraíso</em></h2>
+
+                <p class="about-copy"
+                   data-es="Casa Panza nació del amor por Los Roques y la convicción de que el paraíso merece un hogar a su altura. Espacios blancos, materiales naturales y atención al detalle en cada rincón — para que tu única preocupación sea disfrutar el <em>turquesa</em>.<br><br>Ubicada en Gran Roque, la isla principal del archipiélago declarado Parque Nacional, Casa Panza fusiona el minimalismo costero más refinado con el alma auténtica del Caribe venezolano. Despierta con el sonido del mar. Duerme bajo el cielo más estrellado del Atlántico."
+                   data-en="Casa Panza was born from a love for Los Roques and the conviction that paradise deserves a home to match. White spaces, natural materials and attention to detail in every corner — so your only concern is enjoying the <em>turquoise</em>.<br><br>Located in Gran Roque, the main island of the archipelago declared a National Park, Casa Panza blends the most refined coastal minimalism with the authentic soul of the Venezuelan Caribbean. Wake up to the sound of the sea. Sleep under the most star-filled sky in the Atlantic."
+                   data-html="true">
+                    Casa Panza nació del amor por Los Roques y la convicción de que el paraíso merece un hogar a su altura. Espacios blancos, materiales naturales y atención al detalle en cada rincón — para que tu única preocupación sea disfrutar el <em>turquesa</em>.
+                    <br><br>
+                    Ubicada en Gran Roque, la isla principal del archipiélago declarado Parque Nacional, Casa Panza fusiona el minimalismo costero más refinado con el alma auténtica del Caribe venezolano. Despierta con el sonido del mar. Duerme bajo el cielo más estrellado del Atlántico.
+                </p>
+
+                <div class="amenities">
+                    <div class="amen fade-up">
+                        <span class="amen-icon"><i class="fas fa-house"></i></span>
+                        <span class="amen-text" data-es="Hasta 10 huéspedes" data-en="Up to 10 guests">Hasta 10 huéspedes</span>
+                    </div>
+                    <div class="amen fade-up" style="transition-delay:0.1s">
+                        <span class="amen-icon"><i class="fas fa-snowflake"></i></span>
+                        <span class="amen-text" data-es="Aire acondicionado" data-en="Air conditioning">Aire acondicionado</span>
+                    </div>
+                    <div class="amen fade-up" style="transition-delay:0.2s">
+                        <span class="amen-icon"><i class="fas fa-utensils"></i></span>
+                        <span class="amen-text" data-es="Cocina completa" data-en="Full kitchen">Cocina completa</span>
+                    </div>
+                    <div class="amen fade-up" style="transition-delay:0.3s">
+                        <span class="amen-icon"><i class="fas fa-wifi"></i></span>
+                        <span class="amen-text" data-es="WiFi disponible" data-en="WiFi available">WiFi disponible</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-img fade-in">
+                <img src="img/OBW_6821.JPG" alt="Comedor de Casa Panza, Los Roques" loading="eager">
+                <div class="about-accent" aria-hidden="true"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ESPACIOS
+══════════════════════════════════════════ -->
+<section id="espacios">
+    <div class="container">
+
+        <div class="esp-hd fade-up">
+            <p class="s-label" data-es="Los espacios" data-en="The Spaces">Los espacios</p>
+            <h2 class="s-title"
+                data-es="Cada rincón,<br>una experiencia"
+                data-en="Every corner,<br>an experience"
+                data-html="true">Cada rincón,<br>una experiencia</h2>
+            <p class="s-sub" data-es="Siete espacios diseñados con intención. Blanco como la arena, profundo como el mar." data-en="Seven spaces designed with intention. White as the sand, deep as the sea.">Siete espacios diseñados con intención. Blanco como la arena, profundo como el mar.</p>
+        </div>
+
+        <div class="esp-grid">
+
+            <!-- Card 1 — Sala de Estar -->
+            <div class="esp-card fade-up">
+                <div class="esp-img">
+                    <img src="img/OBW_6821.JPG" alt="Sala de estar de Casa Panza" loading="lazy">
+                    <div class="esp-ov"><span data-es="Sala de Estar" data-en="Living Room">Sala de Estar</span></div>
+                </div>
+                <div class="esp-body">
+                    <h3 class="esp-name" data-es="Sala de Estar" data-en="Living Room">Sala de Estar</h3>
+                    <p class="esp-desc" data-es="Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala." data-en="L-shaped sofa facing the sea, white beam ceiling and windows that erase the line between inside and outside. Where the Caribbean enters the living room.">Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 — Comedor & Cocina -->
+            <div class="esp-card fade-up" style="transition-delay:0.1s">
+                <div class="esp-img">
+                    <img src="img/OBW_6634.JPG" alt="Comedor y cocina de Casa Panza" loading="lazy">
+                    <div class="esp-ov"><span data-es="Comedor &amp; Cocina" data-en="Dining &amp; Kitchen">Comedor &amp; Cocina</span></div>
+                </div>
+                <div class="esp-body">
+                    <h3 class="esp-name" data-es="Comedor &amp; Cocina" data-en="Dining &amp; Kitchen">Comedor &amp; Cocina</h3>
+                    <p class="esp-desc" data-es="Espacio social abierto al Caribe. Comedor para 10, cocina completa y brisa marina como fondo permanente." data-en="Social space open to the Caribbean. Dining for 10, full kitchen and sea breeze as a permanent backdrop.">Espacio social abierto al Caribe. Comedor para 10, cocina completa y brisa marina como fondo permanente.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 — Suite Principal -->
+            <div class="esp-card fade-up" style="transition-delay:0.2s">
+                <div class="esp-img">
+                    <img src="img/OBW_6791.JPG" alt="Suite Principal de Casa Panza" loading="lazy">
+                    <div class="esp-ov"><span data-es="Suite Principal" data-en="Master Suite">Suite Principal</span></div>
+                </div>
+                <div class="esp-body">
+                    <h3 class="esp-name" data-es="Suite Principal" data-en="Master Suite">Suite Principal</h3>
+                    <p class="esp-desc" data-es="Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma." data-en="Double bed, handcrafted jute textiles and sphere lamps. Pure white to wake up in peace.">Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma.</p>
+                </div>
+            </div>
+
+            <!-- Card 4 — Habitación Familiar -->
+            <div class="esp-card fade-up" style="transition-delay:0.1s">
+                <div class="esp-img">
+                    <img src="img/OBW_6456.JPG" alt="Habitación Familiar de Casa Panza" loading="lazy">
+                    <div class="esp-ov"><span data-es="Habitación Familiar" data-en="Family Room">Habitación Familiar</span></div>
+                </div>
+                <div class="esp-body">
+                    <h3 class="esp-name" data-es="Habitación Familiar" data-en="Family Room">Habitación Familiar</h3>
+                    <p class="esp-desc" data-es="Cama doble más litera de diseño empotrada. Perfecta para familias o grupos que quieren más espacio." data-en="Double bed plus built-in designer bunk bed. Perfect for families or groups who want more space.">Cama doble más litera de diseño empotrada. Perfecta para familias o grupos que quieren más espacio.</p>
+                </div>
+            </div>
+
+            <!-- Card 5 — Cocina Equipada -->
+            <div class="esp-card fade-up" style="transition-delay:0.2s">
+                <div class="esp-img">
+                    <img src="img/OBW_6626.JPG" alt="Cocina Equipada de Casa Panza" loading="lazy">
+                    <div class="esp-ov"><span data-es="Cocina Equipada" data-en="Fully Equipped Kitchen">Cocina Equipada</span></div>
+                </div>
+                <div class="esp-body">
+                    <h3 class="esp-name" data-es="Cocina Equipada" data-en="Fully Equipped Kitchen">Cocina Equipada</h3>
+                    <p class="esp-desc" data-es="Isla de desayuno en madera, backsplash turquesa, horno profesional y refrigerador doble. Todo listo para tus mejores noches." data-en="Wooden breakfast island, turquoise backsplash, professional oven and double refrigerator. Everything ready for your best nights.">Isla de desayuno en madera, backsplash turquesa, horno profesional y refrigerador doble. Todo listo para tus mejores noches.</p>
+                </div>
+            </div>
+
+            <!-- Card 6 — Baños de Diseño -->
+            <div class="esp-card fade-up" style="transition-delay:0.3s">
+                <div class="esp-img">
+                    <img src="img/OBW_6810.JPG" alt="Baños de Diseño de Casa Panza" loading="lazy">
+                    <div class="esp-ov"><span data-es="Baños de Diseño" data-en="Designer Bathrooms">Baños de Diseño</span></div>
+                </div>
+                <div class="esp-body">
+                    <h3 class="esp-name" data-es="Baños de Diseño" data-en="Designer Bathrooms">Baños de Diseño</h3>
+                    <p class="esp-desc" data-es="Revestimiento travertino, luz cálida integrada y amenidades Casa Panza en cestas de rafia. El lujo está en los detalles." data-en="Travertine cladding, integrated warm lighting and Casa Panza amenities in raffia baskets. Luxury is in the details.">Revestimiento travertino, luz cálida integrada y amenidades Casa Panza en cestas de rafia. El lujo está en los detalles.</p>
+                </div>
+            </div>
+
+            <!-- Card 7 — Terraza Exterior -->
+            <div class="esp-card fade-up" style="transition-delay:0.1s">
+                <div class="esp-img">
+                    <img src="img/OBW_6653.JPG" alt="Terraza Exterior de Casa Panza" loading="lazy">
+                    <div class="esp-ov"><span data-es="Terraza Exterior" data-en="Outdoor Terrace">Terraza Exterior</span></div>
+                </div>
+                <div class="esp-body">
+                    <h3 class="esp-name" data-es="Terraza Exterior" data-en="Outdoor Terrace">Terraza Exterior</h3>
+                    <p class="esp-desc" data-es="Fachada blanca, terraza exterior y acceso directo al corazón de Gran Roque. Tu base perfecta en Los Roques." data-en="White facade, outdoor terrace and direct access to the heart of Gran Roque. Your perfect base in Los Roques.">Fachada blanca, terraza exterior y acceso directo al corazón de Gran Roque. Tu base perfecta en Los Roques.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     GALERÍA
+══════════════════════════════════════════ -->
+<section id="galeria">
+    <div class="container">
+
+        <div class="gal-hd fade-up">
+            <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
+            <h2 class="s-title" data-es="Así se ve Casa Panza" data-en="This is Casa Panza">Así se ve Casa Panza</h2>
+            <p class="s-sub" data-es="El turquesa de Los Roques no se explica. Se vive." data-en="The turquoise of Los Roques cannot be explained. It must be lived.">El turquesa de Los Roques no se explica. Se vive.</p>
+        </div>
+
+        <div class="masonry" id="masonry">
+
+            <!-- Fila 1: Exterior y destino -->
+            <div class="m-item fade-in" data-idx="0">
+                <img src="img/IMG_0864.JPG" alt="Mar turquesa aéreo, Los Roques" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="1" style="transition-delay:0.1s">
+                <img src="img/IMG_0861.JPG" alt="Mar con arrecife desde drone, Los Roques" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="2" style="transition-delay:0.2s">
+                <img src="img/IMG_0720.JPG" alt="Personas en lancha, agua cristalina de Los Roques" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="3" style="transition-delay:0.05s">
+                <img src="img/OBW_6653.JPG" alt="Fachada exterior de Casa Panza, Gran Roque" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- Fila 2: Áreas sociales -->
+            <div class="m-item fade-in" data-idx="4" style="transition-delay:0.15s">
+                <img src="img/OBW_6660.JPG" alt="Sala de estar panorámica Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="5" style="transition-delay:0.25s">
+                <img src="img/OBW_6634.JPG" alt="Comedor y cocina con vista al mar, Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="6" style="transition-delay:0.1s">
+                <img src="img/OBW_6821.JPG" alt="Comedor montado Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="7" style="transition-delay:0.2s">
+                <img src="img/OBW_6612.JPG" alt="Sala: detalle TV y estantería Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- Fila 3: Cocina -->
+            <div class="m-item fade-in" data-idx="8" style="transition-delay:0.05s">
+                <img src="img/OBW_6626.JPG" alt="Cocina con isla de madera, Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="9" style="transition-delay:0.15s">
+                <img src="img/OBW_6599.JPG" alt="Sala ángulo alternativo, Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- Fila 4: Habitaciones -->
+            <div class="m-item fade-in" data-idx="10" style="transition-delay:0.25s">
+                <img src="img/OBW_6791.JPG" alt="Suite principal Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="11" style="transition-delay:0.1s">
+                <img src="img/OBW_6592.JPG" alt="Habitación familiar con TV, Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="12" style="transition-delay:0.2s">
+                <img src="img/OBW_6456.JPG" alt="Habitación familiar ángulo limpio, Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+
+            <!-- Fila 5: Detalles y baños -->
+            <div class="m-item fade-in" data-idx="13" style="transition-delay:0.05s">
+                <img src="img/OBW_6810.JPG" alt="Baño travertino Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="14" style="transition-delay:0.15s">
+                <img src="img/OBW_6801.JPG" alt="Detalle toallas Casa Panza en cesta de rafia" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+            <div class="m-item fade-in" data-idx="15" style="transition-delay:0.25s">
+                <img src="img/OBW_6785.JPG" alt="Detalle almohadas de yute Casa Panza" loading="lazy">
+                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
+    <button class="lb-close" id="lbClose" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+    <button class="lb-prev"  id="lbPrev"  aria-label="Imagen anterior"><i class="fas fa-chevron-left"></i></button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-next"  id="lbNext"  aria-label="Imagen siguiente"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+
+
+
+<!-- ══════════════════════════════════════════
+     CONTACTO
+══════════════════════════════════════════ -->
+<section id="contacto">
+    <div class="container">
+        <div class="con-center fade-up">
+            <p class="s-label" data-es="Reservas" data-en="Reservations">Reservas</p>
+            <h2 class="s-title"
+                data-es="Reserva<br>tu estadía"
+                data-en="Book<br>your stay"
+                data-html="true">Reserva<br>tu estadía</h2>
+            <p class="s-sub"
+               data-es="Escríbenos directamente por WhatsApp.<br>Respuesta en menos de 2 horas."
+               data-en="Write to us directly on WhatsApp.<br>Reply within 2 hours."
+               data-html="true">Escríbenos directamente por WhatsApp.<br>Respuesta en menos de 2 horas.</p>
+
+            <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
+               class="con-wa" target="_blank" rel="noopener noreferrer" data-wa-link>
+                <i class="fab fa-whatsapp"></i>
+                <span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span>
+            </a>
+
+            <div class="con-details-row">
+                <div class="con-detail">
+                    <div class="con-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="con-txt">
+                        <strong data-es="Ubicación" data-en="Location">Ubicación</strong>
+                        <span>Gran Roque, Los Roques, Venezuela</span>
+                    </div>
+                </div>
+                <div class="con-detail">
+                    <div class="con-icon"><i class="fas fa-clock"></i></div>
+                    <div class="con-txt">
+                        <strong>Check-in / Check-out</strong>
+                        <span>Check-in: 14:00 h &nbsp;·&nbsp; Check-out: 12:00 h</span>
+                    </div>
+                </div>
+                <div class="con-detail">
+                    <div class="con-icon"><i class="fas fa-users"></i></div>
+                    <div class="con-txt">
+                        <strong data-es="Capacidad" data-en="Capacity">Capacidad</strong>
+                        <span data-es="Hasta 10 huéspedes · Casa completa" data-en="Up to 10 guests · Full house">Hasta 10 huéspedes · Casa completa</span>
+                    </div>
+                </div>
+                <div class="con-detail">
+                    <div class="con-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="con-txt">
+                        <strong>Email</strong>
+                        <span>info@casapanza.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     LOS ROQUES
+══════════════════════════════════════════ -->
+<section id="roques" aria-label="Los Roques">
+
+    <div class="roques-text">
+        <p class="roques-eyebrow">Parque Nacional · Venezuela</p>
+        <h2 class="roques-title">Los Roques</h2>
+        <p class="roques-quote">
+            El Caribe no se imagina.<br>Se vive.
+        </p>
+    </div>
+
+    <div class="roques-grid">
+        <img src="img/IMG_0864.JPG" alt="Mar turquesa aéreo, Los Roques" loading="lazy" class="fade-in" style="transition-delay:0s">
+        <img src="img/IMG_0720.JPG" alt="Personas en lancha, agua cristalina de Los Roques" loading="lazy" class="fade-in" style="transition-delay:0.2s">
+        <img src="img/IMG_0861.JPG" alt="Vista de drone, Los Roques" loading="lazy" class="fade-in" style="transition-delay:0.4s">
+    </div>
+
+    <p class="roques-caption">45 minutos en avioneta desde Caracas.</p>
+
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FLOATING WHATSAPP
+══════════════════════════════════════════ -->
+<a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
+   id="float-wa" target="_blank" rel="noopener noreferrer" aria-label="Abrir chat de WhatsApp" data-wa-link>
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-tip" data-es="Reservar ahora" data-en="Book now">Reservar ahora</span>
+</a>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer id="footer">
+    <div class="container">
+        <div class="foot-in">
+            <div class="foot-logo">Casa Panza</div>
+            <p class="foot-tag">Gran Roque · Los Roques · Venezuela</p>
+            <div class="foot-div" aria-hidden="true"></div>
+            <ul class="foot-links">
+                <li><a href="#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
+                <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
+                <li><a href="#galeria"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
+                <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
+            </ul>
+            <div class="foot-social">
+                <a href="https://instagram.com/casapanza" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Casa Panza">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/584123030330" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Casa Panza">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            <p class="foot-copy">© 2025 Casa Panza. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+    /* ── NAVBAR SCROLL ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── HAMBURGER ── */
+    const hamburger   = document.getElementById('hamburger');
+    const mobileMenu  = document.getElementById('mobile-menu');
+    const mLinks      = document.querySelectorAll('.m-link');
+
+    hamburger.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('active', open);
+        hamburger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    mLinks.forEach(l => l.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }));
+
+    /* ── INTERSECTION OBSERVER ── */
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.14, rootMargin: '0px 0px -48px 0px' });
+
+    document.querySelectorAll('.fade-up, .fade-in, .roques-eyebrow, .roques-title, .roques-quote').forEach(el => io.observe(el));
+
+    /* ── LIGHTBOX ── */
+    const imgs = Array.from(document.querySelectorAll('.m-item img')).map(i => ({ src: i.src, alt: i.alt }));
+    let cur = 0;
+    const lb     = document.getElementById('lb');
+    const lbImg  = document.getElementById('lb-img');
+
+    function openLB(idx) {
+        cur = idx;
+        lbImg.src = imgs[idx].src;
+        lbImg.alt = imgs[idx].alt;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLB() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+    }
+    function prevLB() { cur = (cur - 1 + imgs.length) % imgs.length; lbImg.src = imgs[cur].src; lbImg.alt = imgs[cur].alt; }
+    function nextLB() { cur = (cur + 1) % imgs.length; lbImg.src = imgs[cur].src; lbImg.alt = imgs[cur].alt; }
+
+    document.querySelectorAll('.m-item').forEach((item, i) => item.addEventListener('click', () => openLB(i)));
+    document.getElementById('lbClose').addEventListener('click', closeLB);
+    document.getElementById('lbPrev').addEventListener('click', prevLB);
+    document.getElementById('lbNext').addEventListener('click', nextLB);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+    document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape')      closeLB();
+        if (e.key === 'ArrowLeft')   prevLB();
+        if (e.key === 'ArrowRight')  nextLB();
+    });
+
+    /* ── SMOOTH SCROLL ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (!target) return;
+            e.preventDefault();
+            window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 76, behavior: 'smooth' });
+        });
+    });
+
+    /* ── LANGUAGE SWITCHER ── */
+    const WA_ES = 'https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A';
+    const WA_EN = 'https://wa.me/584123030330?text=Hello%20Casa%20Panza!%20I%27d%20like%20to%20check%20availability%20and%20rates%20%F0%9F%8C%8A';
+
+    function setLanguage(lang) {
+        document.querySelectorAll('[data-es]').forEach(el => {
+            const text = el.dataset[lang];
+            if (!text) return;
+            if (el.dataset.html === 'true') {
+                el.innerHTML = text;
+            } else {
+                el.textContent = text;
+            }
+        });
+
+        const waUrl = lang === 'en' ? WA_EN : WA_ES;
+        document.querySelectorAll('[data-wa-link]').forEach(el => { el.href = waUrl; });
+
+        document.querySelectorAll('[data-lang]').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang;
+    }
+
+    document.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+
+    setLanguage(localStorage.getItem('lang') || 'es');
+
+</script>
+
+</body>
+</html>
