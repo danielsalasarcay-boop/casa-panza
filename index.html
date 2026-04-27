@@ -2072,7 +2072,9 @@
     function renderGaleria(categoria) {
         activeTab = categoria;
         const grid = document.getElementById('galeria-grid');
-        activeGalFotos = categoria === 'todas' ? FOTOS : FOTOS.filter(f => f.cat === categoria);
+        activeGalFotos = categoria === 'todas'
+            ? FOTOS.filter(f => f.cat !== 'losroques')
+            : FOTOS.filter(f => f.cat === categoria);
         const lang = getLang();
         grid.innerHTML = activeGalFotos.map((foto, i) => `
             <div class="galeria-item" data-index="${i}">
