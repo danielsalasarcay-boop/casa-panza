@@ -241,13 +241,18 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: url('img/ENTRADA_CASA_PANZA.JPG') center center / cover no-repeat;
+            background: url('img/OBW_6660.JPG') center center / cover no-repeat;
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.35);
+            background: linear-gradient(
+                160deg,
+                rgba(0,0,0,0.0)  0%,
+                rgba(0,0,0,0.0)  40%,
+                rgba(0,0,0,0.50) 100%
+            );
         }
 
         /* SVG Logo — top left */
@@ -366,7 +371,7 @@
         /* ════════════════════════════════════════
            SOBRE CASA PANZA
         ════════════════════════════════════════ */
-        #sobre { background: var(--white); overflow: hidden; }
+        #sobre { background: var(--beige); overflow: hidden; }
 
         .about-wrap {
             display: grid;
@@ -425,6 +430,8 @@
             position: relative;
             height: 640px;
             overflow: hidden;
+            border-radius: 2px;
+            box-shadow: 32px 32px 0px var(--turquoise);
         }
         .about-img img {
             width: 100%; height: 100%;
@@ -434,27 +441,49 @@
         .about-img:hover img { transform: scale(1.04); }
         .about-accent {
             position: absolute;
-            bottom: -24px; left: -24px;
-            width: 130px; height: 130px;
-            border-radius: 50%;
-            background: var(--turquoise);
-            opacity: 0.12;
+            bottom: -16px;
+            right: -16px;
+            width: 180px;
+            height: 180px;
+            border: 2px solid var(--turquoise);
+            border-radius: 2px;
             z-index: -1;
+            opacity: 0.4;
         }
 
         /* ════════════════════════════════════════
            ESPACIOS
         ════════════════════════════════════════ */
-        #espacios { background: var(--light); }
+        #espacios { background: var(--white); }
+        #espacios::after {
+            content: '';
+            display: block;
+            height: 80px;
+            background: linear-gradient(to bottom right, var(--white) 49%, var(--beige) 50%);
+            margin-top: 108px;
+        }
 
         .esp-hd { text-align: center; margin-bottom: 68px; }
         .esp-hd .s-sub { margin: 0 auto; }
 
         .esp-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto;
+            gap: 20px;
+            margin-top: 64px;
         }
+
+        .esp-card:nth-child(1) { grid-column: 1 / 3; }
+        .esp-card:nth-child(1) .esp-img { height: 480px; }
+        .esp-card:nth-child(2) .esp-img,
+        .esp-card:nth-child(3) .esp-img { height: 220px; }
+        .esp-card:nth-child(4),
+        .esp-card:nth-child(5),
+        .esp-card:nth-child(6) { grid-column: auto; }
+        .esp-card:nth-child(7) { grid-column: 1 / 4; }
+        .esp-card:nth-child(7) .esp-img { height: 320px; }
+        .esp-card:nth-child(7) .esp-img img { object-position: center 30%; }
 
         .esp-card {
             background: var(--white);
@@ -476,9 +505,9 @@
         .esp-img img {
             width: 100%; height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
         }
-        .esp-card:hover .esp-img img { transform: scale(1.07); }
+        .esp-card:hover .esp-img img { transform: scale(1.05); }
 
         .esp-ov {
             position: absolute; inset: 0;
@@ -519,7 +548,7 @@
         /* ════════════════════════════════════════
            GALERÍA
         ════════════════════════════════════════ */
-        #galeria { background: var(--white); }
+        #galeria { background: var(--beige); }
 
         .gal-hd { text-align: center; margin-bottom: 60px; }
         .gal-hd .s-sub { margin: 0 auto; }
@@ -528,7 +557,7 @@
         .galeria-preview {
             display: grid;
             grid-template-columns: 1.4fr 1fr;
-            grid-template-rows: repeat(3, 220px);
+            grid-template-rows: repeat(3, 260px);
             gap: 8px;
             max-width: 1100px;
             margin: 0 auto;
@@ -753,9 +782,9 @@
         #contacto::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 5px; height: 100%;
-            background: var(--turquoise);
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--turquoise), var(--gold), var(--turquoise));
         }
 
         .con-center {
@@ -768,21 +797,24 @@
         .con-wa {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 14px;
             padding: 22px 56px;
             background: var(--whatsapp);
             color: var(--white);
-            border-radius: 50px;
-            font-size: 18px;
+            border-radius: 4px;
+            font-family: var(--font-b);
+            font-size: 14px;
             font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
             margin: 36px 0 48px;
-            transition: var(--ease);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(37,211,102,0.28);
         }
         .con-wa:hover {
-            background: #1aad54;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 42px rgba(37,211,102,0.38);
+            background: #1DA851;
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(37,211,102,0.38);
         }
         .con-wa i { font-size: 22px; }
 
@@ -865,9 +897,12 @@
            FOOTER
         ════════════════════════════════════════ */
         #footer {
-            background: var(--black);
+            background:
+                linear-gradient(rgba(10,22,40,0.94), rgba(10,22,40,0.97)),
+                url('img/IMG_0864.JPG') center center / cover no-repeat;
             color: var(--white);
             padding: 72px 0 44px;
+            position: relative;
         }
         .foot-in { text-align: center; }
         .foot-logo {
@@ -879,12 +914,15 @@
             margin-bottom: 8px;
         }
         .foot-tag {
-            font-size: 12px;
+            font-family: var(--font-b);
+            font-size: 11px;
             font-weight: 300;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.45em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255,255,255,0.35);
+            margin-top: 12px;
             margin-bottom: 42px;
+            text-align: center;
         }
         .foot-div {
             width: 56px; height: 1px;
@@ -989,9 +1027,12 @@
         .roques-quote {
             font-family: var(--font-d);
             font-style: italic;
-            font-size: clamp(22px, 3vw, 34px);
-            color: rgba(255,255,255,0.60);
+            font-size: clamp(24px, 3.5vw, 42px);
+            font-weight: 300;
+            color: rgba(255,255,255,0.75);
             line-height: 1.4;
+            margin-top: 24px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.4);
             opacity: 0;
             transform: translateY(24px);
             transition: opacity 0.75s ease 0.2s, transform 0.75s ease 0.2s;
@@ -1007,6 +1048,8 @@
         .roques-grid img {
             width: 100%;
             height: 420px;
+            border-radius: 4px;
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
             object-fit: cover;
             border-radius: 4px;
             display: block;
@@ -1014,6 +1057,10 @@
             transition: opacity 0.75s ease;
         }
         .roques-grid img.visible { opacity: 1; }
+        .roques-grid img:hover {
+            transform: scale(1.02) translateY(-4px);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+        }
 
         .roques-caption {
             text-align: center;
@@ -1146,6 +1193,8 @@
 
             /* Spaces — 2 col en tablet */
             .esp-grid           { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .esp-card:nth-child(1) { grid-column: 1 / 3; }
+            .esp-card:nth-child(7) { grid-column: 1 / 3; }
 
             /* Gallery — tablet */
             .galeria-preview    { grid-template-rows: repeat(3, 180px); }
@@ -1202,7 +1251,11 @@
             .amen-text          { font-size: 13px; }
 
             /* Spaces — 1 col en móvil */
-            .esp-grid           { grid-template-columns: 1fr; gap: 20px; }
+            .esp-grid           { grid-template-columns: 1fr; gap: 20px; margin-top: 32px; }
+            .esp-card:nth-child(1),
+            .esp-card:nth-child(7) { grid-column: 1; }
+            .esp-card:nth-child(1) .esp-img { height: 280px; }
+            .esp-card:nth-child(7) .esp-img { height: 220px; }
             .esp-img            { height: 240px; }
             .esp-img img        { height: 240px; object-fit: cover; width: 100%; }
             .esp-name           { font-size: 18px; }
@@ -1329,12 +1382,12 @@
         .foot-symbol {
             display: flex;
             justify-content: center;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
         .foot-symbol svg {
-            height: 64px;
+            height: 72px;
             width: auto;
-            fill: rgba(255,255,255,0.15);
+            fill: rgba(255,255,255,0.10);
             display: block;
         }
 
@@ -1348,6 +1401,25 @@
             fill: #2ABFBF;
             display: block;
         }
+
+        /* ── Navbar symbol separator ── */
+        .nav-sep { list-style: none; pointer-events: none; display: flex; align-items: center; }
+        .nav-sep svg { fill: rgba(255,255,255,0.4); }
+        #navbar.scrolled .nav-sep svg { fill: var(--black); }
+
+        /* ── Micro-interacciones globales ── */
+        .foto-wrapper,
+        .esp-card,
+        .roques-grid img { cursor: zoom-in; }
+
+        ::selection { background: var(--turquoise); color: var(--white); }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--beige); }
+        ::-webkit-scrollbar-thumb { background: var(--turquoise); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--turquoise-dk); }
+
+        :focus-visible { outline: 2px solid var(--turquoise); outline-offset: 3px; }
     </style>
 </head>
 <body>
@@ -1388,6 +1460,9 @@
         <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
         <li><a href="#galeria"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
         <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
+        <li aria-hidden="true" class="nav-sep">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115" style="height:14px;width:auto;opacity:0.3;"><use href="#cp-a"/></svg>
+        </li>
         <li>
             <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
                class="nav-cta" target="_blank" rel="noopener noreferrer" data-wa-link>
@@ -1547,7 +1622,7 @@
             <!-- Card 1 — Sala de Estar -->
             <div class="esp-card fade-up">
                 <div class="esp-img">
-                    <img src="img/OBW_6821.JPG" alt="Sala de estar de Casa Panza" loading="lazy">
+                    <img src="img/OBW_6660.JPG" alt="Sala de estar de Casa Panza" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Sala de Estar" data-en="Living Room">Sala de Estar</span></div>
                 </div>
@@ -1650,7 +1725,7 @@
             <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
             <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
             <h2 class="s-title" data-es="Así se ve Casa Panza" data-en="This is Casa Panza">Así se ve Casa Panza</h2>
-            <p class="s-sub" data-es="El turquesa de Los Roques no se explica. Se vive." data-en="The turquoise of Los Roques cannot be explained. It must be lived.">El turquesa de Los Roques no se explica. Se vive.</p>
+            <p class="s-sub" data-es="Cuatro espacios. Una sola experiencia." data-en="Four spaces. One single experience.">Cuatro espacios. Una sola experiencia.</p>
         </div>
 
         <div class="galeria-preview fade-up">
@@ -1658,7 +1733,7 @@
                 <img src="img/OBW_6660.JPG" alt="Sala con vista al mar, Casa Panza" loading="lazy">
             </div>
             <div class="galeria-foto-2 foto-wrapper">
-                <img src="img/IMG_0864.JPG" alt="Mar turquesa aéreo, Los Roques" loading="lazy">
+                <img src="img/OBW_6821.JPG" alt="Comedor montado, Casa Panza" loading="lazy">
             </div>
             <div class="galeria-foto-3 foto-wrapper">
                 <img src="img/OBW_6791.JPG" alt="Suite principal, Casa Panza" loading="lazy">
@@ -1820,7 +1895,7 @@
         <div class="foot-in">
             <div class="foot-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
             <div class="foot-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 792" style="width:220px;height:auto;display:block;margin:0 auto;filter:brightness(0) invert(1);opacity:0.95;" aria-label="Casa Panza">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 792" style="width:260px;height:auto;display:block;margin:0 auto;filter:brightness(0) invert(1);opacity:0.95;" aria-label="Casa Panza">
                   <g>
                     <path d="M286.2,318.43l-1.52,3.87c-1.45-1.06-3.73-1.59-6.84-1.59-2.91,0-5.25,1.25-7.01,3.76-1.76,2.51-2.64,5.74-2.64,9.69s.9,6.84,2.71,9.18c1.8,2.35,4.13,3.52,6.99,3.52,3.11,0,5.5-1.1,7.18-3.31l2.49,3.47c-2.63,2.61-6.01,3.92-10.15,3.92s-7.75-1.56-10.24-4.69-3.74-7.25-3.74-12.37,1.33-9.07,3.99-12.34c2.66-3.28,6.09-4.92,10.31-4.92,3.61,0,6.43.6,8.47,1.79Z"/>
                     <path d="M325.02,350.4l-2.29-7h-12.34l-2.45,7h-5.07l13.48-33.64h1.2l12.5,33.64h-5.03ZM316.73,325.46l-5.14,14.61h9.85l-4.71-14.61Z"/>
