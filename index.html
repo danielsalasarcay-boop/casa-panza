@@ -131,8 +131,8 @@
             transition: color 0.4s ease, opacity 0.4s ease;
         }
         #navbar.scrolled .nav-logo { color: var(--black); opacity: 1; pointer-events: auto; }
-        #navbar:not(.scrolled) .nav-logo svg { filter: brightness(0) invert(1) !important; }
-        #navbar.scrolled .nav-logo svg { filter: brightness(0) !important; }
+        #navbar:not(.scrolled) .nav-logo svg { filter: brightness(0) invert(1); transition: filter 0.4s ease; }
+        #navbar.scrolled .nav-logo svg { filter: brightness(0); transition: filter 0.4s ease; }
 
         .nav-links {
             display: flex;
@@ -1220,6 +1220,10 @@
             .nav-links          { display: none; }
             .hamburger          { display: flex; min-width: 44px; min-height: 44px;
                                   align-items: center; justify-content: flex-end; }
+            .nav-logo           { opacity: 1 !important; pointer-events: auto !important; }
+            .nav-logo svg       { width: 120px !important; }
+            #navbar:not(.scrolled) .nav-logo svg { filter: brightness(0) invert(1) !important; }
+            #navbar.scrolled .nav-logo svg       { filter: brightness(0) !important; }
 
             /* Hero */
             .hero-logo          { width: 150px; top: 24px; left: 24px; }
@@ -1292,7 +1296,7 @@
             /* Hero */
             .hero-logo          { width: 150px; top: 20px; left: 20px; }
             .hero-logo svg      { width: 150px; }
-            .hero-wa            { bottom: 88px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); justify-content: center; font-size: 12px; padding: 14px 20px; }
+            .hero-wa            { bottom: 88px !important; left: 50% !important; transform: translateX(-50%) !important; width: calc(100% - 40px) !important; max-width: 320px !important; justify-content: center !important; font-size: 12px !important; padding: 14px 20px !important; white-space: nowrap !important; }
 
             /* About */
             .about-img          { height: 260px; }
@@ -1316,17 +1320,13 @@
 
             /* Gallery — móvil */
             .galeria-preview    {
-                grid-template-columns: 1fr;
-                grid-template-rows: 260px 260px;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 200px;
             }
-            .galeria-foto-1,
-            .galeria-foto-2,
-            .galeria-foto-3,
-            .galeria-foto-4     { grid-row: auto !important; grid-column: auto !important; display: block !important; }
+            .galeria-foto-1     { grid-row: 1 !important; grid-column: 1 !important; }
+            .galeria-foto-2     { grid-row: 1 !important; grid-column: 2 !important; }
             .galeria-foto-3,
             .galeria-foto-4     { display: none !important; }
-            .galeria-foto-1     { grid-row: 1 !important; }
-            .galeria-foto-2     { grid-row: 2 !important; }
             #btn-ver-galeria    { width: 90%; max-width: 320px; justify-content: center; }
             #galeria-grid       { columns: 2; column-gap: 6px; padding: 16px 12px; }
             .gp-header          { padding: 14px 16px; flex-wrap: wrap; gap: 12px; }
@@ -1498,7 +1498,7 @@
 ══════════════════════════════════════════ -->
 <nav id="navbar" role="navigation" aria-label="Navegación principal">
     <a href="#hero" class="nav-logo" aria-label="Casa Panza">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 792" style="width:160px;height:auto;display:block;filter:brightness(0) invert(1);" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 792" style="width:160px;height:auto;display:block;" aria-hidden="true">
           <g>
             <path d="M286.2,318.43l-1.52,3.87c-1.45-1.06-3.73-1.59-6.84-1.59-2.91,0-5.25,1.25-7.01,3.76-1.76,2.51-2.64,5.74-2.64,9.69s.9,6.84,2.71,9.18c1.8,2.35,4.13,3.52,6.99,3.52,3.11,0,5.5-1.1,7.18-3.31l2.49,3.47c-2.63,2.61-6.01,3.92-10.15,3.92s-7.75-1.56-10.24-4.69-3.74-7.25-3.74-12.37,1.33-9.07,3.99-12.34c2.66-3.28,6.09-4.92,10.31-4.92,3.61,0,6.43.6,8.47,1.79Z"/>
             <path d="M325.02,350.4l-2.29-7h-12.34l-2.45,7h-5.07l13.48-33.64h1.2l12.5,33.64h-5.03ZM316.73,325.46l-5.14,14.61h9.85l-4.71-14.61Z"/>
@@ -1519,6 +1519,7 @@
         <li><a href="#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
         <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
         <li><a href="#galeria"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
+        <li><a href="#roques"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a></li>
         <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
         <li aria-hidden="true" class="nav-sep">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115" style="height:14px;width:auto;opacity:0.3;"><use href="#cp-a"/></svg>
@@ -1545,9 +1546,10 @@
 </nav>
 
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú móvil">
-    <a href="#sobre"    class="m-link"><span data-es="La Casa"   data-en="The House">La Casa</span></a>
+    <a href="#sobre"    class="m-link"><span data-es="La Casa"    data-en="The House">La Casa</span></a>
     <a href="#espacios" class="m-link"><span data-es="Espacios"  data-en="Spaces">Espacios</span></a>
     <a href="#galeria"  class="m-link"><span data-es="Galería"   data-en="Gallery">Galería</span></a>
+    <a href="#roques"   class="m-link"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a>
     <a href="#contacto" class="m-link"><span data-es="Contacto"  data-en="Contact">Contacto</span></a>
     <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
        class="m-link m-cta" target="_blank" rel="noopener noreferrer" data-wa-link>
@@ -1652,7 +1654,7 @@
             </div>
 
             <div class="about-img fade-in">
-                <img src="img/OBW_6821.JPG" alt="Comedor de Casa Panza, Los Roques" loading="eager">
+                <img src="img/OBW_6660.JPG" alt="Sala de estar de Casa Panza con vista al mar" width="900" height="640" loading="eager">
                 <div class="about-accent" aria-hidden="true"></div>
             </div>
 
@@ -1682,7 +1684,7 @@
             <!-- Card 1 — Sala de Estar -->
             <div class="esp-card fade-up">
                 <div class="esp-img">
-                    <img src="img/OBW_6660.JPG" alt="Sala de estar con vista al mar, Casa Panza" loading="lazy">
+                    <img src="img/OBW_6660.JPG" alt="Sala de estar con vista al mar, Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Sala de Estar" data-en="Living Room">Sala de Estar</span></div>
                 </div>
@@ -1695,7 +1697,7 @@
             <!-- Card 2 — Comedor & Cocina -->
             <div class="esp-card fade-up" style="transition-delay:0.1s">
                 <div class="esp-img">
-                    <img src="img/OBW_6634.JPG" alt="Comedor y cocina de Casa Panza" loading="lazy">
+                    <img src="img/OBW_6634.JPG" alt="Comedor y cocina de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Comedor &amp; Cocina" data-en="Dining &amp; Kitchen">Comedor &amp; Cocina</span></div>
                 </div>
@@ -1708,7 +1710,7 @@
             <!-- Card 3 — Suite Principal -->
             <div class="esp-card fade-up" style="transition-delay:0.2s">
                 <div class="esp-img">
-                    <img src="img/OBW_6791.JPG" alt="Suite Principal de Casa Panza" loading="lazy">
+                    <img src="img/OBW_6791.JPG" alt="Suite Principal de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Suite Principal" data-en="Master Suite">Suite Principal</span></div>
                 </div>
@@ -1721,7 +1723,7 @@
             <!-- Card 4 — Habitación Familiar -->
             <div class="esp-card fade-up" style="transition-delay:0.1s">
                 <div class="esp-img">
-                    <img src="img/OBW_6456.JPG" alt="Habitación Familiar de Casa Panza" loading="lazy">
+                    <img src="img/OBW_6456.JPG" alt="Habitación Familiar de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Habitación Familiar" data-en="Family Room">Habitación Familiar</span></div>
                 </div>
@@ -1734,7 +1736,7 @@
             <!-- Card 5 — Cocina Equipada -->
             <div class="esp-card fade-up" style="transition-delay:0.2s">
                 <div class="esp-img">
-                    <img src="img/OBW_6626.JPG" alt="Cocina Equipada de Casa Panza" loading="lazy">
+                    <img src="img/OBW_6626.JPG" alt="Cocina Equipada de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Cocina Equipada" data-en="Fully Equipped Kitchen">Cocina Equipada</span></div>
                 </div>
@@ -1747,7 +1749,7 @@
             <!-- Card 6 — Baños de Diseño -->
             <div class="esp-card fade-up" style="transition-delay:0.3s">
                 <div class="esp-img">
-                    <img src="img/OBW_6810.JPG" alt="Baños de Diseño de Casa Panza" loading="lazy">
+                    <img src="img/OBW_6810.JPG" alt="Baños de Diseño de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Baños de Diseño" data-en="Designer Bathrooms">Baños de Diseño</span></div>
                 </div>
@@ -1760,7 +1762,7 @@
             <!-- Card 7 — Terraza Exterior -->
             <div class="esp-card fade-up" style="transition-delay:0.1s">
                 <div class="esp-img">
-                    <img src="img/OBW_6653.JPG" alt="Terraza Exterior de Casa Panza" loading="lazy">
+                    <img src="img/OBW_6653.JPG" alt="Terraza Exterior de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Terraza Exterior" data-en="Outdoor Terrace">Terraza Exterior</span></div>
                 </div>
@@ -1790,16 +1792,16 @@
 
         <div class="galeria-preview fade-up">
             <div class="galeria-foto-1 foto-wrapper">
-                <img src="img/OBW_6660.JPG" alt="Sala con vista al mar, Casa Panza" loading="lazy">
+                <img src="img/OBW_6660.JPG" alt="Sala con vista al mar, Casa Panza" width="900" height="660" loading="lazy">
             </div>
             <div class="galeria-foto-2 foto-wrapper">
-                <img src="img/OBW_6821.JPG" alt="Comedor montado, Casa Panza" loading="lazy">
+                <img src="img/OBW_6821.JPG" alt="Comedor montado, Casa Panza" width="900" height="660" loading="lazy">
             </div>
             <div class="galeria-foto-3 foto-wrapper">
-                <img src="img/OBW_6791.JPG" alt="Suite principal, Casa Panza" loading="lazy">
+                <img src="img/OBW_6791.JPG" alt="Suite principal, Casa Panza" width="900" height="660" loading="lazy">
             </div>
             <div class="galeria-foto-4 foto-wrapper">
-                <img src="img/OBW_6634.JPG" alt="Comedor y cocina con vista al mar, Casa Panza" loading="lazy">
+                <img src="img/OBW_6634.JPG" alt="Comedor y cocina con vista al mar, Casa Panza" width="900" height="660" loading="lazy">
             </div>
         </div>
 
@@ -1935,9 +1937,9 @@
     </div>
 
     <div class="roques-grid">
-        <img src="img/IMG_0864.JPG" alt="Mar turquesa aéreo, Los Roques" loading="lazy" class="fade-in" style="transition-delay:0s">
-        <img src="img/IMG_0720.JPG" alt="Personas en lancha, agua cristalina de Los Roques" loading="lazy" class="fade-in" style="transition-delay:0.2s">
-        <img src="img/IMG_0861.JPG" alt="Vista de drone, Los Roques" loading="lazy" class="fade-in" style="transition-delay:0.4s">
+        <img src="img/IMG_0864.JPG" alt="Mar turquesa aéreo, Los Roques" width="900" height="420" loading="lazy" class="fade-in" style="transition-delay:0s">
+        <img src="img/IMG_0720.JPG" alt="Personas en lancha, agua cristalina de Los Roques" width="900" height="420" loading="lazy" class="fade-in" style="transition-delay:0.2s">
+        <img src="img/IMG_0861.JPG" alt="Vista de drone, Los Roques" width="900" height="420" loading="lazy" class="fade-in" style="transition-delay:0.4s">
     </div>
 
 
