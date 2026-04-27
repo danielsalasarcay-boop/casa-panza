@@ -6,23 +6,25 @@
 
     <!-- SEO -->
     <title>Casa Panza | Alquiler de Lujo en Los Roques, Venezuela</title>
-    <meta name="description" content="Casa Panza — tu refugio de lujo boutique en Gran Roque, Los Roques, Venezuela. Hasta 10 huéspedes, diseño minimalista costero, el Caribe más cristalino del mundo.">
+    <meta name="description" content="Casa Panza: alquiler vacacional de lujo en Los Roques, Venezuela. Hasta 10 huéspedes, casa completa, frente al Caribe. Reserva por WhatsApp.">
     <meta name="keywords" content="Los Roques, Venezuela, alquiler turístico, casa de lujo, Gran Roque, Caribe, boutique, vacaciones, airbnb los roques">
     <meta name="author" content="Casa Panza">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Casa Panza">
     <meta property="og:title" content="Casa Panza | Alquiler de Lujo en Los Roques">
-    <meta property="og:description" content="Tu refugio en el Caribe más puro del mundo. Los Roques, Venezuela. Hasta 10 huéspedes.">
-    <meta property="og:image" content="img/OBW_6660.JPG">
+    <meta property="og:description" content="Un hogar a la altura del paraíso. Casa completa para hasta 10 huéspedes en Gran Roque, Los Roques, Venezuela.">
+    <meta property="og:image" content="https://danielsalasarcay-boop.github.io/casa-panza/img/ENTRADA_CASA_PANZA.JPG">
+    <meta property="og:url" content="https://danielsalasarcay-boop.github.io/casa-panza/">
     <meta property="og:locale" content="es_VE">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Casa Panza | Los Roques, Venezuela">
-    <meta name="twitter:description" content="Tu refugio en el Caribe más puro del mundo.">
-    <meta name="twitter:image" content="img/OBW_6660.JPG">
+    <meta name="twitter:title" content="Casa Panza | Alquiler de Lujo en Los Roques">
+    <meta name="twitter:description" content="Un hogar a la altura del paraíso. Casa completa para hasta 10 huéspedes en Gran Roque, Los Roques.">
+    <meta name="twitter:image" content="https://danielsalasarcay-boop.github.io/casa-panza/img/ENTRADA_CASA_PANZA.JPG">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -239,17 +241,13 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: url('img/OBW_6660.JPG') center center / cover no-repeat;
+            background: url('img/ENTRADA_CASA_PANZA.JPG') center center / cover no-repeat;
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to bottom,
-                transparent 65%,
-                rgba(0,0,0,0.40) 100%
-            );
+            background: rgba(0,0,0,0.35);
         }
 
         /* SVG Logo — top left */
@@ -602,6 +600,24 @@
         .lb-prev { left: 22px; }
         .lb-next { right: 22px; }
         .lb-prev:hover, .lb-next:hover { opacity: 1; background: rgba(255,255,255,0.22); }
+
+        .lb-counter {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.65);
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            z-index: 10001;
+            pointer-events: none;
+        }
+
+        .gal-btn-wrap {
+            text-align: center;
+            margin-top: 44px;
+        }
 
         /* ════════════════════════════════════════
            CONTACTO
@@ -1361,69 +1377,39 @@
 
         <div class="masonry" id="masonry">
 
-            <!-- Fila 1: Exterior -->
-            <div class="m-item fade-in" data-idx="0" style="transition-delay:0.05s">
-                <img src="img/OBW_6653.JPG" alt="Fachada exterior de Casa Panza, Gran Roque" loading="lazy">
+            <div class="m-item fade-in" data-idx="0">
+                <img src="img/ENTRADA_CASA_PANZA.JPG" alt="Entrada de Casa Panza con arco turquesa y vista al mar Caribe, Los Roques" loading="lazy">
                 <div class="m-ov"><i class="fas fa-expand"></i></div>
             </div>
-
-            <!-- Fila 2: Áreas sociales -->
-            <div class="m-item fade-in" data-idx="1" style="transition-delay:0.15s">
+            <div class="m-item fade-in" data-idx="1" style="transition-delay:0.1s">
                 <img src="img/OBW_6660.JPG" alt="Sala de estar panorámica Casa Panza" loading="lazy">
                 <div class="m-ov"><i class="fas fa-expand"></i></div>
             </div>
-            <div class="m-item fade-in" data-idx="2" style="transition-delay:0.25s">
+            <div class="m-item fade-in" data-idx="2" style="transition-delay:0.2s">
                 <img src="img/OBW_6634.JPG" alt="Comedor y cocina con vista al mar, Casa Panza" loading="lazy">
                 <div class="m-ov"><i class="fas fa-expand"></i></div>
             </div>
-            <div class="m-item fade-in" data-idx="3" style="transition-delay:0.1s">
-                <img src="img/OBW_6821.JPG" alt="Comedor montado Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-            <div class="m-item fade-in" data-idx="4" style="transition-delay:0.2s">
-                <img src="img/OBW_6612.JPG" alt="Sala: detalle TV y estantería Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-
-            <!-- Fila 3: Cocina -->
-            <div class="m-item fade-in" data-idx="5" style="transition-delay:0.05s">
-                <img src="img/OBW_6626.JPG" alt="Cocina con isla de madera, Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-            <div class="m-item fade-in" data-idx="6" style="transition-delay:0.15s">
-                <img src="img/OBW_6599.JPG" alt="Sala ángulo alternativo, Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-
-            <!-- Fila 4: Habitaciones -->
-            <div class="m-item fade-in" data-idx="7" style="transition-delay:0.25s">
+            <div class="m-item fade-in" data-idx="3" style="transition-delay:0.05s">
                 <img src="img/OBW_6791.JPG" alt="Suite principal Casa Panza" loading="lazy">
                 <div class="m-ov"><i class="fas fa-expand"></i></div>
             </div>
-            <div class="m-item fade-in" data-idx="8" style="transition-delay:0.1s">
-                <img src="img/OBW_6592.JPG" alt="Habitación familiar con TV, Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-            <div class="m-item fade-in" data-idx="9" style="transition-delay:0.2s">
-                <img src="img/OBW_6456.JPG" alt="Habitación familiar ángulo limpio, Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-
-            <!-- Fila 5: Detalles y baños -->
-            <div class="m-item fade-in" data-idx="10" style="transition-delay:0.05s">
+            <div class="m-item fade-in" data-idx="4" style="transition-delay:0.15s">
                 <img src="img/OBW_6810.JPG" alt="Baño travertino Casa Panza" loading="lazy">
                 <div class="m-ov"><i class="fas fa-expand"></i></div>
             </div>
-            <div class="m-item fade-in" data-idx="11" style="transition-delay:0.15s">
-                <img src="img/OBW_6801.JPG" alt="Detalle toallas Casa Panza en cesta de rafia" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-            <div class="m-item fade-in" data-idx="12" style="transition-delay:0.25s">
+            <div class="m-item fade-in" data-idx="5" style="transition-delay:0.25s">
                 <img src="img/OBW_6785.JPG" alt="Detalle almohadas de yute Casa Panza" loading="lazy">
                 <div class="m-ov"><i class="fas fa-expand"></i></div>
             </div>
 
         </div>
+
+        <div class="gal-btn-wrap">
+            <button id="gal-all-btn" class="btn-tq" aria-label="Ver todas las fotos">
+                <span data-es="Ver todas las fotos (16)" data-en="View all photos (16)">Ver todas las fotos (16)</span>
+            </button>
+        </div>
+
     </div>
 </section>
 
@@ -1433,6 +1419,7 @@
     <button class="lb-prev"  id="lbPrev"  aria-label="Imagen anterior"><i class="fas fa-chevron-left"></i></button>
     <img id="lb-img" src="" alt="">
     <button class="lb-next"  id="lbNext"  aria-label="Imagen siguiente"><i class="fas fa-chevron-right"></i></button>
+    <div id="lb-counter" class="lb-counter" aria-live="polite" aria-atomic="true"></div>
 </div>
 
 
@@ -1597,27 +1584,69 @@
     document.querySelectorAll('.fade-up, .fade-in, .roques-eyebrow, .roques-title, .roques-quote').forEach(el => io.observe(el));
 
     /* ── LIGHTBOX ── */
-    const imgs = Array.from(document.querySelectorAll('.m-item img')).map(i => ({ src: i.src, alt: i.alt }));
+    const LB_IMGS = [
+        { src: 'img/ENTRADA_CASA_PANZA.JPG', alt: 'Entrada de Casa Panza con arco turquesa y vista al mar Caribe, Los Roques' },
+        { src: 'img/OBW_6660.JPG',           alt: 'Sala de estar panorámica Casa Panza' },
+        { src: 'img/OBW_6634.JPG',           alt: 'Comedor y cocina con vista al mar, Casa Panza' },
+        { src: 'img/OBW_6791.JPG',           alt: 'Suite principal Casa Panza' },
+        { src: 'img/OBW_6810.JPG',           alt: 'Baño travertino Casa Panza' },
+        { src: 'img/OBW_6785.JPG',           alt: 'Detalle almohadas de yute Casa Panza' },
+        { src: 'img/OBW_6653.JPG',           alt: 'Fachada lateral de Casa Panza, Gran Roque' },
+        { src: 'img/OBW_6821.JPG',           alt: 'Comedor montado Casa Panza' },
+        { src: 'img/OBW_6612.JPG',           alt: 'Sala: detalle TV y estantería Casa Panza' },
+        { src: 'img/OBW_6626.JPG',           alt: 'Cocina con isla de madera, Casa Panza' },
+        { src: 'img/OBW_6599.JPG',           alt: 'Sala ángulo alternativo, Casa Panza' },
+        { src: 'img/OBW_6592.JPG',           alt: 'Habitación familiar con TV, Casa Panza' },
+        { src: 'img/OBW_6456.JPG',           alt: 'Habitación familiar ángulo limpio, Casa Panza' },
+        { src: 'img/OBW_6801.JPG',           alt: 'Detalle toallas Casa Panza en cesta de rafia' },
+        { src: 'img/OBW_6463.JPG',           alt: 'Habitación Casa Panza' },
+        { src: 'img/OBW_6586.JPG',           alt: 'Detalle Casa Panza' }
+    ];
     let cur = 0;
-    const lb     = document.getElementById('lb');
-    const lbImg  = document.getElementById('lb-img');
+    let lbOpener = null;
+    const lb        = document.getElementById('lb');
+    const lbImg     = document.getElementById('lb-img');
+    const lbCounter = document.getElementById('lb-counter');
 
-    function openLB(idx) {
+    function updateLBCounter() {
+        lbCounter.textContent = (cur + 1) + ' / ' + LB_IMGS.length;
+    }
+    function openLB(idx, opener) {
         cur = idx;
-        lbImg.src = imgs[idx].src;
-        lbImg.alt = imgs[idx].alt;
+        lbOpener = opener || null;
+        lbImg.src = LB_IMGS[idx].src;
+        lbImg.alt = LB_IMGS[idx].alt;
+        updateLBCounter();
         lb.classList.add('open');
         document.body.style.overflow = 'hidden';
+        document.getElementById('lbClose').focus();
     }
     function closeLB() {
         lb.classList.remove('open');
         document.body.style.overflow = '';
         lbImg.src = '';
+        if (lbOpener) { lbOpener.focus(); lbOpener = null; }
     }
-    function prevLB() { cur = (cur - 1 + imgs.length) % imgs.length; lbImg.src = imgs[cur].src; lbImg.alt = imgs[cur].alt; }
-    function nextLB() { cur = (cur + 1) % imgs.length; lbImg.src = imgs[cur].src; lbImg.alt = imgs[cur].alt; }
+    function prevLB() {
+        cur = (cur - 1 + LB_IMGS.length) % LB_IMGS.length;
+        lbImg.src = LB_IMGS[cur].src;
+        lbImg.alt = LB_IMGS[cur].alt;
+        updateLBCounter();
+    }
+    function nextLB() {
+        cur = (cur + 1) % LB_IMGS.length;
+        lbImg.src = LB_IMGS[cur].src;
+        lbImg.alt = LB_IMGS[cur].alt;
+        updateLBCounter();
+    }
 
-    document.querySelectorAll('.m-item').forEach((item, i) => item.addEventListener('click', () => openLB(i)));
+    document.querySelectorAll('.m-item').forEach((item, i) => {
+        item.addEventListener('click', () => openLB(i, item));
+    });
+
+    const galBtn = document.getElementById('gal-all-btn');
+    if (galBtn) galBtn.addEventListener('click', () => openLB(0, galBtn));
+
     document.getElementById('lbClose').addEventListener('click', closeLB);
     document.getElementById('lbPrev').addEventListener('click', prevLB);
     document.getElementById('lbNext').addEventListener('click', nextLB);
