@@ -493,6 +493,7 @@
             overflow: hidden;
             box-shadow: var(--sh);
             transition: transform 0.35s ease, box-shadow 0.35s ease;
+            cursor: pointer;
         }
         .esp-card:hover {
             transform: translateY(-7px);
@@ -1480,6 +1481,246 @@
         ::-webkit-scrollbar-thumb:hover { background: var(--turquoise-dk); }
 
         :focus-visible { outline: 2px solid var(--turquoise); outline-offset: 3px; }
+
+        /* ── ESP-VER BUTTON ── */
+        .esp-ver-btn {
+            margin-top: 16px;
+            background: none;
+            border: none;
+            font-family: var(--font-b);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--turquoise);
+            cursor: pointer;
+            padding: 0;
+            transition: gap 0.2s ease, color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .esp-ver-btn:hover { gap: 10px; color: var(--turquoise-dk); }
+
+        /* ── PANEL ESPACIO ── */
+        #espacio-panel {
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            z-index: 9500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+        #espacio-panel.open { opacity: 1; pointer-events: all; }
+
+        .ep-header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.07);
+            padding: 18px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+        }
+        .ep-brand {
+            font-family: var(--font-d);
+            font-size: 18px;
+            letter-spacing: 0.25em;
+            color: var(--black);
+        }
+        .ep-close {
+            background: none;
+            border: none;
+            font-family: var(--font-b);
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--black);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            min-height: 44px;
+            transition: color 0.2s ease;
+        }
+        .ep-close:hover { color: var(--turquoise); }
+
+        .ep-body {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            min-height: calc(100vh - 62px);
+        }
+        .ep-hero {
+            position: relative;
+            background: var(--black);
+            overflow: hidden;
+        }
+        #ep-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+        .ep-thumbs {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 3;
+        }
+        .ep-thumb {
+            width: 56px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 2px;
+            cursor: pointer;
+            opacity: 0.55;
+            border: 2px solid transparent;
+            transition: opacity 0.2s ease, border-color 0.2s ease;
+        }
+        .ep-thumb.active { opacity: 1; border-color: var(--white); }
+        .ep-thumb:hover  { opacity: 0.85; }
+        .ep-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: var(--font-b);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.7);
+            background: rgba(0,0,0,0.35);
+            padding: 6px 12px;
+            border-radius: 20px;
+            z-index: 3;
+        }
+        .ep-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: var(--white);
+            font-size: 28px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 3;
+            transition: background 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .ep-arrow:hover { background: rgba(255,255,255,0.28); }
+        .ep-prev { left: 16px; }
+        .ep-next { right: 16px; }
+        .ep-arrow.hidden { display: none; }
+
+        .ep-info {
+            padding: 64px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--beige);
+        }
+        .ep-label {
+            font-family: var(--font-b);
+            font-size: 11px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--turquoise);
+            margin-bottom: 20px;
+        }
+        .ep-title {
+            font-family: var(--font-d);
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--black);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        .ep-desc {
+            font-family: var(--font-b);
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+        .ep-sep {
+            width: 48px;
+            height: 1px;
+            background: var(--turquoise);
+            margin-bottom: 40px;
+        }
+        .ep-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--font-b);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 16px 32px;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+        .ep-cta:hover { background: var(--turquoise); }
+        .ep-all {
+            background: none;
+            border: 1px solid rgba(0,0,0,0.2);
+            font-family: var(--font-b);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+            padding: 12px 24px;
+            border-radius: 2px;
+            cursor: pointer;
+            width: fit-content;
+            transition: all 0.3s ease;
+        }
+        .ep-all:hover { border-color: var(--black); color: var(--black); }
+
+        @media (max-width: 900px) {
+            .ep-body { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+            .ep-hero { min-height: 55vh; }
+            #ep-hero-img { height: 55vh; }
+            .ep-info { padding: 40px 32px; justify-content: flex-start; }
+            .ep-header { padding: 16px 24px; }
+        }
+        @media (max-width: 480px) {
+            .ep-body { grid-template-rows: 50vh auto; }
+            .ep-hero { min-height: 50vh; }
+            #ep-hero-img { height: 50vh; }
+            .ep-info { padding: 32px 20px; }
+            .ep-header { padding: 14px 16px; }
+            .ep-brand { font-size: 15px; }
+            .ep-title { font-size: 28px; }
+            .ep-thumbs { gap: 6px; }
+            .ep-thumb { width: 44px; height: 32px; }
+            .ep-arrow { width: 44px; height: 44px; font-size: 22px; }
+            .ep-cta { width: 100%; justify-content: center; }
+            .ep-all { width: 100%; text-align: center; }
+        }
     </style>
 </head>
 <body>
@@ -1682,7 +1923,7 @@
         <div class="esp-grid">
 
             <!-- Card 1 — Sala de Estar -->
-            <div class="esp-card fade-up">
+            <div class="esp-card fade-up" data-espacio="sala">
                 <div class="esp-img">
                     <img src="img/OBW_6660.JPG" alt="Sala de estar con vista al mar, Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -1691,11 +1932,12 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Sala de Estar" data-en="Living Room">Sala de Estar</h3>
                     <p class="esp-desc" data-es="Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala." data-en="L-shaped sofa facing the sea, white beam ceiling and windows that erase the line between inside and outside. Where the Caribbean enters the living room.">Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala.</p>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
                 </div>
             </div>
 
             <!-- Card 2 — Comedor & Cocina -->
-            <div class="esp-card fade-up" style="transition-delay:0.1s">
+            <div class="esp-card fade-up" style="transition-delay:0.1s" data-espacio="comedor">
                 <div class="esp-img">
                     <img src="img/OBW_6634.JPG" alt="Comedor y cocina de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -1704,11 +1946,12 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Comedor &amp; Cocina" data-en="Dining &amp; Kitchen">Comedor &amp; Cocina</h3>
                     <p class="esp-desc" data-es="Espacio social abierto al Caribe. Comedor para 10, cocina completa y brisa marina como fondo permanente." data-en="Social space open to the Caribbean. Dining for 10, full kitchen and sea breeze as a permanent backdrop.">Espacio social abierto al Caribe. Comedor para 10, cocina completa y brisa marina como fondo permanente.</p>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
                 </div>
             </div>
 
             <!-- Card 3 — Suite Principal -->
-            <div class="esp-card fade-up" style="transition-delay:0.2s">
+            <div class="esp-card fade-up" style="transition-delay:0.2s" data-espacio="suite">
                 <div class="esp-img">
                     <img src="img/OBW_6791.JPG" alt="Suite Principal de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -1717,11 +1960,12 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Suite Principal" data-en="Master Suite">Suite Principal</h3>
                     <p class="esp-desc" data-es="Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma." data-en="Double bed, handcrafted jute textiles and sphere lamps. Pure white to wake up in peace.">Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma.</p>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
                 </div>
             </div>
 
             <!-- Card 4 — Habitación Familiar -->
-            <div class="esp-card fade-up" style="transition-delay:0.1s">
+            <div class="esp-card fade-up" style="transition-delay:0.1s" data-espacio="familiar">
                 <div class="esp-img">
                     <img src="img/OBW_6456.JPG" alt="Habitación Familiar de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -1730,11 +1974,12 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Habitación Familiar" data-en="Family Room">Habitación Familiar</h3>
                     <p class="esp-desc" data-es="Cama doble más litera de diseño empotrada. Perfecta para familias o grupos que quieren más espacio." data-en="Double bed plus built-in designer bunk bed. Perfect for families or groups who want more space.">Cama doble más litera de diseño empotrada. Perfecta para familias o grupos que quieren más espacio.</p>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
                 </div>
             </div>
 
             <!-- Card 5 — Cocina Equipada -->
-            <div class="esp-card fade-up" style="transition-delay:0.2s">
+            <div class="esp-card fade-up" style="transition-delay:0.2s" data-espacio="cocina">
                 <div class="esp-img">
                     <img src="img/OBW_6626.JPG" alt="Cocina Equipada de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -1743,11 +1988,12 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Cocina Equipada" data-en="Fully Equipped Kitchen">Cocina Equipada</h3>
                     <p class="esp-desc" data-es="Isla de desayuno en madera, backsplash turquesa, horno profesional y refrigerador doble. Todo listo para tus mejores noches." data-en="Wooden breakfast island, turquoise backsplash, professional oven and double refrigerator. Everything ready for your best nights.">Isla de desayuno en madera, backsplash turquesa, horno profesional y refrigerador doble. Todo listo para tus mejores noches.</p>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
                 </div>
             </div>
 
             <!-- Card 6 — Baños de Diseño -->
-            <div class="esp-card fade-up" style="transition-delay:0.3s">
+            <div class="esp-card fade-up" style="transition-delay:0.3s" data-espacio="banos">
                 <div class="esp-img">
                     <img src="img/OBW_6810.JPG" alt="Baños de Diseño de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -1756,11 +2002,12 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Baños de Diseño" data-en="Designer Bathrooms">Baños de Diseño</h3>
                     <p class="esp-desc" data-es="Revestimiento travertino, luz cálida integrada y amenidades de bienvenida. El lujo está en los detalles." data-en="Travertine cladding, integrated warm lighting and welcome amenities. Luxury is in the details.">Revestimiento travertino, luz cálida integrada y amenidades de bienvenida. El lujo está en los detalles.</p>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
                 </div>
             </div>
 
             <!-- Card 7 — Terraza Exterior -->
-            <div class="esp-card fade-up" style="transition-delay:0.1s">
+            <div class="esp-card fade-up" style="transition-delay:0.1s" data-espacio="terraza">
                 <div class="esp-img">
                     <img src="img/OBW_6653.JPG" alt="Terraza Exterior de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -1769,6 +2016,7 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Terraza Exterior" data-en="Outdoor Terrace">Terraza Exterior</h3>
                     <p class="esp-desc" data-es="Fachada blanca, terraza exterior y acceso directo al corazón de Gran Roque. Tu base perfecta en Los Roques." data-en="White facade, outdoor terrace and direct access to the heart of Gran Roque. Your perfect base in Los Roques.">Fachada blanca, terraza exterior y acceso directo al corazón de Gran Roque. Tu base perfecta en Los Roques.</p>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
                 </div>
             </div>
 
@@ -2198,7 +2446,215 @@
 
     setLanguage(localStorage.getItem('lang') || 'es');
 
+    /* ── PANEL DETALLE POR ESPACIO ── */
+    const ESPACIOS_FOTOS = {
+        sala: {
+            nombre_es: 'Sala de Estar', nombre_en: 'Living Room',
+            desc_es: 'Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala.',
+            desc_en: 'L-shaped sofa facing the sea, white beam ceiling and windows that erase the line between inside and outside. Where the Caribbean enters the living room.',
+            fotos: [
+                { src: 'img/OBW_6660.JPG', alt_es: 'Sala de estar con vista al mar', alt_en: 'Living room with sea view' },
+                { src: 'img/OBW_6612.JPG', alt_es: 'Sala de estar', alt_en: 'Living room' },
+                { src: 'img/OBW_6599.JPG', alt_es: 'Sala ángulo alternativo', alt_en: 'Living room alternative angle' },
+            ]
+        },
+        comedor: {
+            nombre_es: 'Comedor & Cocina', nombre_en: 'Dining & Kitchen',
+            desc_es: 'Espacio social abierto al Caribe. Comedor para 10, cocina completa y brisa marina como fondo permanente.',
+            desc_en: 'Social space open to the Caribbean. Dining for 10, full kitchen and sea breeze as a permanent backdrop.',
+            fotos: [
+                { src: 'img/OBW_6634.JPG', alt_es: 'Comedor y cocina con vista al mar', alt_en: 'Dining and kitchen with sea view' },
+                { src: 'img/OBW_6821.JPG', alt_es: 'Comedor montado', alt_en: 'Set dining table' },
+                { src: 'img/OBW_6822.JPG', alt_es: 'Detalle comedor', alt_en: 'Dining detail' },
+                { src: 'img/OBW_6819.JPG', alt_es: 'Comedor exterior', alt_en: 'Outdoor dining' },
+            ]
+        },
+        suite: {
+            nombre_es: 'Suite Principal', nombre_en: 'Master Suite',
+            desc_es: 'Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma.',
+            desc_en: 'Double bed, handcrafted jute textiles and sphere lamps. Pure white to wake up in peace.',
+            fotos: [
+                { src: 'img/OBW_6791.JPG', alt_es: 'Suite principal', alt_en: 'Master suite' },
+                { src: 'img/OBW_6463.JPG', alt_es: 'Suite gran angular', alt_en: 'Master suite wide angle' },
+                { src: 'img/OBW_6785.JPG', alt_es: 'Detalle almohadas', alt_en: 'Pillow detail' },
+            ]
+        },
+        familiar: {
+            nombre_es: 'Habitación Familiar', nombre_en: 'Family Room',
+            desc_es: 'Cama doble más litera de diseño empotrada. Perfecta para familias o grupos que quieren más espacio.',
+            desc_en: 'Double bed plus built-in designer bunk bed. Perfect for families or groups who want more space.',
+            fotos: [
+                { src: 'img/OBW_6592.JPG', alt_es: 'Habitación familiar', alt_en: 'Family room' },
+                { src: 'img/OBW_6456.JPG', alt_es: 'Habitación familiar con litera', alt_en: 'Family room with bunk bed' },
+                { src: 'img/OBW_6496.JPG', alt_es: 'Habitación litera', alt_en: 'Bunk bed room' },
+            ]
+        },
+        cocina: {
+            nombre_es: 'Cocina Equipada', nombre_en: 'Fully Equipped Kitchen',
+            desc_es: 'Isla de desayuno en madera, backsplash turquesa, horno profesional y refrigerador doble.',
+            desc_en: 'Wooden breakfast island, turquoise backsplash, professional oven and double refrigerator.',
+            fotos: [
+                { src: 'img/OBW_6626.JPG', alt_es: 'Cocina equipada', alt_en: 'Equipped kitchen' },
+                { src: 'img/OBW_6622.JPG', alt_es: 'Cocina isla de madera', alt_en: 'Kitchen wooden island' },
+            ]
+        },
+        banos: {
+            nombre_es: 'Baños de Diseño', nombre_en: 'Designer Bathrooms',
+            desc_es: 'Revestimiento travertino, luz cálida integrada y amenidades Casa Panza en cestas de rafia.',
+            desc_en: 'Travertine cladding, warm integrated lighting and Casa Panza amenities in raffia baskets.',
+            fotos: [
+                { src: 'img/OBW_6810.JPG', alt_es: 'Baño de diseño', alt_en: 'Designer bathroom' },
+                { src: 'img/OBW_6801.JPG', alt_es: 'Toallas Casa Panza', alt_en: 'Casa Panza towels' },
+            ]
+        },
+        terraza: {
+            nombre_es: 'Terraza Exterior', nombre_en: 'Outdoor Terrace',
+            desc_es: 'Fachada blanca, terraza exterior y acceso directo al corazón de Gran Roque.',
+            desc_en: 'White facade, outdoor terrace and direct access to the heart of Gran Roque.',
+            fotos: [
+                { src: 'img/OBW_6653.JPG', alt_es: 'Fachada exterior', alt_en: 'Exterior facade' },
+                { src: 'img/ENTRADA_CASA_PANZA.JPG', alt_es: 'Entrada Casa Panza', alt_en: 'Casa Panza entrance' },
+            ]
+        },
+    };
+
+    let epFotos = [];
+    let epCur   = 0;
+    const espacioPanel = document.getElementById('espacio-panel');
+    const epHeroImg    = document.getElementById('ep-hero-img');
+    const epThumbsEl   = document.getElementById('ep-thumbs');
+    const epCounter    = document.getElementById('ep-counter');
+    const epTitle      = document.getElementById('ep-title');
+    const epDesc       = document.getElementById('ep-desc');
+    const epPrev       = document.getElementById('ep-prev');
+    const epNext       = document.getElementById('ep-next');
+
+    function epSetFoto(idx) {
+        epCur = idx;
+        const lang = getLang();
+        epHeroImg.style.opacity = '0';
+        setTimeout(() => {
+            epHeroImg.src = epFotos[idx].src;
+            epHeroImg.alt = lang === 'en' ? epFotos[idx].alt_en : epFotos[idx].alt_es;
+            epHeroImg.style.opacity = '1';
+        }, 150);
+        epCounter.textContent = (idx + 1) + ' / ' + epFotos.length;
+        epThumbsEl.querySelectorAll('.ep-thumb')
+            .forEach((t, i) => t.classList.toggle('active', i === idx));
+    }
+
+    function abrirEspacio(key) {
+        const data = ESPACIOS_FOTOS[key];
+        if (!data) return;
+        const lang = getLang();
+        epFotos = data.fotos;
+        epCur   = 0;
+        epTitle.textContent = lang === 'en' ? data.nombre_en : data.nombre_es;
+        epDesc.textContent  = lang === 'en' ? data.desc_en   : data.desc_es;
+        epThumbsEl.innerHTML = data.fotos.map((f, i) => `
+            <img class="ep-thumb${i === 0 ? ' active' : ''}"
+                 src="${f.src}"
+                 alt="${lang === 'en' ? f.alt_en : f.alt_es}"
+                 data-idx="${i}" loading="lazy">
+        `).join('');
+        epThumbsEl.querySelectorAll('.ep-thumb').forEach(t => {
+            t.addEventListener('click', () => epSetFoto(parseInt(t.dataset.idx)));
+        });
+        epHeroImg.src           = data.fotos[0].src;
+        epHeroImg.alt           = lang === 'en' ? data.fotos[0].alt_en : data.fotos[0].alt_es;
+        epHeroImg.style.opacity = '1';
+        epCounter.textContent   = '1 / ' + data.fotos.length;
+        epPrev.classList.toggle('hidden', data.fotos.length <= 1);
+        epNext.classList.toggle('hidden', data.fotos.length <= 1);
+        espacioPanel.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarEspacio() {
+        espacioPanel.classList.remove('open');
+        document.body.style.overflow = '';
+        epHeroImg.src = '';
+    }
+
+    epPrev.addEventListener('click', () =>
+        epSetFoto((epCur - 1 + epFotos.length) % epFotos.length));
+    epNext.addEventListener('click', () =>
+        epSetFoto((epCur + 1) % epFotos.length));
+
+    document.getElementById('ep-close').addEventListener('click', cerrarEspacio);
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && espacioPanel.classList.contains('open')) cerrarEspacio();
+        if (espacioPanel.classList.contains('open')) {
+            if (e.key === 'ArrowLeft')  epSetFoto((epCur - 1 + epFotos.length) % epFotos.length);
+            if (e.key === 'ArrowRight') epSetFoto((epCur + 1) % epFotos.length);
+        }
+    });
+
+    let epTsX = 0;
+    espacioPanel.addEventListener('touchstart', e => { epTsX = e.touches[0].clientX; }, { passive: true });
+    espacioPanel.addEventListener('touchend', e => {
+        const diff = epTsX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) < 40) return;
+        diff > 0
+            ? epSetFoto((epCur + 1) % epFotos.length)
+            : epSetFoto((epCur - 1 + epFotos.length) % epFotos.length);
+    }, { passive: true });
+
+    document.getElementById('ep-all').addEventListener('click', () => {
+        cerrarEspacio();
+        setTimeout(() => abrirPanel(), 300);
+    });
+
+    document.querySelectorAll('.esp-card[data-espacio]').forEach(card => {
+        card.addEventListener('click', () => abrirEspacio(card.dataset.espacio));
+    });
+
 </script>
+
+<!-- ══════════════════════════════════════════
+     PANEL DETALLE POR ESPACIO
+══════════════════════════════════════════ -->
+<div id="espacio-panel" role="dialog" aria-modal="true" aria-label="Detalle del espacio">
+
+    <div class="ep-header">
+        <div class="ep-brand">CASA PANZA</div>
+        <button class="ep-close" id="ep-close" aria-label="Cerrar">
+            ✕ <span data-es="Cerrar" data-en="Close">Cerrar</span>
+        </button>
+    </div>
+
+    <div class="ep-body">
+
+        <div class="ep-hero">
+            <img id="ep-hero-img" src="" alt="" loading="eager">
+            <div class="ep-thumbs" id="ep-thumbs"></div>
+            <div class="ep-counter" id="ep-counter">1 / 3</div>
+            <button class="ep-arrow ep-prev" id="ep-prev" aria-label="Anterior">‹</button>
+            <button class="ep-arrow ep-next" id="ep-next" aria-label="Siguiente">›</button>
+        </div>
+
+        <div class="ep-info">
+            <p class="ep-label" data-es="Casa Panza · Los Roques" data-en="Casa Panza · Los Roques">Casa Panza · Los Roques</p>
+            <h2 class="ep-title" id="ep-title"></h2>
+            <p class="ep-desc" id="ep-desc"></p>
+            <div class="ep-sep"></div>
+            <a class="ep-cta" id="ep-cta"
+               href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
+               target="_blank" rel="noopener" data-wa-link>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.526 5.858L0 24l6.335-1.652A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.011-1.374l-.36-.213-3.731.978.995-3.631-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+                </svg>
+                <span data-es="Reservar este espacio" data-en="Book this space">Reservar este espacio</span>
+            </a>
+            <button class="ep-all" id="ep-all">
+                <span data-es="Ver toda la galería" data-en="View full gallery">Ver toda la galería</span>
+            </button>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
