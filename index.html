@@ -524,41 +524,164 @@
         .gal-hd { text-align: center; margin-bottom: 60px; }
         .gal-hd .s-sub { margin: 0 auto; }
 
-        .masonry {
-            columns: 3;
-            column-gap: 18px;
-        }
-
-        .m-item {
-            break-inside: avoid;
-            margin-bottom: 18px;
-            border-radius: 14px;
+        /* ── Galería preview (4 fotos) ── */
+        .galeria-preview {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            grid-template-rows: repeat(3, 220px);
+            gap: 8px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 8px;
             overflow: hidden;
+        }
+        .galeria-foto-1 { grid-row: 1 / 4; grid-column: 1; }
+        .galeria-foto-2 { grid-row: 1;     grid-column: 2; }
+        .galeria-foto-3 { grid-row: 2;     grid-column: 2; }
+        .galeria-foto-4 { grid-row: 3;     grid-column: 2; }
+
+        .foto-wrapper {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            width: 100%; height: 100%;
+        }
+        .galeria-preview img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .foto-wrapper:hover img { transform: scale(1.04); }
+        .foto-wrapper::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: rgba(42,191,191,0.15);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .foto-wrapper:hover::after { opacity: 1; }
+
+        /* Botón ver todas */
+        .gal-btn-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 24px;
+        }
+        #btn-ver-galeria {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            border: 1px solid #1A1A1A;
+            color: #1A1A1A;
+            font-family: var(--font-b);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 14px 32px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        #btn-ver-galeria:hover { background: #1A1A1A; color: #FFFFFF; }
+
+        /* ── Panel galería completa ── */
+        #galeria-panel {
+            position: fixed;
+            inset: 0;
+            background: #FAFAF8;
+            z-index: 9000;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        #galeria-panel.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .gp-header {
+            position: sticky;
+            top: 0;
+            background: rgba(250,250,248,0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 10;
+            padding: 20px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        .gp-brand {
+            font-family: var(--font-d);
+            font-size: 18px;
+            letter-spacing: 0.2em;
+            color: #1A1A1A;
+            text-transform: uppercase;
+        }
+        .gp-tabs {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .galeria-tab {
+            background: none;
+            border: none;
+            font-family: var(--font-b);
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.40);
+            cursor: pointer;
+            padding: 6px 0;
+            border-bottom: 1.5px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .galeria-tab:hover { color: #1A1A1A; }
+        .galeria-tab.active { color: #1A1A1A; border-bottom-color: #2ABFBF; }
+
+        .gp-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-b);
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #1A1A1A;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            transition: opacity 0.2s ease;
+        }
+        .gp-close:hover { opacity: 0.6; }
+
+        #galeria-grid {
+            padding: 40px 48px;
+            columns: 3;
+            column-gap: 8px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #galeria-grid .galeria-item {
+            break-inside: avoid;
+            margin-bottom: 8px;
+            overflow: hidden;
+            border-radius: 3px;
             cursor: pointer;
             position: relative;
         }
-        .m-item img {
+        #galeria-grid .galeria-item img {
             width: 100%;
+            height: auto;
             display: block;
-            transition: transform 0.45s ease;
+            transition: transform 0.5s ease;
         }
-        .m-item:hover img { transform: scale(1.05); }
-
-        .m-ov {
-            position: absolute; inset: 0;
-            background: rgba(42,191,191,0.22);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .m-ov i {
-            font-size: 30px;
-            color: var(--white);
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.35));
-        }
-        .m-item:hover .m-ov { opacity: 1; }
+        #galeria-grid .galeria-item:hover img { transform: scale(1.03); }
 
         /* Lightbox */
         #lb {
@@ -988,7 +1111,9 @@
             .about-text         { padding-right: 0; order: 2; padding-top: 32px; }
             .about-img          { height: 440px; order: 1; }
             .esp-grid           { grid-template-columns: repeat(2, 1fr); }
-            .masonry            { columns: 2; }
+            #galeria-grid       { columns: 2; padding: 32px 24px; }
+            .gp-header          { padding: 16px 24px; }
+            .gp-tabs            { gap: 20px; }
             .con-details-row    { grid-template-columns: 1fr; }
             /* Los Roques — tablet grande */
             .roques-grid img    { height: 300px; }
@@ -1022,10 +1147,13 @@
             /* Spaces — 2 col en tablet */
             .esp-grid           { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
-            /* Gallery — 2 col en tablet */
-            .masonry            { columns: 2; column-gap: 10px; }
-            .m-item             { margin-bottom: 10px; }
-            .m-item img         { height: 200px; object-fit: cover; }
+            /* Gallery — tablet */
+            .galeria-preview    { grid-template-rows: repeat(3, 180px); }
+            #galeria-grid       { columns: 2; padding: 24px 16px; }
+            .gp-header          { padding: 14px 20px; }
+            .gp-tabs            { gap: 16px; overflow-x: auto; }
+            .galeria-tab        { font-size: 11px; white-space: nowrap; }
+            .gp-brand           { display: none; }
 
             /* Contact */
             .con-details-row    { grid-template-columns: 1fr; }
@@ -1081,10 +1209,19 @@
             .esp-desc           { font-size: 14px; line-height: 1.6; }
             .esp-body           { padding: 20px; }
 
-            /* Gallery — 1 col en móvil */
-            .masonry            { columns: 1; column-gap: 0; }
-            .m-item             { margin-bottom: 8px; border-radius: 4px; }
-            .m-item img         { height: 220px; object-fit: cover; width: 100%; }
+            /* Gallery — móvil */
+            .galeria-preview    {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 200px 200px;
+            }
+            .galeria-foto-1     { grid-row: 1; grid-column: 1; }
+            .galeria-foto-3, .galeria-foto-4 { display: none; }
+            #btn-ver-galeria    { width: 90%; max-width: 320px; justify-content: center; }
+            #galeria-grid       { columns: 2; column-gap: 6px; padding: 16px 12px; }
+            .gp-header          { padding: 14px 16px; flex-wrap: wrap; gap: 12px; }
+            .gp-tabs            { order: 3; width: 100%; overflow-x: auto; gap: 16px; padding-bottom: 4px; }
+            .galeria-tab        { font-size: 11px; white-space: nowrap; }
+            .gp-brand           { display: none; }
 
             /* Lightbox */
             #lb-img             { max-width: 95vw; }
@@ -1516,43 +1653,54 @@
             <p class="s-sub" data-es="El turquesa de Los Roques no se explica. Se vive." data-en="The turquoise of Los Roques cannot be explained. It must be lived.">El turquesa de Los Roques no se explica. Se vive.</p>
         </div>
 
-        <div class="masonry" id="masonry">
-
-            <div class="m-item fade-in" data-idx="0">
-                <img src="img/ENTRADA_CASA_PANZA.JPG" alt="Entrada de Casa Panza con arco turquesa y vista al mar Caribe, Los Roques" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
+        <div class="galeria-preview fade-up">
+            <div class="galeria-foto-1 foto-wrapper">
+                <img src="img/OBW_6660.JPG" alt="Sala con vista al mar, Casa Panza" loading="lazy">
             </div>
-            <div class="m-item fade-in" data-idx="1" style="transition-delay:0.1s">
-                <img src="img/OBW_6660.JPG" alt="Sala de estar panorámica Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
+            <div class="galeria-foto-2 foto-wrapper">
+                <img src="img/IMG_0864.JPG" alt="Mar turquesa aéreo, Los Roques" loading="lazy">
             </div>
-            <div class="m-item fade-in" data-idx="2" style="transition-delay:0.2s">
+            <div class="galeria-foto-3 foto-wrapper">
+                <img src="img/OBW_6791.JPG" alt="Suite principal, Casa Panza" loading="lazy">
+            </div>
+            <div class="galeria-foto-4 foto-wrapper">
                 <img src="img/OBW_6634.JPG" alt="Comedor y cocina con vista al mar, Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
             </div>
-            <div class="m-item fade-in" data-idx="3" style="transition-delay:0.05s">
-                <img src="img/OBW_6791.JPG" alt="Suite principal Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-            <div class="m-item fade-in" data-idx="4" style="transition-delay:0.15s">
-                <img src="img/OBW_6810.JPG" alt="Baño travertino Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-            <div class="m-item fade-in" data-idx="5" style="transition-delay:0.25s">
-                <img src="img/OBW_6785.JPG" alt="Detalle almohadas de yute Casa Panza" loading="lazy">
-                <div class="m-ov"><i class="fas fa-expand"></i></div>
-            </div>
-
         </div>
 
         <div class="gal-btn-wrap">
-            <button id="gal-all-btn" class="btn-tq" aria-label="Ver todas las fotos">
-                <span data-es="Ver todas las fotos (16)" data-en="View all photos (16)">Ver todas las fotos (16)</span>
+            <button id="btn-ver-galeria">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+                    <rect x="0" y="0" width="6" height="6"/>
+                    <rect x="8" y="0" width="6" height="6"/>
+                    <rect x="0" y="8" width="6" height="6"/>
+                    <rect x="8" y="8" width="6" height="6"/>
+                </svg>
+                <span data-es="Ver todas las fotos" data-en="View all photos">Ver todas las fotos</span>
             </button>
         </div>
 
     </div>
 </section>
+
+<!-- Panel galería completa -->
+<div id="galeria-panel" role="dialog" aria-modal="true" aria-label="Galería completa Casa Panza">
+    <div class="gp-header">
+        <div class="gp-brand">Casa Panza</div>
+        <div class="gp-tabs" id="galeria-tabs">
+            <button class="galeria-tab active" data-cat="todas" data-es="Todas" data-en="All">Todas</button>
+            <button class="galeria-tab" data-cat="exterior" data-es="Exterior" data-en="Exterior">Exterior</button>
+            <button class="galeria-tab" data-cat="sala" data-es="Sala &amp; Comedor" data-en="Living &amp; Dining">Sala &amp; Comedor</button>
+            <button class="galeria-tab" data-cat="habitaciones" data-es="Habitaciones" data-en="Bedrooms">Habitaciones</button>
+            <button class="galeria-tab" data-cat="cocina" data-es="Cocina &amp; Baños" data-en="Kitchen &amp; Baths">Cocina &amp; Baños</button>
+            <button class="galeria-tab" data-cat="losroques" data-es="Los Roques" data-en="Los Roques">Los Roques</button>
+        </div>
+        <button class="gp-close" id="btn-cerrar-galeria">
+            ✕ <span data-es="Cerrar" data-en="Close">Cerrar</span>
+        </button>
+    </div>
+    <div id="galeria-grid"></div>
+</div>
 
 <!-- Lightbox -->
 <div id="lb" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
@@ -1743,79 +1891,117 @@
 
     document.querySelectorAll('.fade-up, .fade-in, .roques-eyebrow, .roques-title, .roques-quote, .cp-symbol--animated').forEach(el => io.observe(el));
 
-    /* ── LIGHTBOX ── */
-    const LB_IMGS = [
-        { src: 'img/ENTRADA_CASA_PANZA.JPG', alt: 'Entrada de Casa Panza con arco turquesa y vista al mar Caribe, Los Roques' },
-        { src: 'img/OBW_6660.JPG',           alt: 'Sala de estar panorámica Casa Panza' },
-        { src: 'img/OBW_6634.JPG',           alt: 'Comedor y cocina con vista al mar, Casa Panza' },
-        { src: 'img/OBW_6791.JPG',           alt: 'Suite principal Casa Panza' },
-        { src: 'img/OBW_6810.JPG',           alt: 'Baño travertino Casa Panza' },
-        { src: 'img/OBW_6785.JPG',           alt: 'Detalle almohadas de yute Casa Panza' },
-        { src: 'img/OBW_6653.JPG',           alt: 'Fachada lateral de Casa Panza, Gran Roque' },
-        { src: 'img/OBW_6821.JPG',           alt: 'Comedor montado Casa Panza' },
-        { src: 'img/OBW_6612.JPG',           alt: 'Sala: detalle TV y estantería Casa Panza' },
-        { src: 'img/OBW_6626.JPG',           alt: 'Cocina con isla de madera, Casa Panza' },
-        { src: 'img/OBW_6599.JPG',           alt: 'Sala ángulo alternativo, Casa Panza' },
-        { src: 'img/OBW_6592.JPG',           alt: 'Habitación familiar con TV, Casa Panza' },
-        { src: 'img/OBW_6456.JPG',           alt: 'Habitación familiar ángulo limpio, Casa Panza' },
-        { src: 'img/OBW_6801.JPG',           alt: 'Detalle toallas Casa Panza en cesta de rafia' },
-        { src: 'img/OBW_6463.JPG',           alt: 'Habitación Casa Panza' },
-        { src: 'img/OBW_6586.JPG',           alt: 'Detalle Casa Panza' }
+    /* ── GALERÍA PREMIUM ── */
+    const FOTOS = [
+        { src: 'img/OBW_6653.JPG',  cat: 'exterior',     alt_es: 'Fachada Casa Panza',                  alt_en: 'Casa Panza facade' },
+        { src: 'img/OBW_6660.JPG',  cat: 'sala',         alt_es: 'Sala de estar con vista al mar',      alt_en: 'Living room with sea view' },
+        { src: 'img/OBW_6612.JPG',  cat: 'sala',         alt_es: 'Sala de estar',                       alt_en: 'Living room' },
+        { src: 'img/OBW_6599.JPG',  cat: 'sala',         alt_es: 'Sala ángulo alternativo',             alt_en: 'Living room alternative angle' },
+        { src: 'img/OBW_6634.JPG',  cat: 'sala',         alt_es: 'Comedor y cocina con vista al mar',   alt_en: 'Dining and kitchen with sea view' },
+        { src: 'img/OBW_6821.JPG',  cat: 'sala',         alt_es: 'Comedor montado',                     alt_en: 'Set dining table' },
+        { src: 'img/OBW_6822.JPG',  cat: 'sala',         alt_es: 'Detalle comedor',                     alt_en: 'Dining detail' },
+        { src: 'img/OBW_6819.JPG',  cat: 'sala',         alt_es: 'Comedor exterior',                    alt_en: 'Outdoor dining' },
+        { src: 'img/OBW_6791.JPG',  cat: 'habitaciones', alt_es: 'Suite principal',                     alt_en: 'Master suite' },
+        { src: 'img/OBW_6463.JPG',  cat: 'habitaciones', alt_es: 'Suite principal gran angular',        alt_en: 'Master suite wide angle' },
+        { src: 'img/OBW_6785.JPG',  cat: 'habitaciones', alt_es: 'Detalle almohadas',                   alt_en: 'Pillow detail' },
+        { src: 'img/OBW_6592.JPG',  cat: 'habitaciones', alt_es: 'Habitación familiar',                 alt_en: 'Family room' },
+        { src: 'img/OBW_6456.JPG',  cat: 'habitaciones', alt_es: 'Habitación familiar con litera',      alt_en: 'Family room with bunk bed' },
+        { src: 'img/OBW_6586.JPG',  cat: 'habitaciones', alt_es: 'Habitación lounge',                   alt_en: 'Lounge room' },
+        { src: 'img/OBW_6496.JPG',  cat: 'habitaciones', alt_es: 'Habitación con litera',               alt_en: 'Room with bunk bed' },
+        { src: 'img/OBW_6626.JPG',  cat: 'cocina',       alt_es: 'Cocina equipada',                     alt_en: 'Equipped kitchen' },
+        { src: 'img/OBW_6622.JPG',  cat: 'cocina',       alt_es: 'Cocina isla de madera',               alt_en: 'Kitchen wooden island' },
+        { src: 'img/OBW_6810.JPG',  cat: 'cocina',       alt_es: 'Baño de diseño',                      alt_en: 'Designer bathroom' },
+        { src: 'img/OBW_6801.JPG',  cat: 'cocina',       alt_es: 'Detalle toallas Casa Panza',          alt_en: 'Casa Panza towel detail' },
+        { src: 'img/IMG_0864.JPG',  cat: 'losroques',    alt_es: 'Mar turquesa Los Roques',             alt_en: 'Turquoise sea Los Roques' },
+        { src: 'img/IMG_0861.JPG',  cat: 'losroques',    alt_es: 'Arrecife Los Roques desde drone',     alt_en: 'Los Roques reef from drone' },
+        { src: 'img/IMG_0720.JPG',  cat: 'losroques',    alt_es: 'Lancha en aguas cristalinas',         alt_en: 'Boat in crystal clear waters' },
     ];
+
+    let activeGalFotos = FOTOS;
     let cur = 0;
-    let lbOpener = null;
     const lb        = document.getElementById('lb');
     const lbImg     = document.getElementById('lb-img');
     const lbCounter = document.getElementById('lb-counter');
+    const panel     = document.getElementById('galeria-panel');
+
+    function getLang() { return localStorage.getItem('lang') || 'es'; }
+
+    function renderGaleria(categoria) {
+        const grid = document.getElementById('galeria-grid');
+        activeGalFotos = categoria === 'todas' ? FOTOS : FOTOS.filter(f => f.cat === categoria);
+        const lang = getLang();
+        grid.innerHTML = activeGalFotos.map((foto, i) => `
+            <div class="galeria-item" data-index="${i}">
+                <img src="${foto.src}" alt="${lang === 'es' ? foto.alt_es : foto.alt_en}" loading="lazy">
+            </div>
+        `).join('');
+        grid.querySelectorAll('.galeria-item').forEach((el, i) => {
+            el.addEventListener('click', () => openLB(i));
+        });
+    }
+
+    function abrirPanel() {
+        panel.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        if (!document.getElementById('galeria-grid').children.length) renderGaleria('todas');
+    }
+    function cerrarPanel() {
+        panel.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('btn-ver-galeria').addEventListener('click', abrirPanel);
+    document.querySelectorAll('.foto-wrapper').forEach(el => el.addEventListener('click', abrirPanel));
+    document.getElementById('btn-cerrar-galeria').addEventListener('click', cerrarPanel);
+
+    document.querySelectorAll('.galeria-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.galeria-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            renderGaleria(tab.dataset.cat);
+        });
+    });
 
     function updateLBCounter() {
-        lbCounter.textContent = (cur + 1) + ' / ' + LB_IMGS.length;
+        lbCounter.textContent = (cur + 1) + ' / ' + activeGalFotos.length;
     }
-    function openLB(idx, opener) {
+    function openLB(idx) {
         cur = idx;
-        lbOpener = opener || null;
-        lbImg.src = LB_IMGS[idx].src;
-        lbImg.alt = LB_IMGS[idx].alt;
+        lbImg.src = activeGalFotos[idx].src;
+        lbImg.alt = getLang() === 'es' ? activeGalFotos[idx].alt_es : activeGalFotos[idx].alt_en;
         updateLBCounter();
         lb.classList.add('open');
-        document.body.style.overflow = 'hidden';
         document.getElementById('lbClose').focus();
     }
     function closeLB() {
         lb.classList.remove('open');
-        document.body.style.overflow = '';
         lbImg.src = '';
-        if (lbOpener) { lbOpener.focus(); lbOpener = null; }
     }
     function prevLB() {
-        cur = (cur - 1 + LB_IMGS.length) % LB_IMGS.length;
-        lbImg.src = LB_IMGS[cur].src;
-        lbImg.alt = LB_IMGS[cur].alt;
+        cur = (cur - 1 + activeGalFotos.length) % activeGalFotos.length;
+        lbImg.src = activeGalFotos[cur].src;
+        lbImg.alt = getLang() === 'es' ? activeGalFotos[cur].alt_es : activeGalFotos[cur].alt_en;
         updateLBCounter();
     }
     function nextLB() {
-        cur = (cur + 1) % LB_IMGS.length;
-        lbImg.src = LB_IMGS[cur].src;
-        lbImg.alt = LB_IMGS[cur].alt;
+        cur = (cur + 1) % activeGalFotos.length;
+        lbImg.src = activeGalFotos[cur].src;
+        lbImg.alt = getLang() === 'es' ? activeGalFotos[cur].alt_es : activeGalFotos[cur].alt_en;
         updateLBCounter();
     }
-
-    document.querySelectorAll('.m-item').forEach((item, i) => {
-        item.addEventListener('click', () => openLB(i, item));
-    });
-
-    const galBtn = document.getElementById('gal-all-btn');
-    if (galBtn) galBtn.addEventListener('click', () => openLB(0, galBtn));
 
     document.getElementById('lbClose').addEventListener('click', closeLB);
     document.getElementById('lbPrev').addEventListener('click', prevLB);
     document.getElementById('lbNext').addEventListener('click', nextLB);
     lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
     document.addEventListener('keydown', e => {
-        if (!lb.classList.contains('open')) return;
-        if (e.key === 'Escape')      closeLB();
-        if (e.key === 'ArrowLeft')   prevLB();
-        if (e.key === 'ArrowRight')  nextLB();
+        if (lb.classList.contains('open')) {
+            if (e.key === 'Escape')     closeLB();
+            if (e.key === 'ArrowLeft')  prevLB();
+            if (e.key === 'ArrowRight') nextLB();
+            return;
+        }
+        if (e.key === 'Escape' && panel.classList.contains('open')) cerrarPanel();
     });
 
     /* ── SMOOTH SCROLL ── */
