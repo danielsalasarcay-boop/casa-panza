@@ -250,6 +250,8 @@
             position: absolute;
             inset: 0;
             background: url('img/ENTRADA_CASA_PANZA.JPG') center center / cover no-repeat;
+            min-height: 100%;
+            min-width: 100%;
         }
 
         .hero-overlay {
@@ -1221,6 +1223,13 @@
             .hero-wa { bottom: 44px; left: 36px; }
         }
 
+        /* ── Hero — ventana minimizada (769px-900px) ── */
+        @media (max-width: 900px) and (min-width: 769px) {
+            .hero-logo { top: 28px; left: 32px; width: 160px; }
+            .hero-logo svg { width: 160px; }
+            .hero-wa { bottom: 36px; left: 32px; }
+        }
+
         /* ── Tablet (≤ 768px) ── */
         @media (max-width: 768px) {
             /* Global */
@@ -1239,7 +1248,7 @@
             #navbar.scrolled .nav-logo svg       { filter: brightness(0) !important; }
 
             /* Hero */
-            .hero-logo          { display: none; }
+            .hero-logo          { display: none !important; }
             .hero-wa            { bottom: 80px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 12px; padding: 14px 24px; }
 
             /* About */
@@ -2638,16 +2647,19 @@
     const heroBg = document.querySelector('.hero-bg');
     if (heroBg) {
         let rafPending = false;
-        window.addEventListener('scroll', () => {
-            if (rafPending) return;
-            rafPending = true;
-            requestAnimationFrame(() => {
-                if (window.scrollY < window.innerHeight * 1.5) {
-                    heroBg.style.backgroundPositionY = `calc(50% + ${window.scrollY * 0.28}px)`;
-                }
-                rafPending = false;
-            });
-        }, { passive: true });
+        const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+        if (!isTouch && window.innerWidth > 768) {
+            window.addEventListener('scroll', () => {
+                if (rafPending) return;
+                rafPending = true;
+                requestAnimationFrame(() => {
+                    if (window.scrollY < window.innerHeight * 1.5) {
+                        heroBg.style.backgroundPositionY = `calc(50% + ${window.scrollY * 0.28}px)`;
+                    }
+                    rafPending = false;
+                });
+            }, { passive: true });
+        }
     }
 
     /* ── MAGNETIC BUTTONS ── */
