@@ -1371,6 +1371,9 @@
             /* Footer */
             .foot-logo          { font-size: 26px; }
             .foot-copy          { font-size: 12px; padding: 0 20px; }
+
+            /* Comodidades */
+            .com-list           { grid-template-columns: 1fr; }
         }
 
         /* ════════════════════════════════════════
@@ -1539,30 +1542,34 @@
             margin-bottom: 28px;
         }
 
-        /* amenidades como tags flotantes */
+        /* amenidades como lista en grid */
         .com-list {
             list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
         }
         .com-item {
-            padding: 10px 22px;
-            border: 1px solid rgba(0,0,0,0.18);
-            font-family: var(--font-b);
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            color: var(--black);
-            transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
-            cursor: default;
             display: flex;
             align-items: center;
+            gap: 10px;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.07);
+            font-family: var(--font-b);
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--black);
+            cursor: default;
         }
-        .com-item:hover {
-            border-color: var(--turquoise);
-            color: var(--turquoise);
+        .com-item::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--turquoise);
+            border-radius: 50%;
+            flex-shrink: 0;
         }
+        .com-item:hover { color: var(--turquoise); }
 
         /* staff */
         .com-staff { display: flex; flex-direction: column; gap: 0; }
