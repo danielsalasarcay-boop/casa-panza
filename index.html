@@ -427,9 +427,7 @@
             border-radius: 4px;
             transition: var(--ease);
         }
-        .amen:hover { background: var(--turquoise); transform: translateY(-2px); }
-        .amen:hover .amen-icon,
-        .amen:hover .amen-text { color: var(--white); }
+        .amen:hover { background: rgba(42,191,191,0.12); transform: translateY(-2px); }
         .amen-icon {
             font-size: 20px;
             color: var(--turquoise);
@@ -526,7 +524,7 @@
 
         .esp-ov {
             position: absolute; inset: 0;
-            background: rgba(42,191,191,0.76);
+            background: rgba(10,22,40,0.72);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -982,6 +980,9 @@
             color: var(--white);
             transform: translateY(-2px);
         }
+        .foot-phone { margin-bottom: 20px; margin-top: -20px; }
+        .foot-phone a { color: rgba(255,255,255,0.45); font-family: var(--font-b); font-size: 13px; letter-spacing: 0.1em; transition: color 0.3s ease; }
+        .foot-phone a:hover { color: var(--turquoise) !important; }
         .foot-copy {
             font-size: 12px;
             color: rgba(255,255,255,0.28);
@@ -999,8 +1000,8 @@
 
         .roques-text {
             position: relative;
-            text-align: left;
-            padding: 0 56px;
+            text-align: center;
+            padding: 0 10%;
             margin-bottom: 64px;
         }
         .roques-flag {
@@ -1049,6 +1050,9 @@
             line-height: 1.4;
             margin-top: 24px;
             text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
             opacity: 0;
             transform: translateY(24px);
             transition: opacity 0.75s ease 0.2s, transform 0.75s ease 0.2s;
@@ -1552,6 +1556,8 @@
             color: var(--black);
             transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
             cursor: default;
+            display: flex;
+            align-items: center;
         }
         .com-item:hover {
             border-color: var(--turquoise);
@@ -1945,6 +1951,25 @@
                 will-change: auto !important;
             }
         }
+
+        /* ── SEPARADORES DE SECCIÓN ── */
+        #sobre       { border-bottom: 1px solid rgba(42,191,191,0.12); }
+        #galeria     { border-bottom: 1px solid rgba(42,191,191,0.12); }
+        #comodidades { border-bottom: 1px solid rgba(42,191,191,0.12); }
+
+        /* ── AMEN HOVER SUAVIZADO ── */
+        .amen:hover { background: rgba(42,191,191,0.12); color: var(--turquoise); transform: translateY(-2px); }
+        .amen:hover .amen-icon,
+        .amen:hover .amen-text { color: var(--turquoise); }
+
+        /* ── ESP-VER-BTN FLECHA ANIMADA ── */
+        .esp-ver-btn::after { content: '→'; display: inline-block; margin-left: 6px; transition: transform 0.3s ease; }
+        .esp-ver-btn:hover::after { transform: translateX(4px); }
+
+        /* ── ROQUES: DIVIDER Y LABEL ADAPTADOS AL FONDO OSCURO ── */
+        #roques .divider-line { background: rgba(255,255,255,0.25); }
+        #roques .divider-symbol svg { fill: rgba(255,255,255,0.6); }
+        #roques .s-label { color: rgba(255,255,255,0.55); letter-spacing: 0.5em; }
     </style>
 </head>
 <body>
@@ -2062,7 +2087,7 @@
     </div>
 
     <!-- WhatsApp button — bottom left -->
-    <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Vi%20su%20p%C3%A1gina%20y%20quisiera%20consultar%20disponibilidad%20%F0%9F%8C%8A"
+    <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20%F0%9F%8C%8A%20Estoy%20listo%20para%20vivir%20Los%20Roques.%20%C2%BFCu%C3%A1ndo%20tienen%20disponibilidad%3F"
        class="hero-wa" target="_blank" rel="noopener noreferrer">
         <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path class="wa-icon-phone" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/>
@@ -2120,7 +2145,7 @@
             </div>
 
             <div class="about-img fade-in">
-                <img src="img/OBW_6660.JPG" alt="Sala de estar de Casa Panza con vista al mar" width="900" height="640" loading="eager">
+                <img src="img/OBW_6821.JPG" alt="Comedor de Casa Panza, mesa lista para celebrar" width="900" height="640" loading="eager">
                 <div class="about-accent" aria-hidden="true"></div>
             </div>
 
@@ -2157,7 +2182,7 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Sala de Estar" data-en="Living Room">Sala de Estar</h3>
                     <p class="esp-desc" data-es="Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala." data-en="L-shaped sofa facing the sea, white beam ceiling and windows that erase the line between inside and outside. Where the Caribbean enters the living room.">Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala.</p>
-                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio" data-en="View space photos">Ver fotos del espacio</button>
                 </div>
             </div>
 
@@ -2171,7 +2196,7 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Comedor &amp; Cocina" data-en="Dining &amp; Kitchen">Comedor &amp; Cocina</h3>
                     <p class="esp-desc" data-es="Espacio social abierto al Caribe. Comedor para 10, cocina completa y brisa marina como fondo permanente." data-en="Social space open to the Caribbean. Dining for 10, full kitchen and sea breeze as a permanent backdrop.">Espacio social abierto al Caribe. Comedor para 10, cocina completa y brisa marina como fondo permanente.</p>
-                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio" data-en="View space photos">Ver fotos del espacio</button>
                 </div>
             </div>
 
@@ -2185,7 +2210,7 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Suite Principal" data-en="Master Suite">Suite Principal</h3>
                     <p class="esp-desc" data-es="Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma." data-en="Double bed, handcrafted jute textiles and sphere lamps. Pure white to wake up in peace.">Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma.</p>
-                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio" data-en="View space photos">Ver fotos del espacio</button>
                 </div>
             </div>
 
@@ -2199,7 +2224,7 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Habitación Familiar" data-en="Family Room">Habitación Familiar</h3>
                     <p class="esp-desc" data-es="Cama doble más litera de diseño empotrada. Perfecta para familias o grupos que quieren más espacio." data-en="Double bed plus built-in designer bunk bed. Perfect for families or groups who want more space.">Cama doble más litera de diseño empotrada. Perfecta para familias o grupos que quieren más espacio.</p>
-                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio" data-en="View space photos">Ver fotos del espacio</button>
                 </div>
             </div>
 
@@ -2213,7 +2238,7 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Cocina Equipada" data-en="Fully Equipped Kitchen">Cocina Equipada</h3>
                     <p class="esp-desc" data-es="Isla de desayuno en madera, backsplash turquesa, horno profesional y refrigerador doble. Todo listo para tus mejores noches." data-en="Wooden breakfast island, turquoise backsplash, professional oven and double refrigerator. Everything ready for your best nights.">Isla de desayuno en madera, backsplash turquesa, horno profesional y refrigerador doble. Todo listo para tus mejores noches.</p>
-                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio" data-en="View space photos">Ver fotos del espacio</button>
                 </div>
             </div>
 
@@ -2227,7 +2252,7 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Baños de Diseño" data-en="Designer Bathrooms">Baños de Diseño</h3>
                     <p class="esp-desc" data-es="Revestimiento travertino, luz cálida integrada y amenidades de bienvenida. El lujo está en los detalles." data-en="Travertine cladding, integrated warm lighting and welcome amenities. Luxury is in the details.">Revestimiento travertino, luz cálida integrada y amenidades de bienvenida. El lujo está en los detalles.</p>
-                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio" data-en="View space photos">Ver fotos del espacio</button>
                 </div>
             </div>
 
@@ -2241,7 +2266,7 @@
                 <div class="esp-body">
                     <h3 class="esp-name" data-es="Terraza Exterior" data-en="Outdoor Terrace">Terraza Exterior</h3>
                     <p class="esp-desc" data-es="Fachada blanca, terraza exterior y acceso directo al corazón de Gran Roque. Tu base perfecta en Los Roques." data-en="White facade, outdoor terrace and direct access to the heart of Gran Roque. Your perfect base in Los Roques.">Fachada blanca, terraza exterior y acceso directo al corazón de Gran Roque. Tu base perfecta en Los Roques.</p>
-                    <button class="esp-ver-btn" data-es="Ver fotos del espacio →" data-en="View space photos →">Ver fotos del espacio →</button>
+                    <button class="esp-ver-btn" data-es="Ver fotos del espacio" data-en="View space photos">Ver fotos del espacio</button>
                 </div>
             </div>
 
@@ -2260,7 +2285,7 @@
             <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
             <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
             <h2 class="s-title" data-es="Así se ve Casa Panza" data-en="This is Casa Panza">Así se ve Casa Panza</h2>
-            <p class="s-sub" data-es="Cuatro vistas. Una sola experiencia." data-en="Four views. One single experience.">Cuatro vistas. Una sola experiencia.</p>
+            <p class="s-sub" data-es="Siete espacios. Una sola experiencia que no olvidarás." data-en="Seven spaces. One single experience you will never forget.">Siete espacios. Una sola experiencia que no olvidarás.</p>
         </div>
 
         <div class="galeria-preview fade-up">
@@ -2338,14 +2363,14 @@
             <div class="com-col">
                 <p class="com-col-title" data-es="Incluido en tu estadía" data-en="Included in your stay">Incluido en tu estadía</p>
                 <ul class="com-list">
-                    <li class="com-item" data-es="A/C individual" data-en="Individual A/C">A/C individual</li>
-                    <li class="com-item" data-es="Baño privado" data-en="Private bathroom">Baño privado</li>
-                    <li class="com-item" data-es="Agua caliente" data-en="Hot water">Agua caliente</li>
-                    <li class="com-item" data-es="Agua embotellada" data-en="Bottled water">Agua embotellada</li>
-                    <li class="com-item" data-es="Amenidades de baño" data-en="Bath amenities">Amenidades de baño</li>
-                    <li class="com-item" data-es="Snacks de bienvenida" data-en="Welcome snacks">Snacks de bienvenida</li>
-                    <li class="com-item" data-es="Distribución amplia" data-en="Spacious layout">Distribución amplia</li>
-                    <li class="com-item" data-es="Servicio de toallas" data-en="Towel service">Servicio de toallas</li>
+                    <li class="com-item"><i class="fas fa-snowflake" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="A/C control individual" data-en="Individual A/C control">A/C control individual</span></li>
+                    <li class="com-item"><i class="fas fa-shower" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Baño privado" data-en="Private bathroom">Baño privado</span></li>
+                    <li class="com-item"><i class="fas fa-droplet" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Agua caliente" data-en="Hot water">Agua caliente</span></li>
+                    <li class="com-item"><i class="fas fa-bottle-water" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Agua embotellada" data-en="Bottled water">Agua embotellada</span></li>
+                    <li class="com-item"><i class="fas fa-soap" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Amenidades de baño" data-en="Bath amenities">Amenidades de baño</span></li>
+                    <li class="com-item"><i class="fas fa-cookie-bite" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Snacks de bienvenida" data-en="Welcome snacks">Snacks de bienvenida</span></li>
+                    <li class="com-item"><i class="fas fa-expand" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Distribución amplia" data-en="Spacious layout">Distribución amplia</span></li>
+                    <li class="com-item"><i class="fas fa-hand-sparkles" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Servicio de toallas" data-en="Towel service">Servicio de toallas</span></li>
                 </ul>
             </div>
             <div class="com-col">
@@ -2392,9 +2417,9 @@
                 data-en="Book<br>your stay"
                 data-html="true">Reserva<br>tu estadía</h2>
             <p class="s-sub"
-               data-es="Escríbenos directamente por WhatsApp.<br>Respuesta rápida."
-               data-en="Write to us directly on WhatsApp.<br>Quick response."
-               data-html="true">Escríbenos directamente por WhatsApp.<br>Respuesta rápida.</p>
+               data-es="No hay intermediarios. No hay comisiones. Solo tú, nosotros y el Caribe."
+               data-en="No intermediaries. No commissions. Just you, us and the Caribbean."
+               >No hay intermediarios. No hay comisiones. Solo tú, nosotros y el Caribe.</p>
 
             <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
                class="con-wa magnetic" target="_blank" rel="noopener noreferrer" data-wa-link>
@@ -2521,6 +2546,7 @@
                     <i class="fab fa-whatsapp"></i>
                 </a>
             </div>
+            <p class="foot-phone"><a href="https://wa.me/584123030330">+58 412-303-0330</a></p>
             <p class="foot-copy">© 2025 Casa Panza. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
         </div>
     </div>
@@ -2672,6 +2698,7 @@
 
     /* ── WA ENTRANCE ANIMATION ── */
     const floatWa = document.getElementById('float-wa');
+    const heroSection = document.getElementById('hero');
     if (floatWa) {
         floatWa.style.opacity = '0';
         floatWa.style.transform = 'translateX(72px)';
@@ -2688,12 +2715,20 @@
                 floatWa.removeEventListener('transitionend', clean);
             });
         }, 2200);
+
+        if (heroSection) {
+            const heroObs = new IntersectionObserver(([e]) => {
+                floatWa.style.opacity = e.isIntersecting ? '0' : '';
+                floatWa.style.pointerEvents = e.isIntersecting ? 'none' : '';
+            }, { threshold: 0.3 });
+            heroObs.observe(heroSection);
+        }
     }
 
     /* ── NAVBAR SCROLL ── */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
+        navbar.classList.toggle('scrolled', window.scrollY > 80);
     }, { passive: true });
 
     /* ── HAMBURGER ── */
