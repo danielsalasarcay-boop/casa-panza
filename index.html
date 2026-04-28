@@ -1381,12 +1381,6 @@
 
             /* Comodidades */
             .com-list           { grid-template-columns: 1fr; }
-
-            /* Panel espacio — móvil */
-            .ep-body            { grid-template-columns: 1fr; }
-            .ep-hero            { height: 55vw; min-height: 240px; }
-            .ep-info            { padding: 24px 20px 40px; }
-            .ep-header          { padding: 14px 16px; }
         }
 
         /* ════════════════════════════════════════
@@ -1990,6 +1984,16 @@
         #roques .divider-line { background: rgba(255,255,255,0.25); }
         #roques .divider-symbol svg { fill: rgba(255,255,255,0.6); }
         #roques .s-label { color: rgba(255,255,255,0.55); letter-spacing: 0.5em; }
+
+        /* ════════════════════════════════════════
+           MAPA
+        ════════════════════════════════════════ */
+        #mapa { background: var(--light); padding-bottom: 0; }
+        .mapa-hd { text-align: center; margin-bottom: 48px; }
+        .mapa-frame { width: 100%; line-height: 0; }
+        .mapa-frame iframe { display: block; width: 100%; height: 500px; border: 0; filter: grayscale(15%) contrast(1.02); }
+        @media (max-width: 768px) { .mapa-frame iframe { height: 380px; } }
+        @media (max-width: 480px) { .mapa-frame iframe { height: 300px; } }
     </style>
 </head>
 <body>
@@ -2479,6 +2483,33 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     MAPA
+══════════════════════════════════════════ -->
+<section id="mapa">
+    <div class="container">
+        <div class="mapa-hd fade-up">
+            <p class="s-label" data-es="Ubicación" data-en="Location">Ubicación</p>
+            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
+            <h2 class="s-title" data-es="Dónde estamos" data-en="Where we are">Dónde estamos</h2>
+            <p class="s-sub" data-es="Gran Roque, Archipiélago Los Roques, Venezuela" data-en="Gran Roque, Los Roques Archipelago, Venezuela">Gran Roque, Archipiélago Los Roques, Venezuela</p>
+        </div>
+    </div>
+    <div class="mapa-frame fade-in">
+        <iframe
+            src="https://maps.google.com/maps?q=Casa+Panza+Gran+Roque+Venezuela&z=16&output=embed"
+            width="100%"
+            height="500"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Casa Panza — Gran Roque, Los Roques, Venezuela">
+        </iframe>
     </div>
 </section>
 
