@@ -85,12 +85,14 @@
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.75s ease, transform 0.75s ease;
+            will-change: opacity, transform;
         }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
         .fade-in {
             opacity: 0;
             transition: opacity 0.75s ease;
+            will-change: opacity;
         }
         .fade-in.visible { opacity: 1; }
 
@@ -133,6 +135,8 @@
         #navbar.scrolled .nav-logo { color: var(--black); opacity: 1; pointer-events: auto; }
         #navbar:not(.scrolled) .nav-logo svg { filter: brightness(0) invert(1); transition: filter 0.4s ease; }
         #navbar.scrolled .nav-logo svg { filter: brightness(0); transition: filter 0.4s ease; }
+        #navbar.on-light:not(.scrolled) .nav-logo svg { filter: brightness(0) !important; transition: filter 0.4s ease; }
+        #navbar.on-light:not(.scrolled) .hamburger span { background: var(--black); }
 
         .nav-links {
             display: flex;
@@ -168,7 +172,7 @@
             padding: 10px 24px;
             background: var(--turquoise);
             color: var(--white) !important;
-            border-radius: 40px;
+            border-radius: 4px;
             font-size: 12px !important;
             font-weight: 600 !important;
             letter-spacing: 0.08em !important;
@@ -204,7 +208,7 @@
             position: fixed;
             inset: 0;
             background: var(--white);
-            z-index: 999;
+            z-index: 1002;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -225,7 +229,7 @@
             padding: 14px 42px;
             background: var(--turquoise);
             color: var(--white) !important;
-            border-radius: 40px;
+            border-radius: 4px;
             font-family: var(--font-b) !important;
             font-size: 16px !important;
             font-weight: 500 !important;
@@ -252,23 +256,30 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(
-                180deg,
-                rgba(0,0,0,0.15) 0%,
-                rgba(0,0,0,0.0)  40%,
-                rgba(0,0,0,0.55) 100%
+                160deg,
+                rgba(0,0,0,0.0)  0%,
+                rgba(0,0,0,0.0)  35%,
+                rgba(0,0,0,0.52) 100%
             );
         }
 
-        /* SVG Logo — top left */
+        /* SVG Logo — top left (solo desktop) */
         .hero-logo {
-            position: absolute;
-            top: 40px;
-            left: 48px;
-            width: 220px;
-            z-index: 1001;
-            filter: brightness(0) invert(1);
-            opacity: 0;
-            animation: hLogoIn 0.8s ease 0.3s forwards;
+            display: none;
+        }
+        @media (min-width: 769px) {
+            .hero-logo {
+                display: block;
+                position: absolute;
+                top: 40px;
+                left: 48px;
+                width: 220px;
+                z-index: 999;
+                will-change: opacity, transform;
+                filter: brightness(0) invert(1);
+                opacity: 0;
+                animation: hLogoIn 0.8s ease 0.3s forwards;
+            }
         }
         .hero-logo svg {
             width: 220px;
@@ -359,7 +370,7 @@
             padding: 18px 50px;
             background: var(--turquoise);
             color: var(--white);
-            border-radius: 50px;
+            border-radius: 4px;
             font-size: 16px;
             font-weight: 500;
             letter-spacing: 0.05em;
@@ -413,7 +424,7 @@
             gap: 13px;
             padding: 16px 18px;
             background: var(--beige);
-            border-radius: 12px;
+            border-radius: 4px;
             transition: var(--ease);
         }
         .amen:hover { background: var(--turquoise); transform: translateY(-2px); }
@@ -490,7 +501,7 @@
 
         .esp-card {
             background: var(--white);
-            border-radius: 18px;
+            border-radius: 6px;
             overflow: hidden;
             box-shadow: var(--sh);
             transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -578,7 +589,7 @@
             position: relative;
             cursor: pointer;
             width: 100%; height: 100%;
-            min-height: 0;
+            min-height: 100px;
         }
         .galeria-preview img {
             width: 100%; height: 100%;
@@ -601,11 +612,6 @@
         }
 
         /* Botón ver todas */
-        .gal-btn-wrap {
-            display: flex;
-            justify-content: center;
-            margin-top: 24px;
-        }
         #btn-ver-galeria {
             display: flex;
             align-items: center;
@@ -776,7 +782,8 @@
         }
 
         .gal-btn-wrap {
-            text-align: center;
+            display: flex;
+            justify-content: center;
             margin-top: 44px;
         }
 
@@ -1228,8 +1235,7 @@
             #navbar.scrolled .nav-logo svg       { filter: brightness(0) !important; }
 
             /* Hero */
-            .hero-logo          { width: 150px; top: 24px; left: 24px; }
-            .hero-logo svg      { width: 150px; }
+            .hero-logo          { display: none; }
             .hero-wa            { bottom: 80px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 12px; padding: 14px 24px; }
 
             /* About */
@@ -1298,8 +1304,6 @@
             #navbar.scrolled    { padding: 0 16px; height: 60px; }
 
             /* Hero */
-            .hero-logo          { width: 150px; top: 20px; left: 20px; }
-            .hero-logo svg      { width: 150px; }
             .hero-wa            { bottom: 88px !important; left: 50% !important; transform: translateX(-50%) !important; width: calc(100% - 40px) !important; max-width: 320px !important; justify-content: center !important; font-size: 12px !important; padding: 14px 20px !important; white-space: nowrap !important; }
             .wa-text-long       { display: none; }
             .wa-text-short      { display: inline; }
@@ -1512,78 +1516,84 @@
 
         /* ── COMODIDADES ── */
         #comodidades { background: var(--beige); }
-        .com-hd { text-align: center; margin-bottom: 64px; }
+        .com-hd { text-align: center; margin-bottom: 72px; }
+
         .com-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 96px;
             align-items: start;
         }
+
         .com-col-title {
-            font-family: var(--font-d);
-            font-size: 24px;
-            font-weight: 400;
-            font-style: italic;
-            color: var(--black);
-            margin-bottom: 32px;
+            font-family: var(--font-b);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--turquoise);
+            margin-bottom: 28px;
         }
+
+        /* amenidades como tags flotantes */
         .com-list {
             list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .com-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.07);
+            padding: 10px 22px;
+            border: 1px solid rgba(0,0,0,0.18);
             font-family: var(--font-b);
-            font-size: 14px;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
             color: var(--black);
+            transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+            cursor: default;
         }
-        .com-icon { font-size: 18px; flex-shrink: 0; }
-        .com-staff { display: flex; flex-direction: column; gap: 16px; }
+        .com-item:hover {
+            border-color: var(--turquoise);
+            color: var(--turquoise);
+        }
+
+        /* staff */
+        .com-staff { display: flex; flex-direction: column; gap: 0; }
         .com-staff-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
-            background: var(--white);
-            padding: 22px 24px;
-            border-radius: 4px;
-            border-left: 3px solid var(--turquoise);
-            box-shadow: var(--sh);
+            display: grid;
+            grid-template-columns: 36px 1fr;
+            gap: 0 20px;
+            padding: 24px 0;
+            border-top: 1px solid rgba(0,0,0,0.07);
         }
-        .com-staff-icon {
-            font-size: 24px;
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            background: var(--beige);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .com-staff-card:last-child { border-bottom: 1px solid rgba(0,0,0,0.07); }
+        .com-staff-num {
+            font-family: var(--font-d);
+            font-size: 28px;
+            font-style: italic;
+            font-weight: 300;
+            color: rgba(0,0,0,0.12);
+            line-height: 1;
+            padding-top: 2px;
         }
-        .com-staff-info { display: flex; flex-direction: column; gap: 4px; }
+        .com-staff-info { display: flex; flex-direction: column; gap: 6px; }
         .com-staff-info strong {
             font-family: var(--font-b);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
+            letter-spacing: 0.04em;
             color: var(--black);
         }
         .com-staff-info span {
             font-family: var(--font-b);
             font-size: 13px;
             color: var(--gray);
-            line-height: 1.5;
+            line-height: 1.6;
         }
+
         @media (max-width: 900px) {
-            .com-grid { grid-template-columns: 1fr; gap: 48px; }
-        }
-        @media (max-width: 480px) {
-            .com-list { grid-template-columns: 1fr; }
+            .com-grid { grid-template-columns: 1fr; gap: 56px; }
         }
 
         /* ── ESP-VER BUTTON ── */
@@ -1726,6 +1736,7 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
         .ep-arrow:hover { background: rgba(255,255,255,0.28); }
         .ep-prev { left: 16px; }
@@ -1825,6 +1836,115 @@
             .ep-cta { width: 100%; justify-content: center; }
             .ep-all { width: 100%; text-align: center; }
         }
+        /* ── BRAND LOADER ── */
+        #brand-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+        #brand-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-symbol {
+            width: 64px;
+            animation: ldSymIn 0.8s ease 0.2s both;
+        }
+        .loader-symbol svg { fill: var(--white); display: block; }
+        .loader-bar {
+            width: 100px;
+            height: 1px;
+            background: rgba(255,255,255,0.12);
+            position: relative;
+            overflow: hidden;
+            animation: ldSymIn 0.4s ease 0.5s both;
+        }
+        .loader-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--turquoise);
+            transform: translateX(-100%);
+            animation: ldFill 1s ease 0.7s forwards;
+        }
+        @keyframes ldSymIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes ldFill  { to   { transform: translateX(0); } }
+
+        /* ── CUSTOM CURSOR ── */
+        .cursor-dot {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            width: 6px; height: 6px;
+            background: var(--turquoise);
+        }
+        @media (pointer: coarse) { .cursor-dot { display: none; } }
+
+        /* ── GRAIN ── */
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 99997;
+            pointer-events: none;
+            opacity: 0.032;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 200px 200px;
+        }
+
+        /* ── REVEAL CLIP ── */
+        .reveal-clip {
+            clip-path: inset(100% 0 0 0);
+            transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-clip.visible { clip-path: inset(0% 0 0 0); }
+
+        /* ── COUNT UP ── */
+        .count-up { font-variant-numeric: tabular-nums; }
+
+        /* ── WILL-CHANGE IMAGES ── */
+        .esp-img img,
+        .about-img img,
+        .foto-wrapper img { will-change: transform; }
+
+        /* ── PREFERS-REDUCED-MOTION ── */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-wa {
+                opacity: 1 !important;
+                animation: none !important;
+                transform: none !important;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) and (min-width: 769px) {
+            .hero-logo {
+                opacity: 1 !important;
+                animation: none !important;
+                transform: none !important;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up,
+            .fade-in,
+            .roques-eyebrow,
+            .roques-title,
+            .roques-quote,
+            .cp-symbol--animated {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                will-change: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1864,8 +1984,8 @@
         <li><a href="#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
         <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
         <li><a href="#galeria"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
-        <li><a href="#roques"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a></li>
         <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
+        <li><a href="#roques"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a></li>
         <li aria-hidden="true" class="nav-sep">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115" style="height:14px;width:auto;opacity:0.3;"><use href="#cp-a"/></svg>
         </li>
@@ -1894,8 +2014,8 @@
     <a href="#sobre"    class="m-link"><span data-es="La Casa"    data-en="The House">La Casa</span></a>
     <a href="#espacios" class="m-link"><span data-es="Espacios"  data-en="Spaces">Espacios</span></a>
     <a href="#galeria"  class="m-link"><span data-es="Galería"   data-en="Gallery">Galería</span></a>
-    <a href="#roques"   class="m-link"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a>
     <a href="#contacto" class="m-link"><span data-es="Contacto"  data-en="Contact">Contacto</span></a>
+    <a href="#roques"   class="m-link"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a>
     <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
        class="m-link m-cta" target="_blank" rel="noopener noreferrer" data-wa-link>
         <i class="fab fa-whatsapp"></i>
@@ -1942,8 +2062,8 @@
     </div>
 
     <!-- WhatsApp button — bottom left -->
-    <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
-       class="hero-wa" target="_blank" rel="noopener noreferrer" data-wa-link>
+    <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Vi%20su%20p%C3%A1gina%20y%20quisiera%20consultar%20disponibilidad%20%F0%9F%8C%8A"
+       class="hero-wa" target="_blank" rel="noopener noreferrer">
         <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path class="wa-icon-phone" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/>
             <path class="wa-icon-bg" d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.526 5.858L0 24l6.335-1.652A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.011-1.374l-.36-.213-3.731.978.995-3.631-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill="#25D366"/>
@@ -2028,7 +2148,7 @@
         <div class="esp-grid">
 
             <!-- Card 1 — Sala de Estar -->
-            <div class="esp-card fade-up" data-espacio="sala">
+            <div class="esp-card fade-up" style="transition-delay:0s" data-espacio="sala">
                 <div class="esp-img">
                     <img src="img/OBW_6660.JPG" alt="Sala de estar con vista al mar, Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -2042,7 +2162,7 @@
             </div>
 
             <!-- Card 2 — Comedor & Cocina -->
-            <div class="esp-card fade-up" style="transition-delay:0.1s" data-espacio="comedor">
+            <div class="esp-card fade-up" style="transition-delay:0.08s" data-espacio="comedor">
                 <div class="esp-img">
                     <img src="img/OBW_6634.JPG" alt="Comedor y cocina de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -2056,7 +2176,7 @@
             </div>
 
             <!-- Card 3 — Suite Principal -->
-            <div class="esp-card fade-up" style="transition-delay:0.2s" data-espacio="suite">
+            <div class="esp-card fade-up" style="transition-delay:0.16s" data-espacio="suite">
                 <div class="esp-img">
                     <img src="img/OBW_6791.JPG" alt="Suite Principal de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -2070,7 +2190,7 @@
             </div>
 
             <!-- Card 4 — Habitación Familiar -->
-            <div class="esp-card fade-up" style="transition-delay:0.1s" data-espacio="familiar">
+            <div class="esp-card fade-up" style="transition-delay:0.24s" data-espacio="familiar">
                 <div class="esp-img">
                     <img src="img/OBW_6456.JPG" alt="Habitación Familiar de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -2084,7 +2204,7 @@
             </div>
 
             <!-- Card 5 — Cocina Equipada -->
-            <div class="esp-card fade-up" style="transition-delay:0.2s" data-espacio="cocina">
+            <div class="esp-card fade-up" style="transition-delay:0.32s" data-espacio="cocina">
                 <div class="esp-img">
                     <img src="img/OBW_6626.JPG" alt="Cocina Equipada de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -2098,7 +2218,7 @@
             </div>
 
             <!-- Card 6 — Baños de Diseño -->
-            <div class="esp-card fade-up" style="transition-delay:0.3s" data-espacio="banos">
+            <div class="esp-card fade-up" style="transition-delay:0.40s" data-espacio="banos">
                 <div class="esp-img">
                     <img src="img/OBW_6810.JPG" alt="Baños de Diseño de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -2112,7 +2232,7 @@
             </div>
 
             <!-- Card 7 — Terraza Exterior -->
-            <div class="esp-card fade-up" style="transition-delay:0.1s" data-espacio="terraza">
+            <div class="esp-card fade-up" style="transition-delay:0.48s" data-espacio="terraza">
                 <div class="esp-img">
                     <img src="img/OBW_6653.JPG" alt="Terraza Exterior de Casa Panza" width="800" height="600" loading="lazy">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
@@ -2151,10 +2271,10 @@
                 <img src="img/OBW_6791.JPG" alt="Suite principal, Casa Panza" width="900" height="660" loading="lazy">
             </div>
             <div class="galeria-foto-3 foto-wrapper">
-                <img src="img/OBW_6463.JPG" alt="Suite principal gran angular, Casa Panza" width="900" height="660" loading="lazy">
+                <img src="img/OBW_6634.JPG" alt="Comedor y cocina con vista al mar, Casa Panza" width="900" height="660" loading="lazy">
             </div>
             <div class="galeria-foto-4 foto-wrapper">
-                <img src="img/OBW_6819.JPG" alt="Comedor exterior, Casa Panza" width="900" height="660" loading="lazy">
+                <img src="img/OBW_6810.JPG" alt="Baño de diseño, Casa Panza" width="900" height="660" loading="lazy">
             </div>
         </div>
 
@@ -2216,48 +2336,40 @@
         </div>
         <div class="com-grid fade-up">
             <div class="com-col">
-                <h3 class="com-col-title" data-es="Todo lo que necesitas" data-en="Everything you need">Todo lo que necesitas</h3>
+                <p class="com-col-title" data-es="Incluido en tu estadía" data-en="Included in your stay">Incluido en tu estadía</p>
                 <ul class="com-list">
-                    <li class="com-item"><span class="com-icon">❄️</span><span data-es="A/C con control individual" data-en="Individual A/C control">A/C con control individual</span></li>
-                    <li class="com-item"><span class="com-icon">🚿</span><span data-es="Baño privado con ducha" data-en="Private bathroom with shower">Baño privado con ducha</span></li>
-                    <li class="com-item"><span class="com-icon">💧</span><span data-es="Agua caliente" data-en="Hot water">Agua caliente</span></li>
-                    <li class="com-item"><span class="com-icon">🚰</span><span data-es="Agua embotellada" data-en="Bottled water">Agua embotellada</span></li>
-                    <li class="com-item"><span class="com-icon">💨</span><span data-es="Secador de cabello" data-en="Hair dryer">Secador de cabello</span></li>
-                    <li class="com-item"><span class="com-icon">🧴</span><span data-es="Amenidades de baño" data-en="Bathroom amenities">Amenidades de baño</span></li>
-                    <li class="com-item"><span class="com-icon">🍫</span><span data-es="Snacks de bienvenida" data-en="Welcome snacks">Snacks de bienvenida</span></li>
-                    <li class="com-item"><span class="com-icon">🏠</span><span data-es="Distribución amplia y cómoda" data-en="Spacious &amp; comfortable layout">Distribución amplia y cómoda</span></li>
-                    <li class="com-item"><span class="com-icon">🛁</span><span data-es="Servicio de toallas" data-en="Towel service">Servicio de toallas</span></li>
+                    <li class="com-item" data-es="A/C individual" data-en="Individual A/C">A/C individual</li>
+                    <li class="com-item" data-es="Baño privado" data-en="Private bathroom">Baño privado</li>
+                    <li class="com-item" data-es="Agua caliente" data-en="Hot water">Agua caliente</li>
+                    <li class="com-item" data-es="Agua embotellada" data-en="Bottled water">Agua embotellada</li>
+                    <li class="com-item" data-es="Amenidades de baño" data-en="Bath amenities">Amenidades de baño</li>
+                    <li class="com-item" data-es="Snacks de bienvenida" data-en="Welcome snacks">Snacks de bienvenida</li>
+                    <li class="com-item" data-es="Distribución amplia" data-en="Spacious layout">Distribución amplia</li>
+                    <li class="com-item" data-es="Servicio de toallas" data-en="Towel service">Servicio de toallas</li>
                 </ul>
             </div>
             <div class="com-col">
-                <h3 class="com-col-title" data-es="Nuestro equipo" data-en="Our team">Nuestro equipo</h3>
+                <p class="com-col-title" data-es="Nuestro equipo" data-en="Our team">Nuestro equipo</p>
                 <div class="com-staff">
                     <div class="com-staff-card">
-                        <div class="com-staff-icon">🏡</div>
+                        <span class="com-staff-num">01</span>
                         <div class="com-staff-info">
-                            <strong data-es="Anfitrión residente" data-en="Resident host">Anfitrión residente</strong>
+                            <strong data-es="Staff" data-en="Staff">Staff</strong>
                             <span data-es="Disponible para asistirte durante toda tu estadía." data-en="Available to assist you throughout your stay.">Disponible para asistirte durante toda tu estadía.</span>
                         </div>
                     </div>
                     <div class="com-staff-card">
-                        <div class="com-staff-icon">🧹</div>
+                        <span class="com-staff-num">02</span>
                         <div class="com-staff-info">
                             <strong data-es="Limpieza diaria" data-en="Daily cleaning">Limpieza diaria</strong>
                             <span data-es="Habitaciones y áreas comunes incluidas." data-en="Rooms and common areas included.">Habitaciones y áreas comunes incluidas.</span>
                         </div>
                     </div>
                     <div class="com-staff-card">
-                        <div class="com-staff-icon">🍽️</div>
+                        <span class="com-staff-num">03</span>
                         <div class="com-staff-info">
                             <strong data-es="Asistencia gastronómica" data-en="Gastronomic assistance">Asistencia gastronómica</strong>
                             <span data-es="Te orientamos con los mejores restaurantes de Los Roques." data-en="We guide you to the best restaurants in Los Roques.">Te orientamos con los mejores restaurantes de Los Roques.</span>
-                        </div>
-                    </div>
-                    <div class="com-staff-card">
-                        <div class="com-staff-icon">🌐</div>
-                        <div class="com-staff-info">
-                            <strong data-es="Staff bilingüe ES / EN" data-en="Bilingual staff ES / EN">Staff bilingüe ES / EN</strong>
-                            <span data-es="Atención en español e inglés para huéspedes internacionales." data-en="Service in Spanish and English for international guests.">Atención en español e inglés para huéspedes internacionales.</span>
                         </div>
                     </div>
                 </div>
@@ -2280,12 +2392,12 @@
                 data-en="Book<br>your stay"
                 data-html="true">Reserva<br>tu estadía</h2>
             <p class="s-sub"
-               data-es="Escríbenos directamente por WhatsApp.<br>Respuesta en menos de 2 horas."
-               data-en="Write to us directly on WhatsApp.<br>Reply within 2 hours."
-               data-html="true">Escríbenos directamente por WhatsApp.<br>Respuesta en menos de 2 horas.</p>
+               data-es="Escríbenos directamente por WhatsApp.<br>Respuesta rápida."
+               data-en="Write to us directly on WhatsApp.<br>Quick response."
+               data-html="true">Escríbenos directamente por WhatsApp.<br>Respuesta rápida.</p>
 
             <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
-               class="con-wa" target="_blank" rel="noopener noreferrer" data-wa-link>
+               class="con-wa magnetic" target="_blank" rel="noopener noreferrer" data-wa-link>
                 <i class="fab fa-whatsapp"></i>
                 <span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span>
             </a>
@@ -2354,8 +2466,8 @@
 
     <div class="roques-grid">
         <img src="img/IMG_0864.JPG" alt="Mar turquesa aéreo, Los Roques" width="900" height="420" loading="lazy" class="fade-in" style="transition-delay:0s">
-        <img src="img/IMG_0720.JPG" alt="Personas en lancha, agua cristalina de Los Roques" width="900" height="420" loading="lazy" class="fade-in" style="transition-delay:0.2s">
-        <img src="img/IMG_0861.JPG" alt="Vista de drone, Los Roques" width="900" height="420" loading="lazy" class="fade-in" style="transition-delay:0.4s">
+        <img src="img/IMG_0861.JPG" alt="Vista de drone, Los Roques" width="900" height="420" loading="lazy" class="fade-in" style="transition-delay:0.2s">
+        <img src="img/IMG_0720.JPG" alt="Personas en lancha, agua cristalina de Los Roques" width="900" height="420" loading="lazy" class="fade-in" style="transition-delay:0.4s">
     </div>
 
 
@@ -2460,9 +2572,124 @@
 </div>
 
 <!-- ══════════════════════════════════════════
+     PREMIUM LAYERS
+══════════════════════════════════════════ -->
+<div id="brand-loader" aria-hidden="true">
+    <div class="loader-symbol">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115" width="64" height="90" style="fill:#fff"><use href="#cp-a"/></svg>
+    </div>
+    <div class="loader-bar"></div>
+</div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════
      JAVASCRIPT
 ══════════════════════════════════════════ -->
 <script>
+    /* ── BRAND LOADER ── */
+    const loader = document.getElementById('brand-loader');
+    if (loader) setTimeout(() => loader.classList.add('hidden'), 1900);
+
+    /* ── CUSTOM CURSOR ── */
+    const cursorDot = document.querySelector('.cursor-dot');
+    if (cursorDot && window.matchMedia('(pointer: fine)').matches) {
+        document.addEventListener('mousemove', e => {
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top  = e.clientY + 'px';
+        });
+    }
+
+    /* ── PARALLAX HERO ── */
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) {
+        let rafPending = false;
+        window.addEventListener('scroll', () => {
+            if (rafPending) return;
+            rafPending = true;
+            requestAnimationFrame(() => {
+                if (window.scrollY < window.innerHeight * 1.5) {
+                    heroBg.style.backgroundPositionY = `calc(50% + ${window.scrollY * 0.28}px)`;
+                }
+                rafPending = false;
+            });
+        }, { passive: true });
+    }
+
+    /* ── MAGNETIC BUTTONS ── */
+    document.querySelectorAll('.magnetic').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+            const r = btn.getBoundingClientRect();
+            const x = e.clientX - r.left - r.width  / 2;
+            const y = e.clientY - r.top  - r.height / 2;
+            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+
+    /* ── COUNT UP ── */
+    const cuObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting || e.target.dataset.done) return;
+            e.target.dataset.done = '1';
+            const target = parseInt(e.target.dataset.target, 10);
+            const dur = 1400, steps = Math.min(target, 60);
+            let i = 0;
+            const timer = setInterval(() => {
+                i++;
+                e.target.textContent = Math.round(i / steps * target);
+                if (i >= steps) clearInterval(timer);
+            }, dur / steps);
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count-up').forEach(el => cuObs.observe(el));
+
+    /* ── REVEAL CLIP ── */
+    const rcObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); rcObs.unobserve(e.target); }
+        });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal-clip').forEach(el => rcObs.observe(el));
+
+    /* ── NAVBAR THEME PER SECTION ── */
+    const secObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const dark = ['hero','espacios'].includes(e.target.id);
+                navbar.classList.toggle('on-light', !dark);
+            }
+        });
+    }, { threshold: 0.45 });
+    document.querySelectorAll('section[id]').forEach(s => secObs.observe(s));
+
+    /* ── SMOOTH IMAGE LOAD ── */
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        if (img.complete) return;
+        img.style.cssText += 'opacity:0;transition:opacity 0.5s ease';
+        img.addEventListener('load', () => { img.style.opacity = '1'; }, { once: true });
+    });
+
+    /* ── WA ENTRANCE ANIMATION ── */
+    const floatWa = document.getElementById('float-wa');
+    if (floatWa) {
+        floatWa.style.opacity = '0';
+        floatWa.style.transform = 'translateX(72px)';
+        floatWa.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        setTimeout(() => {
+            floatWa.style.opacity = '1';
+            floatWa.style.transform = 'translateX(0)';
+            floatWa.addEventListener('transitionend', function clean(e) {
+                if (e.propertyName !== 'transform') return;
+                floatWa.style.cssText = floatWa.style.cssText
+                    .replace(/opacity:[^;]+;?/g, '')
+                    .replace(/transform:[^;]+;?/g, '')
+                    .replace(/transition:[^;]+;?/g, '');
+                floatWa.removeEventListener('transitionend', clean);
+            });
+        }, 2200);
+    }
+
     /* ── NAVBAR SCROLL ── */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -2479,6 +2706,7 @@
         hamburger.classList.toggle('active', open);
         hamburger.setAttribute('aria-expanded', open);
         document.body.style.overflow = open ? 'hidden' : '';
+        if (open) setTimeout(() => { const first = mobileMenu.querySelector('a'); if (first) first.focus(); }, 100);
     });
 
     mLinks.forEach(l => l.addEventListener('click', () => {
@@ -2490,7 +2718,12 @@
 
     /* ── INTERSECTION OBSERVER ── */
     const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                setTimeout(() => { e.target.style.willChange = 'auto'; }, 800);
+            }
+        });
     }, { threshold: 0.14, rootMargin: '0px 0px -48px 0px' });
 
     document.querySelectorAll('.fade-up, .fade-in, .roques-eyebrow, .roques-title, .roques-quote, .cp-symbol--animated').forEach(el => io.observe(el));
@@ -2555,6 +2788,7 @@
         panel.classList.add('open');
         document.body.style.overflow = 'hidden';
         if (!document.getElementById('galeria-grid').children.length) renderGaleria('todas');
+        setTimeout(() => document.getElementById('btn-cerrar-galeria').focus(), 100);
     }
     function cerrarPanel() {
         panel.classList.remove('open');
@@ -2582,11 +2816,13 @@
         lbImg.alt = getLang() === 'es' ? activeGalFotos[idx].alt_es : activeGalFotos[idx].alt_en;
         updateLBCounter();
         lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
         document.getElementById('lbClose').focus();
     }
     function closeLB() {
         lb.classList.remove('open');
         lbImg.src = '';
+        if (!panel.classList.contains('open')) document.body.style.overflow = '';
     }
     function prevLB() {
         cur = (cur - 1 + activeGalFotos.length) % activeGalFotos.length;
