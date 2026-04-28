@@ -1072,12 +1072,10 @@
             width: 100%;
             height: 420px;
             border-radius: 4px;
-            transition: transform 0.6s ease, box-shadow 0.6s ease;
             object-fit: cover;
-            border-radius: 4px;
             display: block;
             opacity: 0;
-            transition: opacity 0.75s ease;
+            transition: opacity 0.75s ease, transform 0.6s ease, box-shadow 0.6s ease;
         }
         .roques-grid img.visible { opacity: 1; }
         .roques-grid img:hover {
@@ -1383,6 +1381,12 @@
 
             /* Comodidades */
             .com-list           { grid-template-columns: 1fr; }
+
+            /* Panel espacio — móvil */
+            .ep-body            { grid-template-columns: 1fr; }
+            .ep-hero            { height: 55vw; min-height: 240px; }
+            .ep-info            { padding: 24px 20px 40px; }
+            .ep-header          { padding: 14px 16px; }
         }
 
         /* ════════════════════════════════════════
@@ -1989,7 +1993,7 @@
     </style>
 </head>
 <body>
-<script>(function(){var b='v=20250428';if(location.search.indexOf(b)<0){location.replace(location.pathname+'?'+b+(location.hash||''));}}());</script>
+<script>(function(){var b='v=20250428';if(location.search.indexOf(b)<0){var s=location.search?location.search+'&'+b:'?'+b;history.replaceState(null,'',location.pathname+s+(location.hash||''));}}());</script>
 
 <!-- SVG symbol defs — reutilizable en toda la página -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -2512,6 +2516,9 @@
         <img src="img/IMG_0720.JPG" alt="Personas en lancha, agua cristalina de Los Roques" width="900" height="420" loading="lazy" class="fade-in" style="transition-delay:0.4s">
     </div>
 
+    <p class="roques-caption">
+        <span data-es="Parque Nacional Archipiélago Los Roques · Venezuela" data-en="Los Roques Archipelago National Park · Venezuela">Parque Nacional Archipiélago Los Roques · Venezuela</span>
+    </p>
 
 </section>
 
@@ -2698,6 +2705,12 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal-clip').forEach(el => rcObs.observe(el));
 
+    /* ── NAVBAR SCROLL ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+
     /* ── NAVBAR THEME PER SECTION ── */
     const secObs = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -2744,12 +2757,6 @@
             heroObs.observe(heroSection);
         }
     }
-
-    /* ── NAVBAR SCROLL ── */
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 80);
-    }, { passive: true });
 
     /* ── HAMBURGER ── */
     const hamburger   = document.getElementById('hamburger');
@@ -2802,8 +2809,8 @@
         { src: 'img/OBW_6496.JPG',  cat: 'habitaciones', alt_es: 'Habitación con litera',               alt_en: 'Room with bunk bed' },
         { src: 'img/OBW_6626.JPG',  cat: 'cocina',       alt_es: 'Cocina equipada',                     alt_en: 'Equipped kitchen' },
         { src: 'img/OBW_6622.JPG',  cat: 'cocina',       alt_es: 'Cocina isla de madera',               alt_en: 'Kitchen wooden island' },
-        { src: 'img/OBW_6810.JPG',  cat: 'cocina',       alt_es: 'Baño de diseño',                      alt_en: 'Designer bathroom' },
-        { src: 'img/OBW_6801.JPG',  cat: 'cocina',       alt_es: 'Detalle toallas Casa Panza',          alt_en: 'Casa Panza towel detail' },
+        { src: 'img/OBW_6810.JPG',  cat: 'banos',       alt_es: 'Baño de diseño',                      alt_en: 'Designer bathroom' },
+        { src: 'img/OBW_6801.JPG',  cat: 'banos',       alt_es: 'Detalle toallas Casa Panza',          alt_en: 'Casa Panza towel detail' },
         { src: 'img/IMG_0864.JPG',  cat: 'losroques',    alt_es: 'Mar turquesa Los Roques',             alt_en: 'Turquoise sea Los Roques' },
         { src: 'img/IMG_0861.JPG',  cat: 'losroques',    alt_es: 'Arrecife Los Roques desde drone',     alt_en: 'Los Roques reef from drone' },
         { src: 'img/IMG_0720.JPG',  cat: 'losroques',    alt_es: 'Lancha en aguas cristalinas',         alt_en: 'Boat in crystal clear waters' },
