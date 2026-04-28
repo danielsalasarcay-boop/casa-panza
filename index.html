@@ -2722,12 +2722,6 @@
     }, { threshold: 0.45 });
     document.querySelectorAll('section[id]').forEach(s => secObs.observe(s));
 
-    /* ── SMOOTH IMAGE LOAD ── */
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-        if (img.complete) return;
-        img.style.cssText += 'opacity:0;transition:opacity 0.5s ease';
-        img.addEventListener('load', () => { img.style.opacity = '1'; }, { once: true });
-    });
 
     /* ── WA ENTRANCE ANIMATION ── */
     const floatWa = document.getElementById('float-wa');
