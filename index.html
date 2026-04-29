@@ -331,7 +331,7 @@
         /* ════════════════════════════════════════
            SHARED SECTION STYLES
         ════════════════════════════════════════ */
-        section { padding: 108px 0; }
+        section { padding: 56px 0; }
 
         .container {
             max-width: 1300px;
@@ -345,7 +345,7 @@
             letter-spacing: 0.38em;
             text-transform: uppercase;
             color: var(--turquoise);
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
 
         .s-title {
@@ -354,7 +354,7 @@
             font-weight: 400;
             line-height: 1.08;
             color: var(--black);
-            margin-bottom: 22px;
+            margin-bottom: 15px;
         }
 
         .s-sub {
@@ -405,8 +405,8 @@
             font-size: 17px;
             font-weight: 300;
             color: #444;
-            line-height: 1.95;
-            margin-bottom: 50px;
+            line-height: 1.9;
+            margin-bottom: 36px;
         }
         .about-copy em {
             font-style: italic;
@@ -475,20 +475,20 @@
         #espacios::after {
             content: '';
             display: block;
-            height: 80px;
+            height: 40px;
             background: linear-gradient(to bottom right, var(--white) 49%, var(--beige) 50%);
-            margin-top: 108px;
+            margin-top: 24px;
         }
 
-        .esp-hd { text-align: center; margin-bottom: 68px; }
+        .esp-hd { text-align: center; margin-bottom: 16px; }
         .esp-hd .s-sub { margin: 0 auto; }
 
         .esp-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: auto;
-            gap: 20px;
-            margin-top: 64px;
+            gap: 16px;
+            margin-top: 28px;
         }
 
         .esp-card:nth-child(1) { grid-column: 1 / 3; }
@@ -565,7 +565,7 @@
         ════════════════════════════════════════ */
         #galeria { background: var(--beige); }
 
-        .gal-hd { text-align: center; margin-bottom: 60px; }
+        .gal-hd { text-align: center; margin-bottom: 15px; }
         .gal-hd .s-sub { margin: 0 auto; }
 
         /* ── Galería preview (4 fotos) ── */
@@ -784,7 +784,7 @@
         .gal-btn-wrap {
             display: flex;
             justify-content: center;
-            margin-top: 44px;
+            margin-top: 32px;
         }
 
         /* ════════════════════════════════════════
@@ -814,7 +814,7 @@
             display: inline-flex;
             align-items: center;
             gap: 14px;
-            padding: 22px 56px;
+            padding: 20px 52px;
             background: var(--whatsapp);
             color: var(--white);
             border-radius: 4px;
@@ -823,7 +823,7 @@
             font-weight: 500;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            margin: 36px 0 48px;
+            margin: 24px 0 32px;
             transition: all 0.3s ease;
             box-shadow: 0 8px 32px rgba(37,211,102,0.28);
         }
@@ -917,7 +917,7 @@
                 linear-gradient(rgba(10,22,40,0.94), rgba(10,22,40,0.97)),
                 url('img/IMG_0864.JPG') center center / cover no-repeat;
             color: var(--white);
-            padding: 72px 0 44px;
+            padding: 52px 0 36px;
             position: relative;
         }
         .foot-in { text-align: center; }
@@ -936,22 +936,22 @@
             letter-spacing: 0.45em;
             text-transform: uppercase;
             color: rgba(255,255,255,0.35);
-            margin-top: 12px;
-            margin-bottom: 42px;
+            margin-top: 8px;
+            margin-bottom: 28px;
             text-align: center;
         }
         .foot-div {
             width: 56px; height: 1px;
             background: var(--turquoise);
             opacity: 0.5;
-            margin: 0 auto 36px;
+            margin: 0 auto 24px;
         }
         .foot-links {
             display: flex;
             justify-content: center;
             gap: 32px;
             list-style: none;
-            margin-bottom: 36px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
         }
         .foot-links a {
@@ -964,7 +964,7 @@
         }
         .foot-links a:hover { color: var(--turquoise); }
 
-        .foot-social { margin-bottom: 36px; }
+        .foot-social { margin-bottom: 24px; }
         .foot-social a {
             display: inline-flex;
             align-items: center; justify-content: center;
@@ -996,7 +996,7 @@
         ════════════════════════════════════════ */
         #roques {
             background: #0A1628;
-            padding: 100px 0 80px;
+            padding: 56px 0 48px;
             overflow: hidden;
         }
 
@@ -1004,7 +1004,7 @@
             position: relative;
             text-align: center;
             padding: 0 10%;
-            margin-bottom: 64px;
+            margin-bottom: 32px;
         }
         .roques-flag {
             position: absolute;
@@ -1070,14 +1070,12 @@
 
         .roques-grid img {
             width: 100%;
-            height: 420px;
+            height: 400px;
             border-radius: 4px;
             object-fit: cover;
             display: block;
-            opacity: 0;
-            transition: opacity 0.75s ease, transform 0.6s ease, box-shadow 0.6s ease;
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
         }
-        .roques-grid img.visible { opacity: 1; }
         .roques-grid img:hover {
             transform: scale(1.02) translateY(-4px);
             box-shadow: 0 24px 60px rgba(0,0,0,0.4);
@@ -1085,7 +1083,7 @@
 
         .roques-caption {
             text-align: center;
-            padding: 40px 56px;
+            padding: 22px 56px;
             font-family: var(--font-b);
             font-size: 13px;
             font-weight: 500;
@@ -1231,7 +1229,7 @@
         /* ── Tablet (≤ 768px) ── */
         @media (max-width: 768px) {
             /* Global */
-            section             { padding: 72px 0; }
+            section             { padding: 36px 0; }
             .container          { padding: 0 20px; }
 
             /* Navbar */
@@ -1286,7 +1284,7 @@
             .con-wa             { padding: 20px 32px; font-size: 16px; min-height: 58px; }
 
             /* Los Roques */
-            #roques             { padding-top: 72px; }
+            #roques             { padding-top: 36px; padding-bottom: 36px; }
             .roques-text        { padding: 0 20px; margin-bottom: 40px; }
             .roques-grid        { grid-template-columns: 1fr; padding: 0 20px 20px; }
             .roques-grid img    { height: 260px; border-radius: 4px; width: 100%; }
@@ -1298,7 +1296,7 @@
             .wa-tip             { display: none; }
 
             /* Footer */
-            #footer             { padding: 40px 0 32px; }
+            #footer             { padding: 32px 0 24px; }
             .foot-links         { flex-direction: column; align-items: center; gap: 12px; }
             .foot-links a       { font-size: 14px; min-height: 44px; display: flex;
                                   align-items: center; }
@@ -1307,7 +1305,7 @@
         /* ── Móvil (≤ 480px) ── */
         @media (max-width: 480px) {
             /* Global */
-            section             { padding: 56px 0; }
+            section             { padding: 32px 0; }
             .container          { padding: 0 20px; }
 
             /* Navbar */
@@ -1530,12 +1528,12 @@
 
         /* ── COMODIDADES ── */
         #comodidades { background: var(--beige); }
-        .com-hd { text-align: center; margin-bottom: 72px; }
+        .com-hd { text-align: center; margin-bottom: 16px; }
 
         .com-grid {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 96px;
+            gap: 44px;
             align-items: start;
         }
 
@@ -1764,7 +1762,7 @@
         .ep-arrow.hidden { display: none; }
 
         .ep-info {
-            padding: 64px 56px;
+            padding: 56px 56px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1988,12 +1986,22 @@
         /* ════════════════════════════════════════
            MAPA
         ════════════════════════════════════════ */
-        #mapa { background: var(--light); padding-bottom: 0; }
-        .mapa-hd { text-align: center; margin-bottom: 48px; }
+        #mapa {
+            background: var(--light);
+            padding-bottom: 0;
+            border-top: 1px solid rgba(42,191,191,0.12);
+        }
+        .mapa-hd { text-align: center; margin-bottom: 11px; }
         .mapa-frame { width: 100%; line-height: 0; }
-        .mapa-frame iframe { display: block; width: 100%; height: 500px; border: 0; filter: grayscale(15%) contrast(1.02); }
-        @media (max-width: 768px) { .mapa-frame iframe { height: 380px; } }
-        @media (max-width: 480px) { .mapa-frame iframe { height: 300px; } }
+        .mapa-frame iframe {
+            display: block;
+            width: 100%;
+            height: 460px;
+            border: 0;
+            filter: grayscale(10%) contrast(1.02) brightness(0.98);
+        }
+        @media (max-width: 768px) { .mapa-frame iframe { height: 340px; } }
+        @media (max-width: 480px) { .mapa-frame iframe { height: 260px; } }
     </style>
 </head>
 <body>
@@ -2491,25 +2499,12 @@
      MAPA
 ══════════════════════════════════════════ -->
 <section id="mapa">
-    <div class="container">
-        <div class="mapa-hd fade-up">
-            <p class="s-label" data-es="Ubicación" data-en="Location">Ubicación</p>
-            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
-            <h2 class="s-title" data-es="Dónde estamos" data-en="Where we are">Dónde estamos</h2>
-            <p class="s-sub" data-es="Gran Roque, Archipiélago Los Roques, Venezuela" data-en="Gran Roque, Los Roques Archipelago, Venezuela">Gran Roque, Archipiélago Los Roques, Venezuela</p>
+    <div id="map-container" class="fade-up">
+        <div id="map"></div>
+        <div class="map-badge">
+            <i class="fas fa-map-marker-alt"></i>
+            <span data-es="Casa Panza · Gran Roque, Los Roques" data-en="Casa Panza · Gran Roque, Los Roques">Casa Panza · Gran Roque, Los Roques</span>
         </div>
-    </div>
-    <div class="mapa-frame fade-in">
-        <iframe
-            src="https://maps.google.com/maps?q=Casa+Panza,+Calle+Principal,+Gran+Roque+1160,+Dependencias+Federales&z=17&output=embed"
-            width="100%"
-            height="500"
-            style="border:0;"
-            allowfullscreen
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Casa Panza — Gran Roque, Los Roques, Venezuela">
-        </iframe>
     </div>
 </section>
 
