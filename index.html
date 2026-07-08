@@ -1953,6 +1953,22 @@
         @media (max-width: 768px) { .mapa-frame iframe { height: 340px; } }
         @media (max-width: 480px) { .mapa-frame iframe { height: 260px; } }
 
+        /* ── REVELACIÓN — scroll reveal boceto → foto ── */
+        .reveal-section { height: 250vh; position: relative; padding: 0 !important; background: #FAF7F2; }
+        .reveal-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+        .reveal-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+        .reveal-photo { opacity: 0; }
+        .reveal-caption { position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%); font-family: var(--font-d); font-size: clamp(24px, 4vw, 48px); font-style: italic; font-weight: 300; color: var(--black); z-index: 3; white-space: nowrap; text-shadow: 0 2px 20px rgba(255,255,255,0.5); }
+        @media (max-width: 768px) {
+            .reveal-section { height: 180vh; }
+        }
+        /* Sin GSAP o con reduced-motion: mostrar la foto y el caption fijos */
+        .no-gsap .reveal-photo { opacity: 1; }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-photo { opacity: 1 !important; }
+            .reveal-caption { opacity: 1 !important; transform: translateX(-50%) !important; }
+        }
+
         /* ── REDUCED MOTION GLOBAL ── */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -2153,6 +2169,18 @@
             </div>
 
         </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     REVELACIÓN — scroll reveal boceto → foto
+══════════════════════════════════════════ -->
+<section id="revelacion" class="reveal-section" aria-label="De boceto a realidad">
+    <div class="reveal-sticky">
+        <img src="img/casa-panza-sketch.jpg" alt="Boceto Casa Panza" class="reveal-img reveal-sketch" loading="lazy" decoding="async">
+        <img src="img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg" alt="Casa Panza real" class="reveal-img reveal-photo" loading="lazy" decoding="async">
+        <p class="reveal-caption" data-es="De un sueño... <span style='color:var(--turquoise)'>al paraíso</span>" data-en="From a dream... <span style='color:var(--turquoise)'>to paradise</span>" data-html="true">De un sueño... <span style="color:var(--turquoise)">al paraíso</span></p>
     </div>
 </section>
 
@@ -3196,6 +3224,7 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (typeof Lenis === 'undefined') return;
     var lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    window.lenis = lenis;
     function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     document.querySelectorAll('a[href^="#"]').forEach(function(a){
@@ -3206,6 +3235,28 @@
             if(target){ e.preventDefault(); lenis.scrollTo(target, {offset: -70}); }
         });
     });
+})();
+</script>
+
+<!-- ══ GSAP scroll reveal (sección revelación) ══ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        document.documentElement.classList.add('no-gsap');
+        return;
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    if (window.lenis) window.lenis.on('scroll', ScrollTrigger.update);
+    gsap.timeline({
+        scrollTrigger: { trigger: '.reveal-section', start: 'top top', end: 'bottom bottom', scrub: 1 }
+    })
+    .to('.reveal-photo', { opacity: 1, ease: 'none', duration: 0.6 }, 0.2)
+    .fromTo('.reveal-sketch', { scale: 1 }, { scale: 1.06, ease: 'none' }, 0)
+    .fromTo('.reveal-photo', { scale: 1.06 }, { scale: 1, ease: 'none' }, 0)
+    .fromTo('.reveal-caption', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 0.5);
 })();
 </script>
 
