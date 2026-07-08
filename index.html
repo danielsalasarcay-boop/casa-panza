@@ -7,8 +7,8 @@
     <!-- Performance: preconnect + preload hero -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preload" as="image" href="img/casa-panza-sketch.jpg" fetchpriority="high">
-    <link rel="preload" as="image" href="img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg">
+    <link rel="preload" as="image" href="img/casa-panza-plano.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="img/casa-panza-fachada-hd.jpg">
 
     <!-- SEO -->
     <title>Casa Panza | Alquiler de Lujo en Los Roques, Venezuela</title>
@@ -279,6 +279,9 @@
             filter: brightness(0) invert(1);
             opacity: 0.95;
         }
+        /* Cede el lugar al logo del navbar al scrollear (evita doble marca) */
+        .hero-logo { transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); }
+        .hero-logo.hidden-by-nav { opacity: 0 !important; pointer-events: none; }
 
         /* WhatsApp button — absolute bottom left */
         .hero-wa {
@@ -1952,12 +1955,13 @@
             z-index: 2;
             pointer-events: none;
         }
-        .reveal-caption { position: absolute; bottom: 6%; right: 4vw; font-family: var(--font-d); font-size: clamp(20px, 2.6vw, 36px); font-style: italic; font-weight: 300; color: var(--black); z-index: 3; white-space: nowrap; text-shadow: 0 2px 20px rgba(255,255,255,0.5); }
+        .reveal-caption { display: none; /* frase oculta a pedido: la portada habla sola */ position: absolute; bottom: 6%; right: 4vw; font-family: var(--font-d); font-size: clamp(20px, 2.6vw, 36px); font-style: italic; font-weight: 300; color: var(--black); z-index: 3; white-space: nowrap; text-shadow: 0 2px 20px rgba(255,255,255,0.5); }
         /* Logo y watermark oscuros sobre el boceto crema */
         .reveal-sticky .hero-logo,
         .reveal-sticky .hero-logo svg { filter: brightness(0); }
         /* Nombre masivo estilo Lando */
         .hero-mega {
+            display: none; /* nombre gigante oculto: la marca ya está en el letrero del plano, el logo y el menú */
             position: absolute; bottom: 4vh; left: 4vw; z-index: 3;
             font-family: var(--font-d); font-weight: 300;
             line-height: 0.85; letter-spacing: -0.02em;
@@ -2119,8 +2123,8 @@
 <section id="revelacion" class="reveal-section" aria-label="Portada">
     <div class="reveal-sticky">
 
-    <img src="img/casa-panza-sketch.jpg" alt="Boceto Casa Panza" class="reveal-img reveal-sketch" loading="eager" decoding="async" fetchpriority="high">
-    <img src="img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg" alt="Casa Panza real" class="reveal-img reveal-photo" loading="eager" decoding="async">
+    <img src="img/casa-panza-plano.jpg" alt="Plano arquitectónico Casa Panza" class="reveal-img reveal-sketch" loading="eager" decoding="async" fetchpriority="high">
+    <img src="img/casa-panza-fachada-hd.jpg" alt="Casa Panza real" class="reveal-img reveal-photo" loading="eager" decoding="async">
     <div class="reveal-scanline" aria-hidden="true"></div>
 
     <!-- Nombre masivo estilo editorial -->
@@ -2808,8 +2812,11 @@
 
     /* ── NAVBAR SCROLL ── */
     const navbar = document.getElementById('navbar');
+    const heroLogoEl = document.querySelector('.hero-logo');
     window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 80);
+        const past = window.scrollY > 80;
+        navbar.classList.toggle('scrolled', past);
+        if (heroLogoEl) heroLogoEl.classList.toggle('hidden-by-nav', past);
     }, { passive: true });
 
     /* ── NAVBAR THEME PER SECTION ── */
