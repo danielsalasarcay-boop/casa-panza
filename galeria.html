@@ -851,52 +851,40 @@
         ════════════════════════════════════════ */
         #float-wa {
             position: fixed;
-            bottom: 32px; right: 32px;
+            bottom: 28px; right: 28px;
             z-index: 998;
-            width: 60px; height: 60px;
+            width: 56px; height: 56px;
             border-radius: 50%;
-            background: var(--whatsapp);
+            background: var(--turquoise);
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 24px rgba(37,211,102,0.52);
-            animation: waPulse 3s ease-in-out infinite;
+            box-shadow: 0 8px 24px rgba(42,191,191,0.4);
             transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         #float-wa:hover {
-            transform: scale(1.12);
-            box-shadow: 0 8px 34px rgba(37,211,102,0.72);
-            animation: none;
+            transform: scale(1.08);
+            box-shadow: 0 12px 34px rgba(42,191,191,0.6);
         }
-        #float-wa i { font-size: 28px; color: var(--white); }
+        #float-wa i { font-size: 24px; color: var(--white); }
 
         .wa-tip {
             position: absolute;
-            right: 70px;
-            background: var(--black);
-            color: var(--white);
-            font-size: 13px;
+            right: 68px;
+            background: var(--white);
+            color: var(--black);
+            font-family: var(--font-b);
+            font-size: 12px;
             font-weight: 500;
-            padding: 7px 14px;
-            border-radius: 8px;
+            letter-spacing: 0.08em;
+            padding: 8px 16px;
+            border-radius: 999px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             white-space: nowrap;
             opacity: 0;
             transform: translateX(8px);
-            transition: var(--ease);
+            transition: opacity 0.25s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
             pointer-events: none;
         }
-        .wa-tip::after {
-            content: '';
-            position: absolute;
-            left: 100%; top: 50%;
-            transform: translateY(-50%);
-            border: 5px solid transparent;
-            border-left-color: var(--black);
-        }
         #float-wa:hover .wa-tip { opacity: 1; transform: translateX(0); }
-
-        @keyframes waPulse {
-            0%,100% { box-shadow: 0 4px 24px rgba(37,211,102,0.52), 0 0 0 0 rgba(37,211,102,0.4); }
-            50%      { box-shadow: 0 4px 24px rgba(37,211,102,0.52), 0 0 0 16px rgba(37,211,102,0); }
-        }
 
         /* ════════════════════════════════════════
            FOOTER
@@ -1267,7 +1255,7 @@
             .roques-caption     { padding: 28px 20px; font-size: 11px; }
 
             /* Float WA */
-            #float-wa           { width: 58px; height: 58px; bottom: 20px; right: 20px;
+            #float-wa           { width: 56px; height: 56px; bottom: 20px; right: 20px;
                                   z-index: 9999; }
             .wa-tip             { display: none; }
 
@@ -1333,7 +1321,7 @@
             .roques-title       { font-size: clamp(42px, 14vw, 68px); }
 
             /* Float WA */
-            #float-wa           { width: 58px; height: 58px; bottom: 20px; right: 16px;
+            #float-wa           { width: 56px; height: 56px; bottom: 20px; right: 16px;
                                   z-index: 9999; }
             .wa-tip             { display: none; }
 
@@ -2416,7 +2404,7 @@
 <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
    id="float-wa" target="_blank" rel="noopener noreferrer" aria-label="Abrir chat de WhatsApp" data-wa-link>
     <i class="fab fa-whatsapp"></i>
-    <span class="wa-tip" data-es="Reservar ahora" data-en="Book now">Reservar ahora</span>
+    <span class="wa-tip" data-es="Reservar" data-en="Book">Reservar</span>
 </a>
 
 

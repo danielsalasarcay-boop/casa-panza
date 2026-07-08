@@ -286,42 +286,9 @@
         .hero-logo { transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); }
         .hero-logo.hidden-by-nav { opacity: 0 !important; pointer-events: none; }
 
-        /* WhatsApp button — absolute bottom left */
-        .hero-wa {
-            position: absolute;
-            bottom: 52px;
-            right: 48px;
-            left: auto;
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 32px;
-            background: var(--white);
-            color: var(--black);
-            border-radius: 2px;
-            font-family: var(--font-b);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            transition: background 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-            white-space: nowrap;
-            opacity: 0;
-            animation: hBtnIn 0.8s ease 0.6s forwards;
-        }
-        .hero-wa:hover { background: var(--turquoise); color: var(--white); }
-        .hero-wa:hover .wa-icon-phone { fill: var(--white); }
-        .hero-wa:hover .wa-icon-bg    { fill: var(--white); }
-        .wa-text-short { display: none; }
-
         @keyframes hLogoIn {
             from { opacity: 0; transform: translateX(-16px); }
             to   { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes hBtnIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
         }
 
         /* ════════════════════════════════════════
@@ -797,52 +764,40 @@
         ════════════════════════════════════════ */
         #float-wa {
             position: fixed;
-            bottom: 32px; right: 32px;
+            bottom: 28px; right: 28px;
             z-index: 998;
-            width: 60px; height: 60px;
+            width: 56px; height: 56px;
             border-radius: 50%;
-            background: var(--whatsapp);
+            background: var(--turquoise);
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 24px rgba(37,211,102,0.52);
-            animation: waPulse 3s ease-in-out infinite;
+            box-shadow: 0 8px 24px rgba(42,191,191,0.4);
             transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         #float-wa:hover {
-            transform: scale(1.12);
-            box-shadow: 0 8px 34px rgba(37,211,102,0.72);
-            animation: none;
+            transform: scale(1.08);
+            box-shadow: 0 12px 34px rgba(42,191,191,0.6);
         }
-        #float-wa i { font-size: 28px; color: var(--white); }
+        #float-wa i { font-size: 24px; color: var(--white); }
 
         .wa-tip {
             position: absolute;
-            right: 70px;
-            background: var(--black);
-            color: var(--white);
-            font-size: 13px;
+            right: 68px;
+            background: var(--white);
+            color: var(--black);
+            font-family: var(--font-b);
+            font-size: 12px;
             font-weight: 500;
-            padding: 7px 14px;
-            border-radius: 8px;
+            letter-spacing: 0.08em;
+            padding: 8px 16px;
+            border-radius: 999px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             white-space: nowrap;
             opacity: 0;
             transform: translateX(8px);
-            transition: var(--ease);
+            transition: opacity 0.25s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
             pointer-events: none;
         }
-        .wa-tip::after {
-            content: '';
-            position: absolute;
-            left: 100%; top: 50%;
-            transform: translateY(-50%);
-            border: 5px solid transparent;
-            border-left-color: var(--black);
-        }
         #float-wa:hover .wa-tip { opacity: 1; transform: translateX(0); }
-
-        @keyframes waPulse {
-            0%,100% { box-shadow: 0 4px 24px rgba(37,211,102,0.52), 0 0 0 0 rgba(37,211,102,0.4); }
-            50%      { box-shadow: 0 4px 24px rgba(37,211,102,0.52), 0 0 0 16px rgba(37,211,102,0); }
-        }
 
         /* ════════════════════════════════════════
            FOOTER
@@ -1148,14 +1103,12 @@
         @media (max-width: 1024px) and (min-width: 769px) {
             .hero-logo { width: 180px; top: 32px; left: 36px; }
             .hero-logo svg { width: 180px; }
-            .hero-wa { bottom: 44px; right: 36px; left: auto; }
         }
 
         /* ── Hero — ventana minimizada (769px-900px) ── */
         @media (max-width: 900px) and (min-width: 769px) {
             .hero-logo { top: 28px; left: 32px; width: 160px; }
             .hero-logo svg { width: 160px; }
-            .hero-wa { bottom: 36px; right: 32px; left: auto; }
         }
 
         /* ── Tablet (≤ 768px) ── */
@@ -1177,7 +1130,6 @@
 
             /* Hero */
             .hero-logo          { display: none !important; }
-            .hero-wa            { bottom: 80px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 12px; padding: 14px 24px; }
 
             /* About */
             .about-wrap         { grid-template-columns: 1fr; min-height: unset; }
@@ -1213,7 +1165,7 @@
             .roques-caption     { padding: 28px 20px; font-size: 11px; }
 
             /* Float WA */
-            #float-wa           { width: 58px; height: 58px; bottom: 20px; right: 20px;
+            #float-wa           { width: 56px; height: 56px; bottom: 20px; right: 20px;
                                   z-index: 9999; }
             .wa-tip             { display: none; }
 
@@ -1235,9 +1187,6 @@
             #navbar.scrolled    { padding: 0 16px; height: 60px; }
 
             /* Hero */
-            .hero-wa            { bottom: 88px !important; left: 50% !important; transform: translateX(-50%) !important; width: calc(100% - 40px) !important; max-width: 320px !important; justify-content: center !important; font-size: 12px !important; padding: 14px 20px !important; white-space: nowrap !important; }
-            .wa-text-long       { display: none; }
-            .wa-text-short      { display: inline; }
 
             /* About */
             .about-img          { height: 260px; }
@@ -1279,7 +1228,7 @@
             .roques-title       { font-size: clamp(42px, 14vw, 68px); }
 
             /* Float WA */
-            #float-wa           { width: 58px; height: 58px; bottom: 20px; right: 16px;
+            #float-wa           { width: 56px; height: 56px; bottom: 20px; right: 16px;
                                   z-index: 9999; }
             .wa-tip             { display: none; }
 
@@ -1843,13 +1792,6 @@
         .about-img img { will-change: transform; }
 
         /* ── PREFERS-REDUCED-MOTION ── */
-        @media (prefers-reduced-motion: reduce) {
-            .hero-wa {
-                opacity: 1 !important;
-                animation: none !important;
-                transform: none !important;
-            }
-        }
         @media (prefers-reduced-motion: reduce) and (min-width: 769px) {
             .hero-logo {
                 opacity: 1 !important;
@@ -1948,7 +1890,7 @@
         /* ── Lente mágico (clip-path, alineación 1:1) ── */
         .lens-ring-solo {
             position: absolute;
-            width: 150px; height: 150px;
+            width: 120px; height: 120px;
             border: 1px solid rgba(42,191,191,0.6);
             border-radius: 50%;
             box-shadow: 0 0 30px rgba(42,191,191,0.2);
@@ -2135,16 +2077,6 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg>
     </div>
 
-    <!-- WhatsApp button — bottom left -->
-    <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20%F0%9F%8C%8A%20Estoy%20listo%20para%20vivir%20Los%20Roques.%20%C2%BFCu%C3%A1ndo%20tienen%20disponibilidad%3F"
-       class="hero-wa" target="_blank" rel="noopener noreferrer">
-        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path class="wa-icon-phone" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/>
-            <path class="wa-icon-bg" d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.526 5.858L0 24l6.335-1.652A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.011-1.374l-.36-.213-3.731.978.995-3.631-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill="#25D366"/>
-        </svg>
-        <span class="wa-text-long" data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span>
-        <span class="wa-text-short" data-es="Reservar" data-en="Book">Reservar</span>
-    </a>
 
     <p class="reveal-caption" data-es="De un sueño... <span style='color:var(--turquoise)'>al paraíso</span>" data-en="From a dream... <span style='color:var(--turquoise)'>to paradise</span>" data-html="true">De un sueño... <span style="color:var(--turquoise)">al paraíso</span></p>
 
@@ -2493,7 +2425,7 @@
 <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
    id="float-wa" target="_blank" rel="noopener noreferrer" aria-label="Abrir chat de WhatsApp" data-wa-link>
     <i class="fab fa-whatsapp"></i>
-    <span class="wa-tip" data-es="Reservar ahora" data-en="Book now">Reservar ahora</span>
+    <span class="wa-tip" data-es="Reservar" data-en="Book">Reservar</span>
 </a>
 
 
@@ -2691,13 +2623,6 @@
             });
         }, 2200);
 
-        if (heroSection) {
-            const heroObs = new IntersectionObserver(([e]) => {
-                floatWa.style.opacity = e.isIntersecting ? '0' : '';
-                floatWa.style.pointerEvents = e.isIntersecting ? 'none' : '';
-            }, { threshold: 0.3 });
-            heroObs.observe(heroSection);
-        }
     }
 
     /* ── HAMBURGER ── */
@@ -3199,7 +3124,7 @@
     var photo = stage.querySelector('.reveal-photo');
     var ring = stage.querySelector('.lens-ring-solo');
     if (!sketch || !photo || !ring) return;
-    var R = 75; // radio del lente (150px de diámetro — la mitad del anterior)
+    var R = 60; // radio del lente (120px de diámetro)
 
     /* Crea 2 capas de lente clonando las imágenes de fondo — mismas dimensiones,
        misma posición (inset 0), por eso la alineación es 1:1 SIEMPRE */
@@ -3216,11 +3141,22 @@
         stage.appendChild(el);
     });
 
-    var mouse = {x:0,y:0}, pos = {x:0,y:0}, raf = null, inside = false;
+    var mouse = {x:0,y:0}, pos = {x:0,y:0}, raf = null, inside = false, pausedOverUI = false;
 
     function tick(){
         pos.x += (mouse.x - pos.x) * 0.18;
         pos.y += (mouse.y - pos.y) * 0.18;
+
+        ring.style.left = pos.x + 'px';
+        ring.style.top = pos.y + 'px';
+
+        /* pausa: el mouse está sobre un elemento interactivo (WhatsApp, links, botones) */
+        if (pausedOverUI) {
+            lensSketch.style.clipPath = 'circle(0px at ' + pos.x + 'px ' + pos.y + 'px)';
+            lensPhoto.style.clipPath = 'circle(0px at ' + pos.x + 'px ' + pos.y + 'px)';
+            if (inside) raf = requestAnimationFrame(tick);
+            return;
+        }
 
         var photoVisible = parseFloat(getComputedStyle(photo).opacity) > 0.5;
         var activeLens = photoVisible ? lensSketch : lensPhoto;
@@ -3228,9 +3164,6 @@
 
         activeLens.style.clipPath = 'circle(' + R + 'px at ' + pos.x + 'px ' + pos.y + 'px)';
         inactiveLens.style.clipPath = 'circle(0px at ' + pos.x + 'px ' + pos.y + 'px)';
-
-        ring.style.left = pos.x + 'px';
-        ring.style.top = pos.y + 'px';
 
         if (inside) raf = requestAnimationFrame(tick);
     }
@@ -3249,6 +3182,10 @@
         var r = stage.getBoundingClientRect();
         mouse.x = e.clientX - r.left;
         mouse.y = e.clientY - r.top;
+        var target = document.elementFromPoint(e.clientX, e.clientY);
+        var overInteractive = target && (target.closest('#float-wa') || target.closest('a') || target.closest('button'));
+        pausedOverUI = !!overInteractive;
+        ring.style.opacity = pausedOverUI ? '0' : '1';
     });
 
     stage.addEventListener('mouseleave', function(){
