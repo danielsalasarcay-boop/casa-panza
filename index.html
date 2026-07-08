@@ -11,20 +11,23 @@
     <meta name="author" content="Casa Panza">
     <meta name="robots" content="index, follow">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg">
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Casa Panza">
     <meta property="og:title" content="Casa Panza | Alquiler de Lujo en Los Roques">
-    <meta property="og:description" content="Un hogar a la altura del paraíso. Casa completa para hasta 10 huéspedes en Gran Roque, Los Roques, Venezuela.">
-    <meta property="og:image" content="https://danielsalasarcay-boop.github.io/casa-panza/img/ENTRADA_CASA_PANZA.JPG">
+    <meta property="og:description" content="Casa frente al mar en Gran Roque. Acceso directo al Caribe, hasta 10 huéspedes, staff incluido. Reserva sin intermediarios.">
+    <meta property="og:image" content="https://danielsalasarcay-boop.github.io/casa-panza/img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg">
     <meta property="og:url" content="https://danielsalasarcay-boop.github.io/casa-panza/">
     <meta property="og:locale" content="es_VE">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Casa Panza | Alquiler de Lujo en Los Roques">
-    <meta name="twitter:description" content="Un hogar a la altura del paraíso. Casa completa para hasta 10 huéspedes en Gran Roque, Los Roques.">
-    <meta name="twitter:image" content="https://danielsalasarcay-boop.github.io/casa-panza/img/ENTRADA_CASA_PANZA.JPG">
+    <meta name="twitter:description" content="Casa frente al mar en Gran Roque. Acceso directo al Caribe, hasta 10 huéspedes, staff incluido. Reserva sin intermediarios.">
+    <meta name="twitter:image" content="https://danielsalasarcay-boop.github.io/casa-panza/img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2163,6 +2166,12 @@
                     Ubicada en Gran Roque, isla declarada Parque Nacional, Casa Panza fusiona el minimalismo costero más refinado con el alma auténtica del Caribe venezolano. Despierta con el sonido del mar. Duerme bajo el cielo más estrellado donde el azul del Caribe se vuelve infinito.
                 </p>
 
+                <div class="stats-row" style="display:flex; gap:48px; margin-top:40px; flex-wrap:wrap;">
+                    <div><span class="stat-num" data-target="10" style="font-family:var(--font-d); font-size:42px; color:var(--turquoise);">0</span><p style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray);" data-es="Huéspedes" data-en="Guests">Huéspedes</p></div>
+                    <div><span class="stat-num" data-target="7" style="font-family:var(--font-d); font-size:42px; color:var(--turquoise);">0</span><p style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray);" data-es="Espacios" data-en="Spaces">Espacios</p></div>
+                    <div><span class="stat-num" data-target="45" style="font-family:var(--font-d); font-size:42px; color:var(--turquoise);">0</span><p style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray);" data-es="Min desde Caracas" data-en="Min from Caracas">Min desde Caracas</p></div>
+                </div>
+
                 <div class="amenities">
                     <div class="amen fade-up">
                         <span class="amen-icon"><i class="fas fa-house"></i></span>
@@ -3170,6 +3179,68 @@
 
 </script>
 
+<!-- ══ Parallax hero ══ -->
+<script>
+(function(){
+    var heroBg = document.querySelector('#hero .hero-bg');
+    if(!heroBg) return;
+    heroBg.style.willChange = 'transform';
+    window.addEventListener('scroll', function(){
+        var y = window.scrollY;
+        if(y < window.innerHeight){
+            heroBg.style.transform = 'translateY(' + (y * 0.35) + 'px) scale(1.15)';
+        }
+    }, {passive:true});
+})();
+</script>
+
+<!-- ══ Tilt 3D en tarjetas de espacios ══ -->
+<script>
+(function(){
+    if(window.matchMedia('(hover: none)').matches) return;
+    document.querySelectorAll('.esp-card').forEach(function(card){
+        card.addEventListener('mouseenter', function(){
+            card.style.transformStyle = 'preserve-3d';
+            card.style.transition = 'transform 0.15s ease-out, box-shadow 0.35s ease';
+        });
+        card.addEventListener('mousemove', function(e){
+            var r = card.getBoundingClientRect();
+            var x = (e.clientX - r.left) / r.width - 0.5;
+            var y = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform = 'perspective(900px) rotateY(' + (x*6) + 'deg) rotateX(' + (-y*6) + 'deg) translateY(-4px)';
+        });
+        card.addEventListener('mouseleave', function(){
+            card.style.transform = '';
+            setTimeout(function(){ card.style.transition = ''; }, 200);
+        });
+    });
+})();
+</script>
+
+<!-- ══ Contador animado ══ -->
+<script>
+(function(){
+    var done = false;
+    var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+            if(e.isIntersecting && !done){
+                done = true;
+                document.querySelectorAll('.stat-num').forEach(function(el){
+                    var target = +el.dataset.target, cur = 0;
+                    var step = Math.max(1, Math.floor(target/40));
+                    var t = setInterval(function(){
+                        cur += step;
+                        if(cur >= target){ cur = target; clearInterval(t); }
+                        el.textContent = cur;
+                    }, 30);
+                });
+            }
+        });
+    }, {threshold: 0.4});
+    var el = document.querySelector('.stats-row');
+    if(el) obs.observe(el);
+})();
+</script>
 
 </body>
 </html>
