@@ -1977,6 +1977,39 @@
             .reveal-caption { bottom: auto; top: 16%; right: auto; left: 50%; transform: translateX(-50%); }
             .hero-mega { bottom: 150px; }
         }
+        /* ── Lente mágico premium ── */
+        .lens {
+            position: absolute;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.6);
+            transition: opacity 0.35s cubic-bezier(0.25,0.1,0.25,1), transform 0.35s cubic-bezier(0.25,0.1,0.25,1);
+            z-index: 5;
+            /* borde difuminado suave */
+            -webkit-mask-image: radial-gradient(circle, black 62%, transparent 78%);
+            mask-image: radial-gradient(circle, black 62%, transparent 78%);
+            will-change: transform, opacity;
+        }
+        .lens.active { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .lens-inner { position: absolute; inset: 0; }
+        .lens-img {
+            position: absolute;
+            object-fit: cover;
+            object-position: center 42%; /* idéntico a .reveal-img para alinear 1:1 */
+            /* dimensiones se setean por JS para que coincidan 1:1 con la imagen de fondo */
+            transform-origin: center;
+            transition: opacity 0.4s ease;
+        }
+        .lens-ring {
+            position: absolute; inset: 6px;
+            border: 1px solid rgba(42,191,191,0.55);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(42,191,191,0.25), inset 0 0 30px rgba(42,191,191,0.08);
+        }
+
         /* Sin GSAP o con reduced-motion: mostrar la foto y el caption fijos */
         .no-gsap .reveal-photo { opacity: 1; }
         @media (prefers-reduced-motion: reduce) {
@@ -2119,6 +2152,15 @@
 
     <img src="img/casa-panza-plano.jpg" alt="Plano arquitectónico Casa Panza" class="reveal-img reveal-sketch" loading="eager" decoding="async" fetchpriority="high">
     <img src="img/casa-panza-fachada-hd.jpg" alt="Casa Panza real" class="reveal-img reveal-photo" loading="eager" decoding="async">
+
+    <!-- Lente mágico: revela la imagen contraria al fondo -->
+    <div class="lens" aria-hidden="true">
+        <div class="lens-inner">
+            <img src="img/casa-panza-plano.jpg" alt="" class="lens-img lens-sketch">
+            <img src="img/casa-panza-fachada-hd.jpg" alt="" class="lens-img lens-photo">
+        </div>
+        <div class="lens-ring"></div>
+    </div>
     <div class="reveal-scanline" aria-hidden="true"></div>
 
     <!-- Nombre masivo estilo editorial -->
@@ -3259,6 +3301,86 @@
             }
         });
     }
+})();
+</script>
+
+<!-- ══ Lente mágico premium (portada revelación) ══ -->
+<script>
+(function(){
+    if (window.matchMedia('(hover: none)').matches) return; // solo desktop
+    var stage = document.querySelector('.reveal-sticky');
+    if (!stage) return;
+    var photo = stage.querySelector('.reveal-photo');
+    var lens = stage.querySelector('.lens');
+    if (!photo || !lens) return;
+    var lensSketch = lens.querySelector('.lens-sketch');
+    var lensPhoto = lens.querySelector('.lens-photo');
+
+    var mouse = { x: 0, y: 0 };
+    var pos = { x: 0, y: 0 };
+    var raf;
+
+    function syncLensImages(){
+        var r = stage.getBoundingClientRect();
+        [lensSketch, lensPhoto].forEach(function(img){
+            img.style.width = r.width + 'px';
+            img.style.height = r.height + 'px';
+        });
+    }
+    syncLensImages();
+    window.addEventListener('resize', syncLensImages);
+
+    function tick(){
+        /* inercia: el lente persigue al cursor con suavidad (lerp 12%) */
+        pos.x += (mouse.x - pos.x) * 0.12;
+        pos.y += (mouse.y - pos.y) * 0.12;
+        lens.style.left = pos.x + 'px';
+        lens.style.top = pos.y + 'px';
+
+        /* las imágenes internas se desplazan inverso para alinear 1:1 con el fondo,
+           con un micro-zoom de 1.15 dentro del lente */
+        var zoom = 1.15;
+        var half = lens.offsetWidth / 2;
+        [lensSketch, lensPhoto].forEach(function(img){
+            img.style.transform = 'translate(' + (-pos.x + half) + 'px,' + (-pos.y + half) + 'px) scale(' + zoom + ')';
+            img.style.transformOrigin = pos.x + 'px ' + pos.y + 'px';
+        });
+
+        /* revela lo CONTRARIO a lo que muestra el fondo */
+        var photoVisible = parseFloat(getComputedStyle(photo).opacity) > 0.5;
+        lensSketch.style.opacity = photoVisible ? 1 : 0;
+        lensPhoto.style.opacity = photoVisible ? 0 : 1;
+
+        raf = requestAnimationFrame(tick);
+    }
+
+    stage.addEventListener('mouseenter', function(e){
+        var r = stage.getBoundingClientRect();
+        mouse.x = pos.x = e.clientX - r.left;
+        mouse.y = pos.y = e.clientY - r.top;
+        lens.classList.add('active');
+        cancelAnimationFrame(raf);
+        tick();
+    });
+
+    stage.addEventListener('mousemove', function(e){
+        var r = stage.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+    });
+
+    stage.addEventListener('mouseleave', function(){
+        lens.classList.remove('active');
+        setTimeout(function(){ cancelAnimationFrame(raf); }, 400);
+    });
+
+    /* BONUS: mantener click expande el lente a 420px */
+    stage.addEventListener('mousedown', function(){
+        lens.style.width = '420px'; lens.style.height = '420px';
+    });
+    stage.addEventListener('mouseup', function(){
+        lens.style.width = '300px'; lens.style.height = '300px';
+    });
 })();
 </script>
 
