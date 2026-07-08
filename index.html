@@ -2340,7 +2340,7 @@
 </section>
 
 <!-- Panel galería completa -->
-<div id="galeria-panel" role="dialog" aria-modal="true" aria-label="Galería completa Casa Panza">
+<div id="galeria-panel" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Galería completa Casa Panza">
     <div class="gp-header">
         <div class="gp-brand">Casa Panza</div>
         <div class="gp-tabs" id="galeria-tabs">
@@ -2603,7 +2603,7 @@
 <!-- ══════════════════════════════════════════
      PANEL DETALLE POR ESPACIO
 ══════════════════════════════════════════ -->
-<div id="espacio-panel" role="dialog" aria-modal="true" aria-label="Detalle del espacio">
+<div id="espacio-panel" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Detalle del espacio">
 
     <div class="ep-header">
         <div class="ep-brand">CASA PANZA</div>
@@ -2851,12 +2851,14 @@
     function abrirPanel() {
         panel.classList.add('open');
         document.body.style.overflow = 'hidden';
+        if (window.lenis) window.lenis.stop();
         if (!document.getElementById('galeria-grid').children.length) renderGaleria('todas');
         setTimeout(() => document.getElementById('btn-cerrar-galeria').focus(), 100);
     }
     function cerrarPanel() {
         panel.classList.remove('open');
         document.body.style.overflow = '';
+        if (window.lenis) window.lenis.start();
     }
 
     document.getElementById('btn-ver-galeria').addEventListener('click', abrirPanel);
@@ -3092,11 +3094,13 @@
         epNext.classList.toggle('hidden', data.fotos.length <= 1);
         espacioPanel.classList.add('open');
         document.body.style.overflow = 'hidden';
+        if (window.lenis) window.lenis.stop();
     }
 
     function cerrarEspacio() {
         espacioPanel.classList.remove('open');
         document.body.style.overflow = '';
+        if (window.lenis) window.lenis.start();
         epHeroImg.src = '';
     }
 
