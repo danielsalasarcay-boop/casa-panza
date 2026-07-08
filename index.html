@@ -3143,7 +3143,24 @@
 
     var mouse = {x:0,y:0}, pos = {x:0,y:0}, raf = null, inside = false, pausedOverUI = false;
 
+    /* Cierre único y robusto: colapsa suave a 0 y detiene el loop */
+    function closeLens(){
+        inside = false;
+        ring.style.opacity = '0';
+        var cx = pos.x + 'px ' + pos.y + 'px';
+        lensSketch.style.transition = 'clip-path 0.25s ease';
+        lensPhoto.style.transition = 'clip-path 0.25s ease';
+        lensSketch.style.clipPath = 'circle(0px at ' + cx + ')';
+        lensPhoto.style.clipPath = 'circle(0px at ' + cx + ')';
+        setTimeout(function(){
+            lensSketch.style.transition = '';
+            lensPhoto.style.transition = '';
+            cancelAnimationFrame(raf);
+        }, 260);
+    }
+
     function tick(){
+        if (!inside) return;
         pos.x += (mouse.x - pos.x) * 0.18;
         pos.y += (mouse.y - pos.y) * 0.18;
 
@@ -3180,6 +3197,19 @@
 
     stage.addEventListener('mousemove', function(e){
         var r = stage.getBoundingClientRect();
+        /* fuera de los límites reales (navbar superpuesto, bordes): cerrar */
+        if (e.clientY < r.top || e.clientY > r.bottom || e.clientX < r.left || e.clientX > r.right) {
+            closeLens();
+            return;
+        }
+        if (!inside) {
+            /* re-entrada sin mouseenter (p. ej. tras scroll): reactivar */
+            inside = true;
+            pos.x = e.clientX - r.left;
+            pos.y = e.clientY - r.top;
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(tick);
+        }
         mouse.x = e.clientX - r.left;
         mouse.y = e.clientY - r.top;
         var target = document.elementFromPoint(e.clientX, e.clientY);
@@ -3188,12 +3218,14 @@
         ring.style.opacity = pausedOverUI ? '0' : '1';
     });
 
-    stage.addEventListener('mouseleave', function(){
-        inside = false;
-        ring.style.opacity = '0';
-        lensSketch.style.clipPath = 'circle(0px at ' + pos.x + 'px ' + pos.y + 'px)';
-        lensPhoto.style.clipPath = 'circle(0px at ' + pos.x + 'px ' + pos.y + 'px)';
-    });
+    stage.addEventListener('mouseleave', closeLens);
+    document.addEventListener('mouseleave', closeLens); /* cursor sale de la ventana */
+    window.addEventListener('blur', closeLens);         /* cambio de pestaña/app */
+    document.addEventListener('scroll', function(){
+        /* si tras el scroll la sección salió del viewport, cerrar */
+        var r = stage.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) closeLens();
+    }, { passive: true });
 })();
 </script>
 
