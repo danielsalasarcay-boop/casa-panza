@@ -7,7 +7,8 @@
     <!-- Performance: preconnect + preload hero -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preload" as="image" href="img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg" fetchpriority="high">
+    <link rel="preload" as="image" href="img/casa-panza-sketch.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg">
 
     <!-- SEO -->
     <title>Casa Panza | Alquiler de Lujo en Los Roques, Venezuela</title>
@@ -149,6 +150,8 @@
         #navbar.scrolled .nav-logo svg { filter: brightness(0); transition: filter 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); }
         #navbar.on-light:not(.scrolled) .nav-logo svg { filter: brightness(0) !important; transition: filter 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); }
         #navbar.on-light:not(.scrolled) .hamburger span { background: var(--black); }
+        #navbar.on-light:not(.scrolled) .nav-links a { color: var(--black); }
+        #navbar.on-light:not(.scrolled) .nav-sep svg { fill: rgba(26,26,26,0.4); }
 
         .nav-links {
             display: flex;
@@ -248,35 +251,8 @@
         }
 
         /* ════════════════════════════════════════
-           HERO
+           HERO (portada = sección revelación)
         ════════════════════════════════════════ */
-        #hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            min-height: 580px;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: url('img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg') center center / cover no-repeat;
-            background-position: center center;
-            min-height: 100%;
-            min-width: 100%;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                160deg,
-                rgba(0,0,0,0.0)  0%,
-                rgba(0,0,0,0.0)  35%,
-                rgba(0,0,0,0.52) 100%
-            );
-        }
 
         /* SVG Logo — top left (solo desktop) */
         .hero-logo {
@@ -1953,20 +1929,35 @@
         @media (max-width: 768px) { .mapa-frame iframe { height: 340px; } }
         @media (max-width: 480px) { .mapa-frame iframe { height: 260px; } }
 
-        /* ── REVELACIÓN — scroll reveal boceto → foto ── */
+        /* ── REVELACIÓN (portada) — la casa se construye desde los planos ── */
         .reveal-section { height: 250vh; position: relative; padding: 0 !important; background: #FAF7F2; }
-        .reveal-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+        .reveal-sticky { position: sticky; top: 0; height: 100vh; min-height: 580px; overflow: hidden; }
         .reveal-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
         .reveal-photo { opacity: 0; }
+        .reveal-scanline {
+            position: absolute;
+            left: 0; right: 0; top: 100%;
+            height: 2px;
+            background: var(--turquoise);
+            box-shadow: 0 0 24px 5px rgba(42,191,191,0.5);
+            opacity: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
         .reveal-caption { position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%); font-family: var(--font-d); font-size: clamp(24px, 4vw, 48px); font-style: italic; font-weight: 300; color: var(--black); z-index: 3; white-space: nowrap; text-shadow: 0 2px 20px rgba(255,255,255,0.5); }
+        /* Logo y watermark oscuros sobre el boceto crema */
+        .reveal-sticky .hero-logo,
+        .reveal-sticky .hero-logo svg { filter: brightness(0); }
         @media (max-width: 768px) {
             .reveal-section { height: 180vh; }
+            .reveal-caption { bottom: 22%; }
         }
         /* Sin GSAP o con reduced-motion: mostrar la foto y el caption fijos */
         .no-gsap .reveal-photo { opacity: 1; }
         @media (prefers-reduced-motion: reduce) {
-            .reveal-photo { opacity: 1 !important; }
+            .reveal-photo { opacity: 1 !important; clip-path: none !important; }
             .reveal-caption { opacity: 1 !important; transform: translateX(-50%) !important; }
+            .reveal-scanline { display: none !important; }
         }
 
         /* ── REDUCED MOTION GLOBAL ── */
@@ -1994,8 +1985,8 @@
 <!-- ══════════════════════════════════════════
      NAVBAR
 ══════════════════════════════════════════ -->
-<nav id="navbar" role="navigation" aria-label="Navegación principal">
-    <a href="#hero" class="nav-logo" aria-label="Casa Panza">
+<nav id="navbar" class="on-light" role="navigation" aria-label="Navegación principal">
+    <a href="#revelacion" class="nav-logo" aria-label="Casa Panza">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 792" style="width:160px;height:auto;display:block;" aria-hidden="true">
           <g>
             <path d="M286.2,318.43l-1.52,3.87c-1.45-1.06-3.73-1.59-6.84-1.59-2.91,0-5.25,1.25-7.01,3.76-1.76,2.51-2.64,5.74-2.64,9.69s.9,6.84,2.71,9.18c1.8,2.35,4.13,3.52,6.99,3.52,3.11,0,5.5-1.1,7.18-3.31l2.49,3.47c-2.63,2.61-6.01,3.92-10.15,3.92s-7.75-1.56-10.24-4.69-3.74-7.25-3.74-12.37,1.33-9.07,3.99-12.34c2.66-3.28,6.09-4.92,10.31-4.92,3.61,0,6.43.6,8.47,1.79Z"/>
@@ -2065,13 +2056,15 @@
 <!-- ══════════════════════════════════════════
      HERO
 ══════════════════════════════════════════ -->
-<section id="hero" aria-label="Portada">
+<section id="revelacion" class="reveal-section" aria-label="Portada">
+    <div class="reveal-sticky">
 
-    <div class="hero-bg"></div>
-    <div class="hero-overlay" aria-hidden="true"></div>
+    <img src="img/casa-panza-sketch.jpg" alt="Boceto Casa Panza" class="reveal-img reveal-sketch" loading="eager" decoding="async" fetchpriority="high">
+    <img src="img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg" alt="Casa Panza real" class="reveal-img reveal-photo" loading="eager" decoding="async">
+    <div class="reveal-scanline" aria-hidden="true"></div>
 
     <!-- SVG Logo — top left -->
-    <a href="#hero" class="hero-logo" aria-label="Casa Panza">
+    <a href="#revelacion" class="hero-logo" aria-label="Casa Panza">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 792" aria-hidden="true">
           <g>
             <path d="M286.2,318.43l-1.52,3.87c-1.45-1.06-3.73-1.59-6.84-1.59-2.91,0-5.25,1.25-7.01,3.76-1.76,2.51-2.64,5.74-2.64,9.69s.9,6.84,2.71,9.18c1.8,2.35,4.13,3.52,6.99,3.52,3.11,0,5.5-1.1,7.18-3.31l2.49,3.47c-2.63,2.61-6.01,3.92-10.15,3.92s-7.75-1.56-10.24-4.69-3.74-7.25-3.74-12.37,1.33-9.07,3.99-12.34c2.66-3.28,6.09-4.92,10.31-4.92,3.61,0,6.43.6,8.47,1.79Z"/>
@@ -2105,6 +2098,9 @@
         <span class="wa-text-short" data-es="Reservar" data-en="Book">Reservar</span>
     </a>
 
+    <p class="reveal-caption" data-es="De un sueño... <span style='color:var(--turquoise)'>al paraíso</span>" data-en="From a dream... <span style='color:var(--turquoise)'>to paradise</span>" data-html="true">De un sueño... <span style="color:var(--turquoise)">al paraíso</span></p>
+
+    </div>
 </section>
 
 
@@ -2169,18 +2165,6 @@
             </div>
 
         </div>
-    </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     REVELACIÓN — scroll reveal boceto → foto
-══════════════════════════════════════════ -->
-<section id="revelacion" class="reveal-section" aria-label="De boceto a realidad">
-    <div class="reveal-sticky">
-        <img src="img/casa-panza-sketch.jpg" alt="Boceto Casa Panza" class="reveal-img reveal-sketch" loading="lazy" decoding="async">
-        <img src="img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg" alt="Casa Panza real" class="reveal-img reveal-photo" loading="lazy" decoding="async">
-        <p class="reveal-caption" data-es="De un sueño... <span style='color:var(--turquoise)'>al paraíso</span>" data-en="From a dream... <span style='color:var(--turquoise)'>to paradise</span>" data-html="true">De un sueño... <span style="color:var(--turquoise)">al paraíso</span></p>
     </div>
 </section>
 
@@ -2676,25 +2660,6 @@
         });
     }
 
-    /* ── PARALLAX HERO ── */
-    const heroBg = document.querySelector('.hero-bg');
-    if (heroBg) {
-        let rafPending = false;
-        const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-        if (!isTouch && window.innerWidth > 768) {
-            window.addEventListener('scroll', () => {
-                if (rafPending) return;
-                rafPending = true;
-                requestAnimationFrame(() => {
-                    if (window.scrollY < window.innerHeight * 1.5) {
-                        heroBg.style.backgroundPositionY = `calc(50% + ${window.scrollY * 0.28}px)`;
-                    }
-                    rafPending = false;
-                });
-            }, { passive: true });
-        }
-    }
-
     /* ── MAGNETIC BUTTONS ── */
     document.querySelectorAll('.magnetic').forEach(btn => {
         btn.addEventListener('mousemove', e => {
@@ -2751,7 +2716,7 @@
 
     /* ── WA ENTRANCE ANIMATION ── */
     const floatWa = document.getElementById('float-wa');
-    const heroSection = document.getElementById('hero');
+    const heroSection = document.getElementById('revelacion');
     if (floatWa) {
         floatWa.style.opacity = '0';
         floatWa.style.transform = 'translateX(72px)';
@@ -3154,21 +3119,6 @@
 
 </script>
 
-<!-- ══ Parallax hero ══ -->
-<script>
-(function(){
-    var heroBg = document.querySelector('#hero .hero-bg');
-    if(!heroBg) return;
-    heroBg.style.willChange = 'transform';
-    window.addEventListener('scroll', function(){
-        var y = window.scrollY;
-        if(y < window.innerHeight){
-            heroBg.style.transform = 'translateY(' + (y * 0.35) + 'px) scale(1.15)';
-        }
-    }, {passive:true});
-})();
-</script>
-
 <!-- ══ Tilt 3D en tarjetas de espacios ══ -->
 <script>
 (function(){
@@ -3250,13 +3200,23 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     gsap.registerPlugin(ScrollTrigger);
     if (window.lenis) window.lenis.on('scroll', ScrollTrigger.update);
+    /* La casa se "construye" desde los planos: la foto real se levanta
+       desde el suelo (clip-path) con una línea de escaneo turquesa. */
     gsap.timeline({
         scrollTrigger: { trigger: '.reveal-section', start: 'top top', end: 'bottom bottom', scrub: 1 }
     })
-    .to('.reveal-photo', { opacity: 1, ease: 'none', duration: 0.6 }, 0.2)
-    .fromTo('.reveal-sketch', { scale: 1 }, { scale: 1.06, ease: 'none' }, 0)
-    .fromTo('.reveal-photo', { scale: 1.06 }, { scale: 1, ease: 'none' }, 0)
-    .fromTo('.reveal-caption', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 0.5);
+    .to('.reveal-photo', { opacity: 1, ease: 'none', duration: 0.03 }, 0.12)
+    .fromTo('.reveal-photo',
+        { clipPath: 'inset(100% 0% 0% 0%)' },
+        { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0.15)
+    .to('.reveal-scanline', { opacity: 1, ease: 'none', duration: 0.04 }, 0.15)
+    .fromTo('.reveal-scanline',
+        { top: '100%' },
+        { top: '0%', ease: 'none', duration: 0.6 }, 0.15)
+    .to('.reveal-scanline', { opacity: 0, ease: 'none', duration: 0.06 }, 0.74)
+    .fromTo('.reveal-sketch', { scale: 1 }, { scale: 1.04, ease: 'none', duration: 1 }, 0)
+    .fromTo('.reveal-photo', { scale: 1.02 }, { scale: 1, ease: 'none', duration: 1 }, 0)
+    .fromTo('.reveal-caption', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, 0.78);
 })();
 </script>
 
