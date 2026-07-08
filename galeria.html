@@ -571,7 +571,7 @@
            GALERÍA
         ════════════════════════════════════════ */
         /* ── GALERÍA horizontal inmersiva ── */
-        .gal-h-section { height: 500vh; position: relative; padding: 0 !important; background: var(--black); overflow: clip; }
+        .gal-h-section { height: 620vh; position: relative; padding: 0 !important; background: var(--black); overflow: clip; }
         .gal-h-sticky { position: sticky; top: 0; height: 100vh; overflow: clip; display: flex; align-items: center; }
         .gal-h-header {
             position: absolute; top: 32px; left: 4vw; right: 4vw; z-index: 3;
@@ -2578,7 +2578,7 @@
             trigger: galSection,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 1.4,
+            scrub: 1.6,
             invalidateOnRefresh: true,
             onUpdate: function(self){
                 galBar.style.width = (self.progress * 100) + '%';
