@@ -1811,55 +1811,27 @@
             pointer-events: none;
         }
         .loader-logo { text-align: center; }
-        .loader-casa {
+        .loader-svg {
+            width: clamp(240px, 40vw, 420px);
+            height: auto;
             display: block;
-            font-family: var(--font-b);
-            font-size: 13px;
-            letter-spacing: 0.6em;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 8px;
+            margin: 0 auto;
+            filter: invert(1);
             opacity: 0;
-            animation: loaderFadeIn 0.6s ease forwards 0.2s;
-        }
-        .loader-panza {
-            font-family: var(--font-d);
-            font-size: clamp(40px, 8vw, 72px);
-            font-weight: 300;
-            letter-spacing: 0.18em;
-            color: #fff;
-            line-height: 1;
-        }
-        .loader-panza .l {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(24px);
-            animation: loaderLetter 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-        }
-        .loader-panza .l:nth-child(1) { animation-delay: 0.4s; }
-        .loader-panza .l:nth-child(2) { animation-delay: 0.55s; }
-        .loader-panza .l:nth-child(3) { animation-delay: 0.7s; }
-        .loader-panza .l:nth-child(4) { animation-delay: 0.85s; }
-        .loader-panza .l:nth-child(5) { animation-delay: 1.05s; }
-        .loader-a-final svg { fill: var(--turquoise); }
-        .loader-a-final {
-            animation: loaderLetterFinal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
-            animation-delay: 1.05s !important;
+            transform: translateY(20px) scale(0.96);
+            animation: loaderReveal 1.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards 0.3s;
         }
         .loader-line {
             width: 0;
             height: 1px;
             background: var(--turquoise);
-            margin: 24px auto 0;
-            animation: loaderLine 1s ease forwards 1.4s;
+            margin: 20px auto 0;
+            animation: loaderLine 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) forwards 1.5s;
         }
-        @keyframes loaderFadeIn { to { opacity: 1; } }
-        @keyframes loaderLetter { to { opacity: 1; transform: translateY(0); } }
-        @keyframes loaderLetterFinal {
-            0% { opacity: 0; transform: translateY(24px) scale(0.8); }
-            60% { opacity: 1; transform: translateY(-6px) scale(1.12); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes loaderReveal {
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        @keyframes loaderLine { to { width: 120px; } }
+        @keyframes loaderLine { to { width: 140px; } }
 
         /* ── CUSTOM CURSOR ── */
         .cursor-dot {
@@ -2749,10 +2721,7 @@
 ══════════════════════════════════════════ -->
 <div id="brand-loader" aria-hidden="true">
     <div class="loader-logo">
-        <span class="loader-casa">C A S A</span>
-        <div class="loader-panza">
-            <span class="l">P</span><span class="l">A</span><span class="l">N</span><span class="l">Z</span><span class="l loader-a-final"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115" style="height:1em; width:auto; display:inline-block; vertical-align:baseline;"><use href="#cp-a"/></svg></span>
-        </div>
+        <img src="img/CASA_PANZA.svg" alt="Casa Panza" class="loader-svg">
         <div class="loader-line"></div>
     </div>
 </div>
@@ -2765,7 +2734,7 @@
 <script>
     /* ── BRAND LOADER ── */
     const loader = document.getElementById('brand-loader');
-    if (loader) setTimeout(() => loader.classList.add('hidden'), 2400);
+    if (loader) setTimeout(() => loader.classList.add('hidden'), 2600);
 
     /* ── CUSTOM CURSOR ── */
     const cursorDot = document.querySelector('.cursor-dot');
