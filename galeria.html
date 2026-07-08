@@ -2084,42 +2084,22 @@
         70% { transform: scaleY(1); opacity: 1; }
         100% { transform: scaleY(1); opacity: 0; }
     }
-    /* ── Cursor personalizado drag (vidrio esmerilado) ── */
+    /* ── Cursor minimalista: punto turquesa ── */
     .gal-cursor {
         position: fixed;
         top: 0; left: 0;
-        width: 84px; height: 84px;
+        width: 10px; height: 10px;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
+        background: var(--turquoise);
         pointer-events: none;
         z-index: 100;
-        background: rgba(20, 20, 20, 0.25);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.25);
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.4);
-        transition: opacity 0.3s cubic-bezier(0.25,0.1,0.25,1), transform 0.3s cubic-bezier(0.25,0.1,0.25,1);
+        transition: opacity 0.25s cubic-bezier(0.25,0.1,0.25,1), transform 0.25s cubic-bezier(0.25,0.1,0.25,1);
         will-change: transform;
     }
     .gal-cursor.active { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    .gal-cursor.grabbing { transform: translate(-50%, -50%) scale(0.82); background: rgba(42,191,191,0.35); }
-    .gal-cursor-label {
-        font-family: var(--font-b);
-        font-size: 9px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: #fff;
-    }
-    .gal-cursor-arrow { font-size: 11px; color: rgba(255,255,255,0.7); }
-    .gal-cursor-arrow:first-child { animation: cursorSwayL 1.6s ease-in-out infinite alternate; }
-    .gal-cursor-arrow:last-child { animation: cursorSwayR 1.6s ease-in-out infinite alternate; }
-    .gal-cursor.grabbing .gal-cursor-arrow { animation-play-state: paused; }
-    @keyframes cursorSwayL { from { transform: translateX(0); } to { transform: translateX(-2px); } }
-    @keyframes cursorSwayR { from { transform: translateX(0); } to { transform: translateX(2px); } }
+    .gal-cursor.grabbing { transform: translate(-50%, -50%) scale(2.2); opacity: 0.7; }
     .gal-h-sticky.cursor-hidden { cursor: none; }
     .gal-h-sticky.cursor-hidden a, .gal-h-sticky.cursor-hidden button { cursor: none; }
     /* counter con máscara para la transición de dígitos */
@@ -2408,12 +2388,8 @@
 </section>
 
 
-<!-- Cursor personalizado de la galería -->
-<div class="gal-cursor" aria-hidden="true">
-    <span class="gal-cursor-arrow">←</span>
-    <span class="gal-cursor-label" data-es="Arrastra" data-en="Drag">Arrastra</span>
-    <span class="gal-cursor-arrow">→</span>
-</div>
+<!-- Cursor minimalista de la galería -->
+<div class="gal-cursor" aria-hidden="true"></div>
 
 
 <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
