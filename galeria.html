@@ -7,11 +7,9 @@
     <!-- Performance: preconnect + preload hero -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preload" as="image" href="img/casa-panza-plano.jpg" fetchpriority="high">
-    <link rel="preload" as="image" href="img/casa-panza-fachada-hd.jpg">
 
     <!-- SEO -->
-    <title>Casa Panza | Alquiler de Lujo en Los Roques, Venezuela</title>
+    <title>Galería | Casa Panza — Los Roques, Venezuela</title>
     <meta name="description" content="Casa Panza: alquiler vacacional de lujo en Los Roques, Venezuela. Hasta 10 huéspedes, casa completa, frente al Caribe. Reserva por WhatsApp.">
     <meta name="keywords" content="Los Roques, Venezuela, alquiler turístico, casa de lujo, Gran Roque, Caribe, boutique, vacaciones, airbnb los roques">
     <meta name="author" content="Casa Panza">
@@ -25,15 +23,15 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Casa Panza">
-    <meta property="og:title" content="Casa Panza | Alquiler de Lujo en Los Roques">
+    <meta property="og:title" content="Galería | Casa Panza — Los Roques">
     <meta property="og:description" content="Casa frente al mar en Gran Roque. Acceso directo al Caribe, hasta 10 huéspedes, staff incluido. Reserva sin intermediarios.">
     <meta property="og:image" content="https://danielsalasarcay-boop.github.io/casa-panza/img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg">
-    <meta property="og:url" content="https://danielsalasarcay-boop.github.io/casa-panza/">
+    <meta property="og:url" content="https://danielsalasarcay-boop.github.io/casa-panza/galeria.html">
     <meta property="og:locale" content="es_VE">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Casa Panza | Alquiler de Lujo en Los Roques">
+    <meta name="twitter:title" content="Galería | Casa Panza — Los Roques">
     <meta name="twitter:description" content="Casa frente al mar en Gran Roque. Acceso directo al Caribe, hasta 10 huéspedes, staff incluido. Reserva sin intermediarios.">
     <meta name="twitter:image" content="https://danielsalasarcay-boop.github.io/casa-panza/img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg">
 
@@ -572,6 +570,62 @@
         /* ════════════════════════════════════════
            GALERÍA
         ════════════════════════════════════════ */
+        /* ── GALERÍA horizontal inmersiva ── */
+        .gal-h-section { height: 500vh; position: relative; padding: 0 !important; background: var(--black); overflow: clip; }
+        .gal-h-sticky { position: sticky; top: 0; height: 100vh; overflow: clip; display: flex; align-items: center; }
+        .gal-h-header {
+            position: absolute; top: 32px; left: 4vw; right: 4vw; z-index: 3;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .gal-h-header .s-label { color: rgba(255,255,255,0.5); margin: 0; }
+        .gal-h-counter { font-family: var(--font-d); font-size: 15px; color: rgba(255,255,255,0.7); letter-spacing: 0.2em; }
+        .gal-h-track {
+            display: flex; align-items: center; gap: 5vw;
+            padding: 0 8vw; will-change: transform;
+        }
+        .gal-h-item { flex-shrink: 0; margin: 0; position: relative; }
+        .gal-h-imgwrap { overflow: hidden; border-radius: 4px; }
+        .gal-h-item img {
+            display: block; object-fit: cover;
+            width: 32vw; height: 52vh;
+            transform: scale(1.15);
+            will-change: transform;
+        }
+        .gal-h-item:nth-child(3n) img { width: 26vw; height: 68vh; }   /* tall */
+        .gal-h-item:nth-child(4n) img { width: 44vw; height: 46vh; }   /* wide */
+        .gal-h-item figcaption {
+            display: flex; gap: 14px; align-items: baseline; margin-top: 14px;
+        }
+        .gal-h-num { font-family: var(--font-d); font-size: 13px; color: var(--turquoise); }
+        .gal-h-cap {
+            font-family: var(--font-b); font-size: 11px; letter-spacing: 0.22em;
+            text-transform: uppercase; color: rgba(255,255,255,0.55);
+        }
+        .gal-h-quote {
+            flex-shrink: 0; max-width: 30vw; margin: 0;
+            font-family: var(--font-d); font-size: clamp(26px, 3vw, 44px);
+            font-weight: 300; font-style: italic; line-height: 1.25; color: var(--white);
+        }
+        .gal-h-progress {
+            position: absolute; bottom: 32px; left: 4vw; right: 4vw;
+            height: 1px; background: rgba(255,255,255,0.15);
+        }
+        .gal-h-bar { height: 100%; width: 0%; background: var(--turquoise); }
+        @media (max-width: 768px) {
+            .gal-h-item img { width: 74vw !important; height: 48vh !important; }
+            .gal-h-quote { max-width: 78vw; }
+        }
+        /* Sin GSAP o reduced-motion: fluye en vertical */
+        .no-gsap .gal-h-section { height: auto; }
+        .no-gsap .gal-h-sticky { position: static; height: auto; }
+        .no-gsap .gal-h-track { flex-wrap: wrap; justify-content: center; padding: 96px 8vw 64px; }
+        @media (prefers-reduced-motion: reduce) {
+            .gal-h-section { height: auto !important; }
+            .gal-h-sticky { position: static !important; height: auto !important; }
+            .gal-h-track { flex-wrap: wrap; justify-content: center; padding: 96px 8vw 64px; transform: none !important; }
+            .gal-h-item img { transform: none !important; }
+        }
+
         /* ── Panel galería completa ── */
         #galeria-panel {
             position: fixed;
@@ -2008,9 +2062,75 @@
             }
         }
     </style>
+<style>
+    /* ── Hero de galería ── */
+    .gal-hero {
+        position: relative;
+        height: 100vh; min-height: 580px;
+        background: var(--black);
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        text-align: center; gap: 28px; padding: 0 24px;
+    }
+    .gal-hero .s-label { color: rgba(255,255,255,0.5); margin: 0; }
+    .gal-hero-title {
+        font-family: var(--font-d); font-weight: 300;
+        font-size: clamp(48px, 8vw, 110px);
+        color: var(--white); line-height: 1.05; margin: 0;
+    }
+    .gal-scroll-hint {
+        position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+        display: flex; flex-direction: column; align-items: center; gap: 12px;
+        font-family: var(--font-b); font-size: 11px;
+        letter-spacing: 0.25em; text-transform: uppercase;
+        color: rgba(255,255,255,0.5);
+    }
+    .hint-line {
+        width: 1px; height: 60px;
+        background: var(--turquoise);
+        transform-origin: top;
+        animation: hintPulse 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+    }
+    @keyframes hintPulse {
+        0% { transform: scaleY(0); opacity: 1; }
+        70% { transform: scaleY(1); opacity: 1; }
+        100% { transform: scaleY(1); opacity: 0; }
+    }
+    /* ── Tarjeta CTA al final del track ── */
+    .gal-h-end {
+        flex-shrink: 0;
+        width: 26vw; height: 68vh;
+        border: 1px solid var(--turquoise);
+        border-radius: 4px;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 28px; text-align: center; padding: 0 3vw;
+    }
+    .gal-h-end p {
+        font-family: var(--font-d); font-size: 32px;
+        font-weight: 300; font-style: italic;
+        color: var(--white); line-height: 1.3; margin: 0;
+    }
+    @media (max-width: 768px) { .gal-h-end { width: 74vw; height: 48vh; } }
+    /* ── Cursor personalizado drag ── */
+    .gal-cursor {
+        position: fixed; top: 0; left: 0;
+        width: 64px; height: 64px; border-radius: 50%;
+        background: rgba(42,191,191,0.85); color: #fff;
+        font-family: var(--font-b); font-size: 10px;
+        letter-spacing: 0.18em; text-transform: uppercase;
+        display: flex; align-items: center; justify-content: center;
+        pointer-events: none; z-index: 60;
+        transform: translate(-50%,-50%) scale(0);
+        transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .gal-cursor.on { transform: translate(-50%,-50%) scale(1); }
+    @media (hover: hover) { .gal-h-sticky { cursor: none; } }
+    /* ── Link activo del navbar ── */
+    #navbar .nav-active span, .mobile-menu .nav-active span { color: var(--turquoise) !important; }
+</style>
 </head>
 <body>
-<script>(function(){var b='v=20250428';if(location.search.indexOf(b)<0){var s=location.search?location.search+'&'+b:'?'+b;history.replaceState(null,'',location.pathname+s+(location.hash||''));}}());</script>
 
 <!-- SVG symbol defs — reutilizable en toda la página -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -2021,11 +2141,8 @@
   </defs>
 </svg>
 
-<!-- ══════════════════════════════════════════
-     NAVBAR
-══════════════════════════════════════════ -->
-<nav id="navbar" class="on-light" role="navigation" aria-label="Navegación principal">
-    <a href="#revelacion" class="nav-logo" aria-label="Casa Panza">
+<nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="Casa Panza">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 792" style="width:160px;height:auto;display:block;" aria-hidden="true">
           <g>
             <path d="M286.2,318.43l-1.52,3.87c-1.45-1.06-3.73-1.59-6.84-1.59-2.91,0-5.25,1.25-7.01,3.76-1.76,2.51-2.64,5.74-2.64,9.69s.9,6.84,2.71,9.18c1.8,2.35,4.13,3.52,6.99,3.52,3.11,0,5.5-1.1,7.18-3.31l2.49,3.47c-2.63,2.61-6.01,3.92-10.15,3.92s-7.75-1.56-10.24-4.69-3.74-7.25-3.74-12.37,1.33-9.07,3.99-12.34c2.66-3.28,6.09-4.92,10.31-4.92,3.61,0,6.43.6,8.47,1.79Z"/>
@@ -2044,11 +2161,11 @@
     </a>
 
     <ul class="nav-links">
-        <li><a href="#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
-        <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
-        <li><a href="galeria.html"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
-        <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
-        <li><a href="#roques"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a></li>
+        <li><a href="index.html#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
+        <li><a href="index.html#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
+        <li><a href="galeria.html" class="nav-active" aria-current="page"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
+        <li><a href="index.html#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
+        <li><a href="index.html#roques"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a></li>
         <li aria-hidden="true" class="nav-sep">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115" style="height:14px;width:auto;opacity:0.3;"><use href="#cp-a"/></svg>
         </li>
@@ -2074,11 +2191,11 @@
 </nav>
 
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú móvil">
-    <a href="#sobre"    class="m-link"><span data-es="La Casa"    data-en="The House">La Casa</span></a>
-    <a href="#espacios" class="m-link"><span data-es="Espacios"  data-en="Spaces">Espacios</span></a>
-    <a href="galeria.html"  class="m-link"><span data-es="Galería"   data-en="Gallery">Galería</span></a>
-    <a href="#contacto" class="m-link"><span data-es="Contacto"  data-en="Contact">Contacto</span></a>
-    <a href="#roques"   class="m-link"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a>
+    <a href="index.html#sobre"    class="m-link"><span data-es="La Casa"    data-en="The House">La Casa</span></a>
+    <a href="index.html#espacios" class="m-link"><span data-es="Espacios"  data-en="Spaces">Espacios</span></a>
+    <a href="galeria.html"  class="m-link nav-active" aria-current="page"><span data-es="Galería"   data-en="Gallery">Galería</span></a>
+    <a href="index.html#contacto" class="m-link"><span data-es="Contacto"  data-en="Contact">Contacto</span></a>
+    <a href="index.html#roques"   class="m-link"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a>
     <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
        class="m-link m-cta" target="_blank" rel="noopener noreferrer" data-wa-link>
         <i class="fab fa-whatsapp"></i>
@@ -2093,403 +2210,209 @@
 
 
 <!-- ══════════════════════════════════════════
-     HERO
+     HERO GALERÍA
 ══════════════════════════════════════════ -->
-<section id="revelacion" class="reveal-section" aria-label="Portada">
-    <div class="reveal-sticky">
-
-    <img src="img/casa-panza-plano.jpg" alt="Plano arquitectónico Casa Panza" class="reveal-img reveal-sketch" loading="eager" decoding="async" fetchpriority="high">
-    <img src="img/casa-panza-fachada-hd.jpg" alt="Casa Panza real" class="reveal-img reveal-photo" loading="eager" decoding="async">
-
-    <!-- Lente mágico: anillo decorativo (las capas clip-path se clonan por JS) -->
-    <div class="lens-ring-solo" aria-hidden="true"></div>
-    <div class="reveal-scanline" aria-hidden="true"></div>
-
-    <!-- Nombre masivo estilo editorial -->
-    <h1 class="hero-mega" aria-label="Casa Panza">
-        <span class="mega-line">CASA</span>
-        <span class="mega-line">PANZA</span>
-    </h1>
-
-    <!-- SVG Logo — top left -->
-    <a href="#revelacion" class="hero-logo" aria-label="Casa Panza">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 792" aria-hidden="true">
-          <g>
-            <path d="M286.2,318.43l-1.52,3.87c-1.45-1.06-3.73-1.59-6.84-1.59-2.91,0-5.25,1.25-7.01,3.76-1.76,2.51-2.64,5.74-2.64,9.69s.9,6.84,2.71,9.18c1.8,2.35,4.13,3.52,6.99,3.52,3.11,0,5.5-1.1,7.18-3.31l2.49,3.47c-2.63,2.61-6.01,3.92-10.15,3.92s-7.75-1.56-10.24-4.69-3.74-7.25-3.74-12.37,1.33-9.07,3.99-12.34c2.66-3.28,6.09-4.92,10.31-4.92,3.61,0,6.43.6,8.47,1.79Z"/>
-            <path d="M325.02,350.4l-2.29-7h-12.34l-2.45,7h-5.07l13.48-33.64h1.2l12.5,33.64h-5.03ZM316.73,325.46l-5.14,14.61h9.85l-4.71-14.61Z"/>
-            <path d="M345.45,348.88l1.65-4.17c.85.62,1.9,1.14,3.16,1.55,1.26.42,2.39.62,3.39.62,1.77,0,3.19-.48,4.26-1.45,1.07-.97,1.61-2.2,1.61-3.69,0-1.12-.3-2.16-.89-3.11-.6-.96-2.1-2-4.5-3.14l-2.67-1.25c-2.27-1.06-3.85-2.31-4.75-3.76-.9-1.45-1.35-3.19-1.35-5.23,0-2.48.88-4.53,2.63-6.16,1.75-1.63,4-2.45,6.75-2.45,3.67,0,6.22.6,7.66,1.79l-1.34,3.94c-.6-.44-1.53-.86-2.76-1.27-1.24-.41-2.39-.61-3.44-.61-1.54,0-2.75.44-3.64,1.31-.88.88-1.33,2-1.33,3.38,0,.85.16,1.62.48,2.31.32.69.76,1.28,1.33,1.74.57.47,1.73,1.13,3.48,1.97l2.72,1.29c2.27,1.07,3.85,2.35,4.77,3.84.91,1.49,1.37,3.38,1.37,5.67,0,2.49-1,4.61-3,6.34-2,1.74-4.68,2.6-8.03,2.6-2.94,0-5.46-.69-7.54-2.08Z"/>
-            <path d="M401.51,350.4l-2.29-7h-12.34l-2.45,7h-5.07l13.48-33.64h1.2l12.5,33.64h-5.03ZM393.22,325.46l-5.14,14.61h9.85l-4.71-14.61Z"/>
-          </g>
-          <g>
-            <path d="M282.44,371.7c-2.17,0-8.51.23-19,.69v101.58h13.87v-39.11c5.27.46,8.69.69,10.26.69,26.07,0,39.11-11.42,39.11-34.25,0-19.74-14.75-29.61-44.24-29.61ZM286.6,423.08c-.32,0-3.42-.23-9.29-.69v-37.51c3.19-.46,5.71-.69,7.56-.69,18.35,0,27.53,6.19,27.53,18.58,0,13.54-8.6,20.32-25.79,20.32Z"/>
-            <polygon points="398.98 371 357.72 473.97 373.26 473.97 380.74 452.54 400.16 397.63 418.53 452.54 425.53 473.97 440.93 473.97 402.65 371 398.98 371"/>
-            <polygon points="549.29 442.63 498.19 372.39 492.64 372.39 492.64 473.97 505.82 473.97 505.82 401.1 558.3 475.36 562.46 475.36 562.46 372.39 549.29 372.39 549.29 442.63"/>
-            <polygon points="683.59 375.86 683.59 372.39 621.53 372.39 621.53 384.87 664.52 384.87 620.84 470.5 620.84 473.97 685.11 473.97 685.11 461.49 639.77 461.49 683.59 375.86"/>
-            <path d="M801.17,473.97h15.39l-38.27-102.96h-3.67l-41.25,102.96h15.53l7.49-21.42.5-1.42c.72.67,1.44,1.35,2.13,2.05,2.29,2.3,4.38,4.8,6.55,7.22,1.17-.11,2.34-.22,3.51-.33-1.57-1.48-3.15-2.96-4.72-4.44,1,.2,2.14.14,2.96.63,5.08,3.03,10.47,4.71,16.43,4.12,1.4-.14,2.78-.45,4.26-.44-2.91,3.08-6.23,5.38-10.68,5.15-3.58-.19-5.61-3.16-8.25-5.02-1.17.11-2.34.22-3.51.33,2.96,2.34,5.63,5.29,8.95,6.86,5.26,2.49,9.85-.25,14.03-3.47.62-.48,1.18-1.04,1.81-1.49.21-.15.57-.09,1.41-.2.23,2.22.46,4.42.69,6.61-.19.96-.38,1.92-.57,2.89,1.75.79,3.49,1.57,5.24,2.36.75,0,1.5.02,2.25.03-.72-1.03-1.34-2.15-2.18-3.07-1.87-2.07-2.33-4.37-1.52-6.99.11-.37.3-.78.23-1.13-.35-1.7-.28-3.23.09-4.64l5.17,15.82ZM787.84,453.96c-.8.53-1.51,1.23-2.37,1.62-.72.33-1.94.72-2.35.38-3.07-2.57-6.46-1.82-9.67-.85-2.14.65-3.47.04-4.81-1.35-.53-2.69-2.73-4.4-5.4-4.77-1.71-.24-3.43-.93-4.96-1.77,0,0,0,0,0,0l17.53-49.59,17.97,53.71c-2.04.76-4.13,1.44-5.93,2.62Z"/>
-          </g>
-        </svg>
-    </a>
-
-    <!-- Watermark símbolo -->
-    <div class="hero-watermark" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg>
-    </div>
-
-    <!-- WhatsApp button — bottom left -->
-    <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20%F0%9F%8C%8A%20Estoy%20listo%20para%20vivir%20Los%20Roques.%20%C2%BFCu%C3%A1ndo%20tienen%20disponibilidad%3F"
-       class="hero-wa" target="_blank" rel="noopener noreferrer">
-        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path class="wa-icon-phone" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/>
-            <path class="wa-icon-bg" d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.526 5.858L0 24l6.335-1.652A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.011-1.374l-.36-.213-3.731.978.995-3.631-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" fill="#25D366"/>
-        </svg>
-        <span class="wa-text-long" data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span>
-        <span class="wa-text-short" data-es="Reservar" data-en="Book">Reservar</span>
-    </a>
-
-    <p class="reveal-caption" data-es="De un sueño... <span style='color:var(--turquoise)'>al paraíso</span>" data-en="From a dream... <span style='color:var(--turquoise)'>to paradise</span>" data-html="true">De un sueño... <span style="color:var(--turquoise)">al paraíso</span></p>
-
+<section class="gal-hero">
+    <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
+    <h1 class="gal-hero-title" data-es="Así se ve <em style='color:var(--turquoise); font-style:italic;'>el paraíso</em>" data-en="This is what <em style='color:var(--turquoise); font-style:italic;'>paradise</em> looks like" data-html="true">Así se ve <em style="color:var(--turquoise); font-style:italic;">el paraíso</em></h1>
+    <div class="gal-scroll-hint">
+        <span data-es="Desliza para explorar" data-en="Scroll to explore">Desliza para explorar</span>
+        <div class="hint-line"></div>
     </div>
 </section>
 
 
 <!-- ══════════════════════════════════════════
-     SOBRE CASA PANZA
+     GALERÍA HORIZONTAL INMERSIVA
 ══════════════════════════════════════════ -->
-<section id="sobre">
-    <div class="container">
-        <div class="about-wrap">
-
-            <div class="about-text fade-up">
-                <p class="s-label" data-es="Nuestra historia" data-en="Our story">Nuestra historia</p>
-                <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
-                <h2 class="s-title"
-                    data-es="Un hogar a la<br><em style='color:var(--turquoise);font-style:italic;'>altura del paraíso</em>"
-                    data-en="A home that<br><em style='color:var(--turquoise);font-style:italic;'>matches paradise</em>"
-                    data-html="true">Un hogar a la<br><em style="color:var(--turquoise);font-style:italic;">altura del paraíso</em></h2>
-
-                <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(42,191,191,0.12); border:1px solid rgba(42,191,191,0.3); border-radius:4px; padding:8px 16px; margin-bottom:24px;">
-                    <i class="fas fa-water" style="color:#2ABFBF; font-size:13px;"></i>
-                    <span style="font-family:var(--font-b); font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:#2ABFBF;" data-es="Acceso directo al mar · Vista frontal al Caribe" data-en="Direct sea access · Front Caribbean view">Acceso directo al mar · Vista frontal al Caribe</span>
-                </div>
-
-                <p class="about-copy"
-                   data-es="Casa Panza nació del amor por Los Roques y la convicción de que el paraíso merece un hogar a su altura. Espacios blancos, materiales naturales y atención al detalle en cada rincón — para que tu única preocupación sea disfrutar el <em>turquesa</em>.<br><br>Ubicada en Gran Roque, isla declarada Parque Nacional, Casa Panza fusiona el minimalismo costero más refinado con el alma auténtica del Caribe venezolano. Despierta con el sonido del mar. Duerme bajo el cielo más estrellado donde el azul del Caribe se vuelve infinito."
-                   data-en="Casa Panza was born from a love for Los Roques and the conviction that paradise deserves a home to match. White spaces, natural materials and attention to detail in every corner — so your only concern is enjoying the <em>turquoise</em>.<br><br>Located in Gran Roque, an island declared a National Park, Casa Panza blends the most refined coastal minimalism with the authentic soul of the Venezuelan Caribbean. Wake up to the sound of the sea. Sleep under the most star-filled sky where the blue of the Caribbean turns infinite."
-                   data-html="true">
-                    Casa Panza nació del amor por Los Roques y la convicción de que el paraíso merece un hogar a su altura. Espacios blancos, materiales naturales y atención al detalle en cada rincón — para que tu única preocupación sea disfrutar el <em>turquesa</em>.
-                    <br><br>
-                    Ubicada en Gran Roque, isla declarada Parque Nacional, Casa Panza fusiona el minimalismo costero más refinado con el alma auténtica del Caribe venezolano. Despierta con el sonido del mar. Duerme bajo el cielo más estrellado donde el azul del Caribe se vuelve infinito.
-                </p>
-
-                <div class="stats-row" style="display:flex; gap:48px; margin-top:40px; flex-wrap:wrap;">
-                    <div><span class="stat-num" data-target="10" style="font-family:var(--font-d); font-size:42px; color:var(--turquoise);">0</span><p style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray);" data-es="Huéspedes" data-en="Guests">Huéspedes</p></div>
-                    <div><span class="stat-num" data-target="45" style="font-family:var(--font-d); font-size:42px; color:var(--turquoise);">0</span><p style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray);" data-es="Min desde Caracas" data-en="Min from Caracas">Min desde Caracas</p></div>
-                </div>
-
-                <div class="amenities">
-                    <div class="amen fade-up">
-                        <span class="amen-icon"><i class="fas fa-house"></i></span>
-                        <span class="amen-text" data-es="Hasta 10 huéspedes" data-en="Up to 10 guests">Hasta 10 huéspedes</span>
-                    </div>
-                    <div class="amen fade-up" style="transition-delay:0.1s">
-                        <span class="amen-icon"><i class="fas fa-snowflake"></i></span>
-                        <span class="amen-text" data-es="Aire acondicionado" data-en="Air conditioning">Aire acondicionado</span>
-                    </div>
-                    <div class="amen fade-up" style="transition-delay:0.2s">
-                        <span class="amen-icon"><i class="fas fa-utensils"></i></span>
-                        <span class="amen-text" data-es="Cocina completa" data-en="Full kitchen">Cocina completa</span>
-                    </div>
-                    <div class="amen fade-up" style="transition-delay:0.3s">
-                        <span class="amen-icon"><i class="fas fa-wifi"></i></span>
-                        <span class="amen-text" data-es="WiFi disponible" data-en="WiFi available">WiFi disponible</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="about-img fade-in">
-                <img src="img/OBW_6821.JPG" alt="Comedor de Casa Panza, mesa lista para celebrar" width="900" height="640" loading="lazy" decoding="async">
-                <div class="about-accent" aria-hidden="true"></div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     ESPACIOS
-══════════════════════════════════════════ -->
-<section id="espacios">
-    <div class="container">
-
-        <div class="esp-hd fade-up">
-            <p class="s-label" data-es="Los espacios" data-en="The Spaces">Los espacios</p>
-            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
-            <h2 class="s-title"
-                data-es="Cada rincón,<br>una experiencia"
-                data-en="Every corner,<br>an experience"
-                data-html="true">Cada rincón,<br>una experiencia</h2>
-            <p class="s-sub" data-es="Espacios diseñados con intención. Blanco como la arena, profundo como el mar." data-en="Spaces designed with intention. White as the sand, deep as the sea.">Espacios diseñados con intención. Blanco como la arena, profundo como el mar.</p>
-        </div>
-
-        <div class="esp-grid">
-
-            <!-- Card 1 — Sala de Estar -->
-            <div class="esp-card fade-up" style="transition-delay:0s" data-espacio="sala">
-                <div class="esp-img">
-                    <img src="img/OBW_6660.JPG" alt="Sala de estar con vista al mar, Casa Panza" width="800" height="600" loading="lazy" decoding="async">
-                    <img class="esp-img-hover" src="img/OBW_6612.JPG" alt="" aria-hidden="true" loading="lazy" decoding="async">
-                    <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
-                    <div class="esp-ov"><span data-es="Sala de Estar" data-en="Living Room">Sala de Estar</span></div>
-                </div>
-                <div class="esp-body">
-                    <h3 class="esp-name" data-es="Sala de Estar" data-en="Living Room">Sala de Estar</h3>
-                    <p class="esp-desc" data-es="Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala." data-en="L-shaped sofa facing the sea, white beam ceiling and windows that erase the line between inside and outside. Where the Caribbean enters the living room.">Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala.</p>
-                    <button class="esp-ver-btn" data-es="Ver fotos del espacio" data-en="View space photos">Ver fotos del espacio</button>
-                </div>
-            </div>
-
-            <!-- Card 2 — Suite Principal -->
-            <div class="esp-card fade-up" style="transition-delay:0.08s" data-espacio="suite">
-                <div class="esp-img">
-                    <img src="img/OBW_6791.JPG" alt="Suite Principal de Casa Panza" width="800" height="600" loading="lazy" decoding="async">
-                    <img class="esp-img-hover" src="img/OBW_6463.JPG" alt="" aria-hidden="true" loading="lazy" decoding="async">
-                    <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
-                    <div class="esp-ov"><span data-es="Suite Principal" data-en="Master Suite">Suite Principal</span></div>
-                </div>
-                <div class="esp-body">
-                    <h3 class="esp-name" data-es="Suite Principal" data-en="Master Suite">Suite Principal</h3>
-                    <p class="esp-desc" data-es="Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma." data-en="Double bed, handcrafted jute textiles and sphere lamps. Pure white to wake up in peace.">Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma.</p>
-                    <button class="esp-ver-btn" data-es="Ver fotos del espacio" data-en="View space photos">Ver fotos del espacio</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     GALERÍA
-══════════════════════════════════════════ -->
-<section id="galeria" class="gal-teaser">
-    <div class="container" style="text-align:center;">
-        <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
-        <h2 class="s-title" data-es="Así se ve Casa Panza" data-en="This is Casa Panza">Así se ve Casa Panza</h2>
-        <a href="galeria.html" class="btn-reservar" style="margin-top:24px; display:inline-block;" data-es="Explorar la galería →" data-en="Explore the gallery →">Explorar la galería →</a>
-    </div>
-</section>
-
-<!-- Panel galería completa -->
-<div id="galeria-panel" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Galería completa Casa Panza">
-    <div class="gp-header">
-        <div class="gp-brand">Casa Panza</div>
-        <div class="gp-tabs" id="galeria-tabs">
-            <button class="galeria-tab active" data-cat="todas" data-es="Todas" data-en="All">Todas</button>
-            <button class="galeria-tab" data-cat="exterior" data-es="Exterior" data-en="Exterior">Exterior</button>
-            <button class="galeria-tab" data-cat="sala" data-es="Sala &amp; Comedor" data-en="Living &amp; Dining">Sala &amp; Comedor</button>
-            <button class="galeria-tab" data-cat="habitaciones" data-es="Habitaciones" data-en="Bedrooms">Habitaciones</button>
-            <button class="galeria-tab" data-cat="cocina" data-es="Cocina &amp; Baños" data-en="Kitchen &amp; Baths">Cocina &amp; Baños</button>
-            <button class="galeria-tab" data-cat="losroques" data-es="Los Roques" data-en="Los Roques">Los Roques</button>
-        </div>
-        <button class="gp-close" id="btn-cerrar-galeria">
-            ✕ <span data-es="Cerrar" data-en="Close">Cerrar</span>
-        </button>
-    </div>
-    <div id="galeria-grid"></div>
-</div>
-
-<!-- Lightbox -->
-<div id="lb" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
-    <button class="lb-close" id="lbClose" aria-label="Cerrar"><i class="fas fa-times"></i></button>
-    <button class="lb-prev"  id="lbPrev"  aria-label="Imagen anterior"><i class="fas fa-chevron-left"></i></button>
-    <img id="lb-img" src="" alt="">
-    <button class="lb-next"  id="lbNext"  aria-label="Imagen siguiente"><i class="fas fa-chevron-right"></i></button>
-    <div id="lb-counter" class="lb-counter" aria-live="polite" aria-atomic="true"></div>
-</div>
-
-
-
-
-<!-- ══════════════════════════════════════════
-     COMODIDADES
-══════════════════════════════════════════ -->
-<section id="comodidades">
-    <div class="container">
-        <div class="com-hd fade-up">
-            <p class="s-label" data-es="Lo que incluye" data-en="What's included">Lo que incluye</p>
-            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
-            <h2 class="s-title" data-es="Comodidades" data-en="Amenities">Comodidades</h2>
-        </div>
-        <div class="com-grid fade-up">
-            <div class="com-col">
-                <p class="com-col-title" data-es="Incluido en tu estadía" data-en="Included in your stay">Incluido en tu estadía</p>
-                <ul class="com-list">
-                    <li class="com-item"><i class="fas fa-snowflake" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="A/C control individual" data-en="Individual A/C control">A/C control individual</span></li>
-                    <li class="com-item"><i class="fas fa-shower" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Baño privado" data-en="Private bathroom">Baño privado</span></li>
-                    <li class="com-item"><i class="fas fa-droplet" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Agua caliente" data-en="Hot water">Agua caliente</span></li>
-                    <li class="com-item"><i class="fas fa-bottle-water" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Agua embotellada" data-en="Bottled water">Agua embotellada</span></li>
-                    <li class="com-item"><i class="fas fa-soap" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Amenidades de baño" data-en="Bath amenities">Amenidades de baño</span></li>
-                    <li class="com-item"><i class="fas fa-cookie-bite" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Comida gourmet" data-en="Gourmet food">Comida gourmet</span></li>
-                    <li class="com-item"><i class="fas fa-expand" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Distribución amplia" data-en="Spacious layout">Distribución amplia</span></li>
-                    <li class="com-item"><i class="fas fa-hand-sparkles" style="color:var(--turquoise);font-size:13px;margin-right:8px;"></i><span data-es="Servicio de toallas" data-en="Towel service">Servicio de toallas</span></li>
-                </ul>
-            </div>
-            <div class="com-col">
-                <p class="com-col-title" data-es="Nuestro equipo" data-en="Our team">Nuestro equipo</p>
-                <div class="com-staff">
-                    <div class="com-staff-card">
-                        <span class="com-staff-num">01</span>
-                        <div class="com-staff-info">
-                            <strong data-es="Staff" data-en="Staff">Staff</strong>
-                            <span data-es="Disponible para asistirte durante toda tu estadía." data-en="Available to assist you throughout your stay.">Disponible para asistirte durante toda tu estadía.</span>
-                        </div>
-                    </div>
-                    <div class="com-staff-card">
-                        <span class="com-staff-num">02</span>
-                        <div class="com-staff-info">
-                            <strong data-es="Limpieza diaria" data-en="Daily cleaning">Limpieza diaria</strong>
-                            <span data-es="Habitaciones y áreas comunes incluidas." data-en="Rooms and common areas included.">Habitaciones y áreas comunes incluidas.</span>
-                        </div>
-                    </div>
-                    <div class="com-staff-card">
-                        <span class="com-staff-num">03</span>
-                        <div class="com-staff-info">
-                            <strong data-es="Chef privado" data-en="Private chef">Chef privado</strong>
-                            <span data-es="Cocina gourmet de alta calidad." data-en="High quality gourmet cuisine.">Cocina gourmet de alta calidad.</span>
-                        </div>
-                    </div>
-                </div>
+<section id="galeria" class="gal-h-section" aria-label="Galería">
+    <div class="gal-h-sticky">
+        <header class="gal-h-header">
+            <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
+            <span class="gal-h-counter"><span class="gal-current">01</span> / <span class="gal-total">00</span></span>
+        </header>
+        <div class="gal-h-track">
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6653.JPG" alt="Fachada Casa Panza" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">01</span>
+                    <span class="gal-h-cap" data-es="Fachada Casa Panza" data-en="Casa Panza facade">Fachada Casa Panza</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/ENTRADA_CASA_PANZA.JPG" alt="Entrada de Casa Panza" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">02</span>
+                    <span class="gal-h-cap" data-es="Entrada de Casa Panza" data-en="Casa Panza entrance">Entrada de Casa Panza</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/jardin-buganvilias.jpg" alt="Jardín con buganvilias, Casa Panza" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">03</span>
+                    <span class="gal-h-cap" data-es="Jardín con buganvilias, Casa Panza" data-en="Bougainvillea garden, Casa Panza">Jardín con buganvilias, Casa Panza</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6660.JPG" alt="Sala de estar con vista al mar" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">04</span>
+                    <span class="gal-h-cap" data-es="Sala de estar con vista al mar" data-en="Living room with sea view">Sala de estar con vista al mar</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6612.JPG" alt="Sala de estar" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">05</span>
+                    <span class="gal-h-cap" data-es="Sala de estar" data-en="Living room">Sala de estar</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6599.JPG" alt="Sala ángulo alternativo" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">06</span>
+                    <span class="gal-h-cap" data-es="Sala ángulo alternativo" data-en="Living room alternative angle">Sala ángulo alternativo</span>
+                </figcaption>
+            </figure>
+            <blockquote class="gal-h-quote" data-es="Cada rincón <em style='color:var(--turquoise)'>cuenta una historia</em>" data-en="Every corner <em style='color:var(--turquoise)'>tells a story</em>" data-html="true">Cada rincón <em style="color:var(--turquoise)">cuenta una historia</em></blockquote>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6634.JPG" alt="Comedor y cocina con vista al mar" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">07</span>
+                    <span class="gal-h-cap" data-es="Comedor y cocina con vista al mar" data-en="Dining and kitchen with sea view">Comedor y cocina con vista al mar</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6821.JPG" alt="Comedor montado" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">08</span>
+                    <span class="gal-h-cap" data-es="Comedor montado" data-en="Set dining table">Comedor montado</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6822.JPG" alt="Detalle comedor" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">09</span>
+                    <span class="gal-h-cap" data-es="Detalle comedor" data-en="Dining detail">Detalle comedor</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6819.JPG" alt="Comedor exterior" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">10</span>
+                    <span class="gal-h-cap" data-es="Comedor exterior" data-en="Outdoor dining">Comedor exterior</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6626.JPG" alt="Cocina equipada" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">11</span>
+                    <span class="gal-h-cap" data-es="Cocina equipada" data-en="Equipped kitchen">Cocina equipada</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6622.JPG" alt="Cocina isla de madera" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">12</span>
+                    <span class="gal-h-cap" data-es="Cocina isla de madera" data-en="Kitchen wooden island">Cocina isla de madera</span>
+                </figcaption>
+            </figure>
+            <blockquote class="gal-h-quote" data-es="El paraíso no se describe.<br><em style='color:var(--turquoise)'>Se reserva.</em>" data-en="Paradise isn't described.<br><em style='color:var(--turquoise)'>It's reserved.</em>" data-html="true">El paraíso no se describe.<br><em style="color:var(--turquoise)">Se reserva.</em></blockquote>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6791.JPG" alt="Suite principal" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">13</span>
+                    <span class="gal-h-cap" data-es="Suite principal" data-en="Master suite">Suite principal</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6463.JPG" alt="Suite principal gran angular" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">14</span>
+                    <span class="gal-h-cap" data-es="Suite principal gran angular" data-en="Master suite wide angle">Suite principal gran angular</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6785.JPG" alt="Detalle almohadas" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">15</span>
+                    <span class="gal-h-cap" data-es="Detalle almohadas" data-en="Pillow detail">Detalle almohadas</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6592.JPG" alt="Habitación familiar" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">16</span>
+                    <span class="gal-h-cap" data-es="Habitación familiar" data-en="Family room">Habitación familiar</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6456.JPG" alt="Habitación familiar con litera" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">17</span>
+                    <span class="gal-h-cap" data-es="Habitación familiar con litera" data-en="Family room with bunk bed">Habitación familiar con litera</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6586.JPG" alt="Habitación lounge" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">18</span>
+                    <span class="gal-h-cap" data-es="Habitación lounge" data-en="Lounge room">Habitación lounge</span>
+                </figcaption>
+            </figure>
+            <blockquote class="gal-h-quote" data-es="Donde el turquesa <em style='color:var(--turquoise)'>entra por la ventana.</em>" data-en="Where the turquoise <em style='color:var(--turquoise)'>comes through the window.</em>" data-html="true">Donde el turquesa <em style="color:var(--turquoise)">entra por la ventana.</em></blockquote>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6496.JPG" alt="Habitación con litera" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">19</span>
+                    <span class="gal-h-cap" data-es="Habitación con litera" data-en="Room with bunk bed">Habitación con litera</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6810.JPG" alt="Baño de diseño" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">20</span>
+                    <span class="gal-h-cap" data-es="Baño de diseño" data-en="Designer bathroom">Baño de diseño</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6801.JPG" alt="Detalle toallas Casa Panza" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">21</span>
+                    <span class="gal-h-cap" data-es="Detalle toallas Casa Panza" data-en="Casa Panza towel detail">Detalle toallas Casa Panza</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/IMG_0864.JPG" alt="Mar turquesa Los Roques" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">22</span>
+                    <span class="gal-h-cap" data-es="Mar turquesa Los Roques" data-en="Turquoise sea Los Roques">Mar turquesa Los Roques</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/IMG_0861.JPG" alt="Arrecife Los Roques desde drone" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">23</span>
+                    <span class="gal-h-cap" data-es="Arrecife Los Roques desde drone" data-en="Los Roques reef from drone">Arrecife Los Roques desde drone</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/IMG_0720.JPG" alt="Lancha en aguas cristalinas" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">24</span>
+                    <span class="gal-h-cap" data-es="Lancha en aguas cristalinas" data-en="Boat in crystal clear waters">Lancha en aguas cristalinas</span>
+                </figcaption>
+            </figure>
+            <div class="gal-h-end">
+                <p data-es="¿Te imaginas despertar aquí?" data-en="Can you imagine waking up here?">¿Te imaginas despertar aquí?</p>
+                <a href="index.html#contacto" class="btn-reservar" data-es="Reservar ahora" data-en="Book now">Reservar ahora</a>
             </div>
         </div>
+        <div class="gal-h-progress"><div class="gal-h-bar"></div></div>
     </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════
-     CONTACTO
-══════════════════════════════════════════ -->
-<section id="contacto">
-    <div class="container">
-        <div class="con-center fade-up">
-            <p class="s-label" data-es="Reservas" data-en="Reservations">Reservas</p>
-            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
-            <h2 class="s-title"
-                data-es="Reserva<br>tu estadía"
-                data-en="Book<br>your stay"
-                data-html="true">Reserva<br>tu estadía</h2>
-            <p class="s-sub"
-               data-es="No hay intermediarios. No hay comisiones. Solo tú, nosotros y el Caribe."
-               data-en="No intermediaries. No commissions. Just you, us and the Caribbean."
-               >No hay intermediarios. No hay comisiones. Solo tú, nosotros y el Caribe.</p>
-
-            <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
-               class="con-wa magnetic" target="_blank" rel="noopener noreferrer" data-wa-link>
-                <i class="fab fa-whatsapp"></i>
-                <span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span>
-            </a>
-
-            <div class="con-details-row">
-                <div class="con-detail">
-                    <div class="con-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div class="con-txt">
-                        <strong data-es="Ubicación" data-en="Location">Ubicación</strong>
-                        <span>Gran Roque, Los Roques, Venezuela</span>
-                    </div>
-                </div>
-                <div class="con-detail">
-                    <div class="con-icon"><i class="fas fa-concierge-bell"></i></div>
-                    <div class="con-txt">
-                        <strong data-es="Incluye staff" data-en="Staff included">Incluye staff</strong>
-                        <span data-es="Equipo completo para atender cada detalle" data-en="Full team to take care of every detail">Equipo completo para atender cada detalle</span>
-                    </div>
-                </div>
-                <div class="con-detail">
-                    <div class="con-icon"><i class="fas fa-users"></i></div>
-                    <div class="con-txt">
-                        <strong data-es="Capacidad" data-en="Capacity">Capacidad</strong>
-                        <span data-es="Hasta 10 huéspedes · Casa completa" data-en="Up to 10 guests · Full house">Hasta 10 huéspedes · Casa completa</span>
-                    </div>
-                </div>
-                <div class="con-detail">
-                    <div class="con-icon"><i class="fab fa-whatsapp"></i></div>
-                    <div class="con-txt">
-                        <strong data-es="WhatsApp directo" data-en="Direct WhatsApp">WhatsApp directo</strong>
-                        <span>+58 412-303-0330</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     MAPA
-══════════════════════════════════════════ -->
-<section id="mapa">
-    <div class="container">
-        <div class="mapa-hd fade-up">
-            <p class="s-label" data-es="Ubicación" data-en="Location">Ubicación</p>
-            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
-            <h2 class="s-title" data-es="Dónde estamos" data-en="Where we are">Dónde estamos</h2>
-        </div>
-    </div>
-    <div class="mapa-frame fade-in">
-        <iframe
-            src="https://maps.google.com/maps?cid=10655322288920728829&z=16&output=embed&hl=es"
-            width="100%"
-            height="480"
-            style="border:0;display:block;"
-            allowfullscreen
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Casa Panza — Gran Roque, Los Roques, Venezuela">
-        </iframe>
-    </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     LOS ROQUES
-══════════════════════════════════════════ -->
-<section id="roques" aria-label="Los Roques">
-
-    <div class="roques-text">
-        <p class="roques-eyebrow">Parque Nacional Archipiélago · <span style="color:var(--turquoise)">Venezuela</span></p>
-        <svg class="roques-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="26" height="17" aria-hidden="true">
-            <rect width="30" height="20" fill="#CF142B"/>
-            <rect width="30" height="13.34" fill="#00247D"/>
-            <rect width="30" height="6.67" fill="#FFD700"/>
-            <circle cx="11.24" cy="11.13" r="0.55" fill="white"/>
-            <circle cx="11.94" cy="9.93"  r="0.55" fill="white"/>
-            <circle cx="13"    cy="9.04"  r="0.55" fill="white"/>
-            <circle cx="14.3"  cy="8.56"  r="0.55" fill="white"/>
-            <circle cx="15.7"  cy="8.56"  r="0.55" fill="white"/>
-            <circle cx="17"    cy="9.04"  r="0.55" fill="white"/>
-            <circle cx="18.06" cy="9.93"  r="0.55" fill="white"/>
-            <circle cx="18.76" cy="11.13" r="0.55" fill="white"/>
-        </svg>
-        <div class="roques-symbol cp-symbol--animated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
-        <h2 class="roques-title">Los Roques</h2>
-        <p class="roques-quote">
-            El Caribe no se imagina.<br>Se vive.
-        </p>
-    </div>
-
-    <div class="roques-grid">
-        <img src="img/IMG_0864.JPG" alt="Mar turquesa aéreo, Los Roques" width="900" height="420" loading="lazy" decoding="async" class="fade-in" style="transition-delay:0s">
-        <img src="img/IMG_0861.JPG" alt="Vista de drone, Los Roques" width="900" height="420" loading="lazy" decoding="async" class="fade-in" style="transition-delay:0.2s">
-        <img src="img/IMG_0720.JPG" alt="Personas en lancha, agua cristalina de Los Roques" width="900" height="420" loading="lazy" decoding="async" class="fade-in" style="transition-delay:0.4s">
-    </div>
-
-
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     FLOATING WHATSAPP
-══════════════════════════════════════════ -->
 <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
    id="float-wa" target="_blank" rel="noopener noreferrer" aria-label="Abrir chat de WhatsApp" data-wa-link>
     <i class="fab fa-whatsapp"></i>
@@ -2497,9 +2420,6 @@
 </a>
 
 
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
 <footer id="footer">
     <div class="container">
         <div class="foot-in">
@@ -2524,10 +2444,10 @@
             <p class="foot-tag">Gran Roque · Los Roques · Venezuela</p>
             <div class="foot-div" aria-hidden="true"></div>
             <ul class="foot-links">
-                <li><a href="#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
-                <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
+                <li><a href="index.html#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
+                <li><a href="index.html#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
                 <li><a href="galeria.html"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
-                <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
+                <li><a href="index.html#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
             </ul>
             <div class="foot-social">
 <a href="https://wa.me/584123030330" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Casa Panza">
@@ -2540,598 +2460,9 @@
     </div>
 </footer>
 
-
-<!-- ══════════════════════════════════════════
-     PANEL DETALLE POR ESPACIO
-══════════════════════════════════════════ -->
-<div id="espacio-panel" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Detalle del espacio">
-
-    <div class="ep-header">
-        <div class="ep-brand">CASA PANZA</div>
-        <button class="ep-close" id="ep-close" aria-label="Cerrar">
-            ✕ <span data-es="Cerrar" data-en="Close">Cerrar</span>
-        </button>
-    </div>
-
-    <div class="ep-body">
-
-        <div class="ep-hero">
-            <img id="ep-hero-img" src="" alt="" loading="eager" decoding="async">
-            <div class="ep-thumbs" id="ep-thumbs"></div>
-            <div class="ep-counter" id="ep-counter">1 / 3</div>
-            <button class="ep-arrow ep-prev" id="ep-prev" aria-label="Anterior">‹</button>
-            <button class="ep-arrow ep-next" id="ep-next" aria-label="Siguiente">›</button>
-        </div>
-
-        <div class="ep-info">
-            <p class="ep-label" data-es="Casa Panza · Gran Roque" data-en="Casa Panza · Gran Roque">Casa Panza · Gran Roque</p>
-            <h2 class="ep-title" id="ep-title"></h2>
-            <p class="ep-desc" id="ep-desc"></p>
-            <div class="ep-sep"></div>
-            <a class="ep-cta" id="ep-cta"
-               href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
-               target="_blank" rel="noopener" data-wa-link>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.554 4.122 1.526 5.858L0 24l6.335-1.652A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.011-1.374l-.36-.213-3.731.978.995-3.631-.234-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-                </svg>
-                <span data-es="Reservar este espacio" data-en="Book this space">Reservar este espacio</span>
-            </a>
-            <button class="ep-all" id="ep-all">
-                <span data-es="Ver toda la galería" data-en="View full gallery">Ver toda la galería</span>
-            </button>
-        </div>
-
-    </div>
-</div>
-
-<!-- ══════════════════════════════════════════
-     PREMIUM LAYERS
-══════════════════════════════════════════ -->
-<div id="brand-loader" aria-hidden="true">
-    <div class="loader-logo">
-        <img src="img/CASA_PANZA.svg" alt="Casa Panza" class="loader-svg">
-        <div class="loader-line"></div>
-    </div>
-</div>
-<div class="cursor-dot" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-
-<!-- ══════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════ -->
-<script>
-    /* ── BRAND LOADER ── */
-    const loader = document.getElementById('brand-loader');
-    if (loader) setTimeout(() => loader.classList.add('hidden'), 2600);
-
-    /* ── CUSTOM CURSOR ── */
-    const cursorDot = document.querySelector('.cursor-dot');
-    if (cursorDot && window.matchMedia('(pointer: fine)').matches) {
-        document.addEventListener('mousemove', e => {
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top  = e.clientY + 'px';
-        });
-    }
-
-    /* ── MAGNETIC BUTTONS ── */
-    document.querySelectorAll('.magnetic').forEach(btn => {
-        btn.addEventListener('mousemove', e => {
-            const r = btn.getBoundingClientRect();
-            const x = e.clientX - r.left - r.width  / 2;
-            const y = e.clientY - r.top  - r.height / 2;
-            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-        });
-        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
-    });
-
-    /* ── COUNT UP ── */
-    const cuObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (!e.isIntersecting || e.target.dataset.done) return;
-            e.target.dataset.done = '1';
-            const target = parseInt(e.target.dataset.target, 10);
-            const dur = 1400, steps = Math.min(target, 60);
-            let i = 0;
-            const timer = setInterval(() => {
-                i++;
-                e.target.textContent = Math.round(i / steps * target);
-                if (i >= steps) clearInterval(timer);
-            }, dur / steps);
-        });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.count-up').forEach(el => cuObs.observe(el));
-
-    /* ── REVEAL CLIP ── */
-    const rcObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) { e.target.classList.add('visible'); rcObs.unobserve(e.target); }
-        });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal-clip').forEach(el => rcObs.observe(el));
-
-    /* ── NAVBAR SCROLL ── */
-    const navbar = document.getElementById('navbar');
-    const heroLogoEl = document.querySelector('.hero-logo');
-    window.addEventListener('scroll', () => {
-        const past = window.scrollY > 80;
-        navbar.classList.toggle('scrolled', past);
-        if (heroLogoEl) heroLogoEl.classList.toggle('hidden-by-nav', past);
-    }, { passive: true });
-
-    /* ── NAVBAR THEME PER SECTION ── */
-    const secObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                const dark = ['hero','espacios'].includes(e.target.id);
-                navbar.classList.toggle('on-light', !dark);
-            }
-        });
-    }, { threshold: 0.45 });
-    document.querySelectorAll('section[id]').forEach(s => secObs.observe(s));
-
-
-    /* ── WA ENTRANCE ANIMATION ── */
-    const floatWa = document.getElementById('float-wa');
-    const heroSection = document.getElementById('revelacion');
-    if (floatWa) {
-        floatWa.style.opacity = '0';
-        floatWa.style.transform = 'translateX(72px)';
-        floatWa.style.transition = 'opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.6s ease';
-        setTimeout(() => {
-            floatWa.style.opacity = '1';
-            floatWa.style.transform = 'translateX(0)';
-            floatWa.addEventListener('transitionend', function clean(e) {
-                if (e.propertyName !== 'transform') return;
-                floatWa.style.cssText = floatWa.style.cssText
-                    .replace(/opacity:[^;]+;?/g, '')
-                    .replace(/transform:[^;]+;?/g, '')
-                    .replace(/transition:[^;]+;?/g, '');
-                floatWa.removeEventListener('transitionend', clean);
-            });
-        }, 2200);
-
-        if (heroSection) {
-            const heroObs = new IntersectionObserver(([e]) => {
-                floatWa.style.opacity = e.isIntersecting ? '0' : '';
-                floatWa.style.pointerEvents = e.isIntersecting ? 'none' : '';
-            }, { threshold: 0.3 });
-            heroObs.observe(heroSection);
-        }
-    }
-
-    /* ── HAMBURGER ── */
-    const hamburger   = document.getElementById('hamburger');
-    const mobileMenu  = document.getElementById('mobile-menu');
-    const mLinks      = document.querySelectorAll('.m-link');
-
-    hamburger.addEventListener('click', () => {
-        const open = mobileMenu.classList.toggle('open');
-        hamburger.classList.toggle('active', open);
-        hamburger.setAttribute('aria-expanded', open);
-        document.body.style.overflow = open ? 'hidden' : '';
-        if (open) setTimeout(() => { const first = mobileMenu.querySelector('a'); if (first) first.focus(); }, 100);
-    });
-
-    mLinks.forEach(l => l.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }));
-
-    /* ── INTERSECTION OBSERVER ── */
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('visible');
-                setTimeout(() => { e.target.style.willChange = 'auto'; }, 800);
-            }
-        });
-    }, { threshold: 0.14, rootMargin: '0px 0px -48px 0px' });
-
-    document.querySelectorAll('.fade-up, .fade-in, .roques-eyebrow, .roques-title, .roques-quote, .cp-symbol--animated').forEach(el => io.observe(el));
-
-    /* ── GALERÍA PREMIUM ── */
-    const FOTOS = [
-        { src: 'img/OBW_6653.JPG',  cat: 'exterior',     alt_es: 'Fachada Casa Panza',                  alt_en: 'Casa Panza facade' },
-        { src: 'img/ENTRADA_CASA_PANZA.JPG', cat: 'exterior', alt_es: 'Entrada de Casa Panza',           alt_en: 'Casa Panza entrance' },
-        { src: 'img/jardin-buganvilias.jpg', cat: 'exterior', alt_es: 'Jardín con buganvilias, Casa Panza', alt_en: 'Bougainvillea garden, Casa Panza' },
-        { src: 'img/OBW_6660.JPG',  cat: 'sala',         alt_es: 'Sala de estar con vista al mar',      alt_en: 'Living room with sea view' },
-        { src: 'img/OBW_6612.JPG',  cat: 'sala',         alt_es: 'Sala de estar',                       alt_en: 'Living room' },
-        { src: 'img/OBW_6599.JPG',  cat: 'sala',         alt_es: 'Sala ángulo alternativo',             alt_en: 'Living room alternative angle' },
-        { src: 'img/OBW_6634.JPG',  cat: 'sala',         alt_es: 'Comedor y cocina con vista al mar',   alt_en: 'Dining and kitchen with sea view' },
-        { src: 'img/OBW_6821.JPG',  cat: 'sala',         alt_es: 'Comedor montado',                     alt_en: 'Set dining table' },
-        { src: 'img/OBW_6822.JPG',  cat: 'sala',         alt_es: 'Detalle comedor',                     alt_en: 'Dining detail' },
-        { src: 'img/OBW_6819.JPG',  cat: 'sala',         alt_es: 'Comedor exterior',                    alt_en: 'Outdoor dining' },
-        { src: 'img/OBW_6791.JPG',  cat: 'habitaciones', alt_es: 'Suite principal',                     alt_en: 'Master suite' },
-        { src: 'img/OBW_6463.JPG',  cat: 'habitaciones', alt_es: 'Suite principal gran angular',        alt_en: 'Master suite wide angle' },
-        { src: 'img/OBW_6785.JPG',  cat: 'habitaciones', alt_es: 'Detalle almohadas',                   alt_en: 'Pillow detail' },
-        { src: 'img/OBW_6592.JPG',  cat: 'habitaciones', alt_es: 'Habitación familiar',                 alt_en: 'Family room' },
-        { src: 'img/OBW_6456.JPG',  cat: 'habitaciones', alt_es: 'Habitación familiar con litera',      alt_en: 'Family room with bunk bed' },
-        { src: 'img/OBW_6586.JPG',  cat: 'habitaciones', alt_es: 'Habitación lounge',                   alt_en: 'Lounge room' },
-        { src: 'img/OBW_6496.JPG',  cat: 'habitaciones', alt_es: 'Habitación con litera',               alt_en: 'Room with bunk bed' },
-        { src: 'img/OBW_6626.JPG',  cat: 'cocina',       alt_es: 'Cocina equipada',                     alt_en: 'Equipped kitchen' },
-        { src: 'img/OBW_6622.JPG',  cat: 'cocina',       alt_es: 'Cocina isla de madera',               alt_en: 'Kitchen wooden island' },
-        { src: 'img/OBW_6810.JPG',  cat: 'banos',       alt_es: 'Baño de diseño',                      alt_en: 'Designer bathroom' },
-        { src: 'img/OBW_6801.JPG',  cat: 'banos',       alt_es: 'Detalle toallas Casa Panza',          alt_en: 'Casa Panza towel detail' },
-        { src: 'img/IMG_0864.JPG',  cat: 'losroques',    alt_es: 'Mar turquesa Los Roques',             alt_en: 'Turquoise sea Los Roques' },
-        { src: 'img/IMG_0861.JPG',  cat: 'losroques',    alt_es: 'Arrecife Los Roques desde drone',     alt_en: 'Los Roques reef from drone' },
-        { src: 'img/IMG_0720.JPG',  cat: 'losroques',    alt_es: 'Lancha en aguas cristalinas',         alt_en: 'Boat in crystal clear waters' },
-    ];
-
-    let activeGalFotos = FOTOS;
-    let activeTab = 'todas';
-    let cur = 0;
-    const lb        = document.getElementById('lb');
-    const lbImg     = document.getElementById('lb-img');
-    const lbCounter = document.getElementById('lb-counter');
-    const panel     = document.getElementById('galeria-panel');
-
-    function getLang() { return localStorage.getItem('lang') || 'es'; }
-
-    function renderGaleria(categoria) {
-        activeTab = categoria;
-        const grid = document.getElementById('galeria-grid');
-        activeGalFotos = categoria === 'todas'
-            ? FOTOS.filter(f => f.cat !== 'losroques')
-            : FOTOS.filter(f => f.cat === categoria);
-        grid.innerHTML = `<div class="galeria-skeleton"><div class="skel-item"></div><div class="skel-item"></div><div class="skel-item"></div><div class="skel-item"></div><div class="skel-item"></div><div class="skel-item"></div></div>`;
-        setTimeout(() => {
-            const lang = getLang();
-            grid.innerHTML = activeGalFotos.map((foto, i) => `
-                <div class="galeria-item" data-index="${i}">
-                    <img src="${foto.src}" alt="${lang === 'es' ? foto.alt_es : foto.alt_en}" loading="lazy" decoding="async">
-                </div>
-            `).join('');
-            grid.querySelectorAll('.galeria-item').forEach((el, i) => {
-                el.addEventListener('click', () => openLB(i));
-            });
-        }, 300);
-    }
-
-    function abrirPanel() {
-        panel.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        if (window.lenis) window.lenis.stop();
-        if (!document.getElementById('galeria-grid').children.length) renderGaleria('todas');
-        setTimeout(() => document.getElementById('btn-cerrar-galeria').focus(), 100);
-    }
-    function cerrarPanel() {
-        panel.classList.remove('open');
-        document.body.style.overflow = '';
-        if (window.lenis) window.lenis.start();
-    }
-
-    document.getElementById('btn-cerrar-galeria').addEventListener('click', cerrarPanel);
-
-    document.querySelectorAll('.galeria-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.galeria-tab').forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            renderGaleria(tab.dataset.cat);
-        });
-    });
-
-    function updateLBCounter() {
-        lbCounter.textContent = (cur + 1) + ' / ' + activeGalFotos.length;
-    }
-    function openLB(idx) {
-        cur = idx;
-        lbImg.src = activeGalFotos[idx].src;
-        lbImg.alt = getLang() === 'es' ? activeGalFotos[idx].alt_es : activeGalFotos[idx].alt_en;
-        updateLBCounter();
-        lb.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        document.getElementById('lbClose').focus();
-    }
-    function closeLB() {
-        lb.classList.remove('open');
-        lbImg.src = '';
-        if (!panel.classList.contains('open')) document.body.style.overflow = '';
-    }
-    function prevLB() {
-        cur = (cur - 1 + activeGalFotos.length) % activeGalFotos.length;
-        lbImg.src = activeGalFotos[cur].src;
-        lbImg.alt = getLang() === 'es' ? activeGalFotos[cur].alt_es : activeGalFotos[cur].alt_en;
-        updateLBCounter();
-    }
-    function nextLB() {
-        cur = (cur + 1) % activeGalFotos.length;
-        lbImg.src = activeGalFotos[cur].src;
-        lbImg.alt = getLang() === 'es' ? activeGalFotos[cur].alt_es : activeGalFotos[cur].alt_en;
-        updateLBCounter();
-    }
-
-    document.getElementById('lbClose').addEventListener('click', closeLB);
-    document.getElementById('lbPrev').addEventListener('click', prevLB);
-    document.getElementById('lbNext').addEventListener('click', nextLB);
-    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
-    document.addEventListener('keydown', e => {
-        if (lb.classList.contains('open')) {
-            if (e.key === 'Escape')     closeLB();
-            if (e.key === 'ArrowLeft')  prevLB();
-            if (e.key === 'ArrowRight') nextLB();
-            return;
-        }
-        if (e.key === 'Escape' && panel.classList.contains('open')) cerrarPanel();
-    });
-
-    /* ── SWIPE TÁCTIL LIGHTBOX ── */
-    let lbTsX = 0;
-    lb.addEventListener('touchstart', e => { lbTsX = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener('touchend', e => {
-        const diff = lbTsX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) < 40) return;
-        diff > 0 ? nextLB() : prevLB();
-    }, { passive: true });
-
-    /* ── SMOOTH SCROLL ── */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
-            if (!target) return;
-            e.preventDefault();
-            const navH = navbar.offsetHeight || 76;
-            window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - navH, behavior: 'smooth' });
-        });
-    });
-
-    /* ── LANGUAGE SWITCHER ── */
-    const WA_ES = 'https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A';
-    const WA_EN = 'https://wa.me/584123030330?text=Hello%20Casa%20Panza!%20I%27d%20like%20to%20check%20availability%20and%20rates%20%F0%9F%8C%8A';
-
-    function setLanguage(lang) {
-        document.querySelectorAll('[data-es]').forEach(el => {
-            const text = el.dataset[lang];
-            if (!text) return;
-            if (el.dataset.html === 'true') {
-                el.innerHTML = text;
-            } else {
-                el.textContent = text;
-            }
-        });
-
-        const waUrl = lang === 'en' ? WA_EN : WA_ES;
-        document.querySelectorAll('[data-wa-link]').forEach(el => { el.href = waUrl; });
-
-        document.querySelectorAll('[data-lang]').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.lang === lang);
-        });
-
-        if (panel.classList.contains('open')) {
-            renderGaleria(activeTab || 'todas');
-        }
-
-        localStorage.setItem('lang', lang);
-        document.documentElement.lang = lang;
-    }
-
-    document.querySelectorAll('[data-lang]').forEach(btn => {
-        btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
-    });
-
-    setLanguage(localStorage.getItem('lang') || 'es');
-
-    /* ── PANEL DETALLE POR ESPACIO ── */
-    const ESPACIOS_FOTOS = {
-        sala: {
-            nombre_es: 'Sala de Estar', nombre_en: 'Living Room',
-            desc_es: 'Sofá en L frente al mar, techo de vigas blancas y ventanales que borran la línea entre adentro y afuera. El lugar donde el Caribe entra a la sala.',
-            desc_en: 'L-shaped sofa facing the sea, white beam ceiling and windows that erase the line between inside and outside. Where the Caribbean enters the living room.',
-            fotos: [
-                { src: 'img/OBW_6660.JPG', alt_es: 'Sala de estar con vista al mar', alt_en: 'Living room with sea view' },
-                { src: 'img/OBW_6612.JPG', alt_es: 'Sala de estar', alt_en: 'Living room' },
-                { src: 'img/OBW_6599.JPG', alt_es: 'Sala ángulo alternativo', alt_en: 'Living room alternative angle' },
-            ]
-        },
-        comedor: {
-            nombre_es: 'Comedor & Cocina', nombre_en: 'Dining & Kitchen',
-            desc_es: 'Espacio social abierto al Caribe. Comedor para 10, cocina completa y brisa marina como fondo permanente.',
-            desc_en: 'Social space open to the Caribbean. Dining for 10, full kitchen and sea breeze as a permanent backdrop.',
-            fotos: [
-                { src: 'img/OBW_6634.JPG', alt_es: 'Comedor y cocina con vista al mar', alt_en: 'Dining and kitchen with sea view' },
-                { src: 'img/OBW_6821.JPG', alt_es: 'Comedor montado', alt_en: 'Set dining table' },
-                { src: 'img/OBW_6822.JPG', alt_es: 'Detalle comedor', alt_en: 'Dining detail' },
-                { src: 'img/OBW_6819.JPG', alt_es: 'Comedor exterior', alt_en: 'Outdoor dining' },
-            ]
-        },
-        suite: {
-            nombre_es: 'Suite Principal', nombre_en: 'Master Suite',
-            desc_es: 'Cama doble, textiles artesanales de yute y lámparas esfera. Blanco total para despertar con calma.',
-            desc_en: 'Double bed, handcrafted jute textiles and sphere lamps. Pure white to wake up in peace.',
-            fotos: [
-                { src: 'img/OBW_6791.JPG', alt_es: 'Suite principal', alt_en: 'Master suite' },
-                { src: 'img/OBW_6463.JPG', alt_es: 'Suite gran angular', alt_en: 'Master suite wide angle' },
-                { src: 'img/OBW_6785.JPG', alt_es: 'Detalle almohadas', alt_en: 'Pillow detail' },
-            ]
-        },
-        familiar: {
-            nombre_es: 'Habitación Familiar', nombre_en: 'Family Room',
-            desc_es: 'Cama doble más litera de diseño empotrada. Perfecta para familias o grupos que quieren más espacio.',
-            desc_en: 'Double bed plus built-in designer bunk bed. Perfect for families or groups who want more space.',
-            fotos: [
-                { src: 'img/OBW_6592.JPG', alt_es: 'Habitación familiar', alt_en: 'Family room' },
-                { src: 'img/OBW_6456.JPG', alt_es: 'Habitación familiar con litera', alt_en: 'Family room with bunk bed' },
-                { src: 'img/OBW_6496.JPG', alt_es: 'Habitación litera', alt_en: 'Bunk bed room' },
-            ]
-        },
-        cocina: {
-            nombre_es: 'Cocina Equipada', nombre_en: 'Fully Equipped Kitchen',
-            desc_es: 'Isla de desayuno en madera, backsplash turquesa, horno profesional y refrigerador doble.',
-            desc_en: 'Wooden breakfast island, turquoise backsplash, professional oven and double refrigerator.',
-            fotos: [
-                { src: 'img/OBW_6626.JPG', alt_es: 'Cocina equipada', alt_en: 'Equipped kitchen' },
-                { src: 'img/OBW_6622.JPG', alt_es: 'Cocina isla de madera', alt_en: 'Kitchen wooden island' },
-            ]
-        },
-        banos: {
-            nombre_es: 'Baños de Diseño', nombre_en: 'Designer Bathrooms',
-            desc_es: 'Revestimiento travertino, luz cálida integrada y amenidades Casa Panza en cestas de rafia.',
-            desc_en: 'Travertine cladding, warm integrated lighting and Casa Panza amenities in raffia baskets.',
-            fotos: [
-                { src: 'img/OBW_6810.JPG', alt_es: 'Baño de diseño', alt_en: 'Designer bathroom' },
-                { src: 'img/OBW_6801.JPG', alt_es: 'Toallas Casa Panza', alt_en: 'Casa Panza towels' },
-            ]
-        },
-        terraza: {
-            nombre_es: 'Terraza Exterior', nombre_en: 'Outdoor Terrace',
-            desc_es: 'Fachada blanca, terraza exterior y acceso directo al corazón de Gran Roque.',
-            desc_en: 'White facade, outdoor terrace and direct access to the heart of Gran Roque.',
-            fotos: [
-                { src: 'img/OBW_6653.JPG', alt_es: 'Fachada exterior', alt_en: 'Exterior facade' },
-                { src: 'img/ENTRADA_CASA_PANZA.JPG', alt_es: 'Entrada Casa Panza', alt_en: 'Casa Panza entrance' },
-            ]
-        },
-    };
-
-    let epFotos = [];
-    let epCur   = 0;
-    const espacioPanel = document.getElementById('espacio-panel');
-    const epHeroImg    = document.getElementById('ep-hero-img');
-    const epThumbsEl   = document.getElementById('ep-thumbs');
-    const epCounter    = document.getElementById('ep-counter');
-    const epTitle      = document.getElementById('ep-title');
-    const epDesc       = document.getElementById('ep-desc');
-    const epPrev       = document.getElementById('ep-prev');
-    const epNext       = document.getElementById('ep-next');
-
-    function epSetFoto(idx) {
-        epCur = idx;
-        const lang = getLang();
-        epHeroImg.style.opacity = '0';
-        setTimeout(() => {
-            epHeroImg.src = epFotos[idx].src;
-            epHeroImg.alt = lang === 'en' ? epFotos[idx].alt_en : epFotos[idx].alt_es;
-            epHeroImg.style.opacity = '1';
-        }, 150);
-        epCounter.textContent = (idx + 1) + ' / ' + epFotos.length;
-        epThumbsEl.querySelectorAll('.ep-thumb')
-            .forEach((t, i) => t.classList.toggle('active', i === idx));
-    }
-
-    function abrirEspacio(key) {
-        const data = ESPACIOS_FOTOS[key];
-        if (!data) return;
-        const lang = getLang();
-        epFotos = data.fotos;
-        epCur   = 0;
-        epTitle.textContent = lang === 'en' ? data.nombre_en : data.nombre_es;
-        epDesc.textContent  = lang === 'en' ? data.desc_en   : data.desc_es;
-        epThumbsEl.innerHTML = data.fotos.map((f, i) => `
-            <img class="ep-thumb${i === 0 ? ' active' : ''}"
-                 src="${f.src}"
-                 alt="${lang === 'en' ? f.alt_en : f.alt_es}"
-                 data-idx="${i}" loading="lazy" decoding="async">
-        `).join('');
-        epThumbsEl.querySelectorAll('.ep-thumb').forEach(t => {
-            t.addEventListener('click', () => epSetFoto(parseInt(t.dataset.idx)));
-        });
-        epHeroImg.src           = data.fotos[0].src;
-        epHeroImg.alt           = lang === 'en' ? data.fotos[0].alt_en : data.fotos[0].alt_es;
-        epHeroImg.style.opacity = '1';
-        epCounter.textContent   = '1 / ' + data.fotos.length;
-        epPrev.classList.toggle('hidden', data.fotos.length <= 1);
-        epNext.classList.toggle('hidden', data.fotos.length <= 1);
-        espacioPanel.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        if (window.lenis) window.lenis.stop();
-    }
-
-    function cerrarEspacio() {
-        espacioPanel.classList.remove('open');
-        document.body.style.overflow = '';
-        if (window.lenis) window.lenis.start();
-        epHeroImg.src = '';
-    }
-
-    epPrev.addEventListener('click', () =>
-        epSetFoto((epCur - 1 + epFotos.length) % epFotos.length));
-    epNext.addEventListener('click', () =>
-        epSetFoto((epCur + 1) % epFotos.length));
-
-    document.getElementById('ep-close').addEventListener('click', cerrarEspacio);
-
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && espacioPanel.classList.contains('open')) cerrarEspacio();
-        if (espacioPanel.classList.contains('open')) {
-            if (e.key === 'ArrowLeft')  epSetFoto((epCur - 1 + epFotos.length) % epFotos.length);
-            if (e.key === 'ArrowRight') epSetFoto((epCur + 1) % epFotos.length);
-        }
-    });
-
-    let epTsX = 0;
-    espacioPanel.addEventListener('touchstart', e => { epTsX = e.touches[0].clientX; }, { passive: true });
-    espacioPanel.addEventListener('touchend', e => {
-        const diff = epTsX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) < 40) return;
-        diff > 0
-            ? epSetFoto((epCur + 1) % epFotos.length)
-            : epSetFoto((epCur - 1 + epFotos.length) % epFotos.length);
-    }, { passive: true });
-
-    document.getElementById('ep-all').addEventListener('click', () => {
-        cerrarEspacio();
-        setTimeout(() => abrirPanel(), 300);
-    });
-
-    document.querySelectorAll('.esp-card[data-espacio]').forEach(card => {
-        card.addEventListener('click', () => abrirEspacio(card.dataset.espacio));
-    });
-
-</script>
-
-<!-- ══ Tilt 3D en tarjetas de espacios ══ -->
-<script>
-(function(){
-    if(window.matchMedia('(hover: none)').matches) return;
-    document.querySelectorAll('.esp-card').forEach(function(card){
-        card.addEventListener('mouseenter', function(){
-            card.style.transformStyle = 'preserve-3d';
-            card.style.transition = 'transform 0.15s ease-out, box-shadow 0.35s cubic-bezier(0.25, 0.1, 0.25, 1)';
-        });
-        card.addEventListener('mousemove', function(e){
-            var r = card.getBoundingClientRect();
-            var x = (e.clientX - r.left) / r.width - 0.5;
-            var y = (e.clientY - r.top) / r.height - 0.5;
-            card.style.transform = 'perspective(900px) rotateY(' + (x*6) + 'deg) rotateX(' + (-y*6) + 'deg) translateY(-4px)';
-        });
-        card.addEventListener('mouseleave', function(){
-            card.style.transform = '';
-            setTimeout(function(){ card.style.transition = ''; }, 200);
-        });
-    });
-})();
-</script>
-
-<!-- ══ Contador animado ══ -->
-<script>
-(function(){
-    var done = false;
-    var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-            if(e.isIntersecting && !done){
-                done = true;
-                document.querySelectorAll('.stat-num').forEach(function(el){
-                    var target = +el.dataset.target, cur = 0;
-                    var step = Math.max(1, Math.floor(target/40));
-                    var t = setInterval(function(){
-                        cur += step;
-                        if(cur >= target){ cur = target; clearInterval(t); }
-                        el.textContent = cur;
-                    }, 30);
-                });
-            }
-        });
-    }, {threshold: 0.4});
-    var el = document.querySelector('.stats-row');
-    if(el) obs.observe(el);
-})();
-</script>
-
-<!-- ══ Lenis smooth scroll ══ -->
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
+/* Lenis smooth scroll */
 (function(){
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (typeof Lenis === 'undefined') return;
@@ -3139,21 +2470,60 @@
     window.lenis = lenis;
     function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){
-        a.addEventListener('click', function(e){
-            var sel = a.getAttribute('href');
-            if(sel.length < 2) return;
-            var target = document.querySelector(sel);
-            if(target){ e.preventDefault(); lenis.scrollTo(target, {offset: -70}); }
-        });
-    });
 })();
 </script>
-
-<!-- ══ GSAP scroll reveal (sección revelación) ══ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
+/* ── Página: navbar, menú móvil, idioma, WhatsApp flotante ── */
+(function(){
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function(){
+        navbar.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+    var hamburger = document.getElementById('hamburger');
+    var menu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', function(){
+        var open = menu.classList.toggle('open');
+        hamburger.classList.toggle('active', open);
+        hamburger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.m-link').forEach(function(l){
+        l.addEventListener('click', function(){
+            menu.classList.remove('open');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        });
+    });
+
+    /* Idioma (mismo mecanismo que index) */
+    var WA_ES = 'https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A';
+    var WA_EN = 'https://wa.me/584123030330?text=Hello%20Casa%20Panza!%20I%27d%20like%20to%20check%20availability%20and%20rates%20%F0%9F%8C%8A';
+    function setLanguage(lang){
+        document.querySelectorAll('[data-es]').forEach(function(el){
+            var text = el.dataset[lang];
+            if (!text) return;
+            if (el.dataset.html === 'true') { el.innerHTML = text; } else { el.textContent = text; }
+        });
+        var waUrl = lang === 'en' ? WA_EN : WA_ES;
+        document.querySelectorAll('[data-wa-link]').forEach(function(el){ el.href = waUrl; });
+        document.querySelectorAll('[data-lang]').forEach(function(btn){
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang;
+    }
+    document.querySelectorAll('[data-lang]').forEach(function(btn){
+        btn.addEventListener('click', function(){ setLanguage(btn.dataset.lang); });
+    });
+    setLanguage(localStorage.getItem('lang') || 'es');
+})();
+</script>
+<script>
+/* ── Galería inmersiva: hero + horizontal + refinamientos ── */
 (function(){
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
         document.documentElement.classList.add('no-gsap');
@@ -3162,101 +2532,121 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     gsap.registerPlugin(ScrollTrigger);
     if (window.lenis) window.lenis.on('scroll', ScrollTrigger.update);
-    /* La casa se "construye" desde los planos: la foto real se levanta
-       desde el suelo (clip-path) con una línea de escaneo turquesa. */
-    gsap.timeline({
-        scrollTrigger: { trigger: '.reveal-section', start: 'top top', end: 'bottom bottom', scrub: 1 }
-    })
-    .to('.reveal-photo', { opacity: 1, ease: 'none', duration: 0.03 }, 0.12)
-    .fromTo('.reveal-photo',
-        { clipPath: 'inset(100% 0% 0% 0%)' },
-        { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0.15)
-    .to('.reveal-scanline', { opacity: 1, ease: 'none', duration: 0.04 }, 0.15)
-    .fromTo('.reveal-scanline',
-        { top: '100%' },
-        { top: '0%', ease: 'none', duration: 0.6 }, 0.15)
-    .to('.reveal-scanline', { opacity: 0, ease: 'none', duration: 0.06 }, 0.74)
-    .fromTo('.reveal-sketch', { scale: 1 }, { scale: 1.04, ease: 'none', duration: 1 }, 0)
-    .fromTo('.reveal-photo', { scale: 1.02 }, { scale: 1, ease: 'none', duration: 1 }, 0)
-    .fromTo('.reveal-caption', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, 0.78);
 
-    /* Entrada del nombre masivo al cargar */
-    gsap.from('.mega-line', {
-        yPercent: 110, opacity: 0,
-        stagger: 0.15, duration: 1.2, ease: 'power3.out', delay: 0.2
-    });
+    /* Hero: título con clip-path reveal de abajo hacia arriba + hint */
+    gsap.fromTo('.gal-hero-title',
+        { clipPath: 'inset(100% 0 0 0)', y: 40 },
+        { clipPath: 'inset(0% 0 0 0)', y: 0, duration: 1.2, ease: 'power3.out', delay: 0.15 });
+    gsap.from('.gal-scroll-hint', { opacity: 0, duration: 0.8, delay: 0.8 });
 
-})();
-</script>
+    var galSection = document.querySelector('.gal-h-section');
+    if (!galSection) return;
+    var galTrack = galSection.querySelector('.gal-h-track');
+    var galBar = galSection.querySelector('.gal-h-bar');
+    var galItems = galSection.querySelectorAll('.gal-h-item');
+    var galCurrent = galSection.querySelector('.gal-current');
+    var galTotal = galSection.querySelector('.gal-total');
+    galTotal.textContent = String(galItems.length).padStart(2, '0');
 
-<!-- ══ Lente mágico v2: clip-path sobre clones 1:1 (portada revelación) ══ -->
-<script>
-(function(){
-    if (window.matchMedia('(hover: none)').matches) return;
-    var stage = document.querySelector('.reveal-sticky');
-    if (!stage) return;
-    var sketch = stage.querySelector('.reveal-sketch');
-    var photo = stage.querySelector('.reveal-photo');
-    var ring = stage.querySelector('.lens-ring-solo');
-    if (!sketch || !photo || !ring) return;
-    var R = 75; // radio del lente (150px de diámetro — la mitad del anterior)
+    var lastFocus = -1;
+    /* la base CSS lleva scale(1.15) como zoom de recorte: los valores de foco lo multiplican */
+    var SCALE_FOCUS = 1.15 * 1.04, SCALE_REST = 1.15 * 0.97;
 
-    /* Crea 2 capas de lente clonando las imágenes de fondo — mismas dimensiones,
-       misma posición (inset 0), por eso la alineación es 1:1 SIEMPRE */
-    var lensSketch = sketch.cloneNode();
-    var lensPhoto = photo.cloneNode();
-    [lensSketch, lensPhoto].forEach(function(el){
-        el.classList.remove('reveal-sketch','reveal-photo');
-        el.classList.add('reveal-lens-layer');
-        el.setAttribute('alt', '');
-        el.setAttribute('aria-hidden', 'true');
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-        el.style.clipPath = 'circle(0px at 50% 50%)';
-        stage.appendChild(el);
-    });
-
-    var mouse = {x:0,y:0}, pos = {x:0,y:0}, raf = null, inside = false;
-
-    function tick(){
-        pos.x += (mouse.x - pos.x) * 0.18;
-        pos.y += (mouse.y - pos.y) * 0.18;
-
-        var photoVisible = parseFloat(getComputedStyle(photo).opacity) > 0.5;
-        var activeLens = photoVisible ? lensSketch : lensPhoto;
-        var inactiveLens = photoVisible ? lensPhoto : lensSketch;
-
-        activeLens.style.clipPath = 'circle(' + R + 'px at ' + pos.x + 'px ' + pos.y + 'px)';
-        inactiveLens.style.clipPath = 'circle(0px at ' + pos.x + 'px ' + pos.y + 'px)';
-
-        ring.style.left = pos.x + 'px';
-        ring.style.top = pos.y + 'px';
-
-        if (inside) raf = requestAnimationFrame(tick);
+    function updateFocus(){
+        var cx = window.innerWidth / 2, best = 0, bestDist = Infinity;
+        galItems.forEach(function(item, i){
+            var r = item.getBoundingClientRect();
+            var d = Math.abs(r.left + r.width / 2 - cx);
+            if (d < bestDist) { bestDist = d; best = i; }
+        });
+        if (best === lastFocus) return;
+        lastFocus = best;
+        galItems.forEach(function(item, i){
+            gsap.to(item.querySelector('img'), {
+                scale: i === best ? SCALE_FOCUS : SCALE_REST,
+                filter: i === best ? 'brightness(1)' : 'brightness(0.75)',
+                duration: 0.4, overwrite: 'auto'
+            });
+        });
     }
 
-    stage.addEventListener('mouseenter', function(e){
-        var r = stage.getBoundingClientRect();
-        mouse.x = pos.x = e.clientX - r.left;
-        mouse.y = pos.y = e.clientY - r.top;
-        inside = true;
-        ring.style.opacity = '1';
-        cancelAnimationFrame(raf);
-        tick();
+    var galTween = gsap.to(galTrack, {
+        x: function(){ return -(galTrack.scrollWidth - window.innerWidth + 120); },
+        ease: 'none',
+        scrollTrigger: {
+            trigger: galSection,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1.4,
+            invalidateOnRefresh: true,
+            onUpdate: function(self){
+                galBar.style.width = (self.progress * 100) + '%';
+                var idx = Math.min(galItems.length, Math.max(1, Math.round(self.progress * galItems.length) + 1));
+                galCurrent.textContent = String(idx).padStart(2, '0');
+                updateFocus();
+            }
+        }
     });
 
-    stage.addEventListener('mousemove', function(e){
-        var r = stage.getBoundingClientRect();
-        mouse.x = e.clientX - r.left;
-        mouse.y = e.clientY - r.top;
+    /* Parallax de capas: imagen y caption a velocidades distintas */
+    galItems.forEach(function(item){
+        var img = item.querySelector('img');
+        var cap = item.querySelector('figcaption');
+        gsap.fromTo(img, { xPercent: -8 }, {
+            xPercent: 8, ease: 'none',
+            scrollTrigger: { trigger: item, containerAnimation: galTween, start: 'left right', end: 'right left', scrub: true }
+        });
+        if (cap) gsap.fromTo(cap, { xPercent: 4 }, {
+            xPercent: -4, ease: 'none',
+            scrollTrigger: { trigger: item, containerAnimation: galTween, start: 'left right', end: 'right left', scrub: true }
+        });
     });
 
-    stage.addEventListener('mouseleave', function(){
-        inside = false;
-        ring.style.opacity = '0';
-        lensSketch.style.clipPath = 'circle(0px at ' + pos.x + 'px ' + pos.y + 'px)';
-        lensPhoto.style.clipPath = 'circle(0px at ' + pos.x + 'px ' + pos.y + 'px)';
+    /* Entrada cinematográfica de las 3 primeras imágenes */
+    var first3 = Array.prototype.slice.call(galItems, 0, 3).map(function(i){ return i.querySelector('img'); });
+    gsap.from(first3, {
+        y: 60, opacity: 0, stagger: 0.15, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: galSection, start: 'top 70%', once: true }
     });
+
+    /* Cursor drag + arrastre horizontal (solo desktop) */
+    if (!window.matchMedia('(hover: none)').matches) {
+        var cursor = document.createElement('div');
+        cursor.className = 'gal-cursor';
+        cursor.textContent = 'drag';
+        cursor.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(cursor);
+
+        var sticky = galSection.querySelector('.gal-h-sticky');
+        var inGal = false;
+        window.addEventListener('mousemove', function(e){
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        }, { passive: true });
+        sticky.addEventListener('mouseenter', function(){ inGal = true; cursor.classList.add('on'); });
+        sticky.addEventListener('mouseleave', function(){ inGal = false; cursor.classList.remove('on'); });
+
+        /* arrastrar el track = scroll vertical equivalente */
+        var dragging = false, startX = 0, startScroll = 0;
+        function dragFactor(){
+            return (galSection.offsetHeight - window.innerHeight) /
+                   Math.max(1, galTrack.scrollWidth - window.innerWidth + 120);
+        }
+        sticky.addEventListener('pointerdown', function(e){
+            if (!inGal) return;
+            dragging = true; startX = e.clientX; startScroll = window.scrollY;
+            cursor.textContent = '◂ ▸';
+        });
+        window.addEventListener('pointermove', function(e){
+            if (!dragging) return;
+            var target = startScroll + (startX - e.clientX) * dragFactor();
+            if (window.lenis) { window.lenis.scrollTo(target, { immediate: true }); }
+            else { window.scrollTo(0, target); }
+        });
+        window.addEventListener('pointerup', function(){
+            dragging = false; cursor.textContent = 'drag';
+        });
+    }
 })();
 </script>
 
