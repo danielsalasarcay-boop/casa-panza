@@ -610,7 +610,7 @@
             position: absolute; bottom: 32px; left: 4vw; right: 4vw;
             height: 1px; background: rgba(255,255,255,0.15);
         }
-        .gal-h-bar { height: 100%; width: 0%; background: var(--turquoise); }
+        .gal-h-bar { height: 100%; width: 0%; background: var(--turquoise); box-shadow: 0 0 12px rgba(42,191,191,0.6); }
         @media (max-width: 768px) {
             .gal-h-item img { width: 74vw !important; height: 48vh !important; }
             .gal-h-quote { max-width: 78vw; }
@@ -2084,20 +2084,47 @@
         70% { transform: scaleY(1); opacity: 1; }
         100% { transform: scaleY(1); opacity: 0; }
     }
-    /* ── Cursor personalizado drag ── */
+    /* ── Cursor personalizado drag (vidrio esmerilado) ── */
     .gal-cursor {
-        position: fixed; top: 0; left: 0;
-        width: 64px; height: 64px; border-radius: 50%;
-        background: rgba(42,191,191,0.85); color: #fff;
-        font-family: var(--font-b); font-size: 10px;
-        letter-spacing: 0.18em; text-transform: uppercase;
-        display: flex; align-items: center; justify-content: center;
-        pointer-events: none; z-index: 60;
-        transform: translate(-50%,-50%) scale(0);
-        transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+        position: fixed;
+        top: 0; left: 0;
+        width: 84px; height: 84px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        pointer-events: none;
+        z-index: 100;
+        background: rgba(20, 20, 20, 0.25);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.25);
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.4);
+        transition: opacity 0.3s cubic-bezier(0.25,0.1,0.25,1), transform 0.3s cubic-bezier(0.25,0.1,0.25,1);
+        will-change: transform;
     }
-    .gal-cursor.on { transform: translate(-50%,-50%) scale(1); }
-    @media (hover: hover) { .gal-h-sticky { cursor: none; } }
+    .gal-cursor.active { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .gal-cursor.grabbing { transform: translate(-50%, -50%) scale(0.82); background: rgba(42,191,191,0.35); }
+    .gal-cursor-label {
+        font-family: var(--font-b);
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #fff;
+    }
+    .gal-cursor-arrow { font-size: 11px; color: rgba(255,255,255,0.7); }
+    .gal-cursor-arrow:first-child { animation: cursorSwayL 1.6s ease-in-out infinite alternate; }
+    .gal-cursor-arrow:last-child { animation: cursorSwayR 1.6s ease-in-out infinite alternate; }
+    .gal-cursor.grabbing .gal-cursor-arrow { animation-play-state: paused; }
+    @keyframes cursorSwayL { from { transform: translateX(0); } to { transform: translateX(-2px); } }
+    @keyframes cursorSwayR { from { transform: translateX(0); } to { transform: translateX(2px); } }
+    .gal-h-sticky.cursor-hidden { cursor: none; }
+    .gal-h-sticky.cursor-hidden a, .gal-h-sticky.cursor-hidden button { cursor: none; }
+    /* counter con máscara para la transición de dígitos */
+    .gal-current-mask { display: inline-block; overflow: hidden; vertical-align: bottom; }
+    .gal-current { display: inline-block; }
     /* ── Link activo del navbar ── */
     #navbar .nav-active span, .mobile-menu .nav-active span { color: var(--turquoise) !important; }
 </style>
@@ -2201,25 +2228,25 @@
     <div class="gal-h-sticky">
         <header class="gal-h-header">
             <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
-            <span class="gal-h-counter"><span class="gal-current">01</span> / <span class="gal-total">00</span></span>
+            <span class="gal-h-counter"><span class="gal-current-mask"><span class="gal-current">01</span></span> / <span class="gal-total">00</span></span>
         </header>
         <div class="gal-h-track">
             <figure class="gal-h-item">
-                <div class="gal-h-imgwrap"><img src="img/OBW_6653.JPG" alt="Fachada Casa Panza" loading="lazy" decoding="async"></div>
+                <div class="gal-h-imgwrap"><img src="img/OBW_6653.JPG" alt="Fachada Casa Panza" loading="eager" decoding="async"></div>
                 <figcaption>
                     <span class="gal-h-num">01</span>
                     <span class="gal-h-cap" data-es="Fachada Casa Panza" data-en="Casa Panza facade">Fachada Casa Panza</span>
                 </figcaption>
             </figure>
             <figure class="gal-h-item">
-                <div class="gal-h-imgwrap"><img src="img/ENTRADA_CASA_PANZA.JPG" alt="Entrada de Casa Panza" loading="lazy" decoding="async"></div>
+                <div class="gal-h-imgwrap"><img src="img/ENTRADA_CASA_PANZA.JPG" alt="Entrada de Casa Panza" loading="eager" decoding="async"></div>
                 <figcaption>
                     <span class="gal-h-num">02</span>
                     <span class="gal-h-cap" data-es="Entrada de Casa Panza" data-en="Casa Panza entrance">Entrada de Casa Panza</span>
                 </figcaption>
             </figure>
             <figure class="gal-h-item">
-                <div class="gal-h-imgwrap"><img src="img/jardin-buganvilias.jpg" alt="Jardín con buganvilias, Casa Panza" loading="lazy" decoding="async"></div>
+                <div class="gal-h-imgwrap"><img src="img/jardin-buganvilias.jpg" alt="Jardín con buganvilias, Casa Panza" loading="eager" decoding="async"></div>
                 <figcaption>
                     <span class="gal-h-num">03</span>
                     <span class="gal-h-cap" data-es="Jardín con buganvilias, Casa Panza" data-en="Bougainvillea garden, Casa Panza">Jardín con buganvilias, Casa Panza</span>
@@ -2381,6 +2408,14 @@
 </section>
 
 
+<!-- Cursor personalizado de la galería -->
+<div class="gal-cursor" aria-hidden="true">
+    <span class="gal-cursor-arrow">←</span>
+    <span class="gal-cursor-label" data-es="Arrastra" data-en="Drag">Arrastra</span>
+    <span class="gal-cursor-arrow">→</span>
+</div>
+
+
 <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
    id="float-wa" target="_blank" rel="noopener noreferrer" aria-label="Abrir chat de WhatsApp" data-wa-link>
     <i class="fab fa-whatsapp"></i>
@@ -2516,6 +2551,28 @@
     var galTotal = galSection.querySelector('.gal-total');
     galTotal.textContent = String(galItems.length).padStart(2, '0');
 
+    /* Counter con transición: dígito sale arriba, el nuevo entra desde abajo */
+    var lastCounterTxt = galCurrent.textContent;
+    function setCounter(txt){
+        if (txt === lastCounterTxt) return;
+        lastCounterTxt = txt;
+        gsap.timeline({ overwrite: true })
+            .to(galCurrent, { yPercent: -110, duration: 0.15, ease: 'power2.in', overwrite: true })
+            .add(function(){ galCurrent.textContent = txt; })
+            .fromTo(galCurrent, { yPercent: 110 }, { yPercent: 0, duration: 0.15, ease: 'power2.out' });
+    }
+
+    /* Skew sutil por velocidad: peso físico del track */
+    var skewSetter = gsap.quickSetter(galTrack, 'skewX', 'deg');
+    var clampSkew = gsap.utils.clamp(-3, 3);
+    var skewTarget = 0, skewCurrent = 0;
+    gsap.ticker.add(function(){
+        skewTarget *= 0.9;
+        skewCurrent += (skewTarget - skewCurrent) * 0.15;
+        if (Math.abs(skewCurrent) < 0.02 && Math.abs(skewTarget) < 0.02) { skewCurrent = 0; }
+        skewSetter(skewCurrent);
+    });
+
     var lastFocus = -1;
     /* la base CSS lleva scale(1.15) como zoom de recorte: los valores de foco lo multiplican */
     var SCALE_FOCUS = 1.15 * 1.04, SCALE_REST = 1.15 * 0.97;
@@ -2550,7 +2607,8 @@
             onUpdate: function(self){
                 galBar.style.width = (self.progress * 100) + '%';
                 var idx = Math.min(galItems.length, Math.max(1, Math.round(self.progress * galItems.length) + 1));
-                galCurrent.textContent = String(idx).padStart(2, '0');
+                setCounter(String(idx).padStart(2, '0'));
+                skewTarget = clampSkew(self.getVelocity() / -350);
                 updateFocus();
             }
         }
@@ -2560,6 +2618,13 @@
     galItems.forEach(function(item){
         var img = item.querySelector('img');
         var cap = item.querySelector('figcaption');
+        /* Reveal de máscara: la imagen se descubre de derecha a izquierda al entrar */
+        var wrap = item.querySelector('.gal-h-imgwrap');
+        gsap.set(wrap, { clipPath: 'inset(0% 0% 0% 100%)' });
+        gsap.to(wrap, {
+            clipPath: 'inset(0% 0% 0% 0%)', duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: item, containerAnimation: galTween, start: 'left 105%', once: true }
+        });
         gsap.fromTo(img, { xPercent: -8 }, {
             xPercent: 8, ease: 'none',
             scrollTrigger: { trigger: item, containerAnimation: galTween, start: 'left right', end: 'right left', scrub: true }
@@ -2577,42 +2642,74 @@
         scrollTrigger: { trigger: galSection, start: 'top 70%', once: true }
     });
 
-    /* Cursor drag + arrastre horizontal (solo desktop) */
+    /* Cursor drag elegante + arrastre con momentum (solo desktop) */
     if (!window.matchMedia('(hover: none)').matches) {
-        var cursor = document.createElement('div');
-        cursor.className = 'gal-cursor';
-        cursor.textContent = 'drag';
-        cursor.setAttribute('aria-hidden', 'true');
-        document.body.appendChild(cursor);
-
+        var cursor = document.querySelector('.gal-cursor');
         var sticky = galSection.querySelector('.gal-h-sticky');
         var inGal = false;
-        window.addEventListener('mousemove', function(e){
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        }, { passive: true });
-        sticky.addEventListener('mouseenter', function(){ inGal = true; cursor.classList.add('on'); });
-        sticky.addEventListener('mouseleave', function(){ inGal = false; cursor.classList.remove('on'); });
 
-        /* arrastrar el track = scroll vertical equivalente */
+        /* seguimiento con inercia (lerp 0.15) */
+        var cMouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        var cPos = { x: cMouse.x, y: cMouse.y };
+        window.addEventListener('mousemove', function(e){
+            cMouse.x = e.clientX; cMouse.y = e.clientY;
+        }, { passive: true });
+        gsap.ticker.add(function(){
+            cPos.x += (cMouse.x - cPos.x) * 0.15;
+            cPos.y += (cMouse.y - cPos.y) * 0.15;
+            cursor.style.left = cPos.x + 'px';
+            cursor.style.top = cPos.y + 'px';
+        });
+
+        sticky.addEventListener('mouseenter', function(){
+            inGal = true;
+            cursor.classList.add('active');
+            sticky.classList.add('cursor-hidden');
+        });
+        sticky.addEventListener('mouseleave', function(){
+            inGal = false;
+            cursor.classList.remove('active', 'grabbing');
+            sticky.classList.remove('cursor-hidden');
+        });
+
+        /* arrastre horizontal → scroll vertical equivalente, con momentum al soltar */
         var dragging = false, startX = 0, startScroll = 0;
+        var velo = 0, lastMoveX = 0, lastMoveT = 0;
         function dragFactor(){
             return (galSection.offsetHeight - window.innerHeight) /
                    Math.max(1, galTrack.scrollWidth - window.innerWidth + 120);
         }
+        function scrollToY(y){
+            if (window.lenis) { window.lenis.scrollTo(y, { immediate: true }); }
+            else { window.scrollTo(0, y); }
+        }
         sticky.addEventListener('pointerdown', function(e){
             if (!inGal) return;
-            dragging = true; startX = e.clientX; startScroll = window.scrollY;
-            cursor.textContent = '◂ ▸';
+            dragging = true;
+            startX = e.clientX; startScroll = window.scrollY;
+            velo = 0; lastMoveX = e.clientX; lastMoveT = performance.now();
+            cursor.classList.add('grabbing');
         });
         window.addEventListener('pointermove', function(e){
             if (!dragging) return;
-            var target = startScroll + (startX - e.clientX) * dragFactor();
-            if (window.lenis) { window.lenis.scrollTo(target, { immediate: true }); }
-            else { window.scrollTo(0, target); }
+            var now = performance.now();
+            var dt = Math.max(1, now - lastMoveT);
+            velo = (lastMoveX - e.clientX) / dt;   /* px por ms, signo = dirección */
+            lastMoveX = e.clientX; lastMoveT = now;
+            scrollToY(startScroll + (startX - e.clientX) * dragFactor());
         });
         window.addEventListener('pointerup', function(){
-            dragging = false; cursor.textContent = 'drag';
+            if (!dragging) return;
+            dragging = false;
+            cursor.classList.remove('grabbing');
+            /* momentum: la velocidad final continúa con decay */
+            var v = velo * dragFactor() * 16;      /* px por frame (~60fps) */
+            (function momentum(){
+                if (dragging || Math.abs(v) < 0.4) return;
+                scrollToY(window.scrollY + v);
+                v *= 0.94;
+                requestAnimationFrame(momentum);
+            })();
         });
     }
 })();
