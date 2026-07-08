@@ -1810,29 +1810,56 @@
             visibility: hidden;
             pointer-events: none;
         }
-        .loader-symbol {
-            width: 64px;
-            animation: ldSymIn 0.8s ease 0.2s both;
+        .loader-logo { text-align: center; }
+        .loader-casa {
+            display: block;
+            font-family: var(--font-b);
+            font-size: 13px;
+            letter-spacing: 0.6em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: loaderFadeIn 0.6s ease forwards 0.2s;
         }
-        .loader-symbol svg { fill: var(--white); display: block; }
-        .loader-bar {
-            width: 100px;
+        .loader-panza {
+            font-family: var(--font-d);
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 300;
+            letter-spacing: 0.18em;
+            color: #fff;
+            line-height: 1;
+        }
+        .loader-panza .l {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(24px);
+            animation: loaderLetter 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+        .loader-panza .l:nth-child(1) { animation-delay: 0.4s; }
+        .loader-panza .l:nth-child(2) { animation-delay: 0.55s; }
+        .loader-panza .l:nth-child(3) { animation-delay: 0.7s; }
+        .loader-panza .l:nth-child(4) { animation-delay: 0.85s; }
+        .loader-panza .l:nth-child(5) { animation-delay: 1.05s; }
+        .loader-a-final svg { fill: var(--turquoise); }
+        .loader-a-final {
+            animation: loaderLetterFinal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+            animation-delay: 1.05s !important;
+        }
+        .loader-line {
+            width: 0;
             height: 1px;
-            background: rgba(255,255,255,0.12);
-            position: relative;
-            overflow: hidden;
-            animation: ldSymIn 0.4s ease 0.5s both;
-        }
-        .loader-bar::after {
-            content: '';
-            position: absolute;
-            inset: 0;
             background: var(--turquoise);
-            transform: translateX(-100%);
-            animation: ldFill 1s ease 0.7s forwards;
+            margin: 24px auto 0;
+            animation: loaderLine 1s ease forwards 1.4s;
         }
-        @keyframes ldSymIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes ldFill  { to   { transform: translateX(0); } }
+        @keyframes loaderFadeIn { to { opacity: 1; } }
+        @keyframes loaderLetter { to { opacity: 1; transform: translateY(0); } }
+        @keyframes loaderLetterFinal {
+            0% { opacity: 0; transform: translateY(24px) scale(0.8); }
+            60% { opacity: 1; transform: translateY(-6px) scale(1.12); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes loaderLine { to { width: 120px; } }
 
         /* ── CUSTOM CURSOR ── */
         .cursor-dot {
@@ -2721,10 +2748,13 @@
      PREMIUM LAYERS
 ══════════════════════════════════════════ -->
 <div id="brand-loader" aria-hidden="true">
-    <div class="loader-symbol">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115" width="64" height="90" style="fill:#fff"><use href="#cp-a"/></svg>
+    <div class="loader-logo">
+        <span class="loader-casa">C A S A</span>
+        <div class="loader-panza">
+            <span class="l">P</span><span class="l">A</span><span class="l">N</span><span class="l">Z</span><span class="l loader-a-final"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115" style="height:1em; width:auto; display:inline-block; vertical-align:baseline;"><use href="#cp-a"/></svg></span>
+        </div>
+        <div class="loader-line"></div>
     </div>
-    <div class="loader-bar"></div>
 </div>
 <div class="cursor-dot" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
@@ -2735,7 +2765,7 @@
 <script>
     /* ── BRAND LOADER ── */
     const loader = document.getElementById('brand-loader');
-    if (loader) setTimeout(() => loader.classList.add('hidden'), 1900);
+    if (loader) setTimeout(() => loader.classList.add('hidden'), 2400);
 
     /* ── CUSTOM CURSOR ── */
     const cursorDot = document.querySelector('.cursor-dot');
