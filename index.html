@@ -572,30 +572,61 @@
         /* ════════════════════════════════════════
            GALERÍA
         ════════════════════════════════════════ */
-        #galeria { background: var(--beige); }
-
-        .gal-hd { text-align: center; margin-bottom: 15px; }
-        .gal-hd .s-sub { margin: 0 auto; }
-
-        /* Botón ver todas */
-        #btn-ver-galeria {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-            border: 1px solid #1A1A1A;
-            color: #1A1A1A;
-            font-family: var(--font-b);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            padding: 14px 32px;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: background 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        /* ── GALERÍA horizontal inmersiva ── */
+        .gal-h-section { height: 500vh; position: relative; padding: 0 !important; background: var(--black); overflow: clip; }
+        .gal-h-sticky { position: sticky; top: 0; height: 100vh; overflow: clip; display: flex; align-items: center; }
+        .gal-h-header {
+            position: absolute; top: 32px; left: 4vw; right: 4vw; z-index: 3;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        #btn-ver-galeria:hover { background: #1A1A1A; color: #FFFFFF; }
+        .gal-h-header .s-label { color: rgba(255,255,255,0.5); margin: 0; }
+        .gal-h-counter { font-family: var(--font-d); font-size: 15px; color: rgba(255,255,255,0.7); letter-spacing: 0.2em; }
+        .gal-h-track {
+            display: flex; align-items: center; gap: 5vw;
+            padding: 0 8vw; will-change: transform;
+        }
+        .gal-h-item { flex-shrink: 0; margin: 0; position: relative; }
+        .gal-h-imgwrap { overflow: hidden; border-radius: 4px; }
+        .gal-h-item img {
+            display: block; object-fit: cover;
+            width: 32vw; height: 52vh;
+            transform: scale(1.15);
+            will-change: transform;
+        }
+        .gal-h-item:nth-child(3n) img { width: 26vw; height: 68vh; }   /* tall */
+        .gal-h-item:nth-child(4n) img { width: 44vw; height: 46vh; }   /* wide */
+        .gal-h-item figcaption {
+            display: flex; gap: 14px; align-items: baseline; margin-top: 14px;
+        }
+        .gal-h-num { font-family: var(--font-d); font-size: 13px; color: var(--turquoise); }
+        .gal-h-cap {
+            font-family: var(--font-b); font-size: 11px; letter-spacing: 0.22em;
+            text-transform: uppercase; color: rgba(255,255,255,0.55);
+        }
+        .gal-h-quote {
+            flex-shrink: 0; max-width: 30vw; margin: 0;
+            font-family: var(--font-d); font-size: clamp(26px, 3vw, 44px);
+            font-weight: 300; font-style: italic; line-height: 1.25; color: var(--white);
+        }
+        .gal-h-progress {
+            position: absolute; bottom: 32px; left: 4vw; right: 4vw;
+            height: 1px; background: rgba(255,255,255,0.15);
+        }
+        .gal-h-bar { height: 100%; width: 0%; background: var(--turquoise); }
+        @media (max-width: 768px) {
+            .gal-h-item img { width: 74vw !important; height: 48vh !important; }
+            .gal-h-quote { max-width: 78vw; }
+        }
+        /* Sin GSAP o reduced-motion: fluye en vertical */
+        .no-gsap .gal-h-section { height: auto; }
+        .no-gsap .gal-h-sticky { position: static; height: auto; }
+        .no-gsap .gal-h-track { flex-wrap: wrap; justify-content: center; padding: 96px 8vw 64px; }
+        @media (prefers-reduced-motion: reduce) {
+            .gal-h-section { height: auto !important; }
+            .gal-h-sticky { position: static !important; height: auto !important; }
+            .gal-h-track { flex-wrap: wrap; justify-content: center; padding: 96px 8vw 64px; transform: none !important; }
+            .gal-h-item img { transform: none !important; }
+        }
 
         /* ── Panel galería completa ── */
         #galeria-panel {
@@ -745,12 +776,6 @@
             letter-spacing: 0.12em;
             z-index: 10001;
             pointer-events: none;
-        }
-
-        .gal-btn-wrap {
-            display: flex;
-            justify-content: center;
-            margin-top: 32px;
         }
 
         /* ════════════════════════════════════════
@@ -1288,7 +1313,6 @@
             .esp-body           { padding: 20px; }
 
             /* Gallery — móvil */
-            #btn-ver-galeria    { width: 90%; max-width: 320px; justify-content: center; }
             #galeria-grid       { columns: 2; column-gap: 6px; padding: 16px 12px; }
             .gp-header          { padding: 14px 16px; flex-wrap: wrap; gap: 12px; }
             .gp-tabs            { order: 3; width: 100%; overflow-x: auto; gap: 16px; padding-bottom: 4px; }
@@ -2018,39 +2042,6 @@
             .reveal-scanline { display: none !important; }
         }
 
-        /* ── MOMENTOS — galería horizontal editorial ── */
-        .h-scroll-section { height: 300vh; position: relative; padding: 0 !important; background: var(--white); overflow: clip; }
-        .h-scroll-track {
-            position: sticky; top: 0; height: 100vh;
-            max-width: 100vw;
-            display: flex; align-items: center; gap: 6vw;
-            padding: 0 8vw; will-change: transform;
-        }
-        .h-item { flex-shrink: 0; margin: 0; }
-        .h-item img { width: 34vw; height: 46vh; object-fit: cover; border-radius: 4px; }
-        .h-item-tall img { height: 64vh; }
-        .h-item figcaption {
-            font-family: var(--font-b); font-size: 11px;
-            letter-spacing: 0.25em; text-transform: uppercase;
-            color: var(--gray); margin-bottom: 12px;
-        }
-        .h-quote {
-            flex-shrink: 0; font-family: var(--font-d);
-            font-size: clamp(28px, 3.5vw, 52px); font-style: italic; font-weight: 300;
-            line-height: 1.25; margin: 0; max-width: 34vw; color: var(--black);
-        }
-        @media (max-width: 768px) {
-            .h-item img { width: 72vw; height: 46vh; }
-            .h-quote { max-width: 80vw; font-size: 28px; }
-        }
-        /* Sin GSAP o reduced-motion: la galería fluye en vertical */
-        .no-gsap .h-scroll-section { height: auto; }
-        .no-gsap .h-scroll-track { position: static; height: auto; flex-wrap: wrap; justify-content: center; padding: 64px 8vw; }
-        @media (prefers-reduced-motion: reduce) {
-            .h-scroll-section { height: auto !important; }
-            .h-scroll-track { position: static !important; height: auto !important; flex-wrap: wrap; justify-content: center; padding: 64px 8vw; transform: none !important; }
-        }
-
         /* ── REDUCED MOTION GLOBAL ── */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -2330,54 +2321,186 @@
 <!-- ══════════════════════════════════════════
      GALERÍA
 ══════════════════════════════════════════ -->
-<section id="galeria">
-    <div class="container">
-
-        <div class="gal-hd fade-up">
+<section id="galeria" class="gal-h-section" aria-label="Galería">
+    <div class="gal-h-sticky">
+        <header class="gal-h-header">
             <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
-            <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
-            <h2 class="s-title" data-es="Así se ve Casa Panza" data-en="This is Casa Panza">Así se ve Casa Panza</h2>
-            <p class="s-sub" data-es="Siete espacios. Una sola experiencia que no olvidarás." data-en="Seven spaces. One single experience you will never forget.">Siete espacios. Una sola experiencia que no olvidarás.</p>
+            <span class="gal-h-counter"><span class="gal-current">01</span> / <span class="gal-total">00</span></span>
+        </header>
+        <div class="gal-h-track">
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6653.JPG" alt="Fachada Casa Panza" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">01</span>
+                    <span class="gal-h-cap" data-es="Fachada Casa Panza" data-en="Casa Panza facade">Fachada Casa Panza</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/ENTRADA_CASA_PANZA.JPG" alt="Entrada de Casa Panza" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">02</span>
+                    <span class="gal-h-cap" data-es="Entrada de Casa Panza" data-en="Casa Panza entrance">Entrada de Casa Panza</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/jardin-buganvilias.jpg" alt="Jardín con buganvilias, Casa Panza" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">03</span>
+                    <span class="gal-h-cap" data-es="Jardín con buganvilias, Casa Panza" data-en="Bougainvillea garden, Casa Panza">Jardín con buganvilias, Casa Panza</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6660.JPG" alt="Sala de estar con vista al mar" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">04</span>
+                    <span class="gal-h-cap" data-es="Sala de estar con vista al mar" data-en="Living room with sea view">Sala de estar con vista al mar</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6612.JPG" alt="Sala de estar" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">05</span>
+                    <span class="gal-h-cap" data-es="Sala de estar" data-en="Living room">Sala de estar</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6599.JPG" alt="Sala ángulo alternativo" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">06</span>
+                    <span class="gal-h-cap" data-es="Sala ángulo alternativo" data-en="Living room alternative angle">Sala ángulo alternativo</span>
+                </figcaption>
+            </figure>
+            <blockquote class="gal-h-quote" data-es="Cada rincón <em style='color:var(--turquoise)'>cuenta una historia</em>" data-en="Every corner <em style='color:var(--turquoise)'>tells a story</em>" data-html="true">Cada rincón <em style="color:var(--turquoise)">cuenta una historia</em></blockquote>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6634.JPG" alt="Comedor y cocina con vista al mar" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">07</span>
+                    <span class="gal-h-cap" data-es="Comedor y cocina con vista al mar" data-en="Dining and kitchen with sea view">Comedor y cocina con vista al mar</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6821.JPG" alt="Comedor montado" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">08</span>
+                    <span class="gal-h-cap" data-es="Comedor montado" data-en="Set dining table">Comedor montado</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6822.JPG" alt="Detalle comedor" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">09</span>
+                    <span class="gal-h-cap" data-es="Detalle comedor" data-en="Dining detail">Detalle comedor</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6819.JPG" alt="Comedor exterior" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">10</span>
+                    <span class="gal-h-cap" data-es="Comedor exterior" data-en="Outdoor dining">Comedor exterior</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6626.JPG" alt="Cocina equipada" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">11</span>
+                    <span class="gal-h-cap" data-es="Cocina equipada" data-en="Equipped kitchen">Cocina equipada</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6622.JPG" alt="Cocina isla de madera" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">12</span>
+                    <span class="gal-h-cap" data-es="Cocina isla de madera" data-en="Kitchen wooden island">Cocina isla de madera</span>
+                </figcaption>
+            </figure>
+            <blockquote class="gal-h-quote" data-es="El paraíso no se describe.<br><em style='color:var(--turquoise)'>Se reserva.</em>" data-en="Paradise isn't described.<br><em style='color:var(--turquoise)'>It's reserved.</em>" data-html="true">El paraíso no se describe.<br><em style="color:var(--turquoise)">Se reserva.</em></blockquote>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6791.JPG" alt="Suite principal" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">13</span>
+                    <span class="gal-h-cap" data-es="Suite principal" data-en="Master suite">Suite principal</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6463.JPG" alt="Suite principal gran angular" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">14</span>
+                    <span class="gal-h-cap" data-es="Suite principal gran angular" data-en="Master suite wide angle">Suite principal gran angular</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6785.JPG" alt="Detalle almohadas" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">15</span>
+                    <span class="gal-h-cap" data-es="Detalle almohadas" data-en="Pillow detail">Detalle almohadas</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6592.JPG" alt="Habitación familiar" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">16</span>
+                    <span class="gal-h-cap" data-es="Habitación familiar" data-en="Family room">Habitación familiar</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6456.JPG" alt="Habitación familiar con litera" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">17</span>
+                    <span class="gal-h-cap" data-es="Habitación familiar con litera" data-en="Family room with bunk bed">Habitación familiar con litera</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6586.JPG" alt="Habitación lounge" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">18</span>
+                    <span class="gal-h-cap" data-es="Habitación lounge" data-en="Lounge room">Habitación lounge</span>
+                </figcaption>
+            </figure>
+            <blockquote class="gal-h-quote" data-es="Donde el turquesa <em style='color:var(--turquoise)'>entra por la ventana.</em>" data-en="Where the turquoise <em style='color:var(--turquoise)'>comes through the window.</em>" data-html="true">Donde el turquesa <em style="color:var(--turquoise)">entra por la ventana.</em></blockquote>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6496.JPG" alt="Habitación con litera" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">19</span>
+                    <span class="gal-h-cap" data-es="Habitación con litera" data-en="Room with bunk bed">Habitación con litera</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6810.JPG" alt="Baño de diseño" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">20</span>
+                    <span class="gal-h-cap" data-es="Baño de diseño" data-en="Designer bathroom">Baño de diseño</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/OBW_6801.JPG" alt="Detalle toallas Casa Panza" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">21</span>
+                    <span class="gal-h-cap" data-es="Detalle toallas Casa Panza" data-en="Casa Panza towel detail">Detalle toallas Casa Panza</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/IMG_0864.JPG" alt="Mar turquesa Los Roques" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">22</span>
+                    <span class="gal-h-cap" data-es="Mar turquesa Los Roques" data-en="Turquoise sea Los Roques">Mar turquesa Los Roques</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/IMG_0861.JPG" alt="Arrecife Los Roques desde drone" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">23</span>
+                    <span class="gal-h-cap" data-es="Arrecife Los Roques desde drone" data-en="Los Roques reef from drone">Arrecife Los Roques desde drone</span>
+                </figcaption>
+            </figure>
+            <figure class="gal-h-item">
+                <div class="gal-h-imgwrap"><img src="img/IMG_0720.JPG" alt="Lancha en aguas cristalinas" loading="lazy" decoding="async"></div>
+                <figcaption>
+                    <span class="gal-h-num">24</span>
+                    <span class="gal-h-cap" data-es="Lancha en aguas cristalinas" data-en="Boat in crystal clear waters">Lancha en aguas cristalinas</span>
+                </figcaption>
+            </figure>
         </div>
-
-        <div class="gal-btn-wrap fade-up">
-            <button id="btn-ver-galeria">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-                    <rect x="0" y="0" width="6" height="6"/>
-                    <rect x="8" y="0" width="6" height="6"/>
-                    <rect x="0" y="8" width="6" height="6"/>
-                    <rect x="8" y="8" width="6" height="6"/>
-                </svg>
-                <span data-es="Ver todas las fotos" data-en="View all photos">Ver todas las fotos</span>
-            </button>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     MOMENTOS — galería horizontal editorial
-══════════════════════════════════════════ -->
-<section id="momentos" class="h-scroll-section" aria-label="Momentos">
-    <div class="h-scroll-track">
-        <figure class="h-item">
-            <figcaption data-es="Gran Roque, 2025" data-en="Gran Roque, 2025">Gran Roque, 2025</figcaption>
-            <img src="img/IMG_0864.JPG" alt="Mar turquesa de Los Roques" loading="lazy" decoding="async">
-        </figure>
-        <figure class="h-item h-item-tall">
-            <figcaption data-es="Vista aérea, Los Roques" data-en="Aerial view, Los Roques">Vista aérea, Los Roques</figcaption>
-            <img src="img/IMG_0861.JPG" alt="Vista aérea de Los Roques" loading="lazy" decoding="async">
-        </figure>
-        <blockquote class="h-quote" data-es="El paraíso no se describe.<br><em style='color:var(--turquoise)'>Se reserva.</em>" data-en="Paradise isn't described.<br><em style='color:var(--turquoise)'>It's reserved.</em>" data-html="true">El paraíso no se describe.<br><em style="color:var(--turquoise)">Se reserva.</em></blockquote>
-        <figure class="h-item">
-            <figcaption data-es="Rumbo a los cayos" data-en="Bound for the cays">Rumbo a los cayos</figcaption>
-            <img src="img/IMG_0720.JPG" alt="Lancha en aguas cristalinas de Los Roques" loading="lazy" decoding="async">
-        </figure>
-        <figure class="h-item h-item-tall">
-            <figcaption data-es="Fachada, Casa Panza" data-en="Facade, Casa Panza">Fachada, Casa Panza</figcaption>
-            <img src="img/WhatsApp_Image_2026-04-29_at_10_30_34.jpeg" alt="Fachada de Casa Panza" loading="lazy" decoding="async">
-        </figure>
+        <div class="gal-h-progress"><div class="gal-h-bar"></div></div>
     </div>
 </section>
 
@@ -2904,7 +3027,6 @@
         if (window.lenis) window.lenis.start();
     }
 
-    document.getElementById('btn-ver-galeria').addEventListener('click', abrirPanel);
     document.getElementById('btn-cerrar-galeria').addEventListener('click', cerrarPanel);
 
     document.querySelectorAll('.galeria-tab').forEach(tab => {
@@ -3288,17 +3410,50 @@
         stagger: 0.15, duration: 1.2, ease: 'power3.out', delay: 0.2
     });
 
-    /* Galería horizontal — momentos */
-    var track = document.querySelector('.h-scroll-track');
-    if (track) {
-        gsap.to(track, {
-            x: function(){ return -(track.scrollWidth - window.innerWidth + 100); },
+    /* Galería horizontal inmersiva */
+    var galSection = document.querySelector('.gal-h-section');
+    if (galSection) {
+        var galTrack = galSection.querySelector('.gal-h-track');
+        var galBar = galSection.querySelector('.gal-h-bar');
+        var galItems = galSection.querySelectorAll('.gal-h-item');
+        var galCurrent = galSection.querySelector('.gal-current');
+        var galTotal = galSection.querySelector('.gal-total');
+        galTotal.textContent = String(galItems.length).padStart(2, '0');
+
+        var galTween = gsap.to(galTrack, {
+            x: function(){ return -(galTrack.scrollWidth - window.innerWidth + 120); },
             ease: 'none',
             scrollTrigger: {
-                trigger: '.h-scroll-section',
-                start: 'top top', end: 'bottom bottom', scrub: 1.2,
-                invalidateOnRefresh: true
+                trigger: galSection,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 1.4,
+                invalidateOnRefresh: true,
+                onUpdate: function(self){
+                    galBar.style.width = (self.progress * 100) + '%';
+                    var idx = Math.min(galItems.length, Math.max(1, Math.round(self.progress * galItems.length) + 1));
+                    galCurrent.textContent = String(idx).padStart(2, '0');
+                }
             }
+        });
+
+        /* Parallax interno: cada imagen se desliza dentro de su marco mientras el track avanza */
+        galItems.forEach(function(item){
+            var img = item.querySelector('img');
+            gsap.fromTo(img,
+                { xPercent: -8 },
+                {
+                    xPercent: 8,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: item,
+                        containerAnimation: galTween,
+                        start: 'left right',
+                        end: 'right left',
+                        scrub: true
+                    }
+                }
+            );
         });
     }
 })();
