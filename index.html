@@ -1755,7 +1755,7 @@
         /* ── Lente mágico (clip-path, alineación 1:1) ── */
         .lens-ring-solo {
             position: absolute;
-            width: 90px; height: 90px;
+            width: 72px; height: 72px;
             border: 1px solid rgba(42,191,191,0.6);
             border-radius: 50%;
             box-shadow: 0 0 30px rgba(42,191,191,0.2);
@@ -3137,7 +3137,7 @@
     var photo = stage.querySelector('.reveal-photo');
     var ring = stage.querySelector('.lens-ring-solo');
     if (!sketch || !photo || !ring) return;
-    var R = 45; // radio del lente (90px de diámetro)
+    var R = 36; // radio del lente (72px de diámetro)
 
     /* Crea 2 capas de lente clonando las imágenes de fondo — mismas dimensiones,
        misma posición (inset 0), por eso la alineación es 1:1 SIEMPRE */
