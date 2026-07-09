@@ -1813,22 +1813,57 @@
             border-top: 1px solid rgba(42,191,191,0.15);
             position: relative;
             overflow: clip;
-            padding: 150px 0;
         }
-        .gal-teaser-map {
+        /* ── Escenario 3D por capas ── */
+        .chart-3d { perspective: 1200px; }
+        .chart-scene {
+            position: relative;
+            transform-style: preserve-3d;
+            height: min(92vh, 860px);
+            min-height: 560px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .chart-layer { will-change: transform; }
+        .chart-bg {
+            position: absolute; inset: -6%;
+            transform: translateZ(-80px) scale(1.12);
+        }
+        .chart-bg-img {
             position: absolute; inset: 0;
-            width: 100%; height: 100%;
-            object-fit: cover; object-position: center;
-            z-index: 0;
-            will-change: transform;
+            background: url('img/carta-nautica-sketch.jpg') center/cover;
         }
-        /* Velo sutil para legibilidad, sin matar el dibujo */
-        .gal-teaser::before {
+        .chart-bg::after {
             content: '';
             position: absolute; inset: 0;
-            background: rgba(250, 247, 242, 0.18);
+            background: rgba(250, 247, 242, 0.15);
             pointer-events: none;
-            z-index: 1;
+        }
+        .chart-routes { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .chart-pulse { opacity: 0; transform-box: fill-box; transform-origin: center; }
+        .chart-pulse.on { opacity: 1; animation: chartPulse 1.6s ease-in-out infinite; }
+        @keyframes chartPulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.4); opacity: 0.45; }
+        }
+        .chart-compass {
+            position: absolute; bottom: 6%; right: 5%;
+            width: clamp(120px, 14vw, 220px); aspect-ratio: 1;
+            transform: translateZ(40px);
+            filter: drop-shadow(0 12px 24px rgba(0,0,0,0.18));
+        }
+        .chart-compass-rot, .chart-compass-inner { position: absolute; inset: 0; }
+        .chart-compass-inner { background: url('img/compass-sketch.png') center/contain no-repeat; }
+        .chart-plaque {
+            position: relative;
+            transform: translateZ(80px);
+            transform-style: preserve-3d;
+        }
+        /* Sin GSAP o reduced-motion: rutas y pulso visibles, escena estática */
+        .no-gsap .route-mask-path { stroke-dashoffset: 0 !important; }
+        .no-gsap .chart-pulse { opacity: 1; }
+        @media (prefers-reduced-motion: reduce) {
+            .route-mask-path { stroke-dashoffset: 0 !important; }
+            .chart-pulse { opacity: 1 !important; }
         }
         /* Placa blanca estilo letrero de la fachada */
         .gal-teaser-plaque {
@@ -2140,10 +2175,29 @@
 <!-- ══════════════════════════════════════════
      GALERÍA
 ══════════════════════════════════════════ -->
-<section id="galeria" class="gal-teaser">
-    <img src="img/carta-nautica-sketch.jpg" alt="" aria-hidden="true" class="gal-teaser-map" loading="lazy" decoding="async">
-    <div class="container" style="text-align:center;">
-        <div class="gal-teaser-plaque">
+<section id="galeria" class="gal-teaser chart-3d">
+    <div class="chart-scene">
+        <div class="chart-layer chart-bg" aria-hidden="true">
+            <div class="chart-bg-img"></div>
+            <svg class="chart-routes" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                    <mask id="routeMask1"><path class="route-mask-path" d="M 367 529 Q 640 420 937 270" pathLength="1000" stroke="#fff" stroke-width="8" fill="none" stroke-dasharray="1000" stroke-dashoffset="1000"/></mask>
+                    <mask id="routeMask2"><path class="route-mask-path" d="M 843 662 Q 900 470 937 270" pathLength="1000" stroke="#fff" stroke-width="8" fill="none" stroke-dasharray="1000" stroke-dashoffset="1000"/></mask>
+                    <mask id="routeMask3"><path class="route-mask-path" d="M 202 738 Q 300 480 432 317 Q 660 240 937 270" pathLength="1000" stroke="#fff" stroke-width="8" fill="none" stroke-dasharray="1000" stroke-dashoffset="1000"/></mask>
+                </defs>
+                <g fill="none" stroke="rgba(42,191,191,0.5)" stroke-width="1.6" stroke-dasharray="4 6">
+                    <path d="M 367 529 Q 640 420 937 270" mask="url(#routeMask1)"/>
+                    <path d="M 843 662 Q 900 470 937 270" mask="url(#routeMask2)"/>
+                    <path d="M 202 738 Q 300 480 432 317 Q 660 240 937 270" mask="url(#routeMask3)"/>
+                </g>
+                <circle class="chart-pulse" cx="937" cy="270" r="7" fill="rgba(42,191,191,0.9)"/>
+            </svg>
+        </div>
+        <div class="chart-layer chart-compass" aria-hidden="true">
+            <div class="chart-compass-rot"><div class="chart-compass-inner"></div></div>
+        </div>
+        <div class="chart-layer chart-plaque">
+            <div class="gal-teaser-plaque">
         <span class="plaque-screws" aria-hidden="true"></span>
         <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
         <h2 class="s-title gal-teaser-title">
@@ -2151,6 +2205,7 @@
             <img src="img/CASA_PANZA-tight.svg" alt="Casa Panza" class="gal-title-logo">
         </h2>
         <a href="galeria.html" class="btn-reservar" style="margin-top:24px; display:inline-block;" data-es="Explorar la galería →" data-en="Explore the gallery →">Explorar la galería →</a>
+        </div>
         </div>
     </div>
 </section>
@@ -3007,17 +3062,38 @@
     .fromTo('.reveal-photo', { scale: 1.02 }, { scale: 1, ease: 'none', duration: 1 }, 0)
     .fromTo('.reveal-caption', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, 0.78);
 
-    /* Teaser galería: la carta náutica hace zoom-out al recorrer la sección */
-    var mapImg = document.querySelector('.gal-teaser-map');
-    if (mapImg) {
-        gsap.fromTo(mapImg, { scale: 1.3 }, {
-            scale: 1, ease: 'none',
-            scrollTrigger: { trigger: '.gal-teaser', start: 'top bottom', end: 'bottom top', scrub: 1 }
+    /* Teaser galería 3D: entrada cinematográfica, brújula viva y rutas */
+    var chartScene = document.querySelector('.chart-scene');
+    if (chartScene) {
+        gsap.timeline({ scrollTrigger: { trigger: '.chart-3d', start: 'top 70%', once: true } })
+            .from('.chart-bg-img', { scale: 1.08, duration: 1.6, ease: 'power3.out' }, 0)
+            .from('.gal-teaser-plaque', { z: 200, opacity: 0, duration: 0.9, ease: 'power3.out' }, 0.3)
+            .from('.chart-compass-inner', { rotation: -40, opacity: 0, duration: 1, ease: 'power3.out' }, 0.5);
+
+        /* la aguja busca el norte con el scroll */
+        gsap.fromTo('.chart-compass-rot', { rotation: -15 }, {
+            rotation: 15, ease: 'none',
+            scrollTrigger: { trigger: '.chart-3d', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
         });
-        gsap.from('.gal-teaser-plaque', {
-            y: 36, opacity: 0, scale: 0.94, duration: 0.9, ease: 'power3.out',
-            scrollTrigger: { trigger: '.gal-teaser', start: 'top 72%', once: true }
+
+        /* huevo de pascua: giro completo al hover directo */
+        var compassInner = document.querySelector('.chart-compass-inner');
+        document.querySelector('.chart-compass').addEventListener('mouseenter', function(){
+            if (!gsap.isTweening(compassInner)) {
+                gsap.to(compassInner, { rotation: '+=360', duration: 2.4, ease: 'power2.inOut' });
+            }
         });
+
+        /* líneas de rumbo que se dibujan hacia El Gran Roque */
+        var routeMasks = gsap.utils.toArray('.route-mask-path');
+        var chartPulse = document.querySelector('.chart-pulse');
+        if (routeMasks.length) {
+            gsap.fromTo(routeMasks, { strokeDashoffset: 1000 }, {
+                strokeDashoffset: 0, duration: 2.5, ease: 'power2.out', stagger: 0.4,
+                scrollTrigger: { trigger: '.chart-3d', start: 'top 60%', once: true },
+                onComplete: function(){ if (chartPulse) chartPulse.classList.add('on'); }
+            });
+        }
     }
 
     /* Entrada del nombre masivo al cargar */
@@ -3169,6 +3245,40 @@
         var r = stage.getBoundingClientRect();
         if (r.bottom < 0 || r.top > window.innerHeight) closeLens();
     }, { passive: true });
+})();
+</script>
+
+<!-- ══ Parallax 3D de la carta náutica ══ -->
+<script>
+(function(){
+    if (window.matchMedia('(hover: none)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var scene = document.querySelector('.chart-scene');
+    if (!scene) return;
+    var bg = scene.querySelector('.chart-bg');
+    var compass = scene.querySelector('.chart-compass');
+    var plaque = scene.querySelector('.chart-plaque');
+    var mx = 0, my = 0, cx = 0, cy = 0, raf = null;
+
+    function tick(){
+        cx += (mx - cx) * 0.06;  /* inercia suave */
+        cy += (my - cy) * 0.06;
+        bg.style.transform = 'translateZ(-80px) scale(1.12) translate(' + (cx * -14) + 'px,' + (cy * -10) + 'px)';
+        compass.style.transform = 'translateZ(40px) translate(' + (cx * 22) + 'px,' + (cy * 16) + 'px) rotate(' + (cx * 6) + 'deg)';
+        plaque.style.transform = 'translateZ(80px) rotateY(' + (cx * 2.5) + 'deg) rotateX(' + (cy * -2) + 'deg)';
+        /* se apaga solo cuando vuelve al centro tras salir */
+        if (mx === 0 && my === 0 && Math.abs(cx) < 0.002 && Math.abs(cy) < 0.002) { raf = null; return; }
+        raf = requestAnimationFrame(tick);
+    }
+    function wake(){ if (!raf) raf = requestAnimationFrame(tick); }
+
+    scene.parentElement.addEventListener('mousemove', function(e){
+        var r = scene.getBoundingClientRect();
+        mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        my = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        wake();
+    });
+    scene.parentElement.addEventListener('mouseleave', function(){ mx = 0; my = 0; wake(); });
 })();
 </script>
 
