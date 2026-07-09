@@ -1814,29 +1814,86 @@
             position: relative;
             overflow: clip;
         }
-        /* ── Escenario 3D por capas ── */
-        .chart-3d { perspective: 1200px; }
-        .chart-scene {
+        /* ── Portal Jesko: el mapa nace de la brújula (das-design) ── */
+        .compass-pin {
             position: relative;
-            transform-style: preserve-3d;
-            height: min(68vh, 600px);
-            min-height: 460px;
-            display: flex; align-items: center; justify-content: center;
+            height: 240vh;              /* recorrido del pin */
+            border-top: 1px solid rgba(42,191,191,0.15);
         }
-        .chart-layer { will-change: transform; }
-        .chart-bg {
-            position: absolute; inset: -6%;
-            transform: translateZ(-80px) scale(1.12);
+        .compass-stage {
+            position: sticky; top: 0;
+            height: 100vh; min-height: 560px;
+            overflow: clip;
+            background: #FAF7F2;        /* mismo papel de la carta */
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            perspective: 1200px;
         }
-        .chart-bg-img {
+        .compass-destination {
+            position: absolute; inset: 0;
+            opacity: 0;
+            transform: scale(1.08);     /* se relaja a 1 durante el reveal */
+            will-change: opacity, transform;
+            z-index: 1;
+        }
+        .compass-destination-img {
             position: absolute; inset: 0;
             background: url('img/carta-nautica-sketch.jpg') center/cover;
         }
-        .chart-bg::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: rgba(250, 247, 242, 0.15);
-            pointer-events: none;
+        .compass-grid {
+            position: relative; z-index: 3;
+            display: grid; grid-template-columns: 1fr auto 1fr;
+            align-items: center; gap: clamp(16px, 3vw, 48px);
+            width: 100%; padding: 0 32px;
+        }
+        .compass-display {
+            font-family: var(--font-d);
+            font-weight: 400;
+            font-size: clamp(40px, 6.5vw, 104px);
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            color: var(--black);
+            margin: 0;
+            will-change: transform, opacity;
+        }
+        .compass-display-left { text-align: right; font-style: italic; }
+        .compass-display-right { text-align: left; }
+        .compass-display-right em { font-style: italic; }
+        .compass-porthole {
+            width: clamp(240px, 30vw, 400px); aspect-ratio: 1;
+            background: url('img/compass-sketch.webp') center/contain no-repeat;
+            transform-origin: center center;
+            will-change: transform, opacity;
+            filter: drop-shadow(0 14px 30px rgba(0,0,0,0.14));
+        }
+        .compass-meta {
+            position: absolute; bottom: 48px; left: 0; right: 0;
+            z-index: 4;
+            display: flex; justify-content: center;
+            padding: 0 24px;
+            will-change: transform, opacity;
+        }
+        @media (max-width: 1023px) {
+            .compass-pin { height: 200vh; }
+            .compass-grid { grid-template-columns: 1fr; gap: 14px; }
+            .compass-display-left, .compass-display-right { text-align: center; }
+            .compass-porthole { margin: 0 auto; }
+        }
+        @media (max-width: 640px) {
+            .compass-pin { height: 180vh; }
+            .compass-display { font-size: clamp(34px, 11vw, 56px); }
+            .compass-meta { bottom: 24px; }
+        }
+        /* Sin GSAP o reduced-motion: estado final estático */
+        .no-gsap .compass-pin { height: auto; }
+        .no-gsap .compass-stage { position: static; height: min(68vh, 600px); }
+        .no-gsap .compass-destination { opacity: 1; transform: none; }
+        .no-gsap .compass-grid { display: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .compass-pin { height: auto !important; }
+            .compass-stage { position: static; height: min(68vh, 600px); }
+            .compass-destination { opacity: 1 !important; transform: none !important; }
+            .compass-grid { display: none; }
         }
         .chart-routes { position: absolute; inset: 0; width: 100%; height: 100%; }
         .chart-pulse { opacity: 0; transform-box: fill-box; transform-origin: center; }
@@ -1844,19 +1901,6 @@
         @keyframes chartPulse {
             0%, 100% { transform: scale(1); opacity: 0.9; }
             50% { transform: scale(1.4); opacity: 0.45; }
-        }
-        .chart-compass {
-            position: absolute; bottom: 6%; right: 5%;
-            width: clamp(120px, 14vw, 220px); aspect-ratio: 1;
-            transform: translateZ(40px);
-            filter: drop-shadow(0 12px 24px rgba(0,0,0,0.18));
-        }
-        .chart-compass-rot, .chart-compass-inner { position: absolute; inset: 0; }
-        .chart-compass-inner { background: url('img/compass-sketch.png') center/contain no-repeat; }
-        .chart-plaque {
-            position: relative;
-            transform: translateZ(80px);
-            transform-style: preserve-3d;
         }
         /* Sin GSAP o reduced-motion: rutas y pulso visibles, escena estática */
         .no-gsap .route-mask-path { stroke-dashoffset: 0 !important; }
@@ -2175,10 +2219,12 @@
 <!-- ══════════════════════════════════════════
      GALERÍA
 ══════════════════════════════════════════ -->
-<section id="galeria" class="gal-teaser chart-3d">
-    <div class="chart-scene">
-        <div class="chart-layer chart-bg" aria-hidden="true">
-            <div class="chart-bg-img"></div>
+<section id="galeria" class="gal-teaser compass-pin">
+    <div class="compass-stage">
+
+        <!-- destino: la carta, oculta hasta atravesar la brújula -->
+        <div class="compass-destination" aria-hidden="true">
+            <div class="compass-destination-img"></div>
             <svg class="chart-routes" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <defs>
                     <mask id="routeMask1"><path class="route-mask-path" d="M 367 529 Q 640 420 937 270" pathLength="1000" stroke="#fff" stroke-width="8" fill="none" stroke-dasharray="1000" stroke-dashoffset="1000"/></mask>
@@ -2193,10 +2239,16 @@
                 <circle class="chart-pulse" cx="937" cy="270" r="7" fill="rgba(42,191,191,0.9)"/>
             </svg>
         </div>
-        <div class="chart-layer chart-compass" aria-hidden="true">
-            <div class="chart-compass-rot"><div class="chart-compass-inner"></div></div>
+
+        <!-- fase 1: tipografía display + brújula portal -->
+        <div class="compass-grid">
+            <h2 class="compass-display compass-display-left" data-es="Así<br>se ve" data-en="This<br>is" data-html="true">Así<br>se ve</h2>
+            <div class="compass-porthole" aria-hidden="true"></div>
+            <h2 class="compass-display compass-display-right" data-es="los<br><em>Roques</em>" data-en="los<br><em>Roques</em>" data-html="true">los<br><em>Roques</em></h2>
         </div>
-        <div class="chart-layer chart-plaque">
+
+        <!-- placa: visible al inicio, se va durante el zoom y aterriza al final -->
+        <div class="compass-meta">
             <div class="gal-teaser-plaque">
         <span class="plaque-screws" aria-hidden="true"></span>
         <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
@@ -2207,6 +2259,7 @@
         <a href="galeria.html" class="btn-reservar" style="margin-top:24px; display:inline-block;" data-es="Explorar la galería →" data-en="Explore the gallery →">Explorar la galería →</a>
         </div>
         </div>
+
     </div>
 </section>
 
@@ -3062,38 +3115,29 @@
     .fromTo('.reveal-photo', { scale: 1.02 }, { scale: 1, ease: 'none', duration: 1 }, 0)
     .fromTo('.reveal-caption', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, 0.78);
 
-    /* Teaser galería 3D: entrada cinematográfica, brújula viva y rutas */
-    var chartScene = document.querySelector('.chart-scene');
-    if (chartScene) {
-        gsap.timeline({ scrollTrigger: { trigger: '.chart-3d', start: 'top 70%', once: true } })
-            .from('.chart-bg-img', { scale: 1.08, duration: 1.6, ease: 'power3.out' }, 0)
-            .from('.gal-teaser-plaque', { z: 200, opacity: 0, duration: 0.9, ease: 'power3.out' }, 0.3)
-            .from('.chart-compass-inner', { rotation: -40, opacity: 0, duration: 1, ease: 'power3.out' }, 0.5);
-
-        /* la aguja busca el norte con el scroll */
-        gsap.fromTo('.chart-compass-rot', { rotation: -15 }, {
-            rotation: 15, ease: 'none',
-            scrollTrigger: { trigger: '.chart-3d', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
-        });
-
-        /* huevo de pascua: giro completo al hover directo */
-        var compassInner = document.querySelector('.chart-compass-inner');
-        document.querySelector('.chart-compass').addEventListener('mouseenter', function(){
-            if (!gsap.isTweening(compassInner)) {
-                gsap.to(compassInner, { rotation: '+=360', duration: 2.4, ease: 'power2.inOut' });
-            }
-        });
-
-        /* líneas de rumbo que se dibujan hacia El Gran Roque */
-        var routeMasks = gsap.utils.toArray('.route-mask-path');
+    /* Portal Jesko: atraviesas la brújula y el mapa te recibe */
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    var compassStage = document.querySelector('.compass-stage');
+    if (compassStage) {
         var chartPulse = document.querySelector('.chart-pulse');
-        if (routeMasks.length) {
-            gsap.fromTo(routeMasks, { strokeDashoffset: 1000 }, {
-                strokeDashoffset: 0, duration: 2.5, ease: 'power2.out', stagger: 0.4,
-                scrollTrigger: { trigger: '.chart-3d', start: 'top 60%', once: true },
-                onComplete: function(){ if (chartPulse) chartPulse.classList.add('on'); }
-            });
-        }
+        gsap.timeline({
+            scrollTrigger: { trigger: '.compass-pin', start: 'top top', end: 'bottom bottom', scrub: 1.2 }
+        })
+            /* FASE 1: la tipografía se aparta, la placa se retira */
+            .to('.compass-display-left',  { opacity: 0, xPercent: -60, ease: 'power2.in', duration: 0.35 }, 0)
+            .to('.compass-display-right', { opacity: 0, xPercent: 60, ease: 'power2.in', duration: 0.35 }, 0)
+            .to('.compass-meta',          { opacity: 0, y: 40, ease: 'power1.in', duration: 0.3 }, 0)
+            /* FASE 2: la brújula escala hacia ti — su anillo es la ventana */
+            .to('.compass-porthole',      { scale: 8, rotation: 25, ease: 'power2.in', duration: 0.7 }, 0)
+            /* FASE 3: el mapa se revela detrás y se asienta */
+            .to('.compass-destination',   { opacity: 1, scale: 1, ease: 'power2.out', duration: 0.5 }, 0.4)
+            /* FASE 4: la brújula se disuelve — ya estás dentro del mapa */
+            .to('.compass-porthole',      { opacity: 0, ease: 'power2.out', duration: 0.3 }, 0.7)
+            /* FASE 5: las rutas se trazan y la placa aterriza */
+            .fromTo('.route-mask-path',   { strokeDashoffset: 1000 },
+                                          { strokeDashoffset: 0, stagger: 0.06, duration: 0.25, ease: 'none' }, 0.72)
+            .to('.compass-meta',          { opacity: 1, y: 0, ease: 'power2.out', duration: 0.2 }, 0.85)
+            .add(function(){ if (chartPulse) chartPulse.classList.add('on'); }, 0.97);
     }
 
     /* Entrada del nombre masivo al cargar */
@@ -3248,39 +3292,6 @@
 })();
 </script>
 
-<!-- ══ Parallax 3D de la carta náutica ══ -->
-<script>
-(function(){
-    if (window.matchMedia('(hover: none)').matches) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var scene = document.querySelector('.chart-scene');
-    if (!scene) return;
-    var bg = scene.querySelector('.chart-bg');
-    var compass = scene.querySelector('.chart-compass');
-    var plaque = scene.querySelector('.chart-plaque');
-    var mx = 0, my = 0, cx = 0, cy = 0, raf = null;
-
-    function tick(){
-        cx += (mx - cx) * 0.06;  /* inercia suave */
-        cy += (my - cy) * 0.06;
-        bg.style.transform = 'translateZ(-80px) scale(1.12) translate(' + (cx * -14) + 'px,' + (cy * -10) + 'px)';
-        compass.style.transform = 'translateZ(40px) translate(' + (cx * 22) + 'px,' + (cy * 16) + 'px) rotate(' + (cx * 6) + 'deg)';
-        plaque.style.transform = 'translateZ(80px) rotateY(' + (cx * 2.5) + 'deg) rotateX(' + (cy * -2) + 'deg)';
-        /* se apaga solo cuando vuelve al centro tras salir */
-        if (mx === 0 && my === 0 && Math.abs(cx) < 0.002 && Math.abs(cy) < 0.002) { raf = null; return; }
-        raf = requestAnimationFrame(tick);
-    }
-    function wake(){ if (!raf) raf = requestAnimationFrame(tick); }
-
-    scene.parentElement.addEventListener('mousemove', function(e){
-        var r = scene.getBoundingClientRect();
-        mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
-        my = ((e.clientY - r.top) / r.height - 0.5) * 2;
-        wake();
-    });
-    scene.parentElement.addEventListener('mouseleave', function(){ mx = 0; my = 0; wake(); });
-})();
-</script>
 
 </body>
 </html>
