@@ -884,103 +884,6 @@
         /* ════════════════════════════════════════
            LOS ROQUES
         ════════════════════════════════════════ */
-        #roques {
-            background: #0A1628;
-            padding: 32px 0 24px;
-            overflow: hidden;
-        }
-
-        .roques-text {
-            position: relative;
-            text-align: center;
-            padding: 0 10%;
-            margin-bottom: 32px;
-        }
-        .roques-flag {
-            position: absolute;
-            bottom: 0;
-            right: 56px;
-            opacity: 0.85;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .roques-eyebrow {
-            font-family: var(--font-b);
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            color: var(--white);
-            margin-bottom: 8px;
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.75s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        .roques-eyebrow.visible { opacity: 1; transform: translateY(0); }
-
-        .roques-title {
-            font-family: var(--font-d);
-            font-style: italic;
-            font-size: clamp(48px, 12vw, 110px);
-            font-weight: 300;
-            color: var(--white);
-            line-height: 1;
-            margin-bottom: 16px;
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.85s cubic-bezier(0.25, 0.1, 0.25, 1) 0.1s, transform 0.85s cubic-bezier(0.25, 0.1, 0.25, 1) 0.1s;
-        }
-        .roques-title.visible { opacity: 1; transform: translateY(0); }
-
-        .roques-quote {
-            font-family: var(--font-d);
-            font-style: italic;
-            font-size: clamp(24px, 3.5vw, 42px);
-            font-weight: 300;
-            color: rgba(255,255,255,0.75);
-            line-height: 1.4;
-            margin-top: 24px;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.4);
-            max-width: 680px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.75s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s, transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s;
-        }
-        .roques-quote.visible { opacity: 1; transform: translateY(0); }
-
-        .roques-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            padding: 0 8px 8px;
-        }
-
-        .roques-grid img {
-            width: 100%;
-            height: 400px;
-            border-radius: 4px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        .roques-grid img:hover {
-            transform: scale(1.02) translateY(-4px);
-            box-shadow: 0 24px 60px rgba(0,0,0,0.4);
-        }
-
-        .roques-caption {
-            text-align: center;
-            padding: 22px 56px;
-            font-family: var(--font-b);
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.45);
-        }
 
         /* ════════════════════════════════════════
            LANGUAGE TOGGLE
@@ -1072,8 +975,6 @@
             .gp-header          { padding: 16px 24px; }
             .gp-tabs            { gap: 20px; }
             .con-details-row    { grid-template-columns: 1fr; }
-            /* Los Roques — tablet grande */
-            .roques-grid img    { height: 300px; }
         }
 
         /* ── Panel galería — tablet media (≤ 900px) ── */
@@ -1157,12 +1058,6 @@
             .con-details-row    { grid-template-columns: 1fr; }
             .con-wa             { padding: 20px 32px; font-size: 16px; min-height: 58px; }
 
-            /* Los Roques */
-            #roques             { padding-top: 22px; padding-bottom: 22px; }
-            .roques-text        { padding: 0 20px; margin-bottom: 40px; }
-            .roques-grid        { grid-template-columns: 1fr; padding: 0 20px 20px; }
-            .roques-grid img    { height: 260px; border-radius: 4px; width: 100%; }
-            .roques-caption     { padding: 28px 20px; font-size: 11px; }
 
             /* Float WA */
             #float-wa           { width: 56px; height: 56px; bottom: 20px; right: 20px;
@@ -1224,8 +1119,6 @@
             .con-center .s-title { font-size: 28px; }
             .con-wa              { font-size: 15px; padding: 18px 24px; min-height: 54px; }
 
-            /* Los Roques */
-            .roques-title       { font-size: clamp(42px, 14vw, 68px); }
 
             /* Float WA */
             #float-wa           { width: 56px; height: 56px; bottom: 20px; right: 16px;
@@ -1250,12 +1143,6 @@
         .cp-symbol--md svg  { height: 32px; width: auto; }
         .cp-symbol--lg svg  { height: 56px; width: auto; }
         .cp-symbol--xl svg  { height: 64px; width: auto; }
-        .cp-symbol--animated {
-            opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        .cp-symbol--animated.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -1332,16 +1219,6 @@
             display: block;
         }
 
-        /* Los Roques símbolo decorativo */
-        .roques-symbol {
-            margin: 6px 0;
-        }
-        .roques-symbol svg {
-            height: 32px;
-            width: auto;
-            fill: #2ABFBF;
-            display: block;
-        }
 
         /* ── Navbar symbol separator ── */
         .nav-sep { list-style: none; pointer-events: none; display: flex; align-items: center; }
@@ -1349,8 +1226,7 @@
         #navbar.scrolled .nav-sep svg { fill: var(--black); }
 
         /* ── Micro-interacciones globales ── */
-        .esp-card,
-        .roques-grid img { cursor: zoom-in; }
+        .esp-card { cursor: zoom-in; }
 
         ::selection { background: var(--turquoise); color: var(--white); }
 
@@ -1801,11 +1677,7 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .fade-up,
-            .fade-in,
-            .roques-eyebrow,
-            .roques-title,
-            .roques-quote,
-            .cp-symbol--animated {
+            .fade-in {
                 opacity: 1 !important;
                 transform: none !important;
                 transition: none !important;
@@ -1828,9 +1700,6 @@
         .esp-ver-btn:hover::after { transform: translateX(4px); }
 
         /* ── ROQUES: DIVIDER Y LABEL ADAPTADOS AL FONDO OSCURO ── */
-        #roques .divider-line { background: rgba(255,255,255,0.25); }
-        #roques .divider-symbol svg { fill: rgba(255,255,255,0.6); }
-        #roques .s-label { color: rgba(255,255,255,0.55); letter-spacing: 0.5em; }
 
         /* ════════════════════════════════════════
            MAPA
@@ -1990,7 +1859,7 @@
         <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
         <li><a href="galeria.html"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
         <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
-        <li><a href="#roques"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a></li>
+        <li><a href="galeria.html"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a></li>
         <li aria-hidden="true" class="nav-sep">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115" style="height:14px;width:auto;opacity:0.3;"><use href="#cp-a"/></svg>
         </li>
@@ -2020,7 +1889,7 @@
     <a href="#espacios" class="m-link"><span data-es="Espacios"  data-en="Spaces">Espacios</span></a>
     <a href="galeria.html"  class="m-link"><span data-es="Galería"   data-en="Gallery">Galería</span></a>
     <a href="#contacto" class="m-link"><span data-es="Contacto"  data-en="Contact">Contacto</span></a>
-    <a href="#roques"   class="m-link"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a>
+    <a href="galeria.html"   class="m-link"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a>
     <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
        class="m-link m-cta" target="_blank" rel="noopener noreferrer" data-wa-link>
         <i class="fab fa-whatsapp"></i>
@@ -2310,10 +2179,6 @@
                 data-es="Reserva<br>tu estadía"
                 data-en="Book<br>your stay"
                 data-html="true">Reserva<br>tu estadía</h2>
-            <p class="s-sub"
-               data-es="No hay intermediarios. No hay comisiones. Solo tú, nosotros y el Caribe."
-               data-en="No intermediaries. No commissions. Just you, us and the Caribbean."
-               >No hay intermediarios. No hay comisiones. Solo tú, nosotros y el Caribe.</p>
 
             <a href="https://wa.me/584123030330?text=Hola%20Casa%20Panza!%20Quisiera%20consultar%20disponibilidad%20y%20tarifas%20%F0%9F%8C%8A"
                class="con-wa magnetic" target="_blank" rel="noopener noreferrer" data-wa-link>
@@ -2379,43 +2244,6 @@
             title="Casa Panza — Gran Roque, Los Roques, Venezuela">
         </iframe>
     </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     LOS ROQUES
-══════════════════════════════════════════ -->
-<section id="roques" aria-label="Los Roques">
-
-    <div class="roques-text">
-        <p class="roques-eyebrow">Parque Nacional Archipiélago · <span style="color:var(--turquoise)">Venezuela</span></p>
-        <svg class="roques-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="26" height="17" aria-hidden="true">
-            <rect width="30" height="20" fill="#CF142B"/>
-            <rect width="30" height="13.34" fill="#00247D"/>
-            <rect width="30" height="6.67" fill="#FFD700"/>
-            <circle cx="11.24" cy="11.13" r="0.55" fill="white"/>
-            <circle cx="11.94" cy="9.93"  r="0.55" fill="white"/>
-            <circle cx="13"    cy="9.04"  r="0.55" fill="white"/>
-            <circle cx="14.3"  cy="8.56"  r="0.55" fill="white"/>
-            <circle cx="15.7"  cy="8.56"  r="0.55" fill="white"/>
-            <circle cx="17"    cy="9.04"  r="0.55" fill="white"/>
-            <circle cx="18.06" cy="9.93"  r="0.55" fill="white"/>
-            <circle cx="18.76" cy="11.13" r="0.55" fill="white"/>
-        </svg>
-        <div class="roques-symbol cp-symbol--animated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
-        <h2 class="roques-title">Los Roques</h2>
-        <p class="roques-quote">
-            El Caribe no se imagina.<br>Se vive.
-        </p>
-    </div>
-
-    <div class="roques-grid">
-        <img src="img/IMG_0864.JPG" alt="Mar turquesa aéreo, Los Roques" width="900" height="420" loading="lazy" decoding="async" class="fade-in" style="transition-delay:0s">
-        <img src="img/IMG_0861.JPG" alt="Vista de drone, Los Roques" width="900" height="420" loading="lazy" decoding="async" class="fade-in" style="transition-delay:0.2s">
-        <img src="img/IMG_0720.JPG" alt="Personas en lancha, agua cristalina de Los Roques" width="900" height="420" loading="lazy" decoding="async" class="fade-in" style="transition-delay:0.4s">
-    </div>
-
-
 </section>
 
 
@@ -2655,7 +2483,7 @@
         });
     }, { threshold: 0.14, rootMargin: '0px 0px -48px 0px' });
 
-    document.querySelectorAll('.fade-up, .fade-in, .roques-eyebrow, .roques-title, .roques-quote, .cp-symbol--animated').forEach(el => io.observe(el));
+    document.querySelectorAll('.fade-up, .fade-in').forEach(el => io.observe(el));
 
     /* ── GALERÍA PREMIUM ── */
     const FOTOS = [
