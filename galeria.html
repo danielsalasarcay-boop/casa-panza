@@ -2503,6 +2503,10 @@
     }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     gsap.registerPlugin(ScrollTrigger);
+    /* en móvil, la barra del navegador cambia el viewport al scrollear y
+       provocaba recálculos a mitad de gesto (saltos foto a foto) */
+    ScrollTrigger.config({ ignoreMobileResize: true });
+    var isTouch = window.matchMedia('(hover: none)').matches;
     if (window.lenis) window.lenis.on('scroll', ScrollTrigger.update);
 
     /* Hero: título con clip-path reveal de abajo hacia arriba + hint */
@@ -2535,7 +2539,7 @@
     var skewSetter = gsap.quickSetter(galTrack, 'skewX', 'deg');
     var clampSkew = gsap.utils.clamp(-3, 3);
     var skewTarget = 0, skewCurrent = 0;
-    gsap.ticker.add(function(){
+    if (!isTouch) gsap.ticker.add(function(){
         skewTarget *= 0.9;
         skewCurrent += (skewTarget - skewCurrent) * 0.15;
         if (Math.abs(skewCurrent) < 0.02 && Math.abs(skewTarget) < 0.02) { skewCurrent = 0; }
@@ -2571,14 +2575,14 @@
             trigger: galSection,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 2.4,
+            scrub: isTouch ? 0.5 : 2.4,
             invalidateOnRefresh: true,
             onUpdate: function(self){
                 galBar.style.width = (self.progress * 100) + '%';
                 var idx = Math.min(galItems.length, Math.max(1, Math.round(self.progress * galItems.length) + 1));
                 setCounter(String(idx).padStart(2, '0'));
-                skewTarget = clampSkew(self.getVelocity() / -350);
-                updateFocus();
+                if (!isTouch) skewTarget = clampSkew(self.getVelocity() / -350);
+                if (!isTouch) updateFocus();
             }
         }
     });
@@ -2594,14 +2598,16 @@
             clipPath: 'inset(0% 0% 0% 0%)', duration: 0.8, ease: 'power3.out',
             scrollTrigger: { trigger: item, containerAnimation: galTween, start: 'left 105%', once: true }
         });
-        gsap.fromTo(img, { xPercent: -8 }, {
-            xPercent: 8, ease: 'none',
-            scrollTrigger: { trigger: item, containerAnimation: galTween, start: 'left right', end: 'right left', scrub: true }
-        });
-        if (cap) gsap.fromTo(cap, { xPercent: 4 }, {
-            xPercent: -4, ease: 'none',
-            scrollTrigger: { trigger: item, containerAnimation: galTween, start: 'left right', end: 'right left', scrub: true }
-        });
+        if (!isTouch) {
+            gsap.fromTo(img, { xPercent: -8 }, {
+                xPercent: 8, ease: 'none',
+                scrollTrigger: { trigger: item, containerAnimation: galTween, start: 'left right', end: 'right left', scrub: true }
+            });
+            if (cap) gsap.fromTo(cap, { xPercent: 4 }, {
+                xPercent: -4, ease: 'none',
+                scrollTrigger: { trigger: item, containerAnimation: galTween, start: 'left right', end: 'right left', scrub: true }
+            });
+        }
     });
 
     /* Entrada cinematográfica de las 3 primeras imágenes */
