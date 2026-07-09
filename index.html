@@ -1864,7 +1864,7 @@
             background: var(--turquoise);
             box-shadow: 0 0 24px 5px rgba(42,191,191,0.5);
             opacity: 0;
-            z-index: 2;
+            z-index: 6; /* visible también dentro del lente */
             pointer-events: none;
         }
         .reveal-caption { display: none; /* frase oculta a pedido: la portada habla sola */ position: absolute; bottom: 6%; right: 4vw; font-family: var(--font-d); font-size: clamp(20px, 2.6vw, 36px); font-style: italic; font-weight: 300; color: var(--black); z-index: 3; white-space: nowrap; text-shadow: 0 2px 20px rgba(255,255,255,0.5); }
@@ -3142,6 +3142,7 @@
     });
 
     var mouse = {x:0,y:0}, pos = {x:0,y:0}, raf = null, inside = false, pausedOverUI = false;
+    var closeTimer = null;
 
     /* Cierre único y robusto: colapsa suave a 0 y detiene el loop */
     function closeLens(){
@@ -3152,11 +3153,32 @@
         lensPhoto.style.transition = 'clip-path 0.25s ease';
         lensSketch.style.clipPath = 'circle(0px at ' + cx + ')';
         lensPhoto.style.clipPath = 'circle(0px at ' + cx + ')';
-        setTimeout(function(){
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(function(){
             lensSketch.style.transition = '';
             lensPhoto.style.transition = '';
             cancelAnimationFrame(raf);
         }, 260);
+    }
+
+    /* Al reactivar: cancela el cierre pendiente y quita la transición de goma */
+    function activate(){
+        clearTimeout(closeTimer);
+        lensSketch.style.transition = '';
+        lensPhoto.style.transition = '';
+        inside = true;
+    }
+
+    /* ¿El fondo muestra la foto EN el punto del cursor? Considera opacity
+       Y el borde del clip-path de construcción (inset superior en %) */
+    function photoVisibleAt(y){
+        var cs = getComputedStyle(photo);
+        if (parseFloat(cs.opacity) < 0.5) return false;
+        var clip = photo.style.clipPath || cs.clipPath || '';
+        var m = /inset\(\s*([\d.]+)%/.exec(clip);
+        if (!m) return true; /* sin clip: foto completa */
+        var boundary = stage.clientHeight * (parseFloat(m[1]) / 100);
+        return y >= boundary; /* debajo del borde ya está "construida" */
     }
 
     function tick(){
@@ -3175,7 +3197,13 @@
             return;
         }
 
-        var photoVisible = parseFloat(getComputedStyle(photo).opacity) > 0.5;
+        /* espeja el transform del fondo (scale del scrub) para alineación 1:1 real */
+        var tS = getComputedStyle(sketch).transform;
+        var tP = getComputedStyle(photo).transform;
+        lensSketch.style.transform = tS;
+        lensPhoto.style.transform = tP;
+
+        var photoVisible = photoVisibleAt(pos.y);
         var activeLens = photoVisible ? lensSketch : lensPhoto;
         var inactiveLens = photoVisible ? lensPhoto : lensSketch;
 
@@ -3189,7 +3217,7 @@
         var r = stage.getBoundingClientRect();
         mouse.x = pos.x = e.clientX - r.left;
         mouse.y = pos.y = e.clientY - r.top;
-        inside = true;
+        activate();
         ring.style.opacity = '1';
         cancelAnimationFrame(raf);
         tick();
@@ -3204,7 +3232,7 @@
         }
         if (!inside) {
             /* re-entrada sin mouseenter (p. ej. tras scroll): reactivar */
-            inside = true;
+            activate();
             pos.x = e.clientX - r.left;
             pos.y = e.clientY - r.top;
             cancelAnimationFrame(raf);
