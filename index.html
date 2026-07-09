@@ -1817,12 +1817,13 @@
         /* ── Portal Jesko: el mapa nace de la brújula (das-design) ── */
         .compass-pin {
             position: relative;
-            height: 240vh;              /* recorrido del pin */
+            height: 190vh;              /* recorrido del pin */
             border-top: 1px solid rgba(42,191,191,0.15);
         }
         .compass-stage {
-            position: sticky; top: 0;
-            height: 100vh; min-height: 560px;
+            position: sticky;
+            top: calc((100vh - min(68vh, 600px)) / 2);
+            height: min(68vh, 600px); min-height: 480px;
             overflow: clip;
             background: #FAF7F2;        /* mismo papel de la carta */
             display: flex; flex-direction: column;
@@ -1849,7 +1850,7 @@
         .compass-display {
             font-family: var(--font-d);
             font-weight: 400;
-            font-size: clamp(40px, 6.5vw, 104px);
+            font-size: clamp(36px, 5.5vw, 84px);
             line-height: 0.95;
             letter-spacing: -0.02em;
             color: var(--black);
@@ -1860,27 +1861,27 @@
         .compass-display-right { text-align: left; }
         .compass-display-right em { font-style: italic; }
         .compass-porthole {
-            width: clamp(240px, 30vw, 400px); aspect-ratio: 1;
+            width: clamp(210px, 26vw, 340px); aspect-ratio: 1;
             background: url('img/compass-sketch.webp') center/contain no-repeat;
             transform-origin: center center;
             will-change: transform, opacity;
             filter: drop-shadow(0 14px 30px rgba(0,0,0,0.14));
         }
         .compass-meta {
-            position: absolute; bottom: 48px; left: 0; right: 0;
+            position: absolute; bottom: 28px; left: 0; right: 0;
             z-index: 4;
             display: flex; justify-content: center;
             padding: 0 24px;
             will-change: transform, opacity;
         }
         @media (max-width: 1023px) {
-            .compass-pin { height: 200vh; }
+            .compass-pin { height: 170vh; }
             .compass-grid { grid-template-columns: 1fr; gap: 14px; }
             .compass-display-left, .compass-display-right { text-align: center; }
             .compass-porthole { margin: 0 auto; }
         }
         @media (max-width: 640px) {
-            .compass-pin { height: 180vh; }
+            .compass-pin { height: 160vh; }
             .compass-display { font-size: clamp(34px, 11vw, 56px); }
             .compass-meta { bottom: 24px; }
         }
