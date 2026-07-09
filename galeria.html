@@ -571,7 +571,7 @@
            GALERÍA
         ════════════════════════════════════════ */
         /* ── GALERÍA horizontal inmersiva ── */
-        .gal-h-section { height: 750vh; position: relative; padding: 0 !important; background: var(--black); overflow: clip; }
+        .gal-h-section { height: 900vh; position: relative; padding: 0 !important; background: var(--black); overflow: clip; }
         .gal-h-sticky { position: sticky; top: 0; height: 100vh; overflow: clip; display: flex; align-items: center; }
         .gal-h-header {
             position: absolute; top: 32px; left: 4vw; right: 4vw; z-index: 3;
@@ -2375,13 +2375,6 @@
                     <span class="gal-h-cap" data-es="Arrecife Los Roques desde drone" data-en="Los Roques reef from drone">Arrecife Los Roques desde drone</span>
                 </figcaption>
             </figure>
-            <figure class="gal-h-item">
-                <div class="gal-h-imgwrap"><img src="img/IMG_0720.JPG" alt="Lancha en aguas cristalinas" loading="lazy" decoding="async"></div>
-                <figcaption>
-                    <span class="gal-h-num">24</span>
-                    <span class="gal-h-cap" data-es="Lancha en aguas cristalinas" data-en="Boat in crystal clear waters">Lancha en aguas cristalinas</span>
-                </figcaption>
-            </figure>
         </div>
         <div class="gal-h-progress"><div class="gal-h-bar"></div></div>
     </div>
@@ -2578,7 +2571,7 @@
             trigger: galSection,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 2,
+            scrub: 2.4,
             invalidateOnRefresh: true,
             onUpdate: function(self){
                 galBar.style.width = (self.progress * 100) + '%';
