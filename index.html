@@ -1810,9 +1810,47 @@
         }
         .btn-reservar:hover { background: var(--turquoise); color: var(--white); }
         .gal-teaser {
-            background: var(--white); /* contraste con Comodidades (beige) */
+            background-image: url('img/carta-nautica-sketch.jpg');
+            background-size: cover;
+            background-position: center;
             border-top: 1px solid rgba(42,191,191,0.15);
-            padding: 110px 24px;
+            position: relative;
+            padding: 90px 0;
+        }
+        /* Velo sutil para legibilidad, sin matar el dibujo */
+        .gal-teaser::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: rgba(250, 247, 242, 0.25);
+            pointer-events: none;
+        }
+        /* Placa blanca estilo letrero de la fachada */
+        .gal-teaser-plaque {
+            position: relative;
+            z-index: 2;
+            background: #FFFFFF;
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 48px 56px;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        /* Tornillos en las esquinas como el letrero real */
+        .gal-teaser-plaque::before, .gal-teaser-plaque::after,
+        .gal-teaser-plaque .plaque-screws::before, .gal-teaser-plaque .plaque-screws::after {
+            content: '';
+            position: absolute;
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.18);
+        }
+        .gal-teaser-plaque::before { top: 12px; left: 12px; }
+        .gal-teaser-plaque::after { top: 12px; right: 12px; }
+        .gal-teaser-plaque .plaque-screws::before { bottom: 12px; left: 12px; }
+        .gal-teaser-plaque .plaque-screws::after { bottom: 12px; right: 12px; }
+        @media (max-width: 768px) {
+            .gal-teaser-plaque { max-width: 88%; padding: 32px 24px; }
         }
         .gal-teaser-title {
             display: flex;
@@ -2094,13 +2132,15 @@
 ══════════════════════════════════════════ -->
 <section id="galeria" class="gal-teaser">
     <div class="container" style="text-align:center;">
+        <div class="gal-teaser-plaque">
+        <span class="plaque-screws" aria-hidden="true"></span>
         <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
-        <div class="section-divider"><span class="divider-line"></span><span class="divider-symbol"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></span><span class="divider-line"></span></div>
         <h2 class="s-title gal-teaser-title">
             <span data-es="Así se ve" data-en="This is">Así se ve</span>
             <img src="img/CASA_PANZA-tight.svg" alt="Casa Panza" class="gal-title-logo">
         </h2>
         <a href="galeria.html" class="btn-reservar" style="margin-top:24px; display:inline-block;" data-es="Explorar la galería →" data-en="Explore the gallery →">Explorar la galería →</a>
+        </div>
     </div>
 </section>
 
