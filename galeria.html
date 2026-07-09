@@ -571,7 +571,7 @@
            GALERÍA
         ════════════════════════════════════════ */
         /* ── GALERÍA horizontal inmersiva ── */
-        .gal-h-section { height: 620vh; position: relative; padding: 0 !important; background: var(--black); overflow: clip; }
+        .gal-h-section { height: 750vh; position: relative; padding: 0 !important; background: var(--black); overflow: clip; }
         .gal-h-sticky { position: sticky; top: 0; height: 100vh; overflow: clip; display: flex; align-items: center; }
         .gal-h-header {
             position: absolute; top: 32px; left: 4vw; right: 4vw; z-index: 3;
@@ -2578,7 +2578,7 @@
             trigger: galSection,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 1.6,
+            scrub: 2,
             invalidateOnRefresh: true,
             onUpdate: function(self){
                 galBar.style.width = (self.progress * 100) + '%';
@@ -2672,14 +2672,14 @@
             var dt = Math.max(1, now - lastMoveT);
             velo = (lastMoveX - e.clientX) / dt;   /* px por ms, signo = dirección */
             lastMoveX = e.clientX; lastMoveT = now;
-            scrollToY(startScroll + (startX - e.clientX) * dragFactor());
+            scrollToY(startScroll + (startX - e.clientX) * dragFactor() * 0.7); /* sensibilidad -30% */
         });
         window.addEventListener('pointerup', function(){
             if (!dragging) return;
             dragging = false;
             cursor.classList.remove('grabbing');
             /* momentum: la velocidad final continúa con decay */
-            var v = velo * dragFactor() * 16;      /* px por frame (~60fps) */
+            var v = velo * dragFactor() * 0.7 * 16; /* px por frame (~60fps), sensibilidad -30% */
             (function momentum(){
                 if (dragging || Math.abs(v) < 0.4) return;
                 scrollToY(window.scrollY + v);
