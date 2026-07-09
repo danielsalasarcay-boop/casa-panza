@@ -1810,32 +1810,42 @@
         }
         .btn-reservar:hover { background: var(--turquoise); color: var(--white); }
         .gal-teaser {
-            background-image: url('img/carta-nautica-sketch.jpg');
-            background-size: cover;
-            background-position: center;
             border-top: 1px solid rgba(42,191,191,0.15);
             position: relative;
-            padding: 90px 0;
+            overflow: clip;
+            padding: 150px 0;
+        }
+        .gal-teaser-map {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center;
+            z-index: 0;
+            will-change: transform;
         }
         /* Velo sutil para legibilidad, sin matar el dibujo */
         .gal-teaser::before {
             content: '';
             position: absolute; inset: 0;
-            background: rgba(250, 247, 242, 0.25);
+            background: rgba(250, 247, 242, 0.18);
             pointer-events: none;
+            z-index: 1;
         }
         /* Placa blanca estilo letrero de la fachada */
         .gal-teaser-plaque {
             position: relative;
             z-index: 2;
             background: #FFFFFF;
-            max-width: 560px;
+            max-width: 340px;
             margin: 0 auto;
-            padding: 48px 56px;
+            padding: 30px 34px 34px;
             text-align: center;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 14px 44px rgba(0,0,0,0.16);
             border: 1px solid rgba(0,0,0,0.06);
         }
+        .gal-teaser-plaque .s-label { font-size: 9px; margin-bottom: 6px; }
+        .gal-teaser-plaque .s-title { margin-bottom: 4px; }
+        .gal-teaser-plaque .s-title > span { font-size: clamp(20px, 2.2vw, 26px); }
+        .gal-teaser-plaque .btn-reservar { padding: 10px 20px; font-size: 10px; margin-top: 14px !important; }
         /* Tornillos en las esquinas como el letrero real */
         .gal-teaser-plaque::before, .gal-teaser-plaque::after,
         .gal-teaser-plaque .plaque-screws::before, .gal-teaser-plaque .plaque-screws::after {
@@ -1850,7 +1860,7 @@
         .gal-teaser-plaque .plaque-screws::before { bottom: 12px; left: 12px; }
         .gal-teaser-plaque .plaque-screws::after { bottom: 12px; right: 12px; }
         @media (max-width: 768px) {
-            .gal-teaser-plaque { max-width: 88%; padding: 32px 24px; }
+            .gal-teaser-plaque { max-width: 72%; padding: 24px 20px 26px; }
         }
         .gal-teaser-title {
             display: flex;
@@ -1862,7 +1872,7 @@
         }
         .gal-title-logo {
             /* la línea PANZA del logo queda al tamaño óptico del título */
-            height: clamp(52px, 6vw, 78px);
+            height: clamp(34px, 3.6vw, 46px);
             width: auto;
             display: block;
         }
@@ -2131,6 +2141,7 @@
      GALERÍA
 ══════════════════════════════════════════ -->
 <section id="galeria" class="gal-teaser">
+    <img src="img/carta-nautica-sketch.jpg" alt="" aria-hidden="true" class="gal-teaser-map" loading="lazy" decoding="async">
     <div class="container" style="text-align:center;">
         <div class="gal-teaser-plaque">
         <span class="plaque-screws" aria-hidden="true"></span>
@@ -2995,6 +3006,19 @@
     .fromTo('.reveal-sketch', { scale: 1 }, { scale: 1.04, ease: 'none', duration: 1 }, 0)
     .fromTo('.reveal-photo', { scale: 1.02 }, { scale: 1, ease: 'none', duration: 1 }, 0)
     .fromTo('.reveal-caption', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, 0.78);
+
+    /* Teaser galería: la carta náutica hace zoom-out al recorrer la sección */
+    var mapImg = document.querySelector('.gal-teaser-map');
+    if (mapImg) {
+        gsap.fromTo(mapImg, { scale: 1.3 }, {
+            scale: 1, ease: 'none',
+            scrollTrigger: { trigger: '.gal-teaser', start: 'top bottom', end: 'bottom top', scrub: 1 }
+        });
+        gsap.from('.gal-teaser-plaque', {
+            y: 36, opacity: 0, scale: 0.94, duration: 0.9, ease: 'power3.out',
+            scrollTrigger: { trigger: '.gal-teaser', start: 'top 72%', once: true }
+        });
+    }
 
     /* Entrada del nombre masivo al cargar */
     gsap.from('.mega-line', {
