@@ -1828,7 +1828,6 @@
             background: #FAF7F2;        /* mismo papel de la carta */
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            perspective: 1200px;
         }
         .compass-destination {
             position: absolute; inset: 0;
@@ -1865,7 +1864,9 @@
             background: url('img/compass-sketch.webp') center/contain no-repeat;
             transform-origin: center center;
             will-change: transform, opacity;
-            filter: drop-shadow(0 14px 30px rgba(0,0,0,0.14));
+        }
+        @media (hover: hover) {
+            .compass-porthole { filter: drop-shadow(0 14px 30px rgba(0,0,0,0.14)); }
         }
         .compass-meta {
             position: absolute; bottom: 28px; left: 0; right: 0;
@@ -3120,16 +3121,17 @@
     ScrollTrigger.config({ ignoreMobileResize: true });
     var compassStage = document.querySelector('.compass-stage');
     if (compassStage) {
+        var touchDevice = window.matchMedia('(hover: none)').matches;
         var chartPulse = document.querySelector('.chart-pulse');
         gsap.timeline({
-            scrollTrigger: { trigger: '.compass-pin', start: 'top top', end: 'bottom bottom', scrub: 1.2 }
+            scrollTrigger: { trigger: '.compass-pin', start: 'top top', end: 'bottom bottom', scrub: touchDevice ? 0.6 : 1.2 }
         })
             /* FASE 1: la tipografía se aparta, la placa se retira */
             .to('.compass-display-left',  { opacity: 0, xPercent: -60, ease: 'power2.in', duration: 0.35 }, 0)
             .to('.compass-display-right', { opacity: 0, xPercent: 60, ease: 'power2.in', duration: 0.35 }, 0)
             .to('.compass-meta',          { opacity: 0, y: 40, ease: 'power1.in', duration: 0.3 }, 0)
             /* FASE 2: la brújula escala hacia ti — su anillo es la ventana */
-            .to('.compass-porthole',      { scale: 8, rotation: 25, ease: 'power2.in', duration: 0.7 }, 0)
+            .to('.compass-porthole',      { scale: touchDevice ? 6 : 8, rotation: 25, ease: 'power2.in', duration: 0.7 }, 0)
             /* FASE 3: el mapa se revela detrás y se asienta */
             .to('.compass-destination',   { opacity: 1, scale: 1, ease: 'power2.out', duration: 0.5 }, 0.4)
             /* FASE 4: la brújula se disuelve — ya estás dentro del mapa */
