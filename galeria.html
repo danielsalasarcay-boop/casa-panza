@@ -612,6 +612,7 @@
         }
         .gal-h-bar { height: 100%; width: 0%; background: var(--turquoise); box-shadow: 0 0 12px rgba(42,191,191,0.6); }
         @media (max-width: 768px) {
+            .gal-h-section { height: 1150vh; } /* paseo más lento y sereno en móvil */
             .gal-h-item img { width: 74vw !important; height: 48vh !important; }
             .gal-h-quote { max-width: 78vw; }
         }
@@ -2617,10 +2618,62 @@
         scrollTrigger: { trigger: galSection, start: 'top 70%', once: true }
     });
 
+    /* helpers de arrastre compartidos (desktop y touch) */
+    var sticky = galSection.querySelector('.gal-h-sticky');
+    function dragFactorShared(){
+        return (galSection.offsetHeight - window.innerHeight) /
+               Math.max(1, galTrack.scrollWidth - window.innerWidth + 120);
+    }
+    function scrollToYShared(y){
+        if (window.lenis) { window.lenis.scrollTo(y, { immediate: true }); }
+        else { window.scrollTo(0, y); }
+    }
+
+    /* Swipe horizontal en táctil: deslizar derecha↔izquierda también pasa las fotos */
+    if (isTouch) {
+        var tStartX = 0, tStartY = 0, tStartScroll = 0, tLastX = 0, tLastT = 0;
+        var tActive = false, tHoriz = false, tVelo = 0;
+        sticky.addEventListener('touchstart', function(e){
+            tActive = true; tHoriz = false; tVelo = 0;
+            tStartX = tLastX = e.touches[0].clientX;
+            tStartY = e.touches[0].clientY;
+            tStartScroll = window.scrollY;
+            tLastT = performance.now();
+        }, { passive: true });
+        sticky.addEventListener('touchmove', function(e){
+            if (!tActive) return;
+            var x = e.touches[0].clientX, y = e.touches[0].clientY;
+            var dx = x - tStartX, dy = y - tStartY;
+            if (!tHoriz) {
+                if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy) * 1.2) { tHoriz = true; }
+                else if (Math.abs(dy) > 14) { tActive = false; return; } /* gesto vertical: scroll nativo */
+            }
+            if (tHoriz) {
+                e.preventDefault();
+                var now = performance.now();
+                var dt = Math.max(1, now - tLastT);
+                tVelo = (tLastX - x) / dt;
+                tLastX = x; tLastT = now;
+                scrollToYShared(tStartScroll + (tStartX - x) * dragFactorShared() * 0.85);
+            }
+        }, { passive: false });
+        sticky.addEventListener('touchend', function(){
+            if (tHoriz) {
+                var v = tVelo * dragFactorShared() * 0.85 * 16;
+                (function momentum(){
+                    if (Math.abs(v) < 0.4) return;
+                    scrollToYShared(window.scrollY + v);
+                    v *= 0.94;
+                    requestAnimationFrame(momentum);
+                })();
+            }
+            tActive = false; tHoriz = false;
+        }, { passive: true });
+    }
+
     /* Cursor drag elegante + arrastre con momentum (solo desktop) */
     if (!window.matchMedia('(hover: none)').matches) {
         var cursor = document.querySelector('.gal-cursor');
-        var sticky = galSection.querySelector('.gal-h-sticky');
         var inGal = false;
 
         /* seguimiento con inercia (lerp 0.15) */
@@ -2650,14 +2703,7 @@
         /* arrastre horizontal → scroll vertical equivalente, con momentum al soltar */
         var dragging = false, startX = 0, startScroll = 0;
         var velo = 0, lastMoveX = 0, lastMoveT = 0;
-        function dragFactor(){
-            return (galSection.offsetHeight - window.innerHeight) /
-                   Math.max(1, galTrack.scrollWidth - window.innerWidth + 120);
-        }
-        function scrollToY(y){
-            if (window.lenis) { window.lenis.scrollTo(y, { immediate: true }); }
-            else { window.scrollTo(0, y); }
-        }
+        var dragFactor = dragFactorShared, scrollToY = scrollToYShared;
         sticky.addEventListener('pointerdown', function(e){
             if (!inGal) return;
             dragging = true;

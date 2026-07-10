@@ -1748,7 +1748,11 @@
         .mega-line { display: block; font-size: clamp(80px, 16vw, 260px); }
         .mega-line:nth-child(2) { color: var(--turquoise); mix-blend-mode: normal; opacity: 0.9; }
         @media (max-width: 768px) {
-            .reveal-section { height: 180vh; }
+            .reveal-section { height: 300vh; }
+            .reveal-sketch, .reveal-photo {
+                object-position: center 30%;
+                height: 100vh;
+            }
             .reveal-caption { bottom: auto; top: 16%; right: auto; left: 50%; transform: translateX(-50%); }
             .hero-mega { bottom: 150px; }
         }
@@ -3081,7 +3085,7 @@
     /* La casa se "construye" desde los planos: la foto real se levanta
        desde el suelo (clip-path) con una línea de escaneo turquesa. */
     gsap.timeline({
-        scrollTrigger: { trigger: '.reveal-section', start: 'top top', end: 'bottom bottom', scrub: 1 }
+        scrollTrigger: { trigger: '.reveal-section', start: 'top top', end: 'bottom bottom', scrub: 1, invalidateOnRefresh: true }
     })
     .to('.reveal-photo', { opacity: 1, ease: 'none', duration: 0.03 }, 0.12)
     .fromTo('.reveal-photo',
@@ -3124,6 +3128,8 @@
         stagger: 0.15, duration: 1.2, ease: 'power3.out', delay: 0.2
     });
 
+    /* recálculo final: Lenis ya está corriendo y el DOM montado */
+    ScrollTrigger.refresh();
 })();
 </script>
 
