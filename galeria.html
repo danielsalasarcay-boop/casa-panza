@@ -2655,12 +2655,12 @@
                 var dt = Math.max(1, now - tLastT);
                 tVelo = (tLastX - x) / dt;
                 tLastX = x; tLastT = now;
-                scrollToYShared(tStartScroll + (tStartX - x) * dragFactorShared() * 0.85);
+                scrollToYShared(tStartScroll + (tStartX - x) * dragFactorShared() * 1.35);
             }
         }, { passive: false });
         sticky.addEventListener('touchend', function(){
             if (tHoriz) {
-                var v = tVelo * dragFactorShared() * 0.85 * 16;
+                var v = tVelo * dragFactorShared() * 1.35 * 16;
                 (function momentum(){
                     if (Math.abs(v) < 0.4) return;
                     scrollToYShared(window.scrollY + v);
