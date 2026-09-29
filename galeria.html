@@ -924,7 +924,7 @@
         #footer {
             background:
                 linear-gradient(rgba(10,22,40,0.94), rgba(10,22,40,0.97)),
-                url('img/IMG_0864.JPG') center center / cover no-repeat;
+                url('img/footer-mar-sm.jpg') center center / cover no-repeat;
             color: var(--white);
             padding: 32px 0 20px;
             position: relative;
@@ -2629,6 +2629,7 @@
         hamburger.classList.toggle('active', open);
         hamburger.setAttribute('aria-expanded', open);
         document.body.style.overflow = open ? 'hidden' : '';
+        if (window.lenis) open ? window.lenis.stop() : window.lenis.start();
     });
     document.querySelectorAll('.m-link').forEach(function(l){
         l.addEventListener('click', function(){
@@ -2636,6 +2637,7 @@
             hamburger.classList.remove('active');
             hamburger.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
+            if (window.lenis) window.lenis.start();
         });
     });
 

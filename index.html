@@ -311,6 +311,7 @@
            SHARED SECTION STYLES
         ════════════════════════════════════════ */
         section { padding: 32px 0; }
+        section[id] { scroll-margin-top: 64px; } /* al llegar por #enlace, el título no queda bajo el menú fijo */
 
         .container {
             max-width: 1300px;
@@ -509,6 +510,7 @@
             transition: opacity 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
         }
         .esp-card:hover .esp-img-hover { opacity: 1; }
+        @media (hover: none) { .esp-img .esp-img-hover { display: none; } } /* en táctil no hay hover: no descargarla */
 
         .esp-ov {
             position: absolute; inset: 0;
@@ -822,7 +824,7 @@
         #footer {
             background:
                 linear-gradient(rgba(10,22,40,0.94), rgba(10,22,40,0.97)),
-                url('img/IMG_0864.JPG') center center / cover no-repeat;
+                url('img/footer-mar-sm.jpg') center center / cover no-repeat;
             color: var(--white);
             padding: 32px 0 20px;
             position: relative;
@@ -1887,7 +1889,7 @@
         }
         .compass-destination-img {
             position: absolute; inset: 0;
-            background: url('img/carta-nautica-sketch.jpg') center/cover;
+            background: url('img/carta-nautica-sketch-lg.jpg') center/cover;
         }
         .compass-grid {
             position: relative; z-index: 3;
@@ -2223,8 +2225,8 @@
             <!-- Card 1 — Sala de Estar -->
             <div class="esp-card fade-up" style="transition-delay:0s" data-espacio="sala">
                 <div class="esp-img">
-                    <img src="img/OBW_6660.JPG" alt="Sala de estar con vista al mar, Casa Panza" width="800" height="600" loading="lazy" decoding="async">
-                    <img class="esp-img-hover" src="img/OBW_6612.JPG" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <img src="img/OBW_6660.JPG" srcset="img/OBW_6660-sm.jpg 900w, img/OBW_6660.JPG 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="Sala de estar con vista al mar, Casa Panza" width="800" height="600" loading="lazy" decoding="async">
+                    <img class="esp-img-hover" src="img/OBW_6612.JPG" srcset="img/OBW_6612-sm.jpg 900w, img/OBW_6612.JPG 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Sala de Estar" data-en="Living Room">Sala de Estar</span></div>
                 </div>
@@ -2238,8 +2240,8 @@
             <!-- Card 2 — Suite Principal -->
             <div class="esp-card fade-up" style="transition-delay:0.08s" data-espacio="suite">
                 <div class="esp-img">
-                    <img src="img/OBW_6791.JPG" alt="Suite Principal de Casa Panza" width="800" height="600" loading="lazy" decoding="async">
-                    <img class="esp-img-hover" src="img/OBW_6463.JPG" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <img src="img/OBW_6791.JPG" srcset="img/OBW_6791-sm.jpg 900w, img/OBW_6791.JPG 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="Suite Principal de Casa Panza" width="800" height="600" loading="lazy" decoding="async">
+                    <img class="esp-img-hover" src="img/OBW_6463.JPG" srcset="img/OBW_6463-sm.jpg 900w, img/OBW_6463.JPG 1600w" sizes="(max-width: 768px) 100vw, 50vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
                     <div class="card-symbol" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="740 365 80 115"><use href="#cp-a"/></svg></div>
                     <div class="esp-ov"><span data-es="Suite Principal" data-en="Master Suite">Suite Principal</span></div>
                 </div>
@@ -2712,6 +2714,7 @@
         hamburger.classList.toggle('active', open);
         hamburger.setAttribute('aria-expanded', open);
         document.body.style.overflow = open ? 'hidden' : '';
+        if (window.lenis) open ? window.lenis.stop() : window.lenis.start();
         if (open) setTimeout(() => { const first = mobileMenu.querySelector('a'); if (first) first.focus(); }, 100);
     });
 
@@ -2720,6 +2723,7 @@
         hamburger.classList.remove('active');
         hamburger.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
+        if (window.lenis) window.lenis.start();
     }));
 
     /* ── INTERSECTION OBSERVER ── */
@@ -2843,12 +2847,16 @@
         updateLBCounter();
         lb.classList.add('open');
         document.body.style.overflow = 'hidden';
+        if (window.lenis) window.lenis.stop();
         document.getElementById('lbClose').focus();
     }
     function closeLB() {
         lb.classList.remove('open');
         lbImg.src = '';
-        if (!panel.classList.contains('open')) document.body.style.overflow = '';
+        if (!panel.classList.contains('open') && !espacioPanel.classList.contains('open')) {
+            document.body.style.overflow = '';
+            if (window.lenis) window.lenis.start();
+        }
     }
     function prevLB() {
         cur = (cur - 1 + activeGalFotos.length) % activeGalFotos.length;
@@ -2915,6 +2923,7 @@
             if (!target) return;
             e.preventDefault();
             const navH = navbar.offsetHeight || 76;
+            if (window.lenis) { window.lenis.scrollTo(target, { offset: -navH }); return; }
             window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - navH, behavior: 'smooth' });
         });
     });
@@ -3181,14 +3190,6 @@
     window.lenis = lenis;
     function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){
-        a.addEventListener('click', function(e){
-            var sel = a.getAttribute('href');
-            if(sel.length < 2) return;
-            var target = document.querySelector(sel);
-            if(target){ e.preventDefault(); lenis.scrollTo(target, {offset: -70}); }
-        });
-    });
 })();
 </script>
 
@@ -3203,6 +3204,8 @@
     }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     gsap.registerPlugin(ScrollTrigger);
+    /* en móvil, la barra del navegador cambia el alto al scrollear: sin esto hay saltos */
+    ScrollTrigger.config({ ignoreMobileResize: true });
     if (window.lenis) window.lenis.on('scroll', ScrollTrigger.update);
     /* La casa se "construye" desde los planos: la foto real se levanta
        desde el suelo (clip-path) con una línea de escaneo turquesa. */
@@ -3223,7 +3226,6 @@
     .fromTo('.reveal-caption', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2 }, 0.78);
 
     /* Portal Jesko: atraviesas la brújula y el mapa te recibe */
-    ScrollTrigger.config({ ignoreMobileResize: true });
     var compassStage = document.querySelector('.compass-stage');
     if (compassStage) {
         var touchDevice = window.matchMedia('(hover: none)').matches;
