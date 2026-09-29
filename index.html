@@ -415,8 +415,13 @@
             border-radius: 2px;
             box-shadow: 32px 32px 0px var(--turquoise);
         }
+        .about-img {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
         .about-img img {
-            width: 100%; height: 100%;
+            width: 100%; height: 100%; min-width: 0;
             object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
@@ -2143,7 +2148,8 @@
             </div>
 
             <div class="about-img fade-in">
-                <img src="img/OBW_6821.JPG" alt="Comedor de Casa Panza, mesa lista para celebrar" width="900" height="640" loading="lazy" decoding="async">
+                <img src="img/nuevas/IMG_6307.jpg" srcset="img/nuevas/IMG_6307-sm.jpg 900w, img/nuevas/IMG_6307.jpg 1600w" sizes="(max-width: 900px) 50vw, 23vw" alt="Letrero de Casa Panza iluminado entre buganvilias al atardecer" width="1200" height="1600" loading="lazy" decoding="async">
+                <img src="img/nuevas/IMG_5816.jpg" srcset="img/nuevas/IMG_5816-sm.jpg 900w, img/nuevas/IMG_5816.jpg 1600w" sizes="(max-width: 900px) 50vw, 23vw" alt="Letrero de Casa Panza en la fachada" width="1200" height="1600" loading="lazy" decoding="async">
                 <div class="about-accent" aria-hidden="true"></div>
             </div>
 
@@ -2654,28 +2660,49 @@
 
     /* ── GALERÍA PREMIUM ── */
     const FOTOS = [
-        { src: 'img/jardin-buganvilias.jpg', cat: 'exterior', alt_es: 'Jardín con buganvilias, Casa Panza', alt_en: 'Bougainvillea garden, Casa Panza' },
-        { src: 'img/OBW_6660.JPG',  cat: 'sala',         alt_es: 'Sala de estar con vista al mar',      alt_en: 'Living room with sea view' },
-        { src: 'img/OBW_6612.JPG',  cat: 'sala',         alt_es: 'Sala de estar',                       alt_en: 'Living room' },
-        { src: 'img/OBW_6599.JPG',  cat: 'sala',         alt_es: 'Sala ángulo alternativo',             alt_en: 'Living room alternative angle' },
-        { src: 'img/OBW_6634.JPG',  cat: 'sala',         alt_es: 'Comedor y cocina con vista al mar',   alt_en: 'Dining and kitchen with sea view' },
-        { src: 'img/OBW_6821.JPG',  cat: 'sala',         alt_es: 'Comedor montado',                     alt_en: 'Set dining table' },
-        { src: 'img/OBW_6822.JPG',  cat: 'sala',         alt_es: 'Detalle comedor',                     alt_en: 'Dining detail' },
-        { src: 'img/OBW_6819.JPG',  cat: 'sala',         alt_es: 'Comedor exterior',                    alt_en: 'Outdoor dining' },
-        { src: 'img/OBW_6791.JPG',  cat: 'habitaciones', alt_es: 'Suite principal',                     alt_en: 'Master suite' },
-        { src: 'img/OBW_6463.JPG',  cat: 'habitaciones', alt_es: 'Suite principal gran angular',        alt_en: 'Master suite wide angle' },
-        { src: 'img/OBW_6785.JPG',  cat: 'habitaciones', alt_es: 'Detalle almohadas',                   alt_en: 'Pillow detail' },
-        { src: 'img/OBW_6592.JPG',  cat: 'habitaciones', alt_es: 'Habitación familiar',                 alt_en: 'Family room' },
-        { src: 'img/OBW_6456.JPG',  cat: 'habitaciones', alt_es: 'Habitación familiar con litera',      alt_en: 'Family room with bunk bed' },
-        { src: 'img/OBW_6586.JPG',  cat: 'habitaciones', alt_es: 'Habitación lounge',                   alt_en: 'Lounge room' },
-        { src: 'img/OBW_6496.JPG',  cat: 'habitaciones', alt_es: 'Habitación con litera',               alt_en: 'Room with bunk bed' },
-        { src: 'img/OBW_6626.JPG',  cat: 'cocina',       alt_es: 'Cocina equipada',                     alt_en: 'Equipped kitchen' },
-        { src: 'img/OBW_6622.JPG',  cat: 'cocina',       alt_es: 'Cocina isla de madera',               alt_en: 'Kitchen wooden island' },
-        { src: 'img/OBW_6810.JPG',  cat: 'banos',       alt_es: 'Baño de diseño',                      alt_en: 'Designer bathroom' },
-        { src: 'img/OBW_6801.JPG',  cat: 'banos',       alt_es: 'Detalle toallas Casa Panza',          alt_en: 'Casa Panza towel detail' },
-        { src: 'img/IMG_0864.JPG',  cat: 'losroques',    alt_es: 'Mar turquesa Los Roques',             alt_en: 'Turquoise sea Los Roques' },
-        { src: 'img/IMG_0861.JPG',  cat: 'losroques',    alt_es: 'Arrecife Los Roques desde drone',     alt_en: 'Los Roques reef from drone' },
-        { src: 'img/IMG_0720.JPG',  cat: 'losroques',    alt_es: 'Lancha en aguas cristalinas',         alt_en: 'Boat in crystal clear waters' },
+        { src: 'img/nuevas/IMG_5799.jpg', sm: 'img/nuevas/IMG_5799-sm.jpg', cat: 'exterior', alt_es: 'Fachada de Casa Panza', alt_en: 'Casa Panza facade' },
+        { src: 'img/nuevas/IMG_6317.jpg', sm: 'img/nuevas/IMG_6317-sm.jpg', cat: 'exterior', alt_es: 'Fachada al atardecer', alt_en: 'Facade at dusk' },
+        { src: 'img/nuevas/IMG_6307.jpg', sm: 'img/nuevas/IMG_6307-sm.jpg', cat: 'exterior', alt_es: 'Letrero iluminado entre buganvilias', alt_en: 'Lit sign among bougainvillea' },
+        { src: 'img/nuevas/IMG_6316.jpg', sm: 'img/nuevas/IMG_6316-sm.jpg', cat: 'exterior', alt_es: 'Casa Panza de noche', alt_en: 'Casa Panza at night' },
+        { src: 'img/nuevas/terraza-noche.jpg', sm: 'img/nuevas/terraza-noche-sm.jpg', cat: 'exterior', alt_es: 'Terraza iluminada al anochecer', alt_en: 'Terrace lit at nightfall' },
+        { src: 'img/nuevas/IMG_5816.jpg', sm: 'img/nuevas/IMG_5816-sm.jpg', cat: 'exterior', alt_es: 'Letrero Casa Panza', alt_en: 'Casa Panza sign' },
+        { src: 'img/nuevas/IMG_5897.jpg', sm: 'img/nuevas/IMG_5897-sm.jpg', cat: 'exterior', alt_es: 'Entrada con vista al mar', alt_en: 'Entrance with sea view' },
+        { src: 'img/jardin-buganvilias.jpg', sm: 'img/jardin-buganvilias-sm.jpg', cat: 'exterior', alt_es: 'Jardín con buganvilias, Casa Panza', alt_en: 'Bougainvillea garden, Casa Panza' },
+        { src: 'img/IMG_0864.JPG', sm: 'img/IMG_0864-sm.jpg', cat: 'losroques', alt_es: 'Mar turquesa Los Roques', alt_en: 'Turquoise sea Los Roques' },
+        { src: 'img/IMG_0861.JPG', sm: 'img/IMG_0861-sm.jpg', cat: 'losroques', alt_es: 'Arrecife Los Roques desde drone', alt_en: 'Los Roques reef from drone' },
+        { src: 'img/nuevas/IMG_5895.jpg', sm: 'img/nuevas/IMG_5895-sm.jpg', cat: 'sala', alt_es: 'Vista al Caribe desde el comedor', alt_en: 'Caribbean view from the dining area' },
+        { src: 'img/OBW_6660.JPG', sm: 'img/OBW_6660-sm.jpg', cat: 'sala', alt_es: 'Sala de estar con vista al mar', alt_en: 'Living room with sea view' },
+        { src: 'img/OBW_6612.JPG', sm: 'img/OBW_6612-sm.jpg', cat: 'sala', alt_es: 'Sala de estar', alt_en: 'Living room' },
+        { src: 'img/OBW_6599.JPG', sm: 'img/OBW_6599-sm.jpg', cat: 'sala', alt_es: 'Sala ángulo alternativo', alt_en: 'Living room alternative angle' },
+        { src: 'img/OBW_6634.JPG', sm: 'img/OBW_6634-sm.jpg', cat: 'sala', alt_es: 'Comedor y cocina con vista al mar', alt_en: 'Dining and kitchen with sea view' },
+        { src: 'img/OBW_6821.JPG', sm: 'img/OBW_6821-sm.jpg', cat: 'sala', alt_es: 'Comedor montado', alt_en: 'Set dining table' },
+        { src: 'img/OBW_6822.JPG', sm: 'img/OBW_6822-sm.jpg', cat: 'sala', alt_es: 'Detalle comedor', alt_en: 'Dining detail' },
+        { src: 'img/OBW_6819.JPG', sm: 'img/OBW_6819-sm.jpg', cat: 'sala', alt_es: 'Comedor exterior', alt_en: 'Outdoor dining' },
+        { src: 'img/OBW_6626.JPG', sm: 'img/OBW_6626-sm.jpg', cat: 'cocina', alt_es: 'Cocina equipada', alt_en: 'Equipped kitchen' },
+        { src: 'img/OBW_6622.JPG', sm: 'img/OBW_6622-sm.jpg', cat: 'cocina', alt_es: 'Cocina isla de madera', alt_en: 'Kitchen wooden island' },
+        { src: 'img/nuevas/IMG_5806.jpg', sm: 'img/nuevas/IMG_5806-sm.jpg', cat: 'sala', alt_es: 'Puerta azul y silla tejida', alt_en: 'Blue door and woven chair' },
+        { src: 'img/nuevas/IMG_6319.jpg', sm: 'img/nuevas/IMG_6319-sm.jpg', cat: 'sala', alt_es: 'Mecedora tejida', alt_en: 'Woven rocking chair' },
+        { src: 'img/nuevas/IMG_5804.jpg', sm: 'img/nuevas/IMG_5804-sm.jpg', cat: 'sala', alt_es: 'Detalle silla tejida', alt_en: 'Woven chair detail' },
+        { src: 'img/OBW_6791.JPG', sm: 'img/OBW_6791-sm.jpg', cat: 'habitaciones', alt_es: 'Suite principal', alt_en: 'Master suite' },
+        { src: 'img/OBW_6463.JPG', sm: 'img/OBW_6463-sm.jpg', cat: 'habitaciones', alt_es: 'Suite principal gran angular', alt_en: 'Master suite wide angle' },
+        { src: 'img/nuevas/IMG_5802.jpg', sm: 'img/nuevas/IMG_5802-sm.jpg', cat: 'habitaciones', alt_es: 'Habitación con cama doble', alt_en: 'Double bedroom' },
+        { src: 'img/nuevas/IMG_6115.jpg', sm: 'img/nuevas/IMG_6115-sm.jpg', cat: 'habitaciones', alt_es: 'Cama con cojines de fibra natural', alt_en: 'Bed with natural-fiber cushions' },
+        { src: 'img/OBW_6785.JPG', sm: 'img/OBW_6785-sm.jpg', cat: 'habitaciones', alt_es: 'Detalle almohadas', alt_en: 'Pillow detail' },
+        { src: 'img/nuevas/IMG_6098.jpg', sm: 'img/nuevas/IMG_6098-sm.jpg', cat: 'habitaciones', alt_es: 'Detalle de cojines', alt_en: 'Cushion detail' },
+        { src: 'img/OBW_6592.JPG', sm: 'img/OBW_6592-sm.jpg', cat: 'habitaciones', alt_es: 'Habitación familiar', alt_en: 'Family room' },
+        { src: 'img/OBW_6456.JPG', sm: 'img/OBW_6456-sm.jpg', cat: 'habitaciones', alt_es: 'Habitación familiar con litera', alt_en: 'Family room with bunk bed' },
+        { src: 'img/OBW_6586.JPG', sm: 'img/OBW_6586-sm.jpg', cat: 'habitaciones', alt_es: 'Habitación lounge', alt_en: 'Lounge room' },
+        { src: 'img/OBW_6496.JPG', sm: 'img/OBW_6496-sm.jpg', cat: 'habitaciones', alt_es: 'Habitación con litera', alt_en: 'Room with bunk bed' },
+        { src: 'img/nuevas/IMG_6100.jpg', sm: 'img/nuevas/IMG_6100-sm.jpg', cat: 'habitaciones', alt_es: 'Literas empotradas', alt_en: 'Built-in bunk beds' },
+        { src: 'img/nuevas/IMG_6105.jpg', sm: 'img/nuevas/IMG_6105-sm.jpg', cat: 'habitaciones', alt_es: 'Habitación de literas', alt_en: 'Bunk room' },
+        { src: 'img/nuevas/IMG_6101.jpg', sm: 'img/nuevas/IMG_6101-sm.jpg', cat: 'habitaciones', alt_es: 'Detalle mesa de noche', alt_en: 'Nightstand detail' },
+        { src: 'img/OBW_6810.JPG', sm: 'img/OBW_6810-sm.jpg', cat: 'banos', alt_es: 'Baño de diseño', alt_en: 'Designer bathroom' },
+        { src: 'img/nuevas/IMG_6112.jpg', sm: 'img/nuevas/IMG_6112-sm.jpg', cat: 'banos', alt_es: 'Baño completo', alt_en: 'Full bathroom' },
+        { src: 'img/nuevas/IMG_6106.jpg', sm: 'img/nuevas/IMG_6106-sm.jpg', cat: 'banos', alt_es: 'Lavamanos con toallas Casa Panza', alt_en: 'Vanity with Casa Panza towels' },
+        { src: 'img/nuevas/IMG_6114.jpg', sm: 'img/nuevas/IMG_6114-sm.jpg', cat: 'banos', alt_es: 'Ducha de piedra', alt_en: 'Stone shower' },
+        { src: 'img/nuevas/IMG_5809.jpg', sm: 'img/nuevas/IMG_5809-sm.jpg', cat: 'banos', alt_es: 'Toallas Casa Panza', alt_en: 'Casa Panza towels' },
+        { src: 'img/nuevas/IMG_5810.jpg', sm: 'img/nuevas/IMG_5810-sm.jpg', cat: 'banos', alt_es: 'Toalla bordada Casa Panza', alt_en: 'Embroidered Casa Panza towel' },
+        { src: 'img/OBW_6801.JPG', sm: 'img/OBW_6801-sm.jpg', cat: 'banos', alt_es: 'Detalle toallas Casa Panza', alt_en: 'Casa Panza towel detail' },
     ];
 
     let activeGalFotos = FOTOS;
@@ -2699,7 +2726,7 @@
             const lang = getLang();
             grid.innerHTML = activeGalFotos.map((foto, i) => `
                 <div class="galeria-item" data-index="${i}">
-                    <img src="${foto.src}" alt="${lang === 'es' ? foto.alt_es : foto.alt_en}" loading="lazy" decoding="async">
+                    <img src="${foto.sm}" alt="${lang === 'es' ? foto.alt_es : foto.alt_en}" loading="lazy" decoding="async">
                 </div>
             `).join('');
             grid.querySelectorAll('.galeria-item').forEach((el, i) => {
