@@ -160,7 +160,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 38px;
+            gap: clamp(18px, 2.2vw, 38px);
             list-style: none;
         }
 
@@ -170,8 +170,23 @@
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: rgba(255,255,255,0.88);
+            white-space: nowrap;
             transition: color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
             position: relative;
+        }
+        /* Tablet / laptop angosto: menú compacto para que quepa en una línea */
+        @media (min-width: 769px) and (max-width: 1180px) {
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 11px; letter-spacing: 0.06em; }
+            .nav-links .nav-sep { display: none; }
+            .nav-logo svg { width: 120px !important; }
+        }
+        @media (min-width: 769px) and (max-width: 920px) {
+            #navbar, #navbar.scrolled { padding-left: 24px; padding-right: 24px; }
+            .nav-links { gap: 10px; }
+            .nav-links a { letter-spacing: 0.03em; }
+            .nav-cta { padding: 8px 12px !important; }
+            .nav-logo svg { width: 100px !important; }
         }
         .nav-links a::after {
             content: '';
@@ -2026,6 +2041,7 @@
         <li><a href="#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
         <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
         <li><a href="galeria.html"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
+        <li><a href="#gastronomia"><span data-es="Gastronomía" data-en="Gastronomy">Gastronomía</span></a></li>
         <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
         <li><a href="galeria.html"><span data-es="Los Roques" data-en="Los Roques">Los Roques</span></a></li>
         <li aria-hidden="true" class="nav-sep">
@@ -2519,6 +2535,7 @@
                 <li><a href="#sobre"><span data-es="La Casa" data-en="The House">La Casa</span></a></li>
                 <li><a href="#espacios"><span data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
                 <li><a href="galeria.html"><span data-es="Galería" data-en="Gallery">Galería</span></a></li>
+                <li><a href="#gastronomia"><span data-es="Gastronomía" data-en="Gastronomy">Gastronomía</span></a></li>
                 <li><a href="#contacto"><span data-es="Contacto" data-en="Contact">Contacto</span></a></li>
             </ul>
             <div class="foot-social">
