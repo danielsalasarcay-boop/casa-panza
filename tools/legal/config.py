@@ -17,6 +17,8 @@ SITE = {
     "home": {"es": "index.html", "en": "index.html"},
     "files": {"terms": "terminos.html", "privacy": "privacidad.html", "cookies": "cookies.html"},
     "version": VERSION,
+    # Versión de cada documento (sube solo la del que cambió)
+    "versions": {"terms": VERSION, "privacy": "2026-10-25", "cookies": "2026-10-25"},
     "updated": {"es": "25 de octubre de 2026", "en": "October 25, 2026"},
     "head": '<link rel="icon" type="image/svg+xml" href="favicon.svg">\n'
             '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
