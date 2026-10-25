@@ -1000,6 +1000,8 @@
         .foot-phone { margin-bottom: 20px; margin-top: -20px; }
         .foot-phone a { color: rgba(255,255,255,0.45); font-family: var(--font-b); font-size: 13px; letter-spacing: 0.1em; transition: color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); }
         .foot-phone a:hover { color: var(--turquoise) !important; }
+        .foot-legal a { color: inherit; text-decoration: underline; text-underline-offset: 3px; transition: color 0.3s; }
+        .foot-legal a:hover { color: var(--turquoise); }
         .foot-copy {
             font-size: 12px;
             color: rgba(255,255,255,0.28);
@@ -1299,6 +1301,10 @@
 
             /* Footer */
             #footer             { padding: 20px 0 16px; }
+            /* Enlaces legales en su propia línea; el margen del teléfono la compensa para que el footer mida lo mismo */
+            .foot-legal         { display: block; line-height: 20px; }
+            .foot-legal-sep     { display: none; }
+            .foot-phone         { margin-bottom: 0; }
             .foot-links         { flex-direction: column; align-items: center; gap: 12px; }
             .foot-links a       { font-size: 14px; min-height: 44px; display: flex;
                                   align-items: center; }
@@ -2575,7 +2581,7 @@
                 </a>
             </div>
             <p class="foot-phone"><a href="https://wa.me/584123030330">+58 412-303-0330</a></p>
-            <p class="foot-copy">© 2025 Casa Panza. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+            <p class="foot-copy">© 2025 Casa Panza. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span><span class="foot-legal"><span class="foot-legal-sep"> · </span><a href="terminos.html" data-es="Términos" data-en="Terms">Términos</a> · <a href="privacidad.html" data-es="Privacidad" data-en="Privacy">Privacidad</a> · <a href="cookies.html">Cookies</a></span></p>
         </div>
     </div>
 </footer>
