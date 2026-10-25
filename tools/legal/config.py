@@ -5,7 +5,7 @@
 # PENDIENTE (lo da el dueño): razón social y RIF del titular, y correo de contacto.
 # Cuando estén, añadirlos en "Quiénes somos" (Términos) y "Responsable" (Privacidad).
 
-VERSION = "2026-10-25.2"
+VERSION = "2026-10-25.3"
 WA = '<a href="https://wa.me/584123030330">+58 412-303-0330</a>'
 
 SITE = {
@@ -53,7 +53,6 @@ DOCS = {
                 ]]),
                 ("4. Precios y pagos", [[
                     "El precio de cada estadía es el que indica la confirmación de reserva, en dólares estadounidenses y su equivalente en bolívares a la tasa oficial del Banco Central de Venezuela del día del pago, conforme a la normativa vigente.",
-                    "Los pagos en divisas pueden estar sujetos al Impuesto a las Grandes Transacciones Financieras (IGTF) cuando la ley lo exija.",
                     "Los precios en dólares son referenciales. El precio es el mismo cualquiera sea la moneda de pago: si pagas en bolívares, se calcula a la tasa oficial del Banco Central de Venezuela del día del pago.",
                     "Salvo que la confirmación diga otra cosa, el precio no incluye boletos aéreos ni traslados hasta Los Roques, ni la tasa de ingreso al Parque Nacional que cobra la autoridad competente.",
                 ]]),
@@ -96,10 +95,13 @@ DOCS = {
                 ("14. Uso del sitio", [
                     "No está permitido usar el sitio o nuestros canales de contacto con fines ilícitos o fraudulentos, enviar mensajes masivos no solicitados, intentar acceder sin autorización a sus sistemas ni copiar su contenido de forma automatizada.",
                 ]),
-                ("15. Ley aplicable y reclamos", [
+                ("15. Acuerdo completo", [
+                    "Estos términos, junto con la confirmación de reserva, forman todo lo acordado entre las partes. No valen promesas ni acuerdos de palabra que no consten por escrito (correo o WhatsApp).",
+                ]),
+                ("16. Ley aplicable y reclamos", [
                     "Estos términos se rigen por las leyes de la República Bolivariana de Venezuela. Si tienes un reclamo, escríbenos primero por WhatsApp y te responderemos en un plazo máximo de 10 días hábiles. También puedes acudir a la Superintendencia Nacional para la Defensa de los Derechos Socioeconómicos (SUNDDE) o a los tribunales competentes. Para cualquier controversia, las partes eligen como domicilio especial la ciudad de Caracas, a cuyos tribunales se someten, sin perjuicio del fuero que la ley reconozca al consumidor.",
                 ]),
-                ("16. Cambios", [
+                ("17. Cambios", [
                     "Podemos actualizar estos términos. La versión vigente es la publicada en esta página con su fecha; cada reserva se rige por la versión vigente cuando fue confirmada.",
                 ]),
             ],
@@ -124,7 +126,6 @@ DOCS = {
                 ]]),
                 ("4. Prices and payments", [[
                     "The price of each stay is the one stated in the booking confirmation, in US dollars and its equivalent in bolívares at the official Central Bank of Venezuela rate on the payment date, as required by law.",
-                    "Payments in foreign currency may be subject to the Large Financial Transactions Tax (IGTF) when required by law.",
                     "Prices in US dollars are for reference. The price is the same whatever the currency of payment: if you pay in bolívares, it is calculated at the official Central Bank of Venezuela rate on the payment date.",
                     "Unless the confirmation says otherwise, the price does not include flights or transfers to Los Roques, nor the National Park entry fee charged by the authorities.",
                 ]]),
@@ -167,10 +168,13 @@ DOCS = {
                 ("14. Use of the site", [
                     "You may not use the site or our contact channels for unlawful or fraudulent purposes, send unsolicited bulk messages, attempt unauthorized access to its systems or copy its content by automated means.",
                 ]),
-                ("15. Governing law and complaints", [
+                ("15. Entire agreement", [
+                    "These terms, together with the booking confirmation, make up the entire agreement between the parties. Verbal promises or agreements that are not in writing (email or WhatsApp) are not valid.",
+                ]),
+                ("16. Governing law and complaints", [
                     "These terms are governed by the laws of the Bolivarian Republic of Venezuela. If you have a complaint, write to us first on WhatsApp and we will reply within 10 business days. You may also turn to the National Superintendence for the Defense of Socioeconomic Rights (SUNDDE) or the competent courts. For any dispute, the parties choose the city of Caracas as their special domicile and submit to its courts, without prejudice to the venue the law grants consumers.",
                 ]),
-                ("16. Changes", [
+                ("17. Changes", [
                     "We may update these terms. The current version is the one published on this page with its date; each booking is governed by the version in force when it was confirmed.",
                 ]),
             ],
