@@ -5,7 +5,7 @@
 # PENDIENTE (lo da el dueño): razón social y RIF del titular, y correo de contacto.
 # Cuando estén, añadirlos en "Quiénes somos" (Términos) y "Responsable" (Privacidad).
 
-VERSION = "2026-10-25.3"
+VERSION = "2026-10-25.4"
 WA = '<a href="https://wa.me/584123030330">+58 412-303-0330</a>'
 
 SITE = {
@@ -52,7 +52,7 @@ DOCS = {
                     "Quien reserva debe ser mayor de edad y responde por el grupo de huéspedes.",
                 ]]),
                 ("4. Precios y pagos", [[
-                    "El precio de cada estadía es el que indica la confirmación de reserva, en dólares estadounidenses y su equivalente en bolívares a la tasa oficial del Banco Central de Venezuela del día del pago, conforme a la normativa vigente.",
+                    "El precio de cada estadía es el que indica la confirmación de reserva.",
                     "Los precios en dólares son referenciales. El precio es el mismo cualquiera sea la moneda de pago: si pagas en bolívares, se calcula a la tasa oficial del Banco Central de Venezuela del día del pago.",
                     "Salvo que la confirmación diga otra cosa, el precio no incluye boletos aéreos ni traslados hasta Los Roques, ni la tasa de ingreso al Parque Nacional que cobra la autoridad competente.",
                 ]]),
@@ -125,7 +125,7 @@ DOCS = {
                     "The person booking must be of legal age and is responsible for the group of guests.",
                 ]]),
                 ("4. Prices and payments", [[
-                    "The price of each stay is the one stated in the booking confirmation, in US dollars and its equivalent in bolívares at the official Central Bank of Venezuela rate on the payment date, as required by law.",
+                    "The price of each stay is the one stated in the booking confirmation.",
                     "Prices in US dollars are for reference. The price is the same whatever the currency of payment: if you pay in bolívares, it is calculated at the official Central Bank of Venezuela rate on the payment date.",
                     "Unless the confirmation says otherwise, the price does not include flights or transfers to Los Roques, nor the National Park entry fee charged by the authorities.",
                 ]]),
