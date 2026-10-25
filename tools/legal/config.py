@@ -5,7 +5,7 @@
 # PENDIENTE (lo da el dueño): razón social y RIF del titular, y correo de contacto.
 # Cuando estén, añadirlos en "Quiénes somos" (Términos) y "Responsable" (Privacidad).
 
-VERSION = "2026-10-25"
+VERSION = "2026-10-25.2"
 WA = '<a href="https://wa.me/584123030330">+58 412-303-0330</a>'
 
 SITE = {
@@ -52,34 +52,52 @@ DOCS = {
                 ("4. Precios y pagos", [[
                     "El precio de cada estadía es el que indica la confirmación de reserva, en dólares estadounidenses y su equivalente en bolívares a la tasa oficial del Banco Central de Venezuela del día del pago, conforme a la normativa vigente.",
                     "Los pagos en divisas pueden estar sujetos al Impuesto a las Grandes Transacciones Financieras (IGTF) cuando la ley lo exija.",
+                    "Los precios en dólares son referenciales. El precio es el mismo cualquiera sea la moneda de pago: si pagas en bolívares, se calcula a la tasa oficial del Banco Central de Venezuela del día del pago.",
                     "Salvo que la confirmación diga otra cosa, el precio no incluye boletos aéreos ni traslados hasta Los Roques, ni la tasa de ingreso al Parque Nacional que cobra la autoridad competente.",
                 ]]),
                 ("5. Cancelaciones y cambios", [
                     "Las cancelaciones, los cambios de fecha y los reembolsos se rigen por las condiciones indicadas en la confirmación de reserva, que conoces y aceptas antes de pagar.",
+                    "Si no te presentas en la fecha de llegada sin avisarnos, se trata como una cancelación, según las condiciones de la confirmación de reserva.",
                     "Si Casa Panza tuviera que cancelar una reserva confirmada por una causa que no sea tuya, te devolveremos el 100 % de lo pagado o, si lo prefieres, reprogramaremos la estadía según disponibilidad.",
                 ]),
                 ("6. Normas de la estadía", [[
                     "No se admite un número de huéspedes mayor al confirmado.",
                     "Los huéspedes deben respetar las normas del Parque Nacional Archipiélago Los Roques y de sus autoridades, en especial sobre fauna, arrecifes, residuos y pesca.",
                     "Los huéspedes responden por los daños que causen a la casa, su mobiliario o equipos, más allá del desgaste normal. Podrá pedirse un depósito de garantía si así lo indica la confirmación.",
+                    "Los menores de edad deben estar acompañados en todo momento por sus padres o por un adulto responsable, que responde por ellos.",
+                    "Las normas sobre mascotas, fumar, visitas y horarios de descanso son las que indica la confirmación de reserva. Si no se cumplen, podremos pedir que se corrija y, si es grave o se repite, terminar la estadía.",
+                    "Cuida tus objetos de valor: Casa Panza no responde por la pérdida o el daño de objetos personales, salvo que se deba a culpa suya o de su personal.",
                 ]]),
-                ("7. Fuerza mayor", [
+                ("7. Actividades en el mar y excursiones", [
+                    "Las salidas en bote, el baño en el mar, el snorkel y las demás actividades en el agua o en los cayos tienen riesgos propios. Debes seguir las indicaciones del personal y de quien conduzca el bote, usar chaleco salvavidas cuando se indique, no participar bajo los efectos del alcohol y vigilar en todo momento a los menores.",
+                    "Participas bajo tu propia responsabilidad, salvo en lo que se deba a culpa de Casa Panza o de su personal. Te recomendamos contratar un seguro de viaje con cobertura médica.",
+                ]),
+                ("8. Si algo no está bien durante tu estadía", [
+                    "Si algo no funciona o no corresponde con lo confirmado, avísanos de inmediato, durante la estadía, para poder solucionarlo. Lo que no se reporta durante la estadía es más difícil de verificar y resolver después.",
+                ]),
+                ("9. Fuerza mayor", [
                     "Ninguna de las partes responde por incumplimientos causados por hechos ajenos a su control que no pudo prever ni evitar (causa extraña no imputable, artículo 1.272 del Código Civil): suspensión de vuelos, cierre del acceso al Parque Nacional, condiciones climáticas, cortes de electricidad o de comunicaciones, emergencias sanitarias o decisiones de autoridades. Si ocurre, te avisaremos lo antes posible y buscaremos contigo reprogramar la estadía; las consecuencias económicas se resuelven según la confirmación de reserva y la ley.",
                 ]),
-                ("8. Fotos y contenido del sitio", [
+                ("10. Fotos y contenido del sitio", [
                     "Las fotografías muestran la casa y su entorno. Algunas tienen retoques digitales de luz, color o nitidez y son ilustrativas: la decoración, el mobiliario y la vista pueden variar según la temporada y el momento del día.",
                     "Los textos, fotos, logotipo y diseño del sitio pertenecen a Casa Panza o se usan con autorización. No pueden copiarse ni reutilizarse sin permiso escrito.",
                 ]),
-                ("9. Servicios de terceros", [
+                ("11. Servicios de terceros", [
                     "El sitio enlaza con WhatsApp y muestra un mapa de Google Maps. Esos servicios se rigen por sus propias condiciones y políticas de privacidad.",
                 ]),
-                ("10. Responsabilidad", [
+                ("12. Responsabilidad", [
                     "Hacemos lo posible para que la información del sitio sea exacta y esté actualizada, pero la disponibilidad, los precios y los servicios solo son vinculantes en la confirmación escrita. Nada de lo aquí escrito limita los derechos que la ley te reconoce como consumidor, que son irrenunciables.",
                 ]),
-                ("11. Ley aplicable y reclamos", [
-                    "Estos términos se rigen por las leyes de la República Bolivariana de Venezuela. Si tienes un reclamo, escríbenos primero por WhatsApp y te responderemos en un plazo máximo de 10 días hábiles. También puedes acudir a la Superintendencia Nacional para la Defensa de los Derechos Socioeconómicos (SUNDDE) o a los tribunales competentes.",
+                ("13. Si nos visitas o contratas desde otro país", [
+                    "Nuestros servicios se prestan en Venezuela y se rigen por la ley venezolana. Si usas el sitio o contratas desde otro país, eres responsable de cumplir las leyes de tu país. También es tu responsabilidad cumplir los requisitos para entrar a Venezuela y viajar a Los Roques (pasaporte, visado si corresponde y, para menores, los permisos de viaje que exija la ley).",
                 ]),
-                ("12. Cambios", [
+                ("14. Uso del sitio", [
+                    "No está permitido usar el sitio o nuestros canales de contacto con fines ilícitos o fraudulentos, enviar mensajes masivos no solicitados, intentar acceder sin autorización a sus sistemas ni copiar su contenido de forma automatizada.",
+                ]),
+                ("15. Ley aplicable y reclamos", [
+                    "Estos términos se rigen por las leyes de la República Bolivariana de Venezuela. Si tienes un reclamo, escríbenos primero por WhatsApp y te responderemos en un plazo máximo de 10 días hábiles. También puedes acudir a la Superintendencia Nacional para la Defensa de los Derechos Socioeconómicos (SUNDDE) o a los tribunales competentes. Para cualquier controversia, las partes eligen como domicilio especial la ciudad de Caracas, a cuyos tribunales se someten, sin perjuicio del fuero que la ley reconozca al consumidor.",
+                ]),
+                ("16. Cambios", [
                     "Podemos actualizar estos términos. La versión vigente es la publicada en esta página con su fecha; cada reserva se rige por la versión vigente cuando fue confirmada.",
                 ]),
             ],
@@ -105,34 +123,52 @@ DOCS = {
                 ("4. Prices and payments", [[
                     "The price of each stay is the one stated in the booking confirmation, in US dollars and its equivalent in bolívares at the official Central Bank of Venezuela rate on the payment date, as required by law.",
                     "Payments in foreign currency may be subject to the Large Financial Transactions Tax (IGTF) when required by law.",
+                    "Prices in US dollars are for reference. The price is the same whatever the currency of payment: if you pay in bolívares, it is calculated at the official Central Bank of Venezuela rate on the payment date.",
                     "Unless the confirmation says otherwise, the price does not include flights or transfers to Los Roques, nor the National Park entry fee charged by the authorities.",
                 ]]),
                 ("5. Cancellations and changes", [
                     "Cancellations, date changes and refunds are governed by the conditions stated in the booking confirmation, which you know and accept before paying.",
+                    "If you do not show up on the arrival date without notice, it is treated as a cancellation under the conditions of the booking confirmation.",
                     "If Casa Panza has to cancel a confirmed booking for a reason not attributable to you, we will refund 100% of what you paid or, if you prefer, reschedule the stay subject to availability.",
                 ]),
                 ("6. House rules", [[
                     "No more guests than confirmed are allowed.",
                     "Guests must follow the rules of the Archipiélago Los Roques National Park and its authorities, especially regarding wildlife, reefs, waste and fishing.",
                     "Guests are liable for damage they cause to the house, its furniture or equipment beyond normal wear. A security deposit may be requested if the confirmation says so.",
+                    "Minors must be accompanied at all times by their parents or a responsible adult, who is responsible for them.",
+                    "The rules on pets, smoking, visitors and quiet hours are those stated in the booking confirmation. If they are not followed, we may ask for it to be corrected and, if serious or repeated, end the stay.",
+                    "Look after your valuables: Casa Panza is not liable for loss of or damage to personal belongings, unless caused by its fault or that of its staff.",
                 ]]),
-                ("7. Force majeure", [
+                ("7. Sea activities and excursions", [
+                    "Boat trips, swimming in the sea, snorkeling and other activities in the water or on the cays carry their own risks. You must follow the instructions of the staff and of whoever operates the boat, wear a life jacket when told to, not take part under the influence of alcohol and supervise minors at all times.",
+                    "You take part at your own risk, except for what is due to the fault of Casa Panza or its staff. We recommend taking out travel insurance with medical coverage.",
+                ]),
+                ("8. If something is wrong during your stay", [
+                    "If something does not work or does not match what was confirmed, let us know right away, during your stay, so we can fix it. What is not reported during the stay is harder to verify and resolve afterwards.",
+                ]),
+                ("9. Force majeure", [
                     "Neither party is liable for failures caused by events beyond its control that it could not foresee or avoid (article 1,272 of the Venezuelan Civil Code): flight suspensions, closure of access to the National Park, weather conditions, power or communication outages, health emergencies or decisions of authorities. If this happens, we will notify you as soon as possible and work with you to reschedule; the financial consequences are settled according to the booking confirmation and the law.",
                 ]),
-                ("8. Photos and site content", [
+                ("10. Photos and site content", [
                     "The photographs show the house and its surroundings. Some have digital adjustments to light, color or sharpness and are illustrative: decoration, furniture and views may vary with the season and time of day.",
                     "The texts, photos, logo and design of the site belong to Casa Panza or are used with permission. They may not be copied or reused without written permission.",
                 ]),
-                ("9. Third-party services", [
+                ("11. Third-party services", [
                     "The site links to WhatsApp and shows a Google Maps map. Those services are governed by their own terms and privacy policies.",
                 ]),
-                ("10. Liability", [
+                ("12. Liability", [
                     "We do our best to keep the site's information accurate and up to date, but availability, prices and services are only binding in the written confirmation. Nothing here limits the rights the law grants you as a consumer, which cannot be waived.",
                 ]),
-                ("11. Governing law and complaints", [
-                    "These terms are governed by the laws of the Bolivarian Republic of Venezuela. If you have a complaint, write to us first on WhatsApp and we will reply within 10 business days. You may also turn to the National Superintendence for the Defense of Socioeconomic Rights (SUNDDE) or the competent courts.",
+                ("13. If you visit or hire us from another country", [
+                    "Our services are provided in Venezuela and governed by Venezuelan law. If you use the site or hire us from another country, you are responsible for complying with the laws of your country. You are also responsible for meeting the requirements to enter Venezuela and travel to Los Roques (passport, visa where applicable and, for minors, any travel permits required by law).",
                 ]),
-                ("12. Changes", [
+                ("14. Use of the site", [
+                    "You may not use the site or our contact channels for unlawful or fraudulent purposes, send unsolicited bulk messages, attempt unauthorized access to its systems or copy its content by automated means.",
+                ]),
+                ("15. Governing law and complaints", [
+                    "These terms are governed by the laws of the Bolivarian Republic of Venezuela. If you have a complaint, write to us first on WhatsApp and we will reply within 10 business days. You may also turn to the National Superintendence for the Defense of Socioeconomic Rights (SUNDDE) or the competent courts. For any dispute, the parties choose the city of Caracas as their special domicile and submit to its courts, without prejudice to the venue the law grants consumers.",
+                ]),
+                ("16. Changes", [
                     "We may update these terms. The current version is the one published on this page with its date; each booking is governed by the version in force when it was confirmed.",
                 ]),
             ],
