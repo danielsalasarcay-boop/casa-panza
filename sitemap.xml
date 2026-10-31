@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.casapanzalosroques.com/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>1.0</priority>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/casa-panza-fachada-hd.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/nuevas/IMG_5799.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/nuevas/IMG_6317.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/nuevas/terraza-noche.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/nuevas/IMG_5897.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/OBW_6660.JPG</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/nuevas/IMG_5895.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/OBW_6634.JPG</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/OBW_6791.JPG</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/nuevas/IMG_6115.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/OBW_6463.JPG</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/OBW_6592.JPG</image:loc></image:image>
+    <image:image><image:loc>https://www.casapanzalosroques.com/img/OBW_6810.JPG</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.casapanzalosroques.com/galeria.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>

@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Las fotos de comida no deben ser la imagen de Casa Panza en Google
+User-agent: Googlebot-Image
+Disallow: /img/gastronomia/
+
 Sitemap: https://www.casapanzalosroques.com/sitemap.xml
