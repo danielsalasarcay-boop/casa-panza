@@ -66,7 +66,7 @@ DOCS = {
                     "Los huéspedes responden por los daños que causen a la casa, su mobiliario o equipos, más allá del desgaste normal. Podrá pedirse un depósito de garantía si así lo indica la confirmación.",
                     "Los menores de edad deben estar acompañados en todo momento por sus padres o por un adulto responsable, que responde por ellos.",
                     "Las normas sobre mascotas, fumar, visitas y horarios de descanso son las que indica la confirmación de reserva. Si no se cumplen, podremos pedir que se corrija y, si es grave o se repite, terminar la estadía.",
-                    "Cuida tus objetos de valor: la casa cuenta con caja fuerte para guardar dinero, documentos, joyas y equipos. Casa Panza no responde por la pérdida, el robo o el daño de objetos personales, en especial de los que no se guarden en la caja fuerte, salvo que se deba a culpa suya o de su personal.",
+                    "Cuida tus objetos de valor: Casa Panza no responde por la pérdida, el robo o el daño de objetos personales, salvo que se deba a culpa suya o de su personal.",
                 ]]),
                 ("7. Actividades en el mar y excursiones", [
                     "Las salidas en bote, el baño en el mar, el snorkel y las demás actividades en el agua o en los cayos tienen riesgos propios. Debes seguir las indicaciones del personal y de quien conduzca el bote, usar chaleco salvavidas cuando se indique, no participar bajo los efectos del alcohol y vigilar en todo momento a los menores.",
@@ -138,7 +138,7 @@ DOCS = {
                     "Guests are liable for damage they cause to the house, its furniture or equipment beyond normal wear. A security deposit may be requested if the confirmation says so.",
                     "Minors must be accompanied at all times by their parents or a responsible adult, who is responsible for them.",
                     "The rules on pets, smoking, visitors and quiet hours are those stated in the booking confirmation. If they are not followed, we may ask for it to be corrected and, if serious or repeated, end the stay.",
-                    "Look after your valuables: the house has a safe for cash, documents, jewelry and devices. Casa Panza is not liable for loss, theft of or damage to personal belongings, especially those not kept in the safe, unless caused by its fault or that of its staff.",
+                    "Look after your valuables: Casa Panza is not liable for loss, theft of or damage to personal belongings, unless caused by its fault or that of its staff.",
                 ]]),
                 ("7. Sea activities and excursions", [
                     "Boat trips, swimming in the sea, snorkeling and other activities in the water or on the cays carry their own risks. You must follow the instructions of the staff and of whoever operates the boat, wear a life jacket when told to, not take part under the influence of alcohol and supervise minors at all times.",
